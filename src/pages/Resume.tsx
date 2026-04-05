@@ -9,20 +9,11 @@ const resumePages = [
     id: "overview",
     title: "Carlos Richard Geraldine",
     subtitle: "Bridge, design, and deliver solutions that matter.",
-    summary: "A concise profile intro with identity, location, and direct contact links.",
-    body: [
-      "West Jakarta, Indonesia | carlosrichardgeraldine@outlook.com | https://www.linkedin.com/in/carlosgeraldine/ | https://wa.me/6285770078016 | https://linktr.ee/carlosgeraldine",
-      "Team leader // somewhat IT guy // bedroom DJ by night.",
-      "A simple resume deck with a sticky, snapping feel instead of a traditional long scroll.",
-    ],
-    highlights: ["Leadership", "Bridge", "IT", "Delivery"],
-    accent: "bg-gradient-to-r from-cyan-500 via-sky-500 to-violet-500",
-    borderClass: "border-cyan-400/70",
   },
   {
     id: "work-1",
     title: "Microsoft 365 Engineer at SoftwareOne Indonesia",
-    subtitle: "Contract & On-site, Oct 2025 – Mar 2026 (7 months)",
+    subtitle: "Freelance & On-site, Oct 2025 – Mar 2026 (7 months)",
     summary: "Microsoft 365 engineering work centered on secure productivity, DLP deployment, and operational support for more than 10,000 users.",
     body: [
       "Delivered configurations and policies for Microsoft 365, SharePoint Online, Exchange Online, Entra ID, Purview, and Intune, validating them and troubleshooting user and admin-reported issues to ensure compliance and secure endpoint and app management.",
@@ -35,7 +26,7 @@ const resumePages = [
   },
   {
     id: "work-2",
-    title: "Functional Consultant & Project Manager at PT Dinamika Teknologi Informasi",
+    title: "Functional Consultant at PT Dinamika Teknologi Informasi",
     subtitle: "Contract & Remote, Jan 2025 – Sep 2025 (9 months)",
     summary: "Functional consulting and project delivery for Dynamics 365 CRM, Power Platform, and Microsoft 365 for Education implementation.",
     body: [
@@ -48,64 +39,52 @@ const resumePages = [
     borderClass: "border-amber-400/70",
   },
   {
+    id: "other-working-experience",
+    title: "Other Working Experience",
+    subtitle: "Additional role history before current consulting and M365 roles.",
+    noCard: true,
+  },
+  {
     id: "projects",
     title: "Projects",
     subtitle: "Selected implementations and practice portfolios.",
-    summary: "Delivery projects across Microsoft ecosystem implementations plus hands-on portfolio work in data, CRM, ITSM, CI/CD, and cloud-native tooling.",
-    body: [
-      "1. Microsoft Office 365, Purview DLP and Intune Implementation at national multi-finance company in Jakarta.",
-      "2. Extending Dynamics 365 CRM with Power Platform for ISV Success and private school in Jakarta + Google Workspace migration to Microsoft 365 for Education.",
-      "3. Practice Portfolios:",
-      "a. Snowflake Hands-On Essentials Data Warehouse, Data App (Streamlit), Data Lake, Data Engineering & Data Science labs.",
-      "b. ServiceNow Administration Fundamentals, Configure the CMDB & CMDB Health Simulator.",
-      "c. Anaplan Level 1 & 2 Model Builder Exercise.",
-      "d. Salesforce Agentforce Service & Prompt Builder Templates.",
-      "e. Microsoft PowerUp Challenge Portfolio - simple Power Apps, Power Automate and Power BI solutions.",
-      "f. CI/CD, Serverless and Microservices using OpenStack (Podman, Kubernetes, OpenShift and Tekton) with IBM Skills Network.",
-      "g. Implementing CI/CD using Docker, Jenkins, Grafana, Prometheus with Dicoding Indonesia.",
-    ],
-    highlights: ["Microsoft 365", "Dynamics 365", "Power Platform", "Snowflake", "CI/CD"],
-    accent: "bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500",
-    borderClass: "border-indigo-400/70",
   },
   {
     id: "key-skills",
     title: "Key Skills",
     subtitle: "Capability levels across business, technical, and delivery functions.",
-    summary: "",
-    body: [],
-    highlights: [],
-    accent: "",
-    borderClass: "",
     noCard: true,
   },
   {
     id: "tools-equipment",
     title: "Tools and Equipment",
     subtitle: "Core platforms and tools grouped by proficiency level.",
-    summary: "",
-    body: [],
-    highlights: [],
-    accent: "",
-    borderClass: "",
     noCard: true,
   },
   {
     id: "highlighted-credentials",
     title: "Highlighted Credentials",
     subtitle: "Selected certifications and professional credentials.",
-    summary: "",
-    body: [],
-    highlights: [],
-    accent: "",
-    borderClass: "",
+    noCard: true,
+  },
+  {
+    id: "linguistic-psychometrics",
+    title: "Linguistic and Psychometrics",
+    subtitle: "Language proficiency and behavioral assessment profile.",
+    summary: "Strengths: strong language proficiency, analytical depth, and exploratory drive. Weaknesses: uneven consistency and emotional volatility under pressure. Opportunities: roles in strategy, communication, and cross-functional leadership. Threats: burnout risk and overextension in high-change environments.",
+    highlights: ["CEFR C1", "INFJ", "Type 3", "IAE", "Explorer", "Analytical"],
+    borderClass: "border-sky-400/70",
+  },
+  {
+    id: "education-honors",
+    title: "Education & Honors",
+    subtitle: "Academic background and notable recognitions.",
     noCard: true,
   },
   {
     id: "contact",
     title: "Contact",
-    subtitle: "Direct and minimal.",
-    summary: "Direct channels for email, LinkedIn, WhatsApp, and the broader link hub.",
+    subtitle: "",
     body: [
       "Email: carlosrichardgeraldine@outlook.com",
       "LinkedIn: https://www.linkedin.com/in/carlosgeraldine/",
@@ -117,12 +96,9 @@ const resumePages = [
   },
 ];
 
-const projectMainBullets = [
+const projectItems = [
   "Microsoft Office 365, Purview DLP and Intune Implementation at national multi-finance company in Jakarta.",
   "Extending Dynamics 365 CRM with Power Platform for ISV Success and private school in Jakarta + Google Workspace migration to Microsoft 365 for Education.",
-];
-
-const projectPracticeBullets = [
   "Snowflake Hands-On Essentials Data Warehouse, Data App (Streamlit), Data Lake, Data Engineering & Data Science labs.",
   "ServiceNow Administration Fundamentals, Configure the CMDB & CMDB Health Simulator.",
   "Anaplan Level 1 & 2 Model Builder Exercise.",
@@ -130,9 +106,95 @@ const projectPracticeBullets = [
   "Microsoft PowerUp Challenge Portfolio - simple Power Apps, Power Automate and Power BI solutions.",
   "CI/CD, Serverless and Microservices using OpenStack (Podman, Kubernetes, OpenShift and Tekton) with IBM Skills Network.",
   "Implementing CI/CD using Docker, Jenkins, Grafana, Prometheus with Dicoding Indonesia.",
+  "Rice University Engineering Project Management Capstone Project",
+  "University of California, Irvine Project Management Capstone Project"
 ];
 
-const projectItems = [...projectMainBullets, ...projectPracticeBullets];
+const otherWorkingExperiences = [
+  {
+    title: "Project Coordinator (Laravel/React Webdev Project) at Goals Academy",
+    subtitle: "Freelance & On-site, Jan 2024 - Dec 2024 (1 year)",
+    tags: ["Project Management", "Web Development"],
+  },
+  {
+    title: "Business to Business (B2B) Area Account Officer at PT Agrinesia Raya",
+    subtitle: "Contract & On-site, Nov 2022 - Dec 2023 (1 year 2 months)",
+    tags: ["B2B Marketing", "Sales"],
+  },
+  {
+    title: "Optician Assistant and Sales Counter at Optik Internasional Group",
+    subtitle: "Contract, Oct 2019 - Oct 2022 (3 years 1 months)",
+    tags: ["Sales", "Customer Service"],
+  },
+];
+
+const educationDetails = {
+  institution: "University of the People",
+  degree: "Bachelor of Science - BS, Computer Science",
+  period: "Oct 2023 - Jun 2027",
+  grade: "Grade: 3.25/4.0",
+  focus: "Database Management System (DBMS), Operating Systems",
+};
+
+const honorsAndAwards = [
+  {
+    title: "ASEAN Youth for Digital Action",
+    issuer: "Issued by ASEAN & Orbit Future Academy · Feb 2025",
+    note: "Professional Scholarship Awardee",
+  },
+  {
+    title: "University of the People Full Scholarship",
+    issuer: "Issued by University of the People · Dec 2024",
+    note: "Scholarship Awardee",
+  },
+  {
+    title: "Beasiswa Kemendikbudristek ICE Institute Semester 2024.1",
+    issuer: "Issued by Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia · Feb 2024",
+    note: "Scholarship Awardee",
+  },
+];
+
+const linguisticScores = [
+  {
+    name: "EFSET Common European Framework of Reference for Languages (CEFR)",
+    score: "61/100 (C1)",
+    date: "Jun 2025",
+  },
+  {
+    name: "British Council EnglishScore",
+    score: "578/600 (C1)",
+    date: "Jan 2024",
+  },
+];
+
+const bigFiveScores = [
+  { trait: "Openness", value: 89 },
+  { trait: "Conscientiousness", value: 33 },
+  { trait: "Extraversion", value: 66 },
+  { trait: "Agreeableness", value: 25 },
+  { trait: "Neuroticism", value: 69 },
+];
+
+const discScores = [
+  { trait: "Dominance", value: 68 },
+  { trait: "Influence", value: 7 },
+  { trait: "Steadiness", value: 7 },
+  { trait: "Conscientiousness", value: 18 },
+];
+
+const cliftonStrengths = [
+  "Communication (Score: 6 - Domain: Influencing)",
+  "Arranger (Score: 6 - Domain: Executing)",
+  "Focus (Score: 6 - Domain: Executing)",
+  "Restorative (Score: 6 - Domain: Executing)",
+  "Analytical (Score: 5 - Domain: Strategic Thinking)",
+];
+
+const schwartzValues = ["Stimulation", "Self-Direction", "Achievement"];
+
+const hollandCodes = ["IAE", "Investigative", "Artistic", "Enterprising"];
+
+const jungianArchetypes = ["Primary - The Explorer", "Secondary - The Rebel"];
 
 const keySkills = {
   proficient: [
@@ -148,7 +210,6 @@ const keySkills = {
     "System Administration",
     "Identity & Access Management",
     "Data Loss Prevention",
-    "Mobile Device Management",
     "IT Service Management",
   ],
   entryLevel: [
@@ -156,11 +217,17 @@ const keySkills = {
     "Data Analysis",
     "Data Engineering",
     "Database Administration",
+    "Mobile Device Management",
   ],
 };
 
 const toolsAndEquipment = {
-  proficient: ["Power Apps", "Power Automate", "Power BI", "Dataverse", "Purview"],
+  proficient: [
+    "Power Apps",
+    "Power Automate", 
+    "Power BI", 
+    "Dataverse", 
+    "Purview"],
   fluent: [
     "Dynamics 365 CRM",
     "SharePoint Online",
@@ -215,19 +282,30 @@ const toolsAndEquipment = {
 };
 
 const highlightedCredentials = [
-  "Microsoft Certified Expert: PL-600 (Power Platform Architect)",
-  "Microsoft Certified Associate: PL-200 (Power Platform Functional), MB-230/240/280 (Dynamics 365 CRM Functional), SC-300 (Entra), SC-401 (Purview)",
-  "Microsoft Certified Fundamentals (all 900 series)",
+  "Microsoft Certified: Power Platform Solution Architect Expert",
+  "Microsoft Certified: Power Platform Functional Consultant Associate",
+  "Microsoft Certified: Information Security Administrator Associate",
+  "Microsoft Certified: Identity and Access Administrator Associate",
+  "Microsoft Certified: Dynamics 365 Customer Experience Analyst Associate",
+  "Microsoft Certified: Dynamics 365 Field Service Functional Consultant Associate",
+  "Microsoft Certified: Dynamics 365 Customer Service Functional Consultant Associate",
+  "Snowflake SnowPro Associate: Platform Certification",
+  "GitHub Foundations",
+  "ServiceNow Suite Certification - Data Foundations (CMDB and CSDM) Professional",
+  "SAP Certified - Business Transformation Consultant",
+  "SAP Certified - Organizational Change Management",
+  "SailPoint Identity Security Leader Credential",
+  "Fortinet Certified Associate Cybersecurity",
+  "LinkedIn Learning Change Management Professional Certificate",
   "Microsoft Business Analyst Professional Certificate",
-  "Snowflake SnowPro Associate Certified",
-  "ISC2 Certified in Cybersecurity",
+  "Microsoft and LinkedIn Career Essentials in System Administration",
   "Google Cybersecurity Professional Certificate",
+  "Google Business Intelligence Professional Certificate",
   "Google IT Support Professional Certificate",
-  "Google/Gies College of Business Dual Credential in Project Management",
-  "LinkedIn Change Management Professional Certificate",
-  "IBM IT Project Manager Professional Certificate",
-  "Atlassian IT Service Management (ITSM) Professional Certificate",
-  "Atlassian Agile Project Management Professional Certificate",
+  "Google Project Management Professional Certificate",
+  "ISC2 Certified in Cybersecurity",
+  "Certified ARIS Modeler Associate",
+  "Camunda Knowledge - Business Analyst",
 ];
 
 const contactChannels = [
@@ -250,7 +328,7 @@ const contactChannels = [
     className: "border-emerald-400/80 text-emerald-600 dark:text-emerald-300",
   },
   {
-    label: "Phone Call",
+    label: "Phone",
     value: "+62 857-7007-8016",
     href: "tel:+6285770078016",
     className: "border-sky-400/80 text-sky-600 dark:text-sky-300",
@@ -363,7 +441,7 @@ const DeckEntryCard = ({
 }: {
   item: string;
   label: string;
-  footerText: string;
+  footerText?: string;
   showLogo?: boolean;
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -399,10 +477,12 @@ const DeckEntryCard = ({
           </div>
         </div>
 
-        <div className="mt-auto flex items-center gap-2 text-xs text-muted-foreground">
-          <span className="h-2 w-2 rounded-full bg-foreground/60" />
-          {footerText}
-        </div>
+        {footerText && (
+          <div className="mt-auto flex items-center gap-2 text-xs text-muted-foreground">
+            <span className="h-2 w-2 rounded-full bg-foreground/60" />
+            {footerText}
+          </div>
+        )}
       </div>
     </article>
   );
@@ -413,25 +493,42 @@ const PagedCardsDeck = ({
   label,
   footerText,
   showLogo = true,
+  isActive = false,
 }: {
   items: string[];
   label: string;
-  footerText: string;
+  footerText?: string;
   showLogo?: boolean;
+  isActive?: boolean;
 }) => {
   const cardsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
   const [hoverSide, setHoverSide] = useState<"left" | "right" | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const previousActiveRef = useRef(isActive);
 
   const totalPages = Math.max(1, Math.ceil(items.length / cardsPerPage));
 
   useEffect(() => {
+    const wasInactive = !previousActiveRef.current;
+    previousActiveRef.current = isActive;
+
+    if (isActive && wasInactive) {
+      setCurrentPage(1);
+    }
+  }, [isActive]);
+
+  useEffect(() => {
+    if (!isActive || isHovered || totalPages <= 1) {
+      return;
+    }
+
     const interval = window.setInterval(() => {
       setCurrentPage((page) => (page === totalPages ? 1 : page + 1));
     }, 7000);
 
     return () => window.clearInterval(interval);
-  }, [totalPages]);
+  }, [currentPage, totalPages, isActive, isHovered]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -454,7 +551,11 @@ const PagedCardsDeck = ({
     <div className="w-full">
       <div
         className="group relative w-full"
-        onMouseLeave={() => setHoverSide(null)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => {
+          setHoverSide(null);
+          setIsHovered(false);
+        }}
       >
         <div key={currentPage} className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {visibleCredentials.map((item, index) => (
@@ -509,23 +610,23 @@ const PagedCardsDeck = ({
   );
 };
 
-const ProjectsDeck = () => {
+const ProjectsDeck = ({ isActive }: { isActive: boolean }) => {
   return (
     <PagedCardsDeck
       items={projectItems}
       label="Project"
-      footerText="Placeholder project card"
       showLogo={false}
+      isActive={isActive}
     />
   );
 };
 
-const HighlightedCredentialsDeck = () => {
+const HighlightedCredentialsDeck = ({ isActive }: { isActive: boolean }) => {
   return (
     <PagedCardsDeck
       items={highlightedCredentials}
       label="Credential"
-      footerText="Placeholder certification card"
+      isActive={isActive}
     />
   );
 };
@@ -548,6 +649,43 @@ const ResumeKeywordPillWall = ({ style }: { style?: CSSProperties }) => {
                 </span>
               ))}
             </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const RadialIntensityGrid = ({
+  items,
+  tone,
+}: {
+  items: Array<{ trait: string; value: number }>;
+  tone: string;
+}) => {
+  return (
+    <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
+      {items.map((item) => {
+        const endDeg = item.value * 3.6;
+
+        return (
+          <div
+            key={item.trait}
+            className="rounded-xl border border-border/70 bg-card/60 px-2 py-2"
+          >
+            <div
+              className="mx-auto h-14 w-14 rounded-full p-[3px]"
+              style={{
+                background: `conic-gradient(${tone} ${endDeg}deg, hsl(var(--secondary)) ${endDeg}deg 360deg)`,
+              }}
+            >
+              <div className="flex h-full w-full items-center justify-center rounded-full bg-background text-[11px] font-semibold text-foreground">
+                {item.value}%
+              </div>
+            </div>
+            <p className="mt-2 text-center text-[11px] font-medium leading-tight text-foreground/95">
+              {item.trait}
+            </p>
           </div>
         );
       })}
@@ -654,9 +792,9 @@ const Resume = () => {
             className="snap-start min-h-screen border-b border-border"
           >
             <div className="container mx-auto flex min-h-screen items-center px-4 py-12">
-              <div className="grid w-full gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:grid-rows-[auto_1fr]">
+              <div className="grid w-full gap-8 lg:grid-cols-[1.15fr_1.15fr_0.7fr] lg:grid-rows-[auto_1fr]">
                 <div
-                  className="lg:col-span-2"
+                  className="lg:col-span-3"
                   ref={(node) => {
                     if (page.id === "overview") {
                       overviewHeroRef.current = node;
@@ -669,7 +807,7 @@ const Resume = () => {
                   <p className="mt-4 max-w-3xl text-base text-muted-foreground md:text-lg">{page.subtitle}</p>
                 </div>
 
-                <div className={`min-h-[330px] ${showSidePanel ? "" : "lg:col-span-2"}`}>
+                <div className={`min-h-[330px] ${showSidePanel ? "lg:col-span-2" : "lg:col-span-3"}`}>
                   {page.id === "overview" ? (
                     <div className="grid gap-14 lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)]">
                       <div ref={overviewCardsRef} className="space-y-4 text-lg leading-relaxed text-foreground/90">
@@ -694,32 +832,245 @@ const Resume = () => {
                       />
                     </div>
                   ) : page.id === "projects" ? (
-                    <ProjectsDeck />
+                    <ProjectsDeck isActive={activeSectionId === page.id} />
+                  ) : page.id === "other-working-experience" ? (
+                    <div className="grid gap-4">
+                      {otherWorkingExperiences.map((experience) => (
+                        <article
+                          key={experience.title}
+                          className="rounded-2xl border border-border/70 bg-card p-4 md:p-5"
+                        >
+                          <h3 className="text-lg font-semibold text-foreground md:text-xl">
+                            {experience.title}
+                          </h3>
+                          <p className="mt-2 text-sm text-muted-foreground md:text-base">
+                            {experience.subtitle}
+                          </p>
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            {experience.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="rounded-full border border-border bg-background/70 px-3 py-1 text-xs text-foreground"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  ) : page.id === "education-honors" ? (
+                    <div className="grid gap-8 md:grid-cols-2">
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                          Education
+                        </h3>
+                        <div className="space-y-2 text-foreground/95">
+                          <p className="text-lg font-semibold">{educationDetails.institution}</p>
+                          <p className="text-base">{educationDetails.degree}</p>
+                          <p className="text-sm text-muted-foreground">{educationDetails.period}</p>
+                          <p className="text-sm text-muted-foreground">{educationDetails.grade}</p>
+                          <p className="text-sm text-muted-foreground">{educationDetails.focus}</p>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                          Honors & awards
+                        </h3>
+                        <div className="space-y-5">
+                          {honorsAndAwards.map((award) => (
+                            <div key={award.title} className="space-y-1">
+                              <p className="text-base font-semibold text-foreground/95">{award.title}</p>
+                              <p className="text-sm text-muted-foreground">{award.issuer}</p>
+                              <p className="text-sm text-foreground/85">{award.note}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   ) : page.id === "key-skills" ? (
                     <GroupedCardsCarousel cards={keySkillsCards} />
                   ) : page.id === "tools-equipment" ? (
                     <GroupedCardsCarousel cards={toolsAndEquipmentCards} />
                   ) : page.id === "contact" ? (
-                    <div className="max-w-3xl">
-                      <div className="flex flex-wrap gap-3">
-                        {contactChannels.map((channel) => (
-                          <a
-                            key={channel.label}
-                            href={channel.href}
-                            target={channel.href.startsWith("http") ? "_blank" : undefined}
-                            rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                            className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-medium transition-transform duration-200 hover:-translate-y-0.5 ${channel.className}`}
-                          >
-                            <span className="opacity-80">{channel.label}</span>
-                            <span className="text-foreground/85">{channel.value}</span>
-                          </a>
-                        ))}
+                    <div className="grid gap-8 md:grid-cols-2">
+                      <div className="space-y-3">
+                        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                          Contact Channels
+                        </p>
+                        <div className="flex flex-wrap gap-3">
+                          {contactChannels.map((channel) => (
+                            <a
+                              key={channel.label}
+                              href={channel.href}
+                              target={channel.href.startsWith("http") ? "_blank" : undefined}
+                              rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                              className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-medium transition-transform duration-200 hover:-translate-y-0.5 ${channel.className}`}
+                            >
+                              <span className="opacity-80">{channel.label}</span>
+                              <span className="text-foreground/85">{channel.value}</span>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="space-y-5">
+                        <div className="space-y-2">
+                          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                            Partnership
+                          </p>
+                          <div className="space-y-1 text-sm text-foreground/95">
+                            <p>Microsoft Solution Partner - CSP</p>
+                            <p>Bitdefender Bronze Partner</p>
+                            <p>Veeam ProPartner</p>
+                            <p>Acronis Partner</p>
+                            <p>Snowflake Partner Network</p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                            Inquiries?
+                          </p>
+                          <div className="space-y-1 text-sm text-foreground/95">
+                            <p>
+                              email{" "}
+                              <a
+                                href="mailto:carlosgeraldine@bersama365.work.gd"
+                                className="underline decoration-border underline-offset-4 hover:opacity-80"
+                              >
+                                carlosgeraldine@bersama365.work.gd
+                              </a>
+                            </p>
+                            <p>
+                              whatsapp{" "}
+                              <a
+                                href="https://wa.me/6285770078016"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline decoration-border underline-offset-4 hover:opacity-80"
+                              >
+                                6285770078016
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : page.id === "linguistic-psychometrics" ? (
+                    <div className="grid gap-8 lg:grid-cols-2">
+                      <div className="space-y-6">
+                        <div>
+                          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                            Language
+                          </p>
+                          <div className="mt-3 space-y-3">
+                            {linguisticScores.map((item) => (
+                              <div key={item.name} className="space-y-1 border-b border-border/60 pb-2">
+                                <p className="text-sm font-semibold text-foreground/95">{item.name}</p>
+                                <p className="text-sm text-muted-foreground">
+                                  Score: {item.score} - {item.date}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="space-y-3">
+                          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                            Profile
+                          </p>
+                          <p className="text-base text-foreground/95">MBTI: INFJ - Advocate</p>
+                          <p className="text-base text-foreground/95">Enneagram: Type 3 - The Achiever</p>
+
+                          <div className="space-y-2">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                              Holland Code/RIASEC
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {hollandCodes.map((item) => (
+                                <span
+                                  key={item}
+                                  className="rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground"
+                                >
+                                  {item}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="space-y-2">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                              Jungian Archetype Assessment
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {jungianArchetypes.map((item) => (
+                                <span
+                                  key={item}
+                                  className="rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground"
+                                >
+                                  {item}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="space-y-2">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                              Top 3 Schwartz's Core Values
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {schwartzValues.map((value, index) => (
+                                <span
+                                  key={value}
+                                  className="rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground"
+                                >
+                                  {index + 1}. {value}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="space-y-2">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                              Top 5 CliftonStrengths
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {cliftonStrengths.map((item, index) => (
+                                <span
+                                  key={item}
+                                  className="rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground"
+                                >
+                                  {index + 1}. {item}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-6">
+                        <div>
+                          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                            Big Five Assessment
+                          </p>
+                          <RadialIntensityGrid items={bigFiveScores} tone="hsl(var(--foreground))" />
+                        </div>
+
+                        <div>
+                          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                            DISC
+                          </p>
+                          <RadialIntensityGrid items={discScores} tone="hsl(var(--primary))" />
+                        </div>
+
                       </div>
                     </div>
                   ) : page.id === "highlighted-credentials" ? (
-                    <HighlightedCredentialsDeck />
+                    <HighlightedCredentialsDeck isActive={activeSectionId === page.id} />
                   ) : (
-                    <div className="max-w-2xl space-y-4 text-lg leading-relaxed text-foreground/90">
+                    <div className="space-y-4 pr-1 text-lg leading-relaxed text-foreground/90">
                       {page.body.map((line) => (
                         <p key={line}>{line}</p>
                       ))}
