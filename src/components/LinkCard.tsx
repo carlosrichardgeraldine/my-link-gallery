@@ -14,9 +14,7 @@ const LinkCard = ({ link }: LinkCardProps) => {
       className="group block rounded-lg border border-border bg-card p-5 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
     >
       <div className="mb-3">
-        <span
-          className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-medium ${tagColorMap[link.category]}`}
-        >
+        <span className="inline-block rounded-full border border-border px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
           {link.category}
         </span>
       </div>
