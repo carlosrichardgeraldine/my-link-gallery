@@ -1,0 +1,771 @@
+import { ArrowLeft, ArrowRightLeft, Briefcase, ChevronLeft, ChevronRight, MapPinned, MapPin } from "lucide-react";
+import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import ThemeToggle from "@/components/ThemeToggle";
+import BackgroundColorToggle from "@/components/BackgroundColorToggle";
+
+const resumePages = [
+  {
+    id: "overview",
+    title: "Carlos Richard Geraldine",
+    subtitle: "Bridge, design, and deliver solutions that matter.",
+    summary: "A concise profile intro with identity, location, and direct contact links.",
+    body: [
+      "West Jakarta, Indonesia | carlosrichardgeraldine@outlook.com | https://www.linkedin.com/in/carlosgeraldine/ | https://wa.me/6285770078016 | https://linktr.ee/carlosgeraldine",
+      "Team leader // somewhat IT guy // bedroom DJ by night.",
+      "A simple resume deck with a sticky, snapping feel instead of a traditional long scroll.",
+    ],
+    highlights: ["Leadership", "Bridge", "IT", "Delivery"],
+    accent: "bg-gradient-to-r from-cyan-500 via-sky-500 to-violet-500",
+    borderClass: "border-cyan-400/70",
+  },
+  {
+    id: "work-1",
+    title: "Microsoft 365 Engineer at SoftwareOne Indonesia",
+    subtitle: "Contract & On-site, Oct 2025 – Mar 2026 (7 months)",
+    summary: "Microsoft 365 engineering work centered on secure productivity, DLP deployment, and operational support for more than 10,000 users.",
+    body: [
+      "Delivered configurations and policies for Microsoft 365, SharePoint Online, Exchange Online, Entra ID, Purview, and Intune, validating them and troubleshooting user and admin-reported issues to ensure compliance and secure endpoint and app management.",
+      "Streamlined enterprise secure productivity deployments by resolving configuration inquiries and designing business dashboard using Power BI, reducing policy misconfigurations and accelerating rollout timelines.",
+      "Successfully deployed Data Loss Prevention (DLP) policies with 99% adoption rate to more than 10,000 users across Indonesia, ensuring consistent data governance and strengthening the organization's information-protection posture.",
+    ],
+    highlights: ["Microsoft 365", "SharePoint", "Intune", "Purview", "DLP"],
+    accent: "bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500",
+    borderClass: "border-emerald-400/70",
+  },
+  {
+    id: "work-2",
+    title: "Functional Consultant & Project Manager at PT Dinamika Teknologi Informasi",
+    subtitle: "Contract & Remote, Jan 2025 – Sep 2025 (9 months)",
+    summary: "Functional consulting and project delivery for Dynamics 365 CRM, Power Platform, and Microsoft 365 for Education implementation.",
+    body: [
+      "Collaborated with stakeholders to gather business requirements and translate them into functional specifications of Microsoft Dynamics 365 CRM and Power Platform solutions.",
+      "Extended Dynamics 365 CE into 7 modules for education management system application using Power Platform and provided relevant training for the back-office staff and office administrator.",
+      "Supported the implementation and provided training session of Microsoft 365 for Education, which includes Office 365, Teams for Education, SharePoint Online, and Entra for teachers, educators and school admins.",
+    ],
+    highlights: ["Dynamics 365", "Power Platform", "Project Management", "Training"],
+    accent: "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500",
+    borderClass: "border-amber-400/70",
+  },
+  {
+    id: "projects",
+    title: "Projects",
+    subtitle: "Selected implementations and practice portfolios.",
+    summary: "Delivery projects across Microsoft ecosystem implementations plus hands-on portfolio work in data, CRM, ITSM, CI/CD, and cloud-native tooling.",
+    body: [
+      "1. Microsoft Office 365, Purview DLP and Intune Implementation at national multi-finance company in Jakarta.",
+      "2. Extending Dynamics 365 CRM with Power Platform for ISV Success and private school in Jakarta + Google Workspace migration to Microsoft 365 for Education.",
+      "3. Practice Portfolios:",
+      "a. Snowflake Hands-On Essentials Data Warehouse, Data App (Streamlit), Data Lake, Data Engineering & Data Science labs.",
+      "b. ServiceNow Administration Fundamentals, Configure the CMDB & CMDB Health Simulator.",
+      "c. Anaplan Level 1 & 2 Model Builder Exercise.",
+      "d. Salesforce Agentforce Service & Prompt Builder Templates.",
+      "e. Microsoft PowerUp Challenge Portfolio - simple Power Apps, Power Automate and Power BI solutions.",
+      "f. CI/CD, Serverless and Microservices using OpenStack (Podman, Kubernetes, OpenShift and Tekton) with IBM Skills Network.",
+      "g. Implementing CI/CD using Docker, Jenkins, Grafana, Prometheus with Dicoding Indonesia.",
+    ],
+    highlights: ["Microsoft 365", "Dynamics 365", "Power Platform", "Snowflake", "CI/CD"],
+    accent: "bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500",
+    borderClass: "border-indigo-400/70",
+  },
+  {
+    id: "key-skills",
+    title: "Key Skills",
+    subtitle: "Capability levels across business, technical, and delivery functions.",
+    summary: "",
+    body: [],
+    highlights: [],
+    accent: "",
+    borderClass: "",
+    noCard: true,
+  },
+  {
+    id: "tools-equipment",
+    title: "Tools and Equipment",
+    subtitle: "Core platforms and tools grouped by proficiency level.",
+    summary: "",
+    body: [],
+    highlights: [],
+    accent: "",
+    borderClass: "",
+    noCard: true,
+  },
+  {
+    id: "highlighted-credentials",
+    title: "Highlighted Credentials",
+    subtitle: "Selected certifications and professional credentials.",
+    summary: "",
+    body: [],
+    highlights: [],
+    accent: "",
+    borderClass: "",
+    noCard: true,
+  },
+  {
+    id: "contact",
+    title: "Contact",
+    subtitle: "Direct and minimal.",
+    summary: "Direct channels for email, LinkedIn, WhatsApp, and the broader link hub.",
+    body: [
+      "Email: carlosrichardgeraldine@outlook.com",
+      "LinkedIn: https://www.linkedin.com/in/carlosgeraldine/",
+      "WhatsApp: https://wa.me/6285770078016",
+    ],
+    highlights: ["Email", "LinkedIn", "WhatsApp", "Linktree"],
+    accent: "bg-gradient-to-r from-slate-500 via-zinc-500 to-stone-500",
+    borderClass: "border-slate-400/70",
+  },
+];
+
+const projectMainBullets = [
+  "Microsoft Office 365, Purview DLP and Intune Implementation at national multi-finance company in Jakarta.",
+  "Extending Dynamics 365 CRM with Power Platform for ISV Success and private school in Jakarta + Google Workspace migration to Microsoft 365 for Education.",
+];
+
+const projectPracticeBullets = [
+  "Snowflake Hands-On Essentials Data Warehouse, Data App (Streamlit), Data Lake, Data Engineering & Data Science labs.",
+  "ServiceNow Administration Fundamentals, Configure the CMDB & CMDB Health Simulator.",
+  "Anaplan Level 1 & 2 Model Builder Exercise.",
+  "Salesforce Agentforce Service & Prompt Builder Templates.",
+  "Microsoft PowerUp Challenge Portfolio - simple Power Apps, Power Automate and Power BI solutions.",
+  "CI/CD, Serverless and Microservices using OpenStack (Podman, Kubernetes, OpenShift and Tekton) with IBM Skills Network.",
+  "Implementing CI/CD using Docker, Jenkins, Grafana, Prometheus with Dicoding Indonesia.",
+];
+
+const projectItems = [...projectMainBullets, ...projectPracticeBullets];
+
+const keySkills = {
+  proficient: [
+    "Business Analysis",
+    "IT Solutions Design",
+    "Low-code-no-code AI Platform",
+  ],
+  fluent: [
+    "Project Management",
+    "Presales",
+    "Cloud Computing",
+    "IT Support",
+    "System Administration",
+    "Identity & Access Management",
+    "Data Loss Prevention",
+    "Mobile Device Management",
+    "IT Service Management",
+  ],
+  entryLevel: [
+    "Microsoft Licensing",
+    "Data Analysis",
+    "Data Engineering",
+    "Database Administration",
+  ],
+};
+
+const toolsAndEquipment = {
+  proficient: ["Power Apps", "Power Automate", "Power BI", "Dataverse", "Purview"],
+  fluent: [
+    "Dynamics 365 CRM",
+    "SharePoint Online",
+    "Exchange Online",
+    "Microsoft 365",
+    "Office 365",
+    "Snowflake",
+    "SQL",
+    "Python",
+    "Jira",
+    "Confluence",
+    "Camunda",
+    "Signavio",
+    "BPMN",
+    "DMN",
+    "UML",
+    "DFD",
+    "FSD",
+    "BRD/PRD",
+  ],
+  entryLevel: [
+    "Copilot Studio",
+    "Azure Admin",
+    "Azure DevOps",
+    "Intune",
+    "Anaplan",
+    "Delinea",
+    "ManageEngine",
+    "Google Cloud Security Command Center",
+    "ServiceNow",
+    "Microsoft Entra",
+    "Microsoft Defender",
+    "CyberArk PAM",
+    "Debian",
+    "Ubuntu",
+  ],
+  introductory: [
+    "Microsoft Fabric",
+    "Azure AI Services",
+    "Microsoft Foundry",
+    "Dynamics 365 ERP",
+    "Oracle Cloud",
+    "Oracle Fusion ERP",
+    "AWS Cloud Services",
+    "Salesforce",
+    "Creatio",
+    "Datadog",
+    "Okta",
+    "Docker",
+    "Elastic",
+  ],
+};
+
+const highlightedCredentials = [
+  "Microsoft Certified Expert: PL-600 (Power Platform Architect)",
+  "Microsoft Certified Associate: PL-200 (Power Platform Functional), MB-230/240/280 (Dynamics 365 CRM Functional), SC-300 (Entra), SC-401 (Purview)",
+  "Microsoft Certified Fundamentals (all 900 series)",
+  "Microsoft Business Analyst Professional Certificate",
+  "Snowflake SnowPro Associate Certified",
+  "ISC2 Certified in Cybersecurity",
+  "Google Cybersecurity Professional Certificate",
+  "Google IT Support Professional Certificate",
+  "Google/Gies College of Business Dual Credential in Project Management",
+  "LinkedIn Change Management Professional Certificate",
+  "IBM IT Project Manager Professional Certificate",
+  "Atlassian IT Service Management (ITSM) Professional Certificate",
+  "Atlassian Agile Project Management Professional Certificate",
+];
+
+const contactChannels = [
+  {
+    label: "Email",
+    value: "carlosrichardgeraldine@outlook.com",
+    href: "mailto:carlosrichardgeraldine@outlook.com",
+    className: "border-red-400/80 text-red-500 dark:text-red-300",
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/carlosgeraldine",
+    href: "https://www.linkedin.com/in/carlosgeraldine/",
+    className: "border-blue-400/80 text-blue-600 dark:text-blue-300",
+  },
+  {
+    label: "WhatsApp",
+    value: "+62 857-7007-8016",
+    href: "https://wa.me/6285770078016",
+    className: "border-emerald-400/80 text-emerald-600 dark:text-emerald-300",
+  },
+  {
+    label: "Phone Call",
+    value: "+62 857-7007-8016",
+    href: "tel:+6285770078016",
+    className: "border-sky-400/80 text-sky-600 dark:text-sky-300",
+  },
+  {
+    label: "SMS",
+    value: "+62 857-7007-8016",
+    href: "sms:+6285770078016",
+    className: "border-yellow-400/80 text-yellow-700 dark:text-yellow-300",
+  },
+];
+
+const overviewDetails = [
+  {
+    icon: MapPin,
+    text: "Kemanggisan, West Jakarta",
+  },
+  {
+    icon: MapPinned,
+    text: "from Malang, East Java",
+  },
+  {
+    icon: ArrowRightLeft,
+    text: "Ready to relocate across the country",
+  },
+  {
+    icon: Briefcase,
+    text: "Full time, contract, paid internship",
+  },
+];
+
+const rollingKeywordRows = [
+  ["Leadership", "Communication", "Collaboration", "Stakeholder Management", "Problem Solving", "Critical Thinking", "Adaptability", "Initiative"],
+  ["Business Analysis", "Project Delivery", "Functional Consultant", "Presales", "Documentation", "Process Mapping", "Requirements Gathering", "Change Management"],
+  ["Microsoft 365", "SharePoint Online", "Exchange Online", "Power Platform", "Dynamics 365", "Entra ID", "Purview", "Intune"],
+  ["Data Loss Prevention", "Identity & Access", "Security Baseline", "Governance", "Compliance", "Endpoint Management", "Admin Support", "Troubleshooting"],
+  ["Power BI", "Power Apps", "Power Automate", "Dataverse", "SQL", "Python", "Dashboard", "Automation"],
+  ["ServiceNow", "Anaplan", "Salesforce", "Snowflake", "Azure", "DevOps", "CI/CD", "Docker"],
+  ["Training", "Workshops", "User Enablement", "Knowledge Transfer", "Presentation", "Mentoring", "Teamwork", "Coordination"],
+  ["Growth Mindset", "Continuous Learning", "Certification", "Cross-functional", "Execution", "Ownership", "Delivery Focus", "Impact"],
+  ["Customer Success", "Solution Design", "Roadmap", "Discovery", "Scoping", "Backlog", "Sprint", "Iteration"],
+  ["KPI", "SLA", "Escalation", "Root Cause", "Risk Mitigation", "Incident Response", "Service Quality", "Optimization"],
+  ["Documentation", "Standard Operating Procedure", "Playbook", "Handover", "Governance Model", "Audit Readiness", "Controls", "Assurance"],
+  ["Productivity", "Reliability", "Scalability", "Security", "Performance", "Adoption", "Enablement", "Outcome"],
+];
+
+type GroupCard = {
+  title: string;
+  items: string[];
+};
+
+const keySkillsCards: GroupCard[] = [
+  { title: "Proficient", items: keySkills.proficient },
+  { title: "Fluent", items: keySkills.fluent },
+  { title: "Entry-level", items: keySkills.entryLevel },
+];
+
+const toolsAndEquipmentCards: GroupCard[] = [
+  { title: "Proficient", items: toolsAndEquipment.proficient },
+  { title: "Fluent", items: toolsAndEquipment.fluent },
+  { title: "Entry-level", items: toolsAndEquipment.entryLevel },
+  { title: "Introductory", items: toolsAndEquipment.introductory },
+];
+
+const GroupedCardsCarousel = ({ cards }: { cards: GroupCard[] }) => {
+  const borderGradients = [
+    "from-cyan-400/80 via-sky-400/70 to-blue-500/80",
+    "from-emerald-400/80 via-lime-400/70 to-yellow-400/80",
+    "from-fuchsia-400/80 via-pink-400/70 to-rose-500/80",
+    "from-violet-400/80 via-indigo-400/70 to-blue-400/80",
+    "from-amber-400/80 via-orange-400/70 to-red-500/80",
+    "from-teal-400/80 via-cyan-400/70 to-indigo-500/80",
+  ];
+
+  return (
+    <div className="w-full">
+      <div className="-mx-1 overflow-x-auto pb-2">
+        <div className="flex min-w-full snap-x snap-mandatory gap-4 px-1">
+          {cards.map((card, cardIndex) => (
+            <article
+              key={card.title}
+              className={`min-w-[260px] flex-1 basis-0 snap-start rounded-2xl bg-gradient-to-br ${borderGradients[cardIndex % borderGradients.length]} p-[1px] shadow-[0_0_0_1px_rgba(255,255,255,0.08)]`}
+            >
+              <div className="h-full rounded-2xl border border-border/70 bg-card p-4">
+                <h3 className="text-base font-semibold text-foreground">{card.title}</h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {card.items.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-border bg-background/70 px-3 py-1 text-sm leading-relaxed text-foreground/90"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const DeckEntryCard = ({
+  item,
+  label,
+  footerText,
+  showLogo = true,
+}: {
+  item: string;
+  label: string;
+  footerText: string;
+  showLogo?: boolean;
+}) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  return (
+    <article
+      className={`h-full rounded-2xl bg-gradient-to-br from-fuchsia-400/80 via-violet-400/70 to-cyan-400/80 p-[1px] shadow-[0_0_0_1px_rgba(255,255,255,0.08)] transition-all duration-500 ease-out ${
+        isVisible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+      }`}
+    >
+      <div className="flex h-full min-h-[180px] flex-col rounded-2xl border border-border/70 bg-card p-4">
+        <div className="mb-4 flex items-start gap-3">
+          {showLogo && (
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-border bg-background text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+              Logo
+            </div>
+          )}
+          <div className="min-w-0">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+              {label}
+            </p>
+            <h3 className="mt-1 text-sm font-semibold leading-snug text-foreground">
+              {item}
+            </h3>
+          </div>
+        </div>
+
+        <div className="mt-auto flex items-center gap-2 text-xs text-muted-foreground">
+          <span className="h-2 w-2 rounded-full bg-foreground/60" />
+          {footerText}
+        </div>
+      </div>
+    </article>
+  );
+};
+
+const PagedCardsDeck = ({
+  items,
+  label,
+  footerText,
+  showLogo = true,
+}: {
+  items: string[];
+  label: string;
+  footerText: string;
+  showLogo?: boolean;
+}) => {
+  const cardsPerPage = 8;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [hoverSide, setHoverSide] = useState<"left" | "right" | null>(null);
+
+  const totalPages = Math.max(1, Math.ceil(items.length / cardsPerPage));
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setCurrentPage((page) => (page === totalPages ? 1 : page + 1));
+    }, 7000);
+
+    return () => window.clearInterval(interval);
+  }, [totalPages]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [totalPages]);
+
+  const visibleCredentials = useMemo(() => {
+    const start = (currentPage - 1) * cardsPerPage;
+    return items.slice(start, start + cardsPerPage);
+  }, [currentPage, items]);
+
+  const goPrev = () => {
+    setCurrentPage((page) => (page === 1 ? totalPages : page - 1));
+  };
+
+  const goNext = () => {
+    setCurrentPage((page) => (page === totalPages ? 1 : page + 1));
+  };
+
+  return (
+    <div className="w-full">
+      <div
+        className="group relative w-full"
+        onMouseLeave={() => setHoverSide(null)}
+      >
+        <div key={currentPage} className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {visibleCredentials.map((item, index) => (
+            <DeckEntryCard
+              key={`${item}-${currentPage}-${index}`}
+              item={item}
+              label={label}
+              footerText={footerText}
+              showLogo={showLogo}
+            />
+          ))}
+        </div>
+
+        {totalPages > 1 && (
+          <>
+            <button
+              type="button"
+              aria-label="Previous credentials page"
+              onMouseEnter={() => setHoverSide("left")}
+              onFocus={() => setHoverSide("left")}
+              onClick={goPrev}
+              className="absolute inset-y-0 left-0 z-10 w-1/2 cursor-pointer border-0 bg-transparent p-0 outline-none"
+            />
+            <button
+              type="button"
+              aria-label="Next credentials page"
+              onMouseEnter={() => setHoverSide("right")}
+              onFocus={() => setHoverSide("right")}
+              onClick={goNext}
+              className="absolute inset-y-0 right-0 z-10 w-1/2 cursor-pointer border-0 bg-transparent p-0 outline-none"
+            />
+
+            <div
+              className={`pointer-events-none absolute inset-y-0 left-0 z-20 flex w-9 items-center justify-start transition-opacity duration-200 ${hoverSide === "left" ? "opacity-100" : "opacity-0"}`}
+            >
+              <div className="flex h-24 w-9 items-center justify-center rounded-r-full bg-card/90 border border-border border-l-0 shadow-sm">
+                <ChevronLeft className="h-5 w-5 text-foreground" />
+              </div>
+            </div>
+
+            <div
+              className={`pointer-events-none absolute inset-y-0 right-0 z-20 flex w-9 items-center justify-end transition-opacity duration-200 ${hoverSide === "right" ? "opacity-100" : "opacity-0"}`}
+            >
+              <div className="flex h-24 w-9 items-center justify-center rounded-l-full bg-card/90 border border-border border-r-0 shadow-sm">
+                <ChevronRight className="h-5 w-5 text-foreground" />
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const ProjectsDeck = () => {
+  return (
+    <PagedCardsDeck
+      items={projectItems}
+      label="Project"
+      footerText="Placeholder project card"
+      showLogo={false}
+    />
+  );
+};
+
+const HighlightedCredentialsDeck = () => {
+  return (
+    <PagedCardsDeck
+      items={highlightedCredentials}
+      label="Credential"
+      footerText="Placeholder certification card"
+    />
+  );
+};
+
+const ResumeKeywordPillWall = ({ style }: { style?: CSSProperties }) => {
+  return (
+    <div className="resume-pill-wall" style={style}>
+      {rollingKeywordRows.map((row, rowIndex) => {
+        const duration = 48 + rowIndex * 2;
+
+        return (
+          <div key={`row-${rowIndex}`} className="resume-pill-row">
+            <div
+              className={`resume-pill-track ${rowIndex % 2 === 1 ? "resume-pill-track-reverse" : ""}`}
+              style={{ animationDuration: `${duration}s` }}
+            >
+              {[...row, ...row].map((item, itemIndex) => (
+                <span key={`${rowIndex}-${itemIndex}-${item}`} className="resume-keyword-pill">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const Resume = () => {
+  const sectionRefs = useRef<HTMLElement[]>([]);
+  const overviewHeroRef = useRef<HTMLDivElement | null>(null);
+  const overviewCardsRef = useRef<HTMLDivElement | null>(null);
+  const [activeSectionId, setActiveSectionId] = useState("overview");
+  const [overviewWallMetrics, setOverviewWallMetrics] = useState({
+    height: 0,
+    offsetTop: 0,
+  });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const activeEntry = entries.find((entry) => entry.isIntersecting);
+
+        if (activeEntry?.target instanceof HTMLElement) {
+          setActiveSectionId(activeEntry.target.id);
+        }
+      },
+      {
+        threshold: 0.6,
+      }
+    );
+
+    sectionRefs.current.forEach((section) => {
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const recalculateOverviewWall = () => {
+      if (!overviewHeroRef.current || !overviewCardsRef.current) {
+        return;
+      }
+
+      const heroRect = overviewHeroRef.current.getBoundingClientRect();
+      const cardsRect = overviewCardsRef.current.getBoundingClientRect();
+      const offsetTop = Math.max(0, cardsRect.top - heroRect.top);
+      const height = Math.max(0, cardsRect.bottom - heroRect.top - 5);
+
+      setOverviewWallMetrics({
+        height,
+        offsetTop,
+      });
+    };
+
+    const frame = window.requestAnimationFrame(recalculateOverviewWall);
+    const resizeObserver = new ResizeObserver(recalculateOverviewWall);
+
+    if (overviewHeroRef.current) {
+      resizeObserver.observe(overviewHeroRef.current);
+    }
+
+    if (overviewCardsRef.current) {
+      resizeObserver.observe(overviewCardsRef.current);
+    }
+
+    window.addEventListener("resize", recalculateOverviewWall);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", recalculateOverviewWall);
+    };
+  }, []);
+
+  return (
+    <div className="h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth bg-background text-foreground">
+      <BackgroundColorToggle />
+
+      <header className="sticky top-0 z-30 border-b border-border bg-card/90 backdrop-blur-sm">
+        <div className="container mx-auto flex items-center justify-between px-4 py-4">
+          <span className="text-sm font-medium text-foreground">Resume</span>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+          </div>
+        </div>
+      </header>
+
+      <main>
+        {resumePages.map((page, index) => {
+          const showSidePanel = !page.noCard && page.id !== "projects" && index !== 0 && index !== resumePages.length - 1;
+
+          return (
+          <section
+            key={page.id}
+            id={page.id}
+            ref={(section) => {
+              if (section) {
+                sectionRefs.current[index] = section;
+              }
+            }}
+            className="snap-start min-h-screen border-b border-border"
+          >
+            <div className="container mx-auto flex min-h-screen items-center px-4 py-12">
+              <div className="grid w-full gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:grid-rows-[auto_1fr]">
+                <div
+                  className="lg:col-span-2"
+                  ref={(node) => {
+                    if (page.id === "overview") {
+                      overviewHeroRef.current = node;
+                    }
+                  }}
+                >
+                  <h1 className="max-w-4xl pb-1 text-4xl font-bold leading-[1.05] md:text-6xl">
+                    {page.title}
+                  </h1>
+                  <p className="mt-4 max-w-3xl text-base text-muted-foreground md:text-lg">{page.subtitle}</p>
+                </div>
+
+                <div className={`min-h-[330px] ${showSidePanel ? "" : "lg:col-span-2"}`}>
+                  {page.id === "overview" ? (
+                    <div className="grid gap-14 lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)]">
+                      <div ref={overviewCardsRef} className="space-y-4 text-lg leading-relaxed text-foreground/90">
+                        {overviewDetails.map((item) => {
+                          const Icon = item.icon;
+
+                          return (
+                            <div key={item.text} className="flex items-start gap-3 rounded-2xl border border-border/70 bg-card px-4 py-3">
+                              <Icon className="mt-0.5 h-5 w-5 shrink-0 text-foreground" />
+                              <p>{item.text}</p>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <ResumeKeywordPillWall
+                        style={{
+                          marginTop: `-${overviewWallMetrics.offsetTop}px`,
+                          marginLeft: "40px",
+                          width: "calc(100% - 96px)",
+                          height: `${overviewWallMetrics.height}px`,
+                        }}
+                      />
+                    </div>
+                  ) : page.id === "projects" ? (
+                    <ProjectsDeck />
+                  ) : page.id === "key-skills" ? (
+                    <GroupedCardsCarousel cards={keySkillsCards} />
+                  ) : page.id === "tools-equipment" ? (
+                    <GroupedCardsCarousel cards={toolsAndEquipmentCards} />
+                  ) : page.id === "contact" ? (
+                    <div className="max-w-3xl">
+                      <div className="flex flex-wrap gap-3">
+                        {contactChannels.map((channel) => (
+                          <a
+                            key={channel.label}
+                            href={channel.href}
+                            target={channel.href.startsWith("http") ? "_blank" : undefined}
+                            rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                            className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-medium transition-transform duration-200 hover:-translate-y-0.5 ${channel.className}`}
+                          >
+                            <span className="opacity-80">{channel.label}</span>
+                            <span className="text-foreground/85">{channel.value}</span>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ) : page.id === "highlighted-credentials" ? (
+                    <HighlightedCredentialsDeck />
+                  ) : (
+                    <div className="max-w-2xl space-y-4 text-lg leading-relaxed text-foreground/90">
+                      {page.body.map((line) => (
+                        <p key={line}>{line}</p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {showSidePanel && (
+                  <div className={`h-full min-h-[260px] rounded-[1.25rem] border bg-card p-4 shadow-sm md:p-5 ${page.borderClass}`}>
+                    <div className="flex h-full flex-col rounded-2xl border border-border/70 bg-background p-3 md:p-4">
+                      <p className="text-sm font-semibold">Summary</p>
+                      <p className="mt-3 border-l border-border/70 pl-3 text-[19px] italic leading-relaxed text-muted-foreground/90">
+                        {page.summary}
+                      </p>
+
+                      <div className="mt-auto pt-4 flex flex-wrap gap-2">
+                        {page.highlights.map((item) => (
+                          <span
+                            key={item}
+                            className="rounded-full border border-border bg-card px-2.5 py-1 text-xs text-foreground"
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+          );
+        })}
+      </main>
+
+      <Link
+        to="/links"
+        aria-label="Links"
+        className={`fixed bottom-4 right-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-right hover:scale-110 md:bottom-6 md:right-6 md:text-7xl ${
+          activeSectionId === "contact" ? "opacity-100" : "opacity-25"
+        }`}
+      >
+        links →
+      </Link>
+    </div>
+  );
+};
+
+export default Resume;

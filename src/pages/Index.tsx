@@ -1,22 +1,18 @@
-import { useState, useMemo } from "react";
-import { Search, X } from "lucide-react";
-import { links, LinkCategory } from "@/data/links";
+import { useEffect, useMemo, useState } from "react";
+import { ChevronLeft, ChevronRight, Search, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { links } from "@/data/links";
 import ThemeToggle from "@/components/ThemeToggle";
 import LinkCard from "@/components/LinkCard";
 import FilterSidebar from "@/components/FilterSidebar";
-import LinkCarousel from "@/components/LinkCarousel";
-import SitemapFooter from "@/components/SitemapFooter";
+import BackgroundColorToggle from "@/components/BackgroundColorToggle";
 
 const Index = () => {
+  const pageSize = 12;
   const [search, setSearch] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState<LinkCategory[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
-  const toggleCategory = (cat: LinkCategory) => {
-    setSelectedCategories((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
-    );
-  };
+  const [currentPage, setCurrentPage] = useState(1);
+  const quickTags = ["Profile", "Personality", "Learning"];
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
@@ -26,11 +22,11 @@ const Index = () => {
 
   const clearAll = () => {
     setSearch("");
-    setSelectedCategories([]);
     setSelectedTags([]);
+    setCurrentPage(1);
   };
 
-  const hasFilters = search || selectedCategories.length > 0 || selectedTags.length > 0;
+  const hasFilters = search || selectedTags.length > 0;
 
   const filtered = useMemo(() => {
     return links.filter((link) => {
@@ -40,44 +36,62 @@ const Index = () => {
         link.description.toLowerCase().includes(search.toLowerCase()) ||
         link.tags.some((t) => t.toLowerCase().includes(search.toLowerCase()));
 
-      const matchesCategory =
-        selectedCategories.length === 0 || selectedCategories.includes(link.category);
-
       const matchesTags =
         selectedTags.length === 0 || link.tags.some((t) => selectedTags.includes(t));
 
-      return matchesSearch && matchesCategory && matchesTags;
+      return matchesSearch && matchesTags;
     });
-  }, [search, selectedCategories, selectedTags]);
+  }, [search, selectedTags]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, selectedTags]);
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
+
+  const paginatedLinks = useMemo(() => {
+    const start = (currentPage - 1) * pageSize;
+    return filtered.slice(start, start + pageSize);
+  }, [filtered, currentPage]);
+
+  const placeholderCount =
+    currentPage === totalPages ? pageSize - paginatedLinks.length : 0;
 
   const activeFilters = [
-    ...selectedCategories.map((c) => ({ label: c, type: "category" as const, value: c })),
     ...selectedTags.map((t) => ({ label: t, type: "tag" as const, value: t })),
   ];
 
   return (
     <div className="min-h-screen bg-background">
+      <BackgroundColorToggle />
+
       {/* Header */}
       <header className="border-b border-border bg-card">
-        <div className="container mx-auto px-4 py-12 md:py-16">
-          <div className="flex items-start justify-between">
-            <p className="mb-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            My Links
-          </p>
-          <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
-            All my links,<br />one place
+        <div className="container mx-auto px-4 py-6 md:py-8">
+          <div className="flex items-center justify-between gap-4">
+          <h1 className="text-2xl font-bold leading-tight text-foreground md:text-4xl">
+            Carlos Richard<br />Geraldine
           </h1>
-          <p className="mt-3 max-w-lg text-base text-muted-foreground">
-            Everything I share across the internet — social profiles, projects, content, and tools — all gathered here.
-          </p>
-          <ThemeToggle />
+          <div className="max-w-lg text-sm text-muted-foreground md:text-base">
+            <p className="font-bold leading-tight text-foreground">Bridge, design, and deliver solutions that matter.</p>
+            <p>Team leader // somewhat IT guy // bedroom DJ by night</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+          </div>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-4 md:py-6">
         {/* Search */}
-        <div className="mb-6 max-w-xl">
+        <div className="mb-4 max-w-xl">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
@@ -90,24 +104,41 @@ const Index = () => {
           </div>
         </div>
 
+        <div className="mb-4 flex flex-wrap gap-2">
+          {quickTags.map((tag) => {
+            const active = selectedTags.includes(tag);
+
+            return (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => toggleTag(tag)}
+                className={`rounded-full border px-2.5 py-0.5 text-[10px] font-medium opacity-80 transition-all duration-200 hover:-translate-y-0.5 hover:opacity-100 hover:shadow-sm ${
+                  active
+                    ? "border-foreground bg-foreground text-background"
+                    : "border-border bg-card text-foreground"
+                }`}
+              >
+                {tag}
+              </button>
+            );
+          })}
+        </div>
+
         {/* Active filter pills + count */}
-        <div className="mb-6 flex flex-wrap items-center gap-2">
-          <span className="text-sm font-medium text-foreground">
+        <div className="mb-4 flex min-h-8 items-center gap-2 overflow-x-auto whitespace-nowrap">
+          <span className="shrink-0 text-sm font-medium text-foreground">
             {filtered.length} result{filtered.length !== 1 ? "s" : ""}
           </span>
 
           {activeFilters.map((f) => (
               <span
               key={f.label}
-              className="inline-flex items-center gap-1 rounded-full border border-foreground bg-foreground px-3 py-1 text-xs font-medium text-background"
+              className="inline-flex shrink-0 items-center gap-1 rounded-full border border-foreground bg-foreground px-3 py-1 text-xs font-medium text-background"
             >
               {f.label}
               <button
-                onClick={() =>
-                  f.type === "category"
-                    ? toggleCategory(f.value as LinkCategory)
-                    : toggleTag(f.value)
-                }
+                onClick={() => toggleTag(f.value)}
                 className="ml-0.5 hover:opacity-70"
               >
                 <X className="h-3 w-3" />
@@ -118,7 +149,7 @@ const Index = () => {
           {hasFilters && (
             <button
               onClick={clearAll}
-              className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="shrink-0 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               Clear all
             </button>
@@ -126,12 +157,10 @@ const Index = () => {
         </div>
 
         {/* Main layout */}
-        <div className="flex flex-col gap-6 md:flex-row">
+        <div className="flex flex-col gap-4 md:flex-row">
           {/* Sidebar */}
           <aside className="w-full shrink-0 md:w-56">
             <FilterSidebar
-              selectedCategories={selectedCategories}
-              onToggleCategory={toggleCategory}
               selectedTags={selectedTags}
               onToggleTag={toggleTag}
             />
@@ -140,22 +169,72 @@ const Index = () => {
           {/* Grid */}
           <main className="flex-1">
             {filtered.length > 0 ? (
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {filtered.map((link) => (
+              <>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {paginatedLinks.map((link) => (
                   <LinkCard key={link.id} link={link} />
                 ))}
-              </div>
+
+                {Array.from({ length: placeholderCount }).map((_, index) => (
+                  <div
+                    key={`placeholder-${index}`}
+                    aria-hidden="true"
+                    className="invisible block rounded-lg border border-border bg-card p-5"
+                  >
+                    <h3 className="mb-1.5 text-lg font-semibold font-sans">Placeholder</h3>
+                    <p className="mb-4 text-sm leading-relaxed">Placeholder.</p>
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      <span className="rounded-md bg-secondary px-2 py-0.5 text-xs">
+                        Tag
+                      </span>
+                    </div>
+                  </div>
+                ))}
+                </div>
+
+                <div className="mt-6 flex items-center justify-between px-2 py-1">
+                  {totalPages > 1 ? (
+                    <button
+                      onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      className="inline-flex h-8 w-8 items-center justify-center text-foreground transition-opacity hover:opacity-70 disabled:cursor-not-allowed disabled:opacity-30"
+                      aria-label="Previous page"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </button>
+                  ) : (
+                    <span className="h-8 w-8" aria-hidden="true" />
+                  )}
+
+                  <span className="text-sm text-muted-foreground">
+                    Page {currentPage} of {totalPages}
+                  </span>
+
+                  {totalPages > 1 ? (
+                    <button
+                      onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                      className="inline-flex h-8 w-8 items-center justify-center text-foreground transition-opacity hover:opacity-70 disabled:cursor-not-allowed disabled:opacity-30"
+                      aria-label="Next page"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </button>
+                  ) : (
+                    <span className="h-8 w-8" aria-hidden="true" />
+                  )}
+                </div>
+              </>
             ) : (
               <div className="flex flex-col items-center justify-center rounded-lg border border-border bg-card py-16 text-center">
                 <p className="text-lg font-medium text-foreground">No links found</p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Try adjusting your filters or search term.
+                  Try adjusting your tags or search term.
                 </p>
                 <button
                   onClick={clearAll}
                   className="mt-4 rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90 transition-opacity"
                 >
-                  Clear filters
+                  Clear tags
                 </button>
               </div>
             )}
@@ -163,13 +242,16 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Link Carousel */}
-      <div className="container mx-auto px-4 py-12">
-        <LinkCarousel />
-      </div>
+      <Link
+        to="/"
+        aria-label="Resume"
+        className={`fixed bottom-4 left-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-left hover:scale-110 md:bottom-6 md:left-6 md:text-7xl ${
+          currentPage === totalPages ? "opacity-100" : "opacity-25"
+        }`}
+      >
+        ← resume
+      </Link>
 
-      {/* Sitemap Footer */}
-      <SitemapFooter />
     </div>
   );
 };
