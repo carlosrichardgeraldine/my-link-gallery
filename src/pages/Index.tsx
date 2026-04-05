@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { Search, X } from "lucide-react";
 import { links, LinkCategory, tagColorMap } from "@/data/links";
+import ThemeToggle from "@/components/ThemeToggle";
 import LinkCard from "@/components/LinkCard";
 import FilterSidebar from "@/components/FilterSidebar";
 
@@ -57,7 +58,8 @@ const Index = () => {
       {/* Header */}
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-12 md:py-16">
-          <p className="mb-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+          <div className="flex items-start justify-between">
+            <p className="mb-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
             My Links
           </p>
           <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
@@ -66,6 +68,8 @@ const Index = () => {
           <p className="mt-3 max-w-lg text-base text-muted-foreground">
             Everything I share across the internet — social profiles, projects, content, and tools — all gathered here.
           </p>
+          <ThemeToggle />
+          </div>
         </div>
       </header>
 
