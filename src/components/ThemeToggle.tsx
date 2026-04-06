@@ -54,6 +54,40 @@ const ThemeToggle = () => {
     localStorage.setItem("bg-tint", tint);
   }, [tint]);
 
+  useEffect(() => {
+    const isValidTint = (value: string): value is BgTint =>
+      tintOptions.some((option) => option.value === value);
+
+    const handleStorage = (event: StorageEvent) => {
+      if (event.storageArea !== localStorage) {
+        return;
+      }
+
+      if (event.key === "theme") {
+        if (event.newValue === "dark") {
+          setDark(true);
+        }
+
+        if (event.newValue === "light") {
+          setDark(false);
+        }
+      }
+
+      if (event.key === "bg-tint") {
+        const nextTint = event.newValue;
+        if (nextTint && isValidTint(nextTint)) {
+          setTint(nextTint);
+        }
+      }
+    };
+
+    window.addEventListener("storage", handleStorage);
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+    };
+  }, []);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

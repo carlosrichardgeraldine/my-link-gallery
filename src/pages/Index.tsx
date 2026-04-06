@@ -74,19 +74,11 @@ const Index = () => {
 
       <div className="relative z-10">
       {/* Header */}
-      <header className="border-b border-border bg-card/85 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-6 md:py-8">
-          <div className="flex items-center justify-between gap-4">
-          <h1 className="text-2xl font-bold leading-tight text-foreground md:text-4xl">
-            Carlos Richard<br />Geraldine
-          </h1>
-          <div className="index-header-tagline max-w-lg text-sm text-muted-foreground md:text-base">
-            <p className="font-bold leading-tight text-foreground">Bridge, design, and deliver solutions that matter.</p>
-            <p>Team leader // somewhat IT guy // bedroom DJ by night</p>
-          </div>
+      <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur-sm">
+        <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
+          <h1 className="text-base font-semibold text-foreground md:text-xl">Links</h1>
           <div className="flex items-center gap-3">
             <ThemeToggle />
-          </div>
           </div>
         </div>
       </header>

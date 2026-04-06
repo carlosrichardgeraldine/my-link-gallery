@@ -821,10 +821,16 @@ const Resume = () => {
       <div className="page-base-glass" aria-hidden="true" />
 
       <div className="relative z-10 flex min-h-0 flex-1 flex-col">
-      <header className="sticky top-0 z-30 border-b border-border bg-card/90 backdrop-blur-sm">
-        <div className="container mx-auto flex items-center justify-between px-4 py-4">
-          <span className="text-sm font-medium text-foreground">Resume</span>
+      <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur-sm">
+        <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
+          <h1 className="text-base font-semibold text-foreground md:text-xl">Resume</h1>
           <div className="flex items-center gap-3">
+            <Link
+              to="/resume-builder"
+              className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
+            >
+              Build your own
+            </Link>
             <ThemeToggle />
           </div>
         </div>
