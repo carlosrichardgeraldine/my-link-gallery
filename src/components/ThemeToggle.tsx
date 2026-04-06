@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 type BgTint = "none" | "slate" | "emerald" | "amber" | "rose";
+type ThemeMode = "light" | "dark" | "system";
 
 const tintOptions: Array<{ value: BgTint; label: string; swatchClass: string }> = [
   {
@@ -25,13 +26,38 @@ const tintOptions: Array<{ value: BgTint; label: string; swatchClass: string }> 
 ];
 
 const ThemeToggle = () => {
-  const [dark, setDark] = useState(() => {
-    if (typeof window !== "undefined") {
-      return document.documentElement.classList.contains("dark") ||
-        (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const readThemeMode = (): ThemeMode => {
+    if (typeof window === "undefined") {
+      return "system";
     }
-    return false;
-  });
+
+    const saved = localStorage.getItem("theme");
+
+    if (saved === "light" || saved === "dark" || saved === "system") {
+      return saved;
+    }
+
+    return "system";
+  };
+
+  const resolveDarkFromMode = (mode: ThemeMode) => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    if (mode === "dark") {
+      return true;
+    }
+
+    if (mode === "light") {
+      return false;
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  };
+
+  const [themeMode, setThemeMode] = useState<ThemeMode>(() => readThemeMode());
+  const [dark, setDark] = useState(() => resolveDarkFromMode(readThemeMode()));
   const [tint, setTint] = useState<BgTint>(() => {
     if (typeof window === "undefined") return "none";
     const saved = localStorage.getItem("bg-tint") as BgTint | null;
@@ -39,14 +65,28 @@ const ThemeToggle = () => {
   });
 
   useEffect(() => {
-    if (dark) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
+    document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
+
+  useEffect(() => {
+    localStorage.setItem("theme", themeMode);
+
+    if (themeMode !== "system") {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleSystemChange = (event: MediaQueryListEvent) => {
+      setDark(event.matches);
+    };
+
+    setDark(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleSystemChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleSystemChange);
+    };
+  }, [themeMode]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -65,11 +105,18 @@ const ThemeToggle = () => {
 
       if (event.key === "theme") {
         if (event.newValue === "dark") {
+          setThemeMode("dark");
           setDark(true);
         }
 
         if (event.newValue === "light") {
+          setThemeMode("light");
           setDark(false);
+        }
+
+        if (event.newValue === "system") {
+          setThemeMode("system");
+          setDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
         }
       }
 
@@ -102,9 +149,21 @@ const ThemeToggle = () => {
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel>Appearance</DropdownMenuLabel>
 
-        <DropdownMenuItem onSelect={() => setDark((prev) => !prev)} className="gap-2">
+        <DropdownMenuItem
+          onSelect={() => {
+            const nextDark = !dark;
+            setThemeMode(nextDark ? "dark" : "light");
+            setDark(nextDark);
+          }}
+          className="gap-2"
+        >
           {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           <span>{dark ? "Switch to Light" : "Switch to Dark"}</span>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem onSelect={() => setThemeMode("system")} className="gap-2">
+          <span className="inline-flex h-4 w-4 items-center justify-center text-xs">A</span>
+          <span>Use Device Theme</span>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />

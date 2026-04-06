@@ -40,11 +40,17 @@ export type ToolsGroups = SkillGroups & {
   introductory: string[];
 };
 
+export type OverviewDetailItem = {
+  text: string;
+};
+
 export type ResumeBuilderContent = {
   resumePages: ResumePageContent[];
+  overviewDetails: OverviewDetailItem[];
+  rollingKeywordRows: string[][];
   projectItems: string[];
   otherWorkingExperiences: OtherWorkingExperience[];
-  educationDetails: EducationDetails;
+  educationDetails: EducationDetails[];
   honorsAndAwards: AwardItem[];
   keySkills: SkillGroups;
   toolsAndEquipment: ToolsGroups;
@@ -146,6 +152,26 @@ export const defaultResumeBuilderContent: ResumeBuilderContent = {
       borderClass: "border-slate-400/70",
     },
   ],
+  overviewDetails: [
+    { text: "Kemanggisan, West Jakarta" },
+    { text: "from Malang, East Java" },
+    { text: "Ready to relocate across the country" },
+    { text: "Full time, contract, paid internship" },
+  ],
+  rollingKeywordRows: [
+    ["Leadership", "Communication", "Collaboration", "Stakeholder Management", "Problem Solving", "Critical Thinking", "Adaptability", "Initiative"],
+    ["Business Analysis", "Project Delivery", "Functional Consultant", "Presales", "Documentation", "Process Mapping", "Requirements Gathering", "Change Management"],
+    ["Microsoft 365", "SharePoint Online", "Exchange Online", "Power Platform", "Dynamics 365", "Entra ID", "Purview", "Intune"],
+    ["Data Loss Prevention", "Identity & Access", "Security Baseline", "Governance", "Compliance", "Endpoint Management", "Admin Support", "Troubleshooting"],
+    ["Power BI", "Power Apps", "Power Automate", "Dataverse", "SQL", "Python", "Dashboard", "Automation"],
+    ["ServiceNow", "Anaplan", "Salesforce", "Snowflake", "Azure", "DevOps", "CI/CD", "Docker"],
+    ["Training", "Workshops", "User Enablement", "Knowledge Transfer", "Presentation", "Mentoring", "Teamwork", "Coordination"],
+    ["Growth Mindset", "Continuous Learning", "Certification", "Cross-functional", "Execution", "Ownership", "Delivery Focus", "Impact"],
+    ["Customer Success", "Solution Design", "Roadmap", "Discovery", "Scoping", "Backlog", "Sprint", "Iteration"],
+    ["KPI", "SLA", "Escalation", "Root Cause", "Risk Mitigation", "Incident Response", "Service Quality", "Optimization"],
+    ["Documentation", "Standard Operating Procedure", "Playbook", "Handover", "Governance Model", "Audit Readiness", "Controls", "Assurance"],
+    ["Productivity", "Reliability", "Scalability", "Security", "Performance", "Adoption", "Enablement", "Outcome"],
+  ],
   projectItems: [
     "Microsoft Office 365, Purview DLP and Intune Implementation at national multi-finance company in Jakarta.",
     "Extending Dynamics 365 CRM with Power Platform for ISV Success and private school in Jakarta + Google Workspace migration to Microsoft 365 for Education.",
@@ -176,13 +202,29 @@ export const defaultResumeBuilderContent: ResumeBuilderContent = {
       tags: ["Sales", "Customer Service"],
     },
   ],
-  educationDetails: {
-    institution: "University of the People",
-    degree: "Bachelor of Science - BS, Computer Science",
-    period: "Oct 2023 - Jun 2027",
-    grade: "Grade: 3.25/4.0",
-    focus: "Database Management System (DBMS), Operating Systems",
-  },
+  educationDetails: [
+    {
+      institution: "University of the People",
+      degree: "Bachelor of Science - BS, Computer Science",
+      period: "Oct 2023 - Jun 2027",
+      grade: "Grade: 3.25/4.0",
+      focus: "Database Management System (DBMS), Operating Systems",
+    },
+    {
+      institution: "",
+      degree: "",
+      period: "",
+      grade: "",
+      focus: "",
+    },
+    {
+      institution: "",
+      degree: "",
+      period: "",
+      grade: "",
+      focus: "",
+    },
+  ],
   honorsAndAwards: [
     {
       title: "ASEAN Youth for Digital Action",

@@ -1,5 +1,5 @@
-import { ChevronDown, Download, Plus, RotateCcw, Trash2 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { ChevronDown, Download, GripVertical, Plus, Redo2, RotateCcw, Trash2, Undo2, X } from "lucide-react";
+import { type ChangeEvent, type DragEvent, type KeyboardEvent, useEffect, useRef, useState } from "react";
 import ThemeToggle from "@/components/ThemeToggle";
 import MonochromePlusBackground from "@/components/MonochromePlusBackground";
 import {
@@ -20,13 +20,15 @@ import {
   createResumeBuilderContent,
   type AwardItem,
   type EducationDetails,
+  type OverviewDetailItem,
   type OtherWorkingExperience,
   type ResumeBuilderContent,
   type ResumePageContent,
   type SkillGroups,
   type ToolsGroups,
 } from "@/data/resumeBuilderContent";
-import { downloadResumeTsx } from "@/lib/resumeBuilderGenerator";
+import { downloadResumeTsx, parseResumeContentFromSource } from "@/lib/resumeBuilderGenerator";
+import resumeCurrentSource from "@/pages/Resume.tsx?raw";
 import { toast } from "sonner";
 
 type SectionId =
@@ -47,7 +49,7 @@ const sections: Array<{ id: SectionId; label: string; description: string }> = [
     label: "Other Working Experience",
     description: "Manage the additional work history cards.",
   },
-  { id: "educationDetails", label: "Education Details", description: "Update the single education record." },
+  { id: "educationDetails", label: "Education Details", description: "Create, edit, reorder, and delete education records." },
   { id: "honorsAndAwards", label: "Honors and Awards", description: "Manage certification and award entries." },
   { id: "keySkills", label: "Key Skills", description: "Edit the skill bands by proficiency level." },
   { id: "toolsAndEquipment", label: "Tools and Equipment", description: "Edit the tool bands by proficiency level." },
@@ -59,8 +61,7 @@ const classNames = (...values: Array<string | false | undefined>) => values.filt
 const splitLines = (value: string) =>
   value
     .split(/\r?\n/)
-    .map((item) => item.trim())
-    .filter(Boolean);
+    .filter((item) => item.trim().length > 0);
 
 const joinLines = (items: string[]) => items.join("\n");
 
@@ -88,6 +89,14 @@ const createBlankAward = (): AwardItem => ({
   note: "",
 });
 
+const createBlankEducation = (): EducationDetails => ({
+  institution: "",
+  degree: "",
+  period: "",
+  grade: "",
+  focus: "",
+});
+
 const updatePage = (
   pages: ResumePageContent[],
   index: number,
@@ -102,6 +111,124 @@ const updateExperience = (
 
 const updateAward = (awards: AwardItem[], index: number, patch: Partial<AwardItem>) =>
   awards.map((award, awardIndex) => (awardIndex === index ? { ...award, ...patch } : award));
+
+const updateOverviewDetail = (
+  details: OverviewDetailItem[],
+  index: number,
+  patch: Partial<OverviewDetailItem>
+) => details.map((detail, detailIndex) => (detailIndex === index ? { ...detail, ...patch } : detail));
+
+const reorderArray = <T,>(items: T[], fromIndex: number, toIndex: number) => {
+  const next = [...items];
+  const [moved] = next.splice(fromIndex, 1);
+  next.splice(toIndex, 0, moved);
+  return next;
+};
+
+const KEYWORD_ROW_LIMIT = 12;
+const KEYWORD_ITEMS_PER_ROW_LIMIT = 8;
+
+const normalizeKeywordRows = (rows: string[][]) => {
+  const normalizedRows = rows
+    .slice(0, KEYWORD_ROW_LIMIT)
+    .map((row) => row.map((item) => item.trim()).filter(Boolean).slice(0, KEYWORD_ITEMS_PER_ROW_LIMIT));
+
+  while (normalizedRows.length < KEYWORD_ROW_LIMIT) {
+    normalizedRows.push([]);
+  }
+
+  return normalizedRows;
+};
+
+const KeywordPillInputRow = ({
+  items,
+  onChange,
+}: {
+  items: string[];
+  onChange: (next: string[]) => void;
+}) => {
+  const [draft, setDraft] = useState("");
+
+  const commitPill = (rawValue: string) => {
+    const value = rawValue.trim();
+
+    if (!value || items.length >= KEYWORD_ITEMS_PER_ROW_LIMIT) {
+      return;
+    }
+
+    onChange([...items, value]);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "," || event.key === "Enter") {
+      event.preventDefault();
+      commitPill(draft);
+      setDraft("");
+      return;
+    }
+
+    if ((event.key === "Backspace" || event.key === "Delete") && draft.length === 0 && items.length > 0) {
+      event.preventDefault();
+      onChange(items.slice(0, -1));
+    }
+  };
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const nextValue = event.target.value;
+
+    if (!nextValue.includes(",")) {
+      setDraft(nextValue);
+      return;
+    }
+
+    const segments = nextValue.split(",");
+    const trailingValue = segments.pop() ?? "";
+    const parsed = segments.map((segment) => segment.trim()).filter(Boolean);
+
+    if (parsed.length > 0) {
+      const availableSlots = Math.max(0, KEYWORD_ITEMS_PER_ROW_LIMIT - items.length);
+      const nextPills = parsed.slice(0, availableSlots);
+
+      if (nextPills.length > 0) {
+        onChange([...items, ...nextPills]);
+      }
+    }
+
+    setDraft(trailingValue);
+  };
+
+  return (
+    <div className="px-0 py-1">
+      <div className="flex min-h-9 flex-wrap items-center gap-1.5">
+        {items.map((item, index) => (
+          <span
+            key={`${item}-${index}`}
+            className="inline-flex items-center gap-1 rounded-full border border-border bg-card px-2 py-0.5 text-xs text-foreground"
+          >
+            <span className="max-w-[16rem] truncate">{item}</span>
+            <button
+              type="button"
+              onClick={() => onChange(items.filter((_, itemIndex) => itemIndex !== index))}
+              className="inline-flex h-4 w-4 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground"
+              aria-label={`Remove ${item}`}
+            >
+              <X className="h-3 w-3" />
+            </button>
+          </span>
+        ))}
+
+        <input
+          value={draft}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          placeholder={items.length >= KEYWORD_ITEMS_PER_ROW_LIMIT ? "Line is full" : "Type and press comma"}
+          className="min-w-[8rem] flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+          disabled={items.length >= KEYWORD_ITEMS_PER_ROW_LIMIT}
+        />
+      </div>
+    </div>
+  );
+};
 
 const lockedResumePageIds = new Set([
   "other-working-experience",
@@ -202,6 +329,57 @@ const ProjectItemsTableEditor = ({
   items: string[];
   onChange: (next: string[]) => void;
 }) => {
+  const [dragState, setDragState] = useState<number | null>(null);
+  const [dropTarget, setDropTarget] = useState<{ index: number; position: "before" | "after" } | null>(null);
+
+  const handleDragOverRow = (event: DragEvent<HTMLDivElement>, index: number) => {
+    event.preventDefault();
+
+    if (dragState === null) {
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const midpoint = rect.top + rect.height / 2;
+    const position: "before" | "after" = event.clientY < midpoint ? "before" : "after";
+
+    setDropTarget({ index, position });
+  };
+
+  const handleDropReorder = (
+    event: DragEvent<HTMLDivElement>,
+    targetIndex: number,
+    position: "before" | "after"
+  ) => {
+    event.preventDefault();
+
+    if (dragState === null) {
+      setDropTarget(null);
+      return;
+    }
+
+    let nextIndex = position === "before" ? targetIndex : targetIndex + 1;
+
+    if (dragState < nextIndex) {
+      nextIndex -= 1;
+    }
+
+    if (nextIndex < 0) {
+      nextIndex = 0;
+    }
+
+    if (nextIndex > items.length - 1) {
+      nextIndex = items.length - 1;
+    }
+
+    if (dragState !== nextIndex) {
+      onChange(reorderArray(items, dragState, nextIndex));
+    }
+
+    setDropTarget(null);
+    setDragState(null);
+  };
+
   return (
     <section className="space-y-4 rounded-3xl border border-border bg-card p-5 shadow-sm">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
@@ -219,44 +397,63 @@ const ProjectItemsTableEditor = ({
         </button>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-border/70 bg-background/90">
-        <div className="max-h-[70vh] overflow-auto">
-          <table className="w-full border-collapse text-left">
-            <thead className="sticky top-0 z-10 bg-card/95 backdrop-blur">
-              <tr className="border-b border-border/70 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                <th className="w-16 px-4 py-3">#</th>
-                <th className="px-4 py-3">Project item</th>
-                <th className="w-24 px-4 py-3 text-right">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((item, index) => (
-                <tr key={`${index}-${item}`} className="border-b border-border/60 last:border-b-0 align-top">
-                  <td className="px-4 py-3 text-sm font-medium text-muted-foreground">{index + 1}</td>
-                  <td className="px-4 py-3">
-                    <textarea
-                      value={item}
-                      onChange={(event) =>
-                        onChange(items.map((current, currentIndex) => (currentIndex === index ? event.target.value : current)))
-                      }
-                      rows={2}
-                      className="min-h-[56px] w-full resize-y rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
-                    />
-                  </td>
-                  <td className="px-4 py-3 text-right">
-                    <button
-                      type="button"
-                      onClick={() => onChange(items.filter((_, currentIndex) => currentIndex !== index))}
-                      className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-destructive hover:text-destructive-foreground"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div className="max-h-[70vh] overflow-auto">
+        <div className="space-y-2">
+          {items.map((item, index) => (
+            <div
+              key={`project-item-${index}`}
+              className="relative flex items-center gap-2 rounded-2xl"
+              onDragOver={(event) => handleDragOverRow(event, index)}
+              onDrop={(event) =>
+                handleDropReorder(
+                  event,
+                  index,
+                  dropTarget?.index === index ? dropTarget.position : "before"
+                )
+              }
+            >
+              <button
+                type="button"
+                draggable
+                onDragStart={() => setDragState(index)}
+                onDragEnd={() => {
+                  setDropTarget(null);
+                  setDragState(null);
+                }}
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border-0 bg-transparent text-muted-foreground transition-colors hover:text-foreground cursor-grab active:cursor-grabbing"
+                aria-label="Drag to reorder project item"
+                title="Drag to reorder"
+              >
+                <GripVertical className="h-3.5 w-3.5" />
+              </button>
+
+              <div className="min-w-0 flex-1">
+                <input
+                  value={item}
+                  onChange={(event) =>
+                    onChange(items.map((current, currentIndex) => (currentIndex === index ? event.target.value : current)))
+                  }
+                  className="h-10 w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
+                />
+              </div>
+
+              <button
+                type="button"
+                onClick={() => onChange(items.filter((_, currentIndex) => currentIndex !== index))}
+                className="inline-flex h-10 items-center gap-2 rounded-xl border border-border bg-card px-3 text-sm font-medium text-foreground transition-colors hover:bg-destructive hover:text-destructive-foreground"
+              >
+                <Trash2 className="h-4 w-4" />
+                Delete
+              </button>
+
+              {dropTarget?.index === index && dropTarget.position === "before" ? (
+                <div className="pointer-events-none absolute inset-x-0 -top-1 h-0.5 rounded-full bg-foreground/70" />
+              ) : null}
+              {dropTarget?.index === index && dropTarget.position === "after" ? (
+                <div className="pointer-events-none absolute inset-x-0 -bottom-1 h-0.5 rounded-full bg-foreground/70" />
+              ) : null}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -276,6 +473,57 @@ const HighlightedCredentialsTableEditor = ({
   items: string[];
   onChange: (next: string[]) => void;
 }) => {
+  const [dragState, setDragState] = useState<number | null>(null);
+  const [dropTarget, setDropTarget] = useState<{ index: number; position: "before" | "after" } | null>(null);
+
+  const handleDragOverRow = (event: DragEvent<HTMLDivElement>, index: number) => {
+    event.preventDefault();
+
+    if (dragState === null) {
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const midpoint = rect.top + rect.height / 2;
+    const position: "before" | "after" = event.clientY < midpoint ? "before" : "after";
+
+    setDropTarget({ index, position });
+  };
+
+  const handleDropReorder = (
+    event: DragEvent<HTMLDivElement>,
+    targetIndex: number,
+    position: "before" | "after"
+  ) => {
+    event.preventDefault();
+
+    if (dragState === null) {
+      setDropTarget(null);
+      return;
+    }
+
+    let nextIndex = position === "before" ? targetIndex : targetIndex + 1;
+
+    if (dragState < nextIndex) {
+      nextIndex -= 1;
+    }
+
+    if (nextIndex < 0) {
+      nextIndex = 0;
+    }
+
+    if (nextIndex > items.length - 1) {
+      nextIndex = items.length - 1;
+    }
+
+    if (dragState !== nextIndex) {
+      onChange(reorderArray(items, dragState, nextIndex));
+    }
+
+    setDropTarget(null);
+    setDragState(null);
+  };
+
   return (
     <section className="space-y-4 rounded-3xl border border-border bg-card p-5 shadow-sm">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
@@ -293,44 +541,63 @@ const HighlightedCredentialsTableEditor = ({
         </button>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-border/70 bg-background/90">
-        <div className="max-h-[70vh] overflow-auto">
-          <table className="w-full border-collapse text-left">
-            <thead className="sticky top-0 z-10 bg-card/95 backdrop-blur">
-              <tr className="border-b border-border/70 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                <th className="w-16 px-4 py-3">#</th>
-                <th className="px-4 py-3">Credential</th>
-                <th className="w-24 px-4 py-3 text-right">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((item, index) => (
-                <tr key={`${index}-${item}`} className="border-b border-border/60 last:border-b-0 align-top">
-                  <td className="px-4 py-3 text-sm font-medium text-muted-foreground">{index + 1}</td>
-                  <td className="px-4 py-3">
-                    <textarea
-                      value={item}
-                      onChange={(event) =>
-                        onChange(items.map((current, currentIndex) => (currentIndex === index ? event.target.value : current)))
-                      }
-                      rows={2}
-                      className="min-h-[56px] w-full resize-y rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
-                    />
-                  </td>
-                  <td className="px-4 py-3 text-right">
-                    <button
-                      type="button"
-                      onClick={() => onChange(items.filter((_, currentIndex) => currentIndex !== index))}
-                      className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-destructive hover:text-destructive-foreground"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div className="max-h-[70vh] overflow-auto">
+        <div className="space-y-2">
+          {items.map((item, index) => (
+            <div
+              key={`credential-item-${index}`}
+              className="relative flex items-center gap-2 rounded-2xl"
+              onDragOver={(event) => handleDragOverRow(event, index)}
+              onDrop={(event) =>
+                handleDropReorder(
+                  event,
+                  index,
+                  dropTarget?.index === index ? dropTarget.position : "before"
+                )
+              }
+            >
+              <button
+                type="button"
+                draggable
+                onDragStart={() => setDragState(index)}
+                onDragEnd={() => {
+                  setDropTarget(null);
+                  setDragState(null);
+                }}
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border-0 bg-transparent text-muted-foreground transition-colors hover:text-foreground cursor-grab active:cursor-grabbing"
+                aria-label="Drag to reorder credential"
+                title="Drag to reorder"
+              >
+                <GripVertical className="h-3.5 w-3.5" />
+              </button>
+
+              <div className="min-w-0 flex-1">
+                <input
+                  value={item}
+                  onChange={(event) =>
+                    onChange(items.map((current, currentIndex) => (currentIndex === index ? event.target.value : current)))
+                  }
+                  className="h-10 w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
+                />
+              </div>
+
+              <button
+                type="button"
+                onClick={() => onChange(items.filter((_, currentIndex) => currentIndex !== index))}
+                className="inline-flex h-10 items-center gap-2 rounded-xl border border-border bg-card px-3 text-sm font-medium text-foreground transition-colors hover:bg-destructive hover:text-destructive-foreground"
+              >
+                <Trash2 className="h-4 w-4" />
+                Delete
+              </button>
+
+              {dropTarget?.index === index && dropTarget.position === "before" ? (
+                <div className="pointer-events-none absolute inset-x-0 -top-1 h-0.5 rounded-full bg-foreground/70" />
+              ) : null}
+              {dropTarget?.index === index && dropTarget.position === "after" ? (
+                <div className="pointer-events-none absolute inset-x-0 -bottom-1 h-0.5 rounded-full bg-foreground/70" />
+              ) : null}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -346,16 +613,120 @@ const HighlightedCredentialsTableEditor = ({
 const ResumePagesEditor = ({
   items,
   onChange,
+  overviewDetails,
+  onOverviewDetailsChange,
+  rollingKeywordRows,
+  onRollingKeywordRowsChange,
 }: {
   items: ResumePageContent[];
   onChange: (next: ResumePageContent[]) => void;
+  overviewDetails: OverviewDetailItem[];
+  onOverviewDetailsChange: (next: OverviewDetailItem[]) => void;
+  rollingKeywordRows: string[][];
+  onRollingKeywordRowsChange: (next: string[][]) => void;
 }) => {
   const [openPage, setOpenPage] = useState<string>(items[0] ? "overview" : "");
+  const [dragState, setDragState] = useState<{ kind: "overview" | "keyword" | "job" | "locked"; index: number } | null>(null);
+  const [dropTarget, setDropTarget] = useState<{
+    kind: "overview" | "keyword" | "job" | "locked";
+    index: number;
+    position: "before" | "after";
+  } | null>(null);
   const overviewPage = items[0];
   const jobDescriptionPages = items.filter(
     (page) => page.id !== "overview" && !lockedResumePageIds.has(page.id)
   );
   const lockedPages = items.filter((page) => lockedResumePageIds.has(page.id));
+  const normalizedKeywordRows = normalizeKeywordRows(rollingKeywordRows);
+
+  const commitReorderedPages = (kind: "job" | "locked", reorderedPages: ResumePageContent[]) => {
+    const nextPages =
+      kind === "job"
+        ? [items[0], ...reorderedPages, ...lockedPages]
+        : [items[0], ...jobDescriptionPages, ...reorderedPages];
+
+    onChange(nextPages);
+  };
+
+  const handleDragOverRow = (
+    event: DragEvent<HTMLDivElement>,
+    kind: "overview" | "keyword" | "job" | "locked",
+    index: number
+  ) => {
+    event.preventDefault();
+
+    if (!dragState || dragState.kind !== kind) {
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const midpoint = rect.top + rect.height / 2;
+    const position: "before" | "after" = event.clientY < midpoint ? "before" : "after";
+
+    setDropTarget({ kind, index, position });
+  };
+
+  const handleDropReorder = (
+    event: DragEvent<HTMLDivElement>,
+    kind: "overview" | "keyword" | "job" | "locked",
+    targetIndex: number,
+    position: "before" | "after"
+  ) => {
+    event.preventDefault();
+
+    if (!dragState || dragState.kind !== kind) {
+      setDropTarget(null);
+      setDragState(null);
+      return;
+    }
+
+    const sourceIndex = dragState.index;
+    const sourceItems = kind === "overview" ? overviewDetails : kind === "keyword" ? normalizedKeywordRows : kind === "job" ? jobDescriptionPages : lockedPages;
+    let nextIndex = position === "before" ? targetIndex : targetIndex + 1;
+
+    if (sourceIndex < nextIndex) {
+      nextIndex -= 1;
+    }
+
+    if (nextIndex < 0) {
+      nextIndex = 0;
+    }
+
+    if (nextIndex > sourceItems.length - 1) {
+      nextIndex = sourceItems.length - 1;
+    }
+
+    if (sourceIndex === nextIndex) {
+      setDropTarget(null);
+      setDragState(null);
+      return;
+    }
+
+    if (kind === "overview") {
+      onOverviewDetailsChange(reorderArray(overviewDetails, sourceIndex, nextIndex));
+      setDropTarget(null);
+      setDragState(null);
+      return;
+    }
+
+    if (kind === "keyword") {
+      onRollingKeywordRowsChange(reorderArray(normalizedKeywordRows, sourceIndex, nextIndex));
+      setDropTarget(null);
+      setDragState(null);
+      return;
+    }
+
+    if (kind === "job") {
+      commitReorderedPages("job", reorderArray(jobDescriptionPages, sourceIndex, nextIndex));
+      setDropTarget(null);
+      setDragState(null);
+      return;
+    }
+
+    commitReorderedPages("locked", reorderArray(lockedPages, sourceIndex, nextIndex));
+    setDropTarget(null);
+    setDragState(null);
+  };
 
   const handleAddPage = () => {
     const nextPage = createBlankPage(items.length);
@@ -436,6 +807,123 @@ const ResumePagesEditor = ({
                     />
                   </label>
                 </div>
+
+                <div className="space-y-3">
+                  <div className="text-sm font-medium text-foreground">Overview cards</div>
+                  <p className="text-xs text-muted-foreground">
+                    Edit the 4 card texts shown on the first page (domicile, origin, relocation, work preference).
+                  </p>
+                  <div className="grid gap-3 md:grid-cols-2">
+                    {overviewDetails.map((detail, detailIndex) => (
+                      <div
+                        key={`overview-detail-${detailIndex}`}
+                        className="relative flex items-center gap-1.5"
+                        onDragOver={(event) => handleDragOverRow(event, "overview", detailIndex)}
+                        onDrop={(event) =>
+                          handleDropReorder(
+                            event,
+                            "overview",
+                            detailIndex,
+                            dropTarget?.kind === "overview" && dropTarget.index === detailIndex
+                              ? dropTarget.position
+                              : "before"
+                          )
+                        }
+                      >
+                        {dropTarget?.kind === "overview" && dropTarget.index === detailIndex && dropTarget.position === "before" ? (
+                          <div className="pointer-events-none absolute -top-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+                        ) : null}
+                        {dropTarget?.kind === "overview" && dropTarget.index === detailIndex && dropTarget.position === "after" ? (
+                          <div className="pointer-events-none absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+                        ) : null}
+                        <button
+                          type="button"
+                          draggable
+                          onDragStart={() => setDragState({ kind: "overview", index: detailIndex })}
+                          onDragEnd={() => {
+                            setDropTarget(null);
+                            setDragState(null);
+                          }}
+                          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border-0 bg-transparent text-muted-foreground transition-colors hover:text-foreground cursor-grab active:cursor-grabbing"
+                          aria-label="Drag to reorder card"
+                          title="Drag to reorder"
+                        >
+                          <GripVertical className="h-3.5 w-3.5" />
+                        </button>
+                        <label className="flex-1">
+                          <input
+                            value={detail.text}
+                            onChange={(event) =>
+                              onOverviewDetailsChange(
+                                updateOverviewDetail(overviewDetails, detailIndex, {
+                                  text: event.target.value,
+                                })
+                              )
+                            }
+                            className="w-full rounded-xl border border-border bg-background px-2.5 py-1.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
+                          />
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="text-sm font-medium text-foreground">Pills wall</div>
+                  <p className="text-xs text-muted-foreground">
+                    Customize the scrolling pills text. Type a word and press comma to create a pill. You can remove pills with Backspace/Delete in an empty input or by clicking X on each pill. Limits: {KEYWORD_ROW_LIMIT} lines and {KEYWORD_ITEMS_PER_ROW_LIMIT} pills per line.
+                  </p>
+                  <div className="grid gap-3">
+                    {normalizedKeywordRows.map((row, rowIndex) => (
+                      <div
+                        key={`keyword-row-${rowIndex}`}
+                        className="relative flex items-start gap-1.5"
+                        onDragOver={(event) => handleDragOverRow(event, "keyword", rowIndex)}
+                        onDrop={(event) =>
+                          handleDropReorder(
+                            event,
+                            "keyword",
+                            rowIndex,
+                            dropTarget?.kind === "keyword" && dropTarget.index === rowIndex
+                              ? dropTarget.position
+                              : "before"
+                          )
+                        }
+                      >
+                        {dropTarget?.kind === "keyword" && dropTarget.index === rowIndex && dropTarget.position === "before" ? (
+                          <div className="pointer-events-none absolute -top-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+                        ) : null}
+                        {dropTarget?.kind === "keyword" && dropTarget.index === rowIndex && dropTarget.position === "after" ? (
+                          <div className="pointer-events-none absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+                        ) : null}
+                        <button
+                          type="button"
+                          draggable
+                          onDragStart={() => setDragState({ kind: "keyword", index: rowIndex })}
+                          onDragEnd={() => {
+                            setDropTarget(null);
+                            setDragState(null);
+                          }}
+                          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border-0 bg-transparent text-muted-foreground transition-colors hover:text-foreground cursor-grab active:cursor-grabbing"
+                          aria-label="Drag to reorder line"
+                          title="Drag to reorder"
+                        >
+                          <GripVertical className="h-3.5 w-3.5" />
+                        </button>
+                        <div className="flex-1">
+                          <KeywordPillInputRow
+                            items={row}
+                            onChange={(nextItems) => {
+                              const normalizedRows = normalizeKeywordRows(rollingKeywordRows);
+                              normalizedRows[rowIndex] = nextItems.slice(0, KEYWORD_ITEMS_PER_ROW_LIMIT);
+                              onRollingKeywordRowsChange(normalizedRows);
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             ) : null}
           </AccordionContent>
@@ -467,16 +955,51 @@ const ResumePagesEditor = ({
               </div>
 
               <Accordion type="single" collapsible className="space-y-2">
-                {jobDescriptionPages.map((page) => {
-                  const index = items.findIndex((item) => item === page);
-                  const value = `job-${index}`;
+                {jobDescriptionPages.map((page, sectionIndex) => {
+                  const itemIndex = items.findIndex((item) => item === page);
+                  const value = `job-${sectionIndex}`;
 
                   return (
-                    <AccordionItem key={page.id || `job-${index}`} value={value} className="rounded-2xl border border-border/70 bg-background px-4">
+                    <AccordionItem
+                      key={page.id || `job-${sectionIndex}`}
+                      value={value}
+                      className="relative rounded-2xl border border-border/70 bg-background px-4"
+                      onDragOver={(event) => handleDragOverRow(event, "job", sectionIndex)}
+                      onDrop={(event) =>
+                        handleDropReorder(
+                          event,
+                          "job",
+                          sectionIndex,
+                          dropTarget?.kind === "job" && dropTarget.index === sectionIndex ? dropTarget.position : "before"
+                        )
+                      }
+                    >
+                      {dropTarget?.kind === "job" && dropTarget.index === sectionIndex && dropTarget.position === "before" ? (
+                        <div className="pointer-events-none absolute -top-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+                      ) : null}
+                      {dropTarget?.kind === "job" && dropTarget.index === sectionIndex && dropTarget.position === "after" ? (
+                        <div className="pointer-events-none absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+                      ) : null}
                       <AccordionTrigger className="py-4 text-left no-underline hover:no-underline">
-                        <div className="min-w-0 text-left">
-                          <div className="truncate text-lg font-semibold text-foreground">{page.title || "Untitled page"}</div>
-                          <div className="mt-1 truncate text-sm text-muted-foreground">{page.subtitle || "No subtitle"}</div>
+                        <div className="flex min-w-0 items-center gap-1.5 text-left">
+                          <button
+                            type="button"
+                            draggable
+                            onDragStart={() => setDragState({ kind: "job", index: sectionIndex })}
+                            onDragEnd={() => {
+                              setDropTarget(null);
+                              setDragState(null);
+                            }}
+                            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border-0 bg-transparent text-muted-foreground transition-colors hover:text-foreground cursor-grab active:cursor-grabbing"
+                            aria-label="Drag to reorder job page"
+                            title="Drag to reorder"
+                          >
+                            <GripVertical className="h-3.5 w-3.5" />
+                          </button>
+                          <div className="min-w-0 flex-1 text-left">
+                            <div className="truncate text-lg font-semibold text-foreground">{page.title || "Untitled page"}</div>
+                            <div className="mt-1 truncate text-sm text-muted-foreground">{page.subtitle || "No subtitle"}</div>
+                          </div>
                         </div>
                       </AccordionTrigger>
 
@@ -489,7 +1012,7 @@ const ResumePagesEditor = ({
                             </div>
                             <button
                               type="button"
-                              onClick={() => handleDeletePage(index)}
+                              onClick={() => handleDeletePage(itemIndex)}
                               className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-destructive hover:text-destructive-foreground"
                             >
                               <Trash2 className="h-4 w-4" />
@@ -502,7 +1025,7 @@ const ResumePagesEditor = ({
                               <span className="text-sm font-medium text-foreground">ID</span>
                               <input
                                 value={page.id}
-                                onChange={(event) => onChange(updatePage(items, index, { id: event.target.value }))}
+                                onChange={(event) => onChange(updatePage(items, itemIndex, { id: event.target.value }))}
                                 className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
                               />
                             </label>
@@ -511,7 +1034,7 @@ const ResumePagesEditor = ({
                               <span className="text-sm font-medium text-foreground">Title</span>
                               <input
                                 value={page.title}
-                                onChange={(event) => onChange(updatePage(items, index, { title: event.target.value }))}
+                                onChange={(event) => onChange(updatePage(items, itemIndex, { title: event.target.value }))}
                                 className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
                               />
                             </label>
@@ -520,7 +1043,7 @@ const ResumePagesEditor = ({
                               <span className="text-sm font-medium text-foreground">Subtitle</span>
                               <input
                                 value={page.subtitle}
-                                onChange={(event) => onChange(updatePage(items, index, { subtitle: event.target.value }))}
+                                onChange={(event) => onChange(updatePage(items, itemIndex, { subtitle: event.target.value }))}
                                 className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
                               />
                             </label>
@@ -529,7 +1052,7 @@ const ResumePagesEditor = ({
                               <span className="text-sm font-medium text-foreground">Summary</span>
                               <textarea
                                 value={page.summary ?? ""}
-                                onChange={(event) => onChange(updatePage(items, index, { summary: event.target.value }))}
+                                onChange={(event) => onChange(updatePage(items, itemIndex, { summary: event.target.value }))}
                                 rows={3}
                                 className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
                               />
@@ -539,7 +1062,7 @@ const ResumePagesEditor = ({
                               <span className="text-sm font-medium text-foreground">Body lines</span>
                               <textarea
                                 value={joinLines(page.body ?? [])}
-                                onChange={(event) => onChange(updatePage(items, index, { body: splitLines(event.target.value) }))}
+                                onChange={(event) => onChange(updatePage(items, itemIndex, { body: splitLines(event.target.value) }))}
                                 rows={4}
                                 placeholder="One line per body entry"
                                 className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
@@ -550,7 +1073,7 @@ const ResumePagesEditor = ({
                               <span className="text-sm font-medium text-foreground">Highlights</span>
                               <textarea
                                 value={joinLines(page.highlights ?? [])}
-                                onChange={(event) => onChange(updatePage(items, index, { highlights: splitLines(event.target.value) }))}
+                                onChange={(event) => onChange(updatePage(items, itemIndex, { highlights: splitLines(event.target.value) }))}
                                 rows={3}
                                 placeholder="One highlight per line"
                                 className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
@@ -561,7 +1084,7 @@ const ResumePagesEditor = ({
                               <span className="text-sm font-medium text-foreground">Accent class</span>
                               <input
                                 value={page.accent ?? ""}
-                                onChange={(event) => onChange(updatePage(items, index, { accent: event.target.value }))}
+                                onChange={(event) => onChange(updatePage(items, itemIndex, { accent: event.target.value }))}
                                 className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
                               />
                             </label>
@@ -570,7 +1093,7 @@ const ResumePagesEditor = ({
                               <span className="text-sm font-medium text-foreground">Border class</span>
                               <input
                                 value={page.borderClass ?? ""}
-                                onChange={(event) => onChange(updatePage(items, index, { borderClass: event.target.value }))}
+                                onChange={(event) => onChange(updatePage(items, itemIndex, { borderClass: event.target.value }))}
                                 className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/40"
                               />
                             </label>
@@ -579,7 +1102,7 @@ const ResumePagesEditor = ({
                               <input
                                 type="checkbox"
                                 checked={Boolean(page.noCard)}
-                                onChange={(event) => onChange(updatePage(items, index, { noCard: event.target.checked }))}
+                                onChange={(event) => onChange(updatePage(items, itemIndex, { noCard: event.target.checked }))}
                                 className="h-4 w-4 rounded border-border"
                               />
                               No card layout
@@ -606,16 +1129,50 @@ const ResumePagesEditor = ({
           <AccordionContent className="pb-4 pt-2">
             <div className="space-y-2 rounded-2xl border border-border/70 bg-card p-4">
               <Accordion type="single" collapsible className="space-y-2">
-                {lockedPages.map((page) => {
-                  const index = items.findIndex((item) => item === page);
-                  const value = `locked-${index}`;
+                {lockedPages.map((page, sectionIndex) => {
+                  const value = `locked-${sectionIndex}`;
 
                   return (
-                    <AccordionItem key={page.id || `locked-${index}`} value={value} className="rounded-2xl border border-border/70 bg-background px-4">
+                    <AccordionItem
+                      key={page.id || `locked-${sectionIndex}`}
+                      value={value}
+                      className="relative rounded-2xl border border-border/70 bg-background px-4"
+                      onDragOver={(event) => handleDragOverRow(event, "locked", sectionIndex)}
+                      onDrop={(event) =>
+                        handleDropReorder(
+                          event,
+                          "locked",
+                          sectionIndex,
+                          dropTarget?.kind === "locked" && dropTarget.index === sectionIndex ? dropTarget.position : "before"
+                        )
+                      }
+                    >
+                      {dropTarget?.kind === "locked" && dropTarget.index === sectionIndex && dropTarget.position === "before" ? (
+                        <div className="pointer-events-none absolute -top-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+                      ) : null}
+                      {dropTarget?.kind === "locked" && dropTarget.index === sectionIndex && dropTarget.position === "after" ? (
+                        <div className="pointer-events-none absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+                      ) : null}
                       <AccordionTrigger className="py-4 text-left no-underline hover:no-underline">
-                        <div className="min-w-0 text-left">
-                          <div className="truncate text-lg font-semibold text-foreground">{page.title || "Untitled page"}</div>
-                          <div className="mt-1 truncate text-sm text-muted-foreground">{page.subtitle || "No subtitle"}</div>
+                        <div className="flex min-w-0 items-center gap-1.5 text-left">
+                          <button
+                            type="button"
+                            draggable
+                            onDragStart={() => setDragState({ kind: "locked", index: sectionIndex })}
+                            onDragEnd={() => {
+                              setDropTarget(null);
+                              setDragState(null);
+                            }}
+                            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border-0 bg-transparent text-muted-foreground transition-colors hover:text-foreground cursor-grab active:cursor-grabbing"
+                            aria-label="Drag to reorder locked page"
+                            title="Drag to reorder"
+                          >
+                            <GripVertical className="h-3.5 w-3.5" />
+                          </button>
+                          <div className="min-w-0 flex-1 text-left">
+                            <div className="truncate text-lg font-semibold text-foreground">{page.title || "Untitled page"}</div>
+                            <div className="mt-1 truncate text-sm text-muted-foreground">{page.subtitle || "No subtitle"}</div>
+                          </div>
                         </div>
                       </AccordionTrigger>
 
@@ -690,6 +1247,55 @@ const ExperienceEditor = ({
   items: OtherWorkingExperience[];
   onChange: (next: OtherWorkingExperience[]) => void;
 }) => {
+  const [dragState, setDragState] = useState<number | null>(null);
+  const [dropTarget, setDropTarget] = useState<{ index: number; position: "before" | "after" } | null>(null);
+
+  const handleDragOverCard = (event: DragEvent<HTMLElement>, index: number) => {
+    event.preventDefault();
+
+    if (dragState === null) {
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const midpoint = rect.top + rect.height / 2;
+    const position: "before" | "after" = event.clientY < midpoint ? "before" : "after";
+
+    setDropTarget({ index, position });
+    event.dataTransfer.dropEffect = "move";
+  };
+
+  const handleDropCard = (event: DragEvent<HTMLElement>, targetIndex: number) => {
+    event.preventDefault();
+
+    if (dragState === null) {
+      setDropTarget(null);
+      return;
+    }
+
+    const position = dropTarget?.index === targetIndex ? dropTarget.position : "before";
+    let nextIndex = position === "before" ? targetIndex : targetIndex + 1;
+
+    if (dragState < nextIndex) {
+      nextIndex -= 1;
+    }
+
+    if (nextIndex < 0) {
+      nextIndex = 0;
+    }
+
+    if (nextIndex > items.length - 1) {
+      nextIndex = items.length - 1;
+    }
+
+    if (dragState !== nextIndex) {
+      onChange(reorderArray(items, dragState, nextIndex));
+    }
+
+    setDropTarget(null);
+    setDragState(null);
+  };
+
   return (
     <section className="space-y-4 rounded-3xl border border-border bg-card p-5 shadow-sm">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
@@ -707,57 +1313,94 @@ const ExperienceEditor = ({
         </button>
       </div>
 
-      <div className="space-y-4">
+      <Accordion type="single" collapsible className="space-y-2">
         {items.map((experience, index) => (
-          <article key={`${experience.title}-${index}`} className="rounded-3xl border border-border/70 bg-background/90 p-4 shadow-sm">
-            <div className="mb-4 flex items-start justify-between gap-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Experience {index + 1}</p>
-                <h3 className="mt-1 text-lg font-semibold text-foreground">{experience.title || "Untitled experience"}</h3>
+          <AccordionItem
+            key={`experience-item-${index}`}
+            value={`experience-${index}`}
+            className="relative rounded-3xl border border-border/70 bg-background/90 px-4 shadow-sm"
+            onDragOver={(event) => handleDragOverCard(event, index)}
+            onDrop={(event) => handleDropCard(event, index)}
+          >
+            {dropTarget?.index === index && dropTarget.position === "before" ? (
+              <div className="pointer-events-none absolute -top-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+            ) : null}
+            {dropTarget?.index === index && dropTarget.position === "after" ? (
+              <div className="pointer-events-none absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+            ) : null}
+
+            <AccordionTrigger className="py-4 text-left no-underline hover:no-underline">
+              <div className="flex min-w-0 items-start gap-1.5 text-left">
+                <button
+                  type="button"
+                  draggable
+                  onDragStart={() => setDragState(index)}
+                  onDragEnd={() => {
+                    setDropTarget(null);
+                    setDragState(null);
+                  }}
+                  className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border-0 bg-transparent text-muted-foreground transition-colors hover:text-foreground cursor-grab active:cursor-grabbing"
+                  aria-label="Drag to reorder experience card"
+                  title="Drag to reorder"
+                >
+                  <GripVertical className="h-3.5 w-3.5" />
+                </button>
+
+                <div className="min-w-0">
+                  <h3 className="truncate text-lg font-semibold text-foreground">{experience.title || "Untitled experience"}</h3>
+                  <p className="mt-1 truncate text-sm text-muted-foreground">{experience.subtitle || "No subtitle"}</p>
+                </div>
               </div>
-              <button
-                type="button"
-                onClick={() => onChange(items.filter((_, currentIndex) => currentIndex !== index))}
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-destructive hover:text-destructive-foreground"
-              >
-                <Trash2 className="h-4 w-4" />
-                Delete
-              </button>
-            </div>
+            </AccordionTrigger>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              <label className="space-y-2 md:col-span-2">
-                <span className="text-sm font-medium text-foreground">Title</span>
-                <input
-                  value={experience.title}
-                  onChange={(event) => onChange(updateExperience(items, index, { title: event.target.value }))}
-                  className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
-                />
-              </label>
+            <AccordionContent className="pb-4 pt-2">
+              <div className="space-y-4 rounded-2xl border border-border/70 bg-card p-4">
+                <div className="flex items-start justify-end gap-4">
+                  <button
+                    type="button"
+                    onClick={() => onChange(items.filter((_, currentIndex) => currentIndex !== index))}
+                    className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-destructive hover:text-destructive-foreground"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                    Delete
+                  </button>
+                </div>
 
-              <label className="space-y-2 md:col-span-2">
-                <span className="text-sm font-medium text-foreground">Subtitle</span>
-                <input
-                  value={experience.subtitle}
-                  onChange={(event) => onChange(updateExperience(items, index, { subtitle: event.target.value }))}
-                  className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
-                />
-              </label>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <label className="space-y-2 md:col-span-2">
+                    <span className="text-sm font-medium text-foreground">Title</span>
+                    <input
+                      value={experience.title}
+                      onChange={(event) => onChange(updateExperience(items, index, { title: event.target.value }))}
+                      className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
+                    />
+                  </label>
 
-              <label className="space-y-2 md:col-span-2">
-                <span className="text-sm font-medium text-foreground">Tags</span>
-                <textarea
-                  value={joinLines(experience.tags)}
-                  onChange={(event) => onChange(updateExperience(items, index, { tags: splitLines(event.target.value) }))}
-                  rows={3}
-                  placeholder="One tag per line"
-                  className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
-                />
-              </label>
-            </div>
-          </article>
+                  <label className="space-y-2 md:col-span-2">
+                    <span className="text-sm font-medium text-foreground">Subtitle</span>
+                    <input
+                      value={experience.subtitle}
+                      onChange={(event) => onChange(updateExperience(items, index, { subtitle: event.target.value }))}
+                      className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
+                    />
+                  </label>
+
+                  <label className="space-y-2 md:col-span-2">
+                    <span className="text-sm font-medium text-foreground">Tags</span>
+                    <textarea
+                      value={joinLines(experience.tags)}
+                      onChange={(event) => onChange(updateExperience(items, index, { tags: splitLines(event.target.value) }))}
+                      rows={3}
+                      placeholder="One tag per line"
+                      className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
+                    />
+                  </label>
+                </div>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
         ))}
-      </div>
+      </Accordion>
     </section>
   );
 };
@@ -769,6 +1412,55 @@ const AwardEditor = ({
   items: AwardItem[];
   onChange: (next: AwardItem[]) => void;
 }) => {
+  const [dragState, setDragState] = useState<number | null>(null);
+  const [dropTarget, setDropTarget] = useState<{ index: number; position: "before" | "after" } | null>(null);
+
+  const handleDragOverCard = (event: DragEvent<HTMLElement>, index: number) => {
+    event.preventDefault();
+
+    if (dragState === null) {
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const midpoint = rect.top + rect.height / 2;
+    const position: "before" | "after" = event.clientY < midpoint ? "before" : "after";
+
+    setDropTarget({ index, position });
+    event.dataTransfer.dropEffect = "move";
+  };
+
+  const handleDropCard = (event: DragEvent<HTMLElement>, targetIndex: number) => {
+    event.preventDefault();
+
+    if (dragState === null) {
+      setDropTarget(null);
+      return;
+    }
+
+    const position = dropTarget?.index === targetIndex ? dropTarget.position : "before";
+    let nextIndex = position === "before" ? targetIndex : targetIndex + 1;
+
+    if (dragState < nextIndex) {
+      nextIndex -= 1;
+    }
+
+    if (nextIndex < 0) {
+      nextIndex = 0;
+    }
+
+    if (nextIndex > items.length - 1) {
+      nextIndex = items.length - 1;
+    }
+
+    if (dragState !== nextIndex) {
+      onChange(reorderArray(items, dragState, nextIndex));
+    }
+
+    setDropTarget(null);
+    setDragState(null);
+  };
+
   return (
     <section className="space-y-4 rounded-3xl border border-border bg-card p-5 shadow-sm">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
@@ -786,56 +1478,93 @@ const AwardEditor = ({
         </button>
       </div>
 
-      <div className="space-y-4">
+      <Accordion type="single" collapsible className="space-y-2">
         {items.map((award, index) => (
-          <article key={`${award.title}-${index}`} className="rounded-3xl border border-border/70 bg-background/90 p-4 shadow-sm">
-            <div className="mb-4 flex items-start justify-between gap-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Award {index + 1}</p>
-                <h3 className="mt-1 text-lg font-semibold text-foreground">{award.title || "Untitled award"}</h3>
+          <AccordionItem
+            key={`award-item-${index}`}
+            value={`award-${index}`}
+            className="relative rounded-3xl border border-border/70 bg-background/90 px-4 shadow-sm"
+            onDragOver={(event) => handleDragOverCard(event, index)}
+            onDrop={(event) => handleDropCard(event, index)}
+          >
+            {dropTarget?.index === index && dropTarget.position === "before" ? (
+              <div className="pointer-events-none absolute -top-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+            ) : null}
+            {dropTarget?.index === index && dropTarget.position === "after" ? (
+              <div className="pointer-events-none absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+            ) : null}
+
+            <AccordionTrigger className="py-4 text-left no-underline hover:no-underline">
+              <div className="flex min-w-0 items-start gap-1.5 text-left">
+                <button
+                  type="button"
+                  draggable
+                  onDragStart={() => setDragState(index)}
+                  onDragEnd={() => {
+                    setDropTarget(null);
+                    setDragState(null);
+                  }}
+                  className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border-0 bg-transparent text-muted-foreground transition-colors hover:text-foreground cursor-grab active:cursor-grabbing"
+                  aria-label="Drag to reorder award card"
+                  title="Drag to reorder"
+                >
+                  <GripVertical className="h-3.5 w-3.5" />
+                </button>
+
+                <div className="min-w-0">
+                  <h3 className="truncate text-lg font-semibold text-foreground">{award.title || "Untitled award"}</h3>
+                  <p className="mt-1 truncate text-sm text-muted-foreground">{award.issuer || "No issuer"}</p>
+                </div>
               </div>
-              <button
-                type="button"
-                onClick={() => onChange(items.filter((_, currentIndex) => currentIndex !== index))}
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-destructive hover:text-destructive-foreground"
-              >
-                <Trash2 className="h-4 w-4" />
-                Delete
-              </button>
-            </div>
+            </AccordionTrigger>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              <label className="space-y-2 md:col-span-2">
-                <span className="text-sm font-medium text-foreground">Title</span>
-                <input
-                  value={award.title}
-                  onChange={(event) => onChange(updateAward(items, index, { title: event.target.value }))}
-                  className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
-                />
-              </label>
+            <AccordionContent className="pb-4 pt-2">
+              <div className="space-y-4 rounded-2xl border border-border/70 bg-card p-4">
+                <div className="flex items-start justify-end gap-4">
+                  <button
+                    type="button"
+                    onClick={() => onChange(items.filter((_, currentIndex) => currentIndex !== index))}
+                    className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-destructive hover:text-destructive-foreground"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                    Delete
+                  </button>
+                </div>
 
-              <label className="space-y-2 md:col-span-2">
-                <span className="text-sm font-medium text-foreground">Issuer</span>
-                <input
-                  value={award.issuer}
-                  onChange={(event) => onChange(updateAward(items, index, { issuer: event.target.value }))}
-                  className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
-                />
-              </label>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <label className="space-y-2 md:col-span-2">
+                    <span className="text-sm font-medium text-foreground">Title</span>
+                    <input
+                      value={award.title}
+                      onChange={(event) => onChange(updateAward(items, index, { title: event.target.value }))}
+                      className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
+                    />
+                  </label>
 
-              <label className="space-y-2 md:col-span-2">
-                <span className="text-sm font-medium text-foreground">Note</span>
-                <textarea
-                  value={award.note}
-                  onChange={(event) => onChange(updateAward(items, index, { note: event.target.value }))}
-                  rows={3}
-                  className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
-                />
-              </label>
-            </div>
-          </article>
+                  <label className="space-y-2 md:col-span-2">
+                    <span className="text-sm font-medium text-foreground">Issuer</span>
+                    <input
+                      value={award.issuer}
+                      onChange={(event) => onChange(updateAward(items, index, { issuer: event.target.value }))}
+                      className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
+                    />
+                  </label>
+
+                  <label className="space-y-2 md:col-span-2">
+                    <span className="text-sm font-medium text-foreground">Note</span>
+                    <textarea
+                      value={award.note}
+                      onChange={(event) => onChange(updateAward(items, index, { note: event.target.value }))}
+                      rows={3}
+                      className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
+                    />
+                  </label>
+                </div>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
         ))}
-      </div>
+      </Accordion>
     </section>
   );
 };
@@ -844,63 +1573,191 @@ const EducationEditor = ({
   value,
   onChange,
 }: {
-  value: EducationDetails;
-  onChange: (next: EducationDetails) => void;
+  value: EducationDetails[];
+  onChange: (next: EducationDetails[]) => void;
 }) => {
+  const [dragState, setDragState] = useState<number | null>(null);
+  const [dropTarget, setDropTarget] = useState<{ index: number; position: "before" | "after" } | null>(null);
+  const educationItems = value;
+
+  const updateEducationItem = (index: number, patch: Partial<EducationDetails>) => {
+    const next = educationItems.map((item, itemIndex) => (itemIndex === index ? { ...item, ...patch } : item));
+    onChange(next);
+  };
+
+  const handleDragOverCard = (event: DragEvent<HTMLElement>, index: number) => {
+    event.preventDefault();
+
+    if (dragState === null) {
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const midpoint = rect.top + rect.height / 2;
+    const position: "before" | "after" = event.clientY < midpoint ? "before" : "after";
+
+    setDropTarget({ index, position });
+    event.dataTransfer.dropEffect = "move";
+  };
+
+  const handleDropCard = (event: DragEvent<HTMLElement>, targetIndex: number) => {
+    event.preventDefault();
+
+    if (dragState === null) {
+      setDropTarget(null);
+      return;
+    }
+
+    const position = dropTarget?.index === targetIndex ? dropTarget.position : "before";
+    let nextIndex = position === "before" ? targetIndex : targetIndex + 1;
+
+    if (dragState < nextIndex) {
+      nextIndex -= 1;
+    }
+
+    if (nextIndex < 0) {
+      nextIndex = 0;
+    }
+
+    if (nextIndex > educationItems.length - 1) {
+      nextIndex = educationItems.length - 1;
+    }
+
+    if (dragState !== nextIndex) {
+      onChange(reorderArray(educationItems, dragState, nextIndex));
+    }
+
+    setDropTarget(null);
+    setDragState(null);
+  };
+
   return (
     <section className="space-y-4 rounded-3xl border border-border bg-card p-5 shadow-sm">
-      <div>
-        <h2 className="text-2xl font-semibold text-foreground">Education Details</h2>
-        <p className="mt-1 text-sm text-muted-foreground">Edit the single education record used by the resume.</p>
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 className="text-2xl font-semibold text-foreground">Education Details</h2>
+          <p className="mt-1 text-sm text-muted-foreground">Create, read, update, and delete education records.</p>
+        </div>
+        <button
+          type="button"
+          onClick={() => onChange([...educationItems, createBlankEducation()])}
+          className="inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
+        >
+          <Plus className="h-4 w-4" />
+          Add education
+        </button>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">Institution</span>
-          <input
-            value={value.institution}
-            onChange={(event) => onChange({ ...value, institution: event.target.value })}
-            className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
-          />
-        </label>
+      <Accordion type="single" collapsible className="space-y-2">
+        {educationItems.map((item, index) => (
+          <AccordionItem
+            key={`education-item-${index}`}
+            value={`education-${index}`}
+            className="relative rounded-2xl border border-border/70 bg-background/90 px-4"
+            onDragOver={(event) => handleDragOverCard(event, index)}
+            onDrop={(event) => handleDropCard(event, index)}
+          >
+            {dropTarget?.index === index && dropTarget.position === "before" ? (
+              <div className="pointer-events-none absolute -top-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+            ) : null}
+            {dropTarget?.index === index && dropTarget.position === "after" ? (
+              <div className="pointer-events-none absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
+            ) : null}
 
-        <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">Degree</span>
-          <input
-            value={value.degree}
-            onChange={(event) => onChange({ ...value, degree: event.target.value })}
-            className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
-          />
-        </label>
+            <AccordionTrigger className="py-4 text-left no-underline hover:no-underline">
+              <div className="flex min-w-0 items-center gap-1.5 text-left">
+                <button
+                  type="button"
+                  draggable
+                  onDragStart={() => setDragState(index)}
+                  onDragEnd={() => {
+                    setDropTarget(null);
+                    setDragState(null);
+                  }}
+                  className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border-0 bg-transparent text-muted-foreground transition-colors hover:text-foreground cursor-grab active:cursor-grabbing"
+                  aria-label="Drag to reorder education card"
+                  title="Drag to reorder"
+                >
+                  <GripVertical className="h-3.5 w-3.5" />
+                </button>
+                <div className="min-w-0">
+                  <h3 className="truncate text-base font-semibold text-foreground">{item.institution || "No institution"}</h3>
+                  <p className="mt-1 truncate text-sm text-muted-foreground">{item.degree || "No degree"}</p>
+                </div>
+              </div>
+            </AccordionTrigger>
 
-        <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">Period</span>
-          <input
-            value={value.period}
-            onChange={(event) => onChange({ ...value, period: event.target.value })}
-            className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
-          />
-        </label>
+            <AccordionContent className="pb-4 pt-2">
+              <div className="space-y-4 rounded-2xl border border-border/70 bg-card p-4">
+                <div className="flex items-start justify-end gap-4">
+                  <button
+                    type="button"
+                    onClick={() => onChange(educationItems.filter((_, itemIndex) => itemIndex !== index))}
+                    className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-destructive hover:text-destructive-foreground"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                    Delete
+                  </button>
+                </div>
 
-        <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">Grade</span>
-          <input
-            value={value.grade}
-            onChange={(event) => onChange({ ...value, grade: event.target.value })}
-            className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
-          />
-        </label>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <label className="space-y-2">
+                    <span className="text-sm font-medium text-foreground">Institution</span>
+                    <input
+                      value={item.institution}
+                      onChange={(event) => updateEducationItem(index, { institution: event.target.value })}
+                      className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
+                    />
+                  </label>
 
-        <label className="space-y-2 md:col-span-2">
-          <span className="text-sm font-medium text-foreground">Focus</span>
-          <textarea
-            value={value.focus}
-            onChange={(event) => onChange({ ...value, focus: event.target.value })}
-            rows={3}
-            className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
-          />
-        </label>
-      </div>
+                  <label className="space-y-2">
+                    <span className="text-sm font-medium text-foreground">Degree</span>
+                    <input
+                      value={item.degree}
+                      onChange={(event) => updateEducationItem(index, { degree: event.target.value })}
+                      className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
+                    />
+                  </label>
+
+                  <label className="space-y-2">
+                    <span className="text-sm font-medium text-foreground">Period</span>
+                    <input
+                      value={item.period}
+                      onChange={(event) => updateEducationItem(index, { period: event.target.value })}
+                      className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
+                    />
+                  </label>
+
+                  <label className="space-y-2">
+                    <span className="text-sm font-medium text-foreground">Grade</span>
+                    <input
+                      value={item.grade}
+                      onChange={(event) => updateEducationItem(index, { grade: event.target.value })}
+                      className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
+                    />
+                  </label>
+
+                  <label className="space-y-2 md:col-span-2">
+                    <span className="text-sm font-medium text-foreground">Focus</span>
+                    <textarea
+                      value={item.focus}
+                      onChange={(event) => updateEducationItem(index, { focus: event.target.value })}
+                      rows={3}
+                      className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
+                    />
+                  </label>
+                </div>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+
+      {educationItems.length === 0 ? (
+        <div className="rounded-2xl border border-dashed border-border/70 bg-background/70 p-4 text-sm text-muted-foreground">
+          No education records yet. Add an education entry to begin.
+        </div>
+      ) : null}
     </section>
   );
 };
@@ -937,13 +1794,13 @@ const SkillGroupsEditor = <T extends SkillGroups | ToolsGroups>({
                 onChange={(event) =>
                   onChange({
                     ...value,
-                    [group.key]: splitLines(event.target.value),
+                    [group.key]: event.target.value.split(/\r?\n/),
                   } as T)
                 }
                 rows={8}
                 className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
               />
-              <p className="text-xs text-muted-foreground">One item per line. Empty lines are removed automatically.</p>
+              <p className="text-xs text-muted-foreground">One item per line.</p>
             </label>
           );
         })}
@@ -962,7 +1819,16 @@ const BuilderPanel = ({
   setContent: (next: ResumeBuilderContent) => void;
 }) => {
   if (activeSection === "resumePages") {
-    return <ResumePagesEditor items={content.resumePages} onChange={(next) => setContent({ ...content, resumePages: next })} />;
+    return (
+      <ResumePagesEditor
+        items={content.resumePages}
+        onChange={(next) => setContent({ ...content, resumePages: next })}
+        overviewDetails={content.overviewDetails}
+        onOverviewDetailsChange={(next) => setContent({ ...content, overviewDetails: next })}
+        rollingKeywordRows={content.rollingKeywordRows}
+        onRollingKeywordRowsChange={(next) => setContent({ ...content, rollingKeywordRows: next })}
+      />
+    );
   }
 
   if (activeSection === "projectItems") {
@@ -1033,14 +1899,20 @@ const BuilderPanel = ({
 };
 
 const ResumeBuilder = () => {
-  const [content, setContent] = useState<ResumeBuilderContent>(() => createResumeBuilderContent());
+  const [content, setContent] = useState<ResumeBuilderContent>(() => {
+    const parsed = parseResumeContentFromSource(resumeCurrentSource);
+    return parsed ?? createResumeBuilderContent();
+  });
   const [activeSection, setActiveSection] = useState<SectionId>("resumePages");
   const [isStatusExpanded, setIsStatusExpanded] = useState(false);
   const [isSectionsExpanded, setIsSectionsExpanded] = useState(false);
   const [isNotesOpen, setIsNotesOpen] = useState(false);
+  const [historyTick, setHistoryTick] = useState(0);
   const [builderStatusHeight, setBuilderStatusHeight] = useState(0);
   const builderStatusRef = useRef<HTMLElement | null>(null);
   const editorScrollRef = useRef<HTMLDivElement | null>(null);
+  const undoStackRef = useRef<ResumeBuilderContent[]>([]);
+  const redoStackRef = useRef<ResumeBuilderContent[]>([]);
 
   useEffect(() => {
     const element = builderStatusRef.current;
@@ -1066,8 +1938,45 @@ const ResumeBuilder = () => {
     };
   }, [isStatusExpanded]);
 
+  const updateContent = (nextContent: ResumeBuilderContent) => {
+    setContent((current) => {
+      undoStackRef.current.push(current);
+      redoStackRef.current = [];
+      return nextContent;
+    });
+    setHistoryTick((current) => current + 1);
+  };
+
+  const handleUndo = () => {
+    setContent((current) => {
+      const previous = undoStackRef.current.pop();
+
+      if (!previous) {
+        return current;
+      }
+
+      redoStackRef.current.push(current);
+      return previous;
+    });
+    setHistoryTick((current) => current + 1);
+  };
+
+  const handleRedo = () => {
+    setContent((current) => {
+      const next = redoStackRef.current.pop();
+
+      if (!next) {
+        return current;
+      }
+
+      undoStackRef.current.push(current);
+      return next;
+    });
+    setHistoryTick((current) => current + 1);
+  };
+
   const handleReset = () => {
-    setContent(createResumeBuilderContent());
+    updateContent(createResumeBuilderContent());
     setActiveSection("resumePages");
     toast.success("Builder reset to the current Resume.tsx defaults.");
   };
@@ -1112,6 +2021,26 @@ const ResumeBuilder = () => {
             <h1 className="text-base font-semibold text-foreground md:text-xl">Resume.tsx Builder (beta)</h1>
 
             <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleUndo}
+                disabled={undoStackRef.current.length === 0}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-background text-foreground transition-colors hover:bg-card disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Undo changes"
+                title="Undo changes"
+              >
+                <Undo2 className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={handleRedo}
+                disabled={redoStackRef.current.length === 0}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-background text-foreground transition-colors hover:bg-card disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Redo changes"
+                title="Redo changes"
+              >
+                <Redo2 className="h-4 w-4" />
+              </button>
               <button
                 type="button"
                 onClick={handleReset}
@@ -1198,7 +2127,7 @@ const ResumeBuilder = () => {
             </section>
 
             <div ref={editorScrollRef} className="h-full overflow-y-auto pr-1 space-y-6" style={{ paddingTop: `${builderStatusHeight + 24}px` }}>
-              <BuilderPanel activeSection={activeSection} content={content} setContent={setContent} />
+              <BuilderPanel activeSection={activeSection} content={content} setContent={updateContent} />
 
             </div>
           </div>

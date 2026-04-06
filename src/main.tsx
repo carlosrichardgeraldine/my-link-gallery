@@ -2,6 +2,19 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
+const initializeThemeMode = () => {
+	const savedTheme = localStorage.getItem("theme");
+	const themeMode = savedTheme === "light" || savedTheme === "dark" || savedTheme === "system" ? savedTheme : "system";
+	const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+	const shouldUseDark = themeMode === "dark" || (themeMode === "system" && prefersDark);
+
+	document.documentElement.classList.toggle("dark", shouldUseDark);
+
+	if (savedTheme === null) {
+		localStorage.setItem("theme", "system");
+	}
+};
+
 const setupHoverBorderPointerTracking = () => {
 	const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 	const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
@@ -79,5 +92,6 @@ const setupHoverBorderPointerTracking = () => {
 };
 
 setupHoverBorderPointerTracking();
+initializeThemeMode();
 
 createRoot(document.getElementById("root")!).render(<App />);
