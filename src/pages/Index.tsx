@@ -1,11 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { ChevronLeft, ChevronRight, Search, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { links } from "@/data/links";
 import ThemeToggle from "@/components/ThemeToggle";
 import LinkCard from "@/components/LinkCard";
 import FilterSidebar from "@/components/FilterSidebar";
-import BackgroundColorToggle from "@/components/BackgroundColorToggle";
 import MonochromePlusBackground from "@/components/MonochromePlusBackground";
 
 const Index = () => {
@@ -81,12 +80,11 @@ const Index = () => {
           <h1 className="text-2xl font-bold leading-tight text-foreground md:text-4xl">
             Carlos Richard<br />Geraldine
           </h1>
-          <div className="max-w-lg text-sm text-muted-foreground md:text-base">
+          <div className="index-header-tagline max-w-lg text-sm text-muted-foreground md:text-base">
             <p className="font-bold leading-tight text-foreground">Bridge, design, and deliver solutions that matter.</p>
             <p>Team leader // somewhat IT guy // bedroom DJ by night</p>
           </div>
           <div className="flex items-center gap-3">
-            <BackgroundColorToggle />
             <ThemeToggle />
           </div>
           </div>
@@ -108,7 +106,7 @@ const Index = () => {
           </div>
         </div>
 
-        <div className="mb-4 flex flex-wrap gap-2">
+        <div className="index-tag-recommendations mb-4 flex flex-wrap gap-2">
           {quickTags.map((tag) => {
             const active = selectedTags.includes(tag);
 
@@ -130,34 +128,62 @@ const Index = () => {
         </div>
 
         {/* Active filter pills + count */}
-        <div className="mb-4 flex min-h-8 items-center gap-2 overflow-x-auto whitespace-nowrap">
+        <div className="index-active-filters-row mb-4 flex min-h-8 items-center gap-2 overflow-hidden">
           <span className="shrink-0 text-sm font-medium text-foreground">
             {filtered.length} result{filtered.length !== 1 ? "s" : ""}
           </span>
 
-          {activeFilters.map((f) => (
-              <span
-              key={f.label}
-              className="hover-chroma-pill inline-flex shrink-0 items-center gap-1 rounded-full border border-foreground bg-foreground px-3 py-1 text-xs font-medium text-background"
-            >
-              {f.label}
-              <button
-                onClick={() => toggleTag(f.value)}
-                className="ml-0.5 hover:opacity-70"
-              >
-                <X className="h-3 w-3" />
-              </button>
-            </span>
-          ))}
+          <div className="index-active-filters-scroll relative z-0 min-w-0 flex-1 overflow-x-auto whitespace-nowrap">
+            <div className="flex items-center gap-2 pr-16">
+              {activeFilters.map((f) => (
+                <span
+                  key={f.label}
+                  className="hover-chroma-pill inline-flex shrink-0 items-center gap-1 rounded-full border border-foreground bg-foreground px-3 py-1 text-xs font-medium text-background"
+                >
+                  {f.label}
+                  <button
+                    onClick={() => toggleTag(f.value)}
+                    className="ml-0.5 hover:opacity-70"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                </span>
+              ))}
+            </div>
+          </div>
 
-          {hasFilters && (
-            <button
-              onClick={clearAll}
-              className="shrink-0 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Clear all
-            </button>
-          )}
+          <div className="relative z-10 ml-auto flex shrink-0 items-center gap-2">
+            {hasFilters && (
+              <button
+                onClick={clearAll}
+                className="shrink-0 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Clear all
+              </button>
+            )}
+
+            {totalPages > 1 && (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="inline-flex h-8 w-8 items-center justify-center text-foreground transition-opacity hover:opacity-70 disabled:cursor-not-allowed disabled:opacity-30"
+                  aria-label="Previous page"
+                >
+                  <ChevronsLeft className="h-4 w-4" />
+                </button>
+
+                <button
+                  onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                  className="inline-flex h-8 w-8 items-center justify-center text-foreground transition-opacity hover:opacity-70 disabled:cursor-not-allowed disabled:opacity-30"
+                  aria-label="Next page"
+                >
+                  <ChevronsRight className="h-4 w-4" />
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Main layout */}
@@ -196,37 +222,6 @@ const Index = () => {
                 ))}
                 </div>
 
-                <div className="mt-6 flex items-center justify-between px-2 py-1">
-                  {totalPages > 1 ? (
-                    <button
-                      onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                      disabled={currentPage === 1}
-                      className="inline-flex h-8 w-8 items-center justify-center text-foreground transition-opacity hover:opacity-70 disabled:cursor-not-allowed disabled:opacity-30"
-                      aria-label="Previous page"
-                    >
-                      <ChevronLeft className="h-4 w-4" />
-                    </button>
-                  ) : (
-                    <span className="h-8 w-8" aria-hidden="true" />
-                  )}
-
-                  <span className="text-sm text-muted-foreground">
-                    Page {currentPage} of {totalPages}
-                  </span>
-
-                  {totalPages > 1 ? (
-                    <button
-                      onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                      disabled={currentPage === totalPages}
-                      className="inline-flex h-8 w-8 items-center justify-center text-foreground transition-opacity hover:opacity-70 disabled:cursor-not-allowed disabled:opacity-30"
-                      aria-label="Next page"
-                    >
-                      <ChevronRight className="h-4 w-4" />
-                    </button>
-                  ) : (
-                    <span className="h-8 w-8" aria-hidden="true" />
-                  )}
-                </div>
               </>
             ) : (
               <div className="flex flex-col items-center justify-center rounded-lg border border-border bg-card py-16 text-center">

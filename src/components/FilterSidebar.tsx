@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { links } from "@/data/links";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -37,10 +37,41 @@ const FilterSection = ({
 };
 
 const FilterSidebar = ({ selectedTags, onToggleTag }: FilterSidebarProps) => {
+  const [isPortrait, setIsPortrait] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    return window.matchMedia("(orientation: portrait)").matches;
+  });
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const portraitQuery = window.matchMedia("(orientation: portrait)");
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsPortrait(event.matches);
+    };
+
+    setIsPortrait(portraitQuery.matches);
+    portraitQuery.addEventListener("change", handleChange);
+
+    return () => {
+      portraitQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
+
   return (
     <div className="hover-chroma-border rounded-lg border border-border bg-card p-4">
 
-      <FilterSection title="All Tags" titleClassName="mb-3 text-base font-semibold text-foreground font-sans">
+      <FilterSection
+        key={`all-tags-${isPortrait ? "portrait" : "landscape"}`}
+        title="All Tags"
+        defaultOpen={!isPortrait}
+        titleClassName="mb-3 text-base font-semibold text-foreground font-sans"
+      >
         {allTags.map((tag) => (
           <label key={tag} className="flex cursor-pointer items-center gap-2 py-1 text-sm text-foreground hover:text-foreground/70 transition-colors">
             <Checkbox

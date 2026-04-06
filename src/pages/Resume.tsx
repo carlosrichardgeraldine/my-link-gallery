@@ -2,7 +2,6 @@ import { ArrowLeft, ArrowRightLeft, Briefcase, ChevronLeft, ChevronRight, MapPin
 import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
-import BackgroundColorToggle from "@/components/BackgroundColorToggle";
 import MonochromePlusBackground from "@/components/MonochromePlusBackground";
 
 const resumePages = [
@@ -826,7 +825,6 @@ const Resume = () => {
         <div className="container mx-auto flex items-center justify-between px-4 py-4">
           <span className="text-sm font-medium text-foreground">Resume</span>
           <div className="flex items-center gap-3">
-            <BackgroundColorToggle />
             <ThemeToggle />
           </div>
         </div>
