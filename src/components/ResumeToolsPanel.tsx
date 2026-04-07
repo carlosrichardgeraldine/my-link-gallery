@@ -1,6 +1,7 @@
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { ChevronDown, ChevronLeft, ChevronRight, Pause, Play, SkipForward, Square, X } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Pause, Play, SkipForward, Square, Volume2, VolumeX, X } from "lucide-react";
+import confetti from "canvas-confetti";
 import { Checkbox } from "@/components/ui/checkbox";
 import ThemeToggle from "@/components/ThemeToggle";
 
@@ -67,6 +68,50 @@ const timerPresets = [
     breakMinutes: 3,
   },
 ] as const;
+
+const breakStartMessages = [
+  "Nice job, take a soft little pause.",
+  "Great focus, enjoy a quick breather.",
+  "Well done, let your mind stretch for a moment.",
+  "You made progress, now rest for a bit.",
+  "Good work, take a gentle break.",
+  "Solid effort, give yourself a moment of ease.",
+  "You showed up well, enjoy this short pause.",
+  "Nice session, let your thoughts settle for a minute.",
+  "You did great, take a light break.",
+  "Good flow, now let yourself unwind briefly.",
+] as const;
+
+const focusResumeMessages = [
+  "Welcome back, your momentum is waiting for you.",
+  "Let's slip gently into focus again.",
+  "You're doing great, let's keep the flow going.",
+  "Ready when you are, your next step is right here.",
+  "A fresh breath, a fresh start. Let's continue.",
+  "You've got this, one calm session at a time.",
+  "Back to the rhythm, steady and smooth.",
+  "Your focus is warming up again, let's follow it.",
+  "Here we go, another small step forward.",
+  "Let's return to the quiet groove you built.",
+] as const;
+
+const cycleEndMessages = [
+  "Nice work today, take a breath and enjoy the pause.",
+  "Session complete, you've earned a moment of calm.",
+  "Well done, let your mind rest for a bit.",
+  "Great focus, now give yourself some ease.",
+  "You showed up beautifully, time to unwind.",
+  "Another step forward, now relax your shoulders.",
+  "Good progress, let the quiet settle in.",
+  "You did your part, now let the world slow down.",
+  "Solid session, enjoy the space you've created.",
+  "Nice effort, let yourself drift into a soft break.",
+] as const;
+
+const pickRandomMessage = (messages: readonly string[]) =>
+  messages[Math.floor(Math.random() * messages.length)] ?? "";
+
+const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
 const spotifyFullPlaylists = [
   {
@@ -194,13 +239,66 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
   const [completedCycles, setCompletedCycles] = useState(0);
   const [phase, setPhase] = useState<"focus" | "break">("focus");
   const [isRunning, setIsRunning] = useState(false);
+  const [isNotificationMuted, setIsNotificationMuted] = useState(false);
+  const [showOverlayMessage, setShowOverlayMessage] = useState(false);
+  const [overlayMessage, setOverlayMessage] = useState("");
+  const focusStartAudioRef = useRef<HTMLAudioElement | null>(null);
+  const breakStartAudioRef = useRef<HTMLAudioElement | null>(null);
+  const sessionEndedAudioRef = useRef<HTMLAudioElement | null>(null);
+  const overlayHideTimeoutRef = useRef<number | null>(null);
+  const previousPhaseRef = useRef<"focus" | "break">("focus");
+  const previousRunningRef = useRef(false);
 
   const [todoDraft, setTodoDraft] = useState("");
   const [todos, setTodos] = useState<TodoItem[]>([]);
+  const previousAllTodosDoneRef = useRef(false);
+  const todoConfettiCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const todoConfettiInstanceRef = useRef<ReturnType<typeof confetti.create> | null>(null);
   const selectedFullPlaylist = useMemo(
     () => spotifyFullPlaylists.find((playlist) => playlist.id === activeFullPlaylistId) ?? spotifyFullPlaylists[0],
     [activeFullPlaylistId]
   );
+
+  useEffect(() => {
+    if (!todoConfettiCanvasRef.current) {
+      return;
+    }
+
+    todoConfettiInstanceRef.current = confetti.create(todoConfettiCanvasRef.current, {
+      resize: true,
+      useWorker: true,
+    });
+
+    return () => {
+      todoConfettiInstanceRef.current?.reset();
+      todoConfettiInstanceRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    const areAllDone = todos.length > 0 && todos.every((todo) => todo.done);
+
+    if (areAllDone && !previousAllTodosDoneRef.current) {
+      const launchConfetti = todoConfettiInstanceRef.current;
+      if (!launchConfetti) {
+        previousAllTodosDoneRef.current = areAllDone;
+        return;
+      }
+
+      launchConfetti({
+        angle: 90,
+        spread: 360,
+        particleCount: Math.round(randomInRange(20, 32)),
+        scalar: 0.7,
+        startVelocity: 18,
+        ticks: 90,
+        gravity: 0.9,
+        origin: { x: 0.5, y: 0.5 },
+      });
+    }
+
+    previousAllTodosDoneRef.current = areAllDone;
+  }, [todos]);
 
   useEffect(() => {
     const raw = readCookie(TODO_COOKIE_KEY);
@@ -226,6 +324,84 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
   useEffect(() => {
     saveSessionCookie(TODO_COOKIE_KEY, JSON.stringify(todos));
   }, [todos]);
+
+  useEffect(() => {
+    const focusAudio = new Audio("/focus-start.mp3");
+    const breakAudio = new Audio("/break.mp3");
+    const sessionEndedAudio = new Audio("/session-ended.mp3");
+    focusAudio.preload = "auto";
+    breakAudio.preload = "auto";
+    sessionEndedAudio.preload = "auto";
+    focusAudio.volume = 0.8;
+    breakAudio.volume = 0.8;
+    sessionEndedAudio.volume = 0.8;
+    focusAudio.muted = isNotificationMuted;
+    breakAudio.muted = isNotificationMuted;
+    sessionEndedAudio.muted = isNotificationMuted;
+    focusStartAudioRef.current = focusAudio;
+    breakStartAudioRef.current = breakAudio;
+    sessionEndedAudioRef.current = sessionEndedAudio;
+
+    return () => {
+      focusAudio.pause();
+      breakAudio.pause();
+      sessionEndedAudio.pause();
+      focusStartAudioRef.current = null;
+      breakStartAudioRef.current = null;
+      sessionEndedAudioRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (focusStartAudioRef.current) {
+      focusStartAudioRef.current.muted = isNotificationMuted;
+    }
+
+    if (breakStartAudioRef.current) {
+      breakStartAudioRef.current.muted = isNotificationMuted;
+    }
+
+    if (sessionEndedAudioRef.current) {
+      sessionEndedAudioRef.current.muted = isNotificationMuted;
+    }
+  }, [isNotificationMuted]);
+
+  const playNotification = (audio: HTMLAudioElement | null) => {
+    if (!audio || isNotificationMuted) {
+      return;
+    }
+
+    audio.currentTime = 0;
+    void audio.play().catch(() => {
+      // Browser autoplay restrictions can block sound until user interaction.
+    });
+  };
+
+  const showTimerOverlayMessage = useCallback((message: string) => {
+    if (!message) {
+      return;
+    }
+
+    if (overlayHideTimeoutRef.current) {
+      window.clearTimeout(overlayHideTimeoutRef.current);
+      overlayHideTimeoutRef.current = null;
+    }
+
+    setOverlayMessage(message);
+    setShowOverlayMessage(true);
+    overlayHideTimeoutRef.current = window.setTimeout(() => {
+      setShowOverlayMessage(false);
+      overlayHideTimeoutRef.current = null;
+    }, 2500);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (overlayHideTimeoutRef.current) {
+        window.clearTimeout(overlayHideTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const syncTodoCardHeight = () => {
@@ -622,6 +798,8 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
               window.clearInterval(timer);
               setIsRunning(false);
               setPhase("focus");
+              playNotification(sessionEndedAudioRef.current);
+              showTimerOverlayMessage(pickRandomMessage(cycleEndMessages));
               return 0;
             }
 
@@ -640,7 +818,49 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
     return () => {
       window.clearInterval(timer);
     };
-  }, [breakMinutes, completedCycles, cycleTarget, focusMinutes, isRunning, phase]);
+  }, [
+    breakMinutes,
+    completedCycles,
+    cycleTarget,
+    focusMinutes,
+    isRunning,
+    phase,
+    isNotificationMuted,
+    showTimerOverlayMessage,
+  ]);
+
+  useEffect(() => {
+    const isSessionStart =
+      isRunning && phase === "focus" && completedCycles === 0 && remainingSeconds === focusMinutes * 60;
+
+    if (!isSessionStart) {
+      return;
+    }
+
+    showTimerOverlayMessage("Session started. Good luck!");
+  }, [completedCycles, focusMinutes, isRunning, phase, remainingSeconds, showTimerOverlayMessage]);
+
+  useEffect(() => {
+    const previousPhase = previousPhaseRef.current;
+    const wasRunning = previousRunningRef.current;
+
+    if (!wasRunning && isRunning && phase === "focus") {
+      playNotification(focusStartAudioRef.current);
+    }
+
+    if (wasRunning && previousPhase === "focus" && phase === "break") {
+      playNotification(breakStartAudioRef.current);
+      showTimerOverlayMessage(pickRandomMessage(breakStartMessages));
+    }
+
+    if (wasRunning && previousPhase === "break" && phase === "focus" && isRunning) {
+      playNotification(focusStartAudioRef.current);
+      showTimerOverlayMessage(pickRandomMessage(focusResumeMessages));
+    }
+
+    previousPhaseRef.current = phase;
+    previousRunningRef.current = isRunning;
+  }, [isRunning, phase, showTimerOverlayMessage]);
 
   const timeLabel = useMemo(() => {
     const minutes = Math.floor(remainingSeconds / 60)
@@ -649,6 +869,14 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
     const seconds = (remainingSeconds % 60).toString().padStart(2, "0");
     return `${minutes}:${seconds}`;
   }, [remainingSeconds]);
+
+  const displayedCycle = useMemo(() => {
+    if (phase === "break") {
+      return Math.max(1, Math.min(completedCycles, cycleTarget));
+    }
+
+    return Math.max(1, Math.min(completedCycles + 1, cycleTarget));
+  }, [completedCycles, cycleTarget, phase]);
 
   const selectedPresetId = useMemo(() => {
     const matchingPreset = timerPresets.find(
@@ -840,11 +1068,21 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
               </button>
                   </div>
 
-                  <div className="mt-4 rounded-2xl border border-border bg-background px-4 py-5 text-center">
+                  <div className="relative mt-4 overflow-hidden rounded-2xl border border-border bg-background px-4 py-5 text-center">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                {phase === "focus" ? "Focus" : "Break"} • Cycle {Math.min(completedCycles + 1, cycleTarget)}/{cycleTarget}
+                {phase === "focus" ? "Focus" : "Break"} • Cycle {displayedCycle}/{cycleTarget}
               </p>
               <p className="text-4xl font-bold tracking-wide text-foreground md:text-5xl">{timeLabel}</p>
+              <div
+                className={`pointer-events-none absolute inset-0 flex items-center justify-center bg-background/90 px-4 transition-opacity duration-300 ${
+                  showOverlayMessage ? "opacity-100" : "opacity-0"
+                }`}
+                aria-hidden={!showOverlayMessage}
+              >
+                <p className="text-center text-2xl font-semibold tracking-tight text-foreground md:text-4xl">
+                  {overlayMessage}
+                </p>
+              </div>
               <div className="mt-4 flex flex-wrap justify-center gap-2">
                 <button
                   type="button"
@@ -860,6 +1098,15 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
                 >
                   Reset
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setIsNotificationMuted((current) => !current)}
+                  className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-3 py-2 text-sm font-medium text-foreground hover:bg-card"
+                  aria-label={isNotificationMuted ? "Unmute notification sounds" : "Mute notification sounds"}
+                >
+                  {isNotificationMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+                  {isNotificationMuted ? "Unmute" : "Mute"}
+                </button>
               </div>
                   </div>
 
@@ -873,7 +1120,7 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
                 </article>
 
                 <article
-                  className="hover-chroma-border flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-5"
+                  className="hover-chroma-border relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-5"
                   style={todoCardHeight ? { height: `${todoCardHeight}px` } : undefined}
                 >
                   <h3 className="text-lg font-semibold text-foreground">To-do List</h3>
@@ -894,7 +1141,8 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
               </button>
                   </form>
 
-                  <div className="mt-4 min-h-0 flex-1 overflow-y-auto rounded-xl border border-border bg-background">
+                    <div className="relative mt-4 min-h-0 flex-1 overflow-y-auto rounded-xl border border-border bg-background">
+                  <canvas ref={todoConfettiCanvasRef} className="pointer-events-none absolute inset-0 z-20" aria-hidden />
               {todos.length === 0 ? (
                 <div className="flex h-full min-h-[12rem] flex-col items-center justify-center px-4 text-center text-muted-foreground">
                   <span className="text-5xl font-light leading-none">+</span>
