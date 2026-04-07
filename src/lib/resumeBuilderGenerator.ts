@@ -71,35 +71,37 @@ const stripContactSupplementalBlocks = (source: string) => {
 
   // Remove only the explicit Contact "Partnership" block.
   next = next.replace(
-    /\r?\n\s*<div className="space-y-2">\s*\r?\n\s*<p className="text-sm font-semibold uppercase tracking-\[0\.2em\] text-muted-foreground">\s*\r?\n\s*Partnership\s*\r?\n\s*<\/p>[\s\S]*?<\/div>/,
+    /\r?\n\s*<div className="space-y-2">\s*\r?\n\s*<p className="text-sm font-semibold uppercase tracking-\[0\.2em\] text-muted-foreground">\s*\r?\n\s*Partnership\s*\r?\n\s*<\/p>\s*\r?\n\s*<div className="space-y-1 text-sm text-foreground\/95">[\s\S]*?<\/div>\s*\r?\n\s*<\/div>/,
     ""
   );
 
   // Remove only the explicit Contact "Inquiries?" block.
   next = next.replace(
-    /\r?\n\s*<div className="space-y-2">\s*\r?\n\s*<p className="text-sm font-semibold uppercase tracking-\[0\.2em\] text-muted-foreground">\s*\r?\n\s*Inquiries\?\s*\r?\n\s*<\/p>[\s\S]*?<\/div>/,
+    /\r?\n\s*<div className="space-y-2">\s*\r?\n\s*<p className="text-sm font-semibold uppercase tracking-\[0\.2em\] text-muted-foreground">\s*\r?\n\s*Inquiries\?\s*\r?\n\s*<\/p>\s*\r?\n\s*<div className="space-y-1 text-sm text-foreground\/95">[\s\S]*?<\/div>\s*\r?\n\s*<\/div>/,
     ""
   );
 
   // If wrapper becomes empty after removing both blocks, remove it too.
-  next = next.replace(/\r?\n\s*<div className="space-y-5">\s*<\/div>/, "");
+  next = next.replace(/\r?\n\s*<div className="space-y-5">\s*(?:\r?\n\s*)<\/div>/, "");
 
   return next;
 };
 
 export const parseResumeContentFromSource = (source: string): ResumeBuilderContent | null => {
   try {
-    const resumePagesLiteral = extractConstLiteral(source, "resumePages");
-    const projectItemsLiteral = extractConstLiteral(source, "projectItems");
-    const otherWorkingExperiencesLiteral = extractConstLiteral(source, "otherWorkingExperiences");
-    const educationDetailsLiteral = extractConstLiteral(source, "educationDetails");
-    const honorsAndAwardsLiteral = extractConstLiteral(source, "honorsAndAwards");
-    const keySkillsLiteral = extractConstLiteral(source, "keySkills");
-    const toolsAndEquipmentLiteral = extractConstLiteral(source, "toolsAndEquipment");
-    const highlightedCredentialsLiteral = extractConstLiteral(source, "highlightedCredentials");
-    const contactChannelsLiteral = extractConstLiteral(source, "contactChannels");
-    const overviewDetailsLiteral = extractConstLiteral(source, "overviewDetails");
-    const rollingKeywordRowsLiteral = extractConstLiteral(source, "rollingKeywordRows");
+    const sanitizedSource = stripContactSupplementalBlocks(source);
+
+    const resumePagesLiteral = extractConstLiteral(sanitizedSource, "resumePages");
+    const projectItemsLiteral = extractConstLiteral(sanitizedSource, "projectItems");
+    const otherWorkingExperiencesLiteral = extractConstLiteral(sanitizedSource, "otherWorkingExperiences");
+    const educationDetailsLiteral = extractConstLiteral(sanitizedSource, "educationDetails");
+    const honorsAndAwardsLiteral = extractConstLiteral(sanitizedSource, "honorsAndAwards");
+    const keySkillsLiteral = extractConstLiteral(sanitizedSource, "keySkills");
+    const toolsAndEquipmentLiteral = extractConstLiteral(sanitizedSource, "toolsAndEquipment");
+    const highlightedCredentialsLiteral = extractConstLiteral(sanitizedSource, "highlightedCredentials");
+    const contactChannelsLiteral = extractConstLiteral(sanitizedSource, "contactChannels");
+    const overviewDetailsLiteral = extractConstLiteral(sanitizedSource, "overviewDetails");
+    const rollingKeywordRowsLiteral = extractConstLiteral(sanitizedSource, "rollingKeywordRows");
 
     if (
       !resumePagesLiteral ||

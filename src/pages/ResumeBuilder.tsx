@@ -1,4 +1,4 @@
-import { ChevronDown, Download, Plus, Redo2, RotateCcw, Trash2, Undo2 } from "lucide-react";
+import { ChevronDown, Download, Redo2, RotateCcw, Send, Undo2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import ThemeToggle from "@/components/ThemeToggle";
 import MonochromePlusBackground from "@/components/MonochromePlusBackground";
@@ -23,7 +23,9 @@ import {
 import { BuilderPanel } from "@/features/resume-builder/BuilderPanel";
 import { sections, type SectionId } from "@/features/resume-builder/config";
 import { useHistoryState } from "@/hooks/useHistoryState";
-import { downloadResumeTsx, parseResumeContentFromSource } from "@/lib/resumeBuilderGenerator";
+import { useResumePublish } from "@/hooks/useResumePublish";
+import { buildResumeTsx, downloadResumeTsx, parseResumeContentFromSource } from "@/lib/resumeBuilderGenerator";
+import { Input } from "@/components/ui/input";
 import resumeCurrentSource from "@/pages/Resume.tsx?raw";
 import { toast } from "sonner";
 
@@ -47,9 +49,25 @@ const ResumeBuilder = () => {
   const [isStatusExpanded, setIsStatusExpanded] = useState(false);
   const [isSectionsExpanded, setIsSectionsExpanded] = useState(false);
   const [isNotesOpen, setIsNotesOpen] = useState(false);
+  const [isPublishOpen, setIsPublishOpen] = useState(false);
+  const [publishToken, setPublishToken] = useState("");
   const [builderStatusHeight, setBuilderStatusHeight] = useState(0);
   const builderStatusRef = useRef<HTMLElement | null>(null);
   const editorScrollRef = useRef<HTMLDivElement | null>(null);
+  const {
+    state: publishState,
+    error: publishError,
+    result: publishResult,
+    statusLabel: publishStatusLabel,
+    publish,
+    reset: resetPublish,
+  } = useResumePublish();
+
+  const isPublishing =
+    publishState === "validating" ||
+    publishState === "preparing" ||
+    publishState === "committing" ||
+    publishState === "creating_pr";
 
   useEffect(() => {
     const element = builderStatusRef.current;
@@ -89,6 +107,35 @@ const ResumeBuilder = () => {
     downloadResumeTsx(content);
     setIsNotesOpen(true);
     toast.success("Resume.tsx downloaded.");
+  };
+
+  const handlePublish = async () => {
+    const token = publishToken.trim();
+
+    if (!token) {
+      toast.error("Enter a GitHub token before publishing.");
+      return;
+    }
+
+    const generatedSource = buildResumeTsx(content);
+    const outcome = await publish(token, generatedSource);
+
+    setPublishToken("");
+
+    if (outcome) {
+      toast.success("Publish completed and PR is ready.");
+    } else {
+      toast.error("Publish failed. Review details in the dialog.");
+    }
+  };
+
+  const handlePublishDialogChange = (open: boolean) => {
+    setIsPublishOpen(open);
+
+    if (!open) {
+      setPublishToken("");
+      resetPublish();
+    }
   };
 
   const sectionButtons = sections.map((section) => {
@@ -160,6 +207,14 @@ const ResumeBuilder = () => {
               >
                 <Download className="h-3.5 w-3.5" />
                 Generate
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsPublishOpen(true)}
+                className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
+              >
+                <Send className="h-3.5 w-3.5" />
+                Publish
               </button>
               <ThemeToggle />
             </div>
@@ -259,6 +314,93 @@ const ResumeBuilder = () => {
               className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
             >
               Close
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isPublishOpen} onOpenChange={handlePublishDialogChange}>
+        <DialogContent className="sm:max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Publish Resume.tsx to GitHub</DialogTitle>
+            <DialogDescription>
+              This flow uses your fork when available, creates one automatically when needed, and falls back to the
+              existing repository when the token belongs to the upstream owner.
+              The token is used in-memory only and cleared when this dialog closes.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-3 text-sm leading-relaxed text-foreground/90">
+            <label className="block space-y-2">
+              <span className="text-sm font-medium text-foreground">GitHub personal access token</span>
+              <Input
+                type="password"
+                autoComplete="off"
+                spellCheck={false}
+                value={publishToken}
+                onChange={(event) => setPublishToken(event.target.value)}
+                placeholder="ghp_..."
+                disabled={isPublishing}
+              />
+            </label>
+
+            {publishStatusLabel ? <p className="text-sm text-muted-foreground">{publishStatusLabel}</p> : null}
+
+            {publishError ? (
+              <div className="rounded-2xl border border-destructive/40 bg-destructive/5 p-3 text-sm text-foreground">
+                <p className="font-medium">{publishError.message}</p>
+                {publishError.details ? <p className="mt-1 text-muted-foreground">{publishError.details}</p> : null}
+                {publishError.code === "network_or_cors" ? (
+                  <p className="mt-2 text-muted-foreground">
+                    Fallback: use Generate to download Resume.tsx, commit it to your fork manually, then open a pull request.
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
+
+            {publishResult ? (
+              <div className="rounded-2xl border border-border/70 bg-background p-3 text-sm">
+                <p className="font-medium text-foreground">Publish complete</p>
+                <p className="mt-1 text-muted-foreground">Fork: {publishResult.fork.fullName}</p>
+                <p className="mt-1 text-muted-foreground">Branch: {publishResult.branch}</p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <a
+                    href={publishResult.commitUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
+                  >
+                    View commit
+                  </a>
+                  <a
+                    href={publishResult.pullRequestUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
+                  >
+                    View PR #{publishResult.pullRequestNumber}
+                  </a>
+                </div>
+              </div>
+            ) : null}
+          </div>
+
+          <DialogFooter>
+            <button
+              type="button"
+              onClick={() => handlePublishDialogChange(false)}
+              disabled={isPublishing}
+              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              onClick={handlePublish}
+              disabled={isPublishing}
+              className="inline-flex items-center justify-center rounded-2xl border border-foreground bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isPublishing ? "Publishing..." : "Publish to GitHub"}
             </button>
           </DialogFooter>
         </DialogContent>
