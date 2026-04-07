@@ -1,15 +1,16 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Clarity from "@microsoft/clarity";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Index from "./pages/Index.tsx";
-import Resume from "./pages/Resume.tsx";
-import ResumeBuilder from "./pages/ResumeBuilder.tsx";
-import LinkBuilder from "./pages/LinkBuilder.tsx";
-import NotFound from "./pages/NotFound.tsx";
+
+const Index = lazy(() => import("./pages/Index.tsx"));
+const Resume = lazy(() => import("./pages/Resume.tsx"));
+const ResumeBuilder = lazy(() => import("./pages/ResumeBuilder.tsx"));
+const LinkBuilder = lazy(() => import("./pages/LinkBuilder.tsx"));
+const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
 const queryClient = new QueryClient();
 const ATTRIBUTION_LEAD = "Originally made by Carlos R. Geraldine ☆ ";
@@ -113,15 +114,23 @@ const App = () => (
       <BrowserRouter>
         <div className="relative">
           <TitleManager />
-          <Routes>
-            <Route path="/" element={<Resume />} />
-            <Route path="/links" element={<Index />} />
-            <Route path="/resume" element={<Navigate to="/" replace />} />
-            <Route path="/resume-builder" element={<ResumeBuilder />} />
-            <Route path="/links-builder" element={<LinkBuilder />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense
+            fallback={
+              <div className="flex min-h-screen items-center justify-center bg-background text-sm text-muted-foreground">
+                Loading...
+              </div>
+            }
+          >
+            <Routes>
+              <Route path="/" element={<Resume />} />
+              <Route path="/links" element={<Index />} />
+              <Route path="/resume" element={<Navigate to="/" replace />} />
+              <Route path="/resume-builder" element={<ResumeBuilder />} />
+              <Route path="/links-builder" element={<LinkBuilder />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
 
           <AttributionFooter />
         </div>
