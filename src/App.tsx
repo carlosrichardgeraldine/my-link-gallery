@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { Component, type ErrorInfo, type ReactNode, lazy, Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Clarity from "@microsoft/clarity";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -19,6 +19,7 @@ const DocsDevelopment = lazy(() => import("./pages/DocsDevelopment.tsx"));
 const DocsNotes = lazy(() => import("./pages/DocsNotes.tsx"));
 const DocsUiUx = lazy(() => import("./pages/DocsUiUx.tsx"));
 const DocsVisualComponents = lazy(() => import("./pages/DocsVisualComponents.tsx"));
+const DocsDeployment = lazy(() => import("./pages/DocsDeployment.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const routeTitles: Record<string, string> = {
   "/docs/routes": "Routes",
   "/docs/data-flow": "Data Flow",
   "/docs/development": "Development",
+  "/docs/deployment": "Deployment",
   "/docs/notes": "Notes",
   "/docs/ui-ux": "UI/UX",
   "/docs/visual-components": "Visual Components",
@@ -63,6 +65,49 @@ const TitleManager = () => {
 
   return null;
 };
+
+type RootErrorBoundaryState = {
+  hasError: boolean;
+  message: string;
+};
+
+class RootErrorBoundary extends Component<{ children: ReactNode }, RootErrorBoundaryState> {
+  state: RootErrorBoundaryState = {
+    hasError: false,
+    message: "",
+  };
+
+  static getDerivedStateFromError(error: unknown): RootErrorBoundaryState {
+    return {
+      hasError: true,
+      message: error instanceof Error ? error.message : "Unknown runtime error",
+    };
+  }
+
+  componentDidCatch(error: unknown, info: ErrorInfo) {
+    console.error("Root runtime error", error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="flex min-h-screen items-center justify-center bg-background px-4 text-foreground">
+          <div className="w-full max-w-2xl rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <h1 className="text-lg font-semibold md:text-2xl">The app hit a runtime error</h1>
+            <p className="mt-2 text-sm text-muted-foreground md:text-base">
+              Reload the page. If this keeps happening, share this error message so it can be fixed quickly.
+            </p>
+            <pre className="mt-4 overflow-x-auto rounded-xl border border-border/70 bg-background p-3 text-xs text-foreground/90">
+              {this.state.message}
+            </pre>
+          </div>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 export const AttributionFooter = () => {
   const [integrityTick, setIntegrityTick] = useState(0);
@@ -130,45 +175,48 @@ export const AttributionFooter = () => {
 };
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <div className="relative">
-          <TitleManager />
-          <Suspense
-            fallback={
-              <div className="flex min-h-screen items-center justify-center bg-background text-sm text-muted-foreground">
-                Loading...
-              </div>
-            }
-          >
-            <Routes>
-              <Route path="/" element={<Resume />} />
-              <Route path="/links" element={<Index />} />
-              <Route path="/resume" element={<Navigate to="/" replace />} />
-              <Route path="/resume-builder" element={<ResumeBuilder />} />
-              <Route path="/links-builder" element={<LinkBuilder />} />
-              <Route path="/docs" element={<Docs />} />
-              <Route path="/docs/overview-manual" element={<DocsOverviewManual />} />
-              <Route path="/docs/architecture" element={<DocsArchitecture />} />
-              <Route path="/docs/routes" element={<DocsRoutes />} />
-              <Route path="/docs/data-flow" element={<DocsDataFlow />} />
-              <Route path="/docs/development" element={<DocsDevelopment />} />
-              <Route path="/docs/notes" element={<DocsNotes />} />
-              <Route path="/docs/ui-ux" element={<DocsUiUx />} />
-              <Route path="/docs/visual-components" element={<DocsVisualComponents />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
+  <RootErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <div className="relative">
+            <TitleManager />
+            <Suspense
+              fallback={
+                <div className="flex min-h-screen items-center justify-center bg-background text-sm text-muted-foreground">
+                  Loading...
+                </div>
+              }
+            >
+              <Routes>
+                <Route path="/" element={<Resume />} />
+                <Route path="/links" element={<Index />} />
+                <Route path="/resume" element={<Navigate to="/" replace />} />
+                <Route path="/resume-builder" element={<ResumeBuilder />} />
+                <Route path="/links-builder" element={<LinkBuilder />} />
+                <Route path="/docs" element={<Docs />} />
+                <Route path="/docs/overview-manual" element={<DocsOverviewManual />} />
+                <Route path="/docs/architecture" element={<DocsArchitecture />} />
+                <Route path="/docs/routes" element={<DocsRoutes />} />
+                <Route path="/docs/data-flow" element={<DocsDataFlow />} />
+                <Route path="/docs/development" element={<DocsDevelopment />} />
+                <Route path="/docs/deployment" element={<DocsDeployment />} />
+                <Route path="/docs/notes" element={<DocsNotes />} />
+                <Route path="/docs/ui-ux" element={<DocsUiUx />} />
+                <Route path="/docs/visual-components" element={<DocsVisualComponents />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
 
-          <AttributionFooter />
-        </div>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+            <AttributionFooter />
+          </div>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </RootErrorBoundary>
 );
 
 export default App;

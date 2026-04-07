@@ -30,6 +30,11 @@ const docsSections = [
       "Use npm for the workflow: npm install, npm run dev, npm run build, npm run lint, and npm run test.",
   },
   {
+    title: "Deployment",
+    body:
+      "Choose the right publishing path for your setup: keep Azure Static Web Apps on upstream, configure Azure first-time setup, or use GitHub Pages in a fork with no Azure dependency.",
+  },
+  {
     title: "Notes",
     body:
       "Theme and background preferences are persisted in localStorage. The app is entirely client-side and does not write changes back to the workspace automatically.",
@@ -73,6 +78,10 @@ const docsContents = [
   {
     title: "Development",
     href: "/docs/development",
+  },
+  {
+    title: "Deployment",
+    href: "/docs/deployment",
   },
   {
     title: "Notes",
