@@ -1,5 +1,6 @@
 import type { ResumeBuilderContent, SkillGroups, ToolsGroups } from "@/data/resumeBuilderContent";
 import { AwardEditor } from "@/features/resume-builder/editors/AwardEditor";
+import { ContactChannelsEditor } from "@/features/resume-builder/editors/ContactChannelsEditor";
 import { EducationEditor } from "@/features/resume-builder/editors/EducationEditor";
 import { ExperienceEditor } from "@/features/resume-builder/editors/ExperienceEditor";
 import { ResumePagesEditor } from "@/features/resume-builder/editors/ResumePagesEditor";
@@ -85,6 +86,15 @@ export const BuilderPanel = ({ activeSection, content, setContent }: BuilderPane
           { key: "entryLevel", label: "Entry-level" },
           { key: "introductory", label: "Introductory" },
         ]}
+      />
+    );
+  }
+
+  if (activeSection === "contactChannels") {
+    return (
+      <ContactChannelsEditor
+        items={content.contactChannels}
+        onChange={(next) => setContent({ ...content, contactChannels: next })}
       />
     );
   }

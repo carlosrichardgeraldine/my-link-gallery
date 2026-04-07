@@ -6,7 +6,8 @@ export type SectionId =
   | "honorsAndAwards"
   | "keySkills"
   | "toolsAndEquipment"
-  | "highlightedCredentials";
+  | "highlightedCredentials"
+  | "contactChannels";
 
 export const sections: Array<{ id: SectionId; label: string; description: string }> = [
   { id: "resumePages", label: "Resume Pages", description: "Create, edit, and remove page records." },
@@ -21,4 +22,5 @@ export const sections: Array<{ id: SectionId; label: string; description: string
   { id: "keySkills", label: "Key Skills", description: "Edit the skill bands by proficiency level." },
   { id: "toolsAndEquipment", label: "Tools and Equipment", description: "Edit the tool bands by proficiency level." },
   { id: "highlightedCredentials", label: "Highlighted Credentials", description: "Edit the credential list." },
+  { id: "contactChannels", label: "Contact Channels", description: "Edit the contact pill labels, values, links, and classes." },
 ];

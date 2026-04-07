@@ -606,10 +606,7 @@
 
 
 .hover-chroma-border,
-.hover-chroma-pill,
-[class~="border"],
-[class*=" border-"],
-[class^="border-"] {
+.hover-chroma-pill {
   --hb-x: 50%;
   --hb-y: 50%;
   --hb-opacity: 0;
@@ -618,10 +615,7 @@
 }
 
 .hover-chroma-border::after,
-.hover-chroma-pill::after,
-[class~="border"]::after,
-[class*=" border-"]::after,
-[class^="border-"]::after {
+.hover-chroma-pill::after {
   content: "";
   position: absolute;
   inset: -1px;
@@ -636,20 +630,6 @@
 }
 
 .hover-chroma-border::after {
-  transition: opacity 180ms ease;
-  opacity: var(--hb-opacity, 0);
-  background:
-    radial-gradient(92px circle at var(--hb-x, 50%) var(--hb-y, 50%),
-      rgb(56 189 248 / 0.52) 0%,
-      rgb(59 130 246 / 0.46) 30%,
-      rgb(168 85 247 / 0.38) 56%,
-      rgb(244 114 182 / 0.28) 78%,
-      transparent 100%);
-}
-
-[class~="border"]::after,
-[class*=" border-"]::after,
-[class^="border-"]::after {
   transition: opacity 180ms ease;
   opacity: var(--hb-opacity, 0);
   background:

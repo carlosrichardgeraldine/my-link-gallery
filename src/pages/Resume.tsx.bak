@@ -2,7 +2,10 @@ import { ArrowLeft, ArrowRightLeft, Briefcase, ChevronLeft, ChevronRight, MapPin
 import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
+import ResumePageNavigation from "@/components/ResumePageNavigation";
+import { useResumePageNavigation } from "@/hooks/useResumePageNavigation";
 import MonochromePlusBackground from "@/components/MonochromePlusBackground";
+import ResumeToolsPanel from "@/components/ResumeToolsPanel";
 
 const resumePages = [
   {
@@ -199,11 +202,11 @@ const discScores = [
 ];
 
 const cliftonStrengths = [
-  "Communication (Score: 6 - Domain: Influencing)",
-  "Arranger (Score: 6 - Domain: Executing)",
-  "Focus (Score: 6 - Domain: Executing)",
-  "Restorative (Score: 6 - Domain: Executing)",
-  "Analytical (Score: 5 - Domain: Strategic Thinking)",
+  "Communication",
+  "Arranger",
+  "Focus",
+  "Restorative",
+  "Analytical",
 ];
 
 const schwartzValues = ["Stimulation", "Self-Direction", "Achievement"];
@@ -727,14 +730,54 @@ const ResumeKeywordPillWall = ({ style }: { style?: CSSProperties }) => {
 const RadialIntensityGrid = ({
   items,
   tone,
+  isActive = false,
 }: {
   items: Array<{ trait: string; value: number }>;
   tone: string;
+  isActive?: boolean;
 }) => {
+  const [animatedValues, setAnimatedValues] = useState(() => items.map(() => 0));
+
+  useEffect(() => {
+    if (!isActive) {
+      setAnimatedValues(items.map(() => 0));
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      setAnimatedValues(items.map((item) => item.value));
+      return;
+    }
+
+    const durationMs = 1200;
+    const animationStart = performance.now();
+    let frame = 0;
+
+    const tick = (now: number) => {
+      const progress = Math.min((now - animationStart) / durationMs, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+
+      setAnimatedValues(items.map((item) => Math.round(item.value * eased)));
+
+      if (progress < 1) {
+        frame = window.requestAnimationFrame(tick);
+      }
+    };
+
+    frame = window.requestAnimationFrame(tick);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+    };
+  }, [isActive, items]);
+
   return (
     <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
-      {items.map((item) => {
-        const endDeg = item.value * 3.6;
+      {items.map((item, index) => {
+        const currentValue = animatedValues[index] ?? 0;
+        const endDeg = currentValue * 3.6;
 
         return (
             <div
@@ -748,7 +791,7 @@ const RadialIntensityGrid = ({
               }}
             >
               <div className="flex h-full w-full items-center justify-center rounded-full bg-background text-[11px] font-semibold text-foreground">
-                {item.value}%
+                {currentValue}%
               </div>
             </div>
             <p className="mt-2 text-center text-[11px] font-medium leading-tight text-foreground/95">
@@ -766,10 +809,17 @@ const Resume = () => {
   const overviewHeroRef = useRef<HTMLDivElement | null>(null);
   const overviewCardsRef = useRef<HTMLDivElement | null>(null);
   const [activeSectionId, setActiveSectionId] = useState("overview");
+  const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [overviewWallMetrics, setOverviewWallMetrics] = useState({
     height: 0,
     offsetTop: 0,
   });
+
+  const { goToPrevious, goToNext, isAtStart, isAtEnd } = useResumePageNavigation(
+    sectionRefs.current,
+    activeSectionId,
+    () => {}
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -831,12 +881,34 @@ const Resume = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsToolsOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
-    <div className="relative isolate flex h-screen min-h-screen flex-col overflow-hidden bg-background text-foreground">
+    <div className="relative isolate h-screen min-h-screen overflow-hidden bg-background text-foreground">
       <MonochromePlusBackground />
       <div className="page-base-glass" aria-hidden="true" />
 
-      <div className="relative z-10 flex min-h-0 flex-1 flex-col">
+      <div
+        className={`absolute inset-0 z-10 transition-all duration-300 ${
+          isToolsOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
+        <ResumeToolsPanel isOpen={isToolsOpen} onClose={() => setIsToolsOpen(false)} />
+      </div>
+
+      <div className={`relative z-20 flex h-full min-h-0 flex-col bg-transparent transition-transform duration-500 ease-out ${isToolsOpen ? "translate-x-full" : "translate-x-0"}`}>
       <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur-sm">
         <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
           <h1 className="text-base font-semibold text-foreground md:text-xl">Resume</h1>
@@ -1084,8 +1156,39 @@ const Resume = () => {
                           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                             Profile
                           </p>
-                          <p className="text-base text-foreground/95">MBTI: INFJ - Advocate</p>
-                          <p className="text-base text-foreground/95">Enneagram: Type 3 - The Achiever</p>
+                          <div className="space-y-2">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                              MBTI
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              <span className="hover-chroma-pill rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground">
+                                ENTP - Debater
+                              </span>
+                              <span className="hover-chroma-pill rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground">
+                                Extroverted
+                              </span>
+                              <span className="hover-chroma-pill rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground">
+                                Intuitive
+                              </span>
+                              <span className="hover-chroma-pill rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground">
+                                Thinking
+                              </span>
+                              <span className="hover-chroma-pill rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground">
+                                Perceiving
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="space-y-2">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                              Enneagram
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              <span className="hover-chroma-pill rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground">
+                                Type 3 - The Achiever
+                              </span>
+                            </div>
+                          </div>
 
                           <div className="space-y-2">
                             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
@@ -1124,12 +1227,12 @@ const Resume = () => {
                               Top 3 Schwartz's Core Values
                             </p>
                             <div className="flex flex-wrap gap-2">
-                              {schwartzValues.map((value, index) => (
+                              {schwartzValues.map((value) => (
                                 <span
                                   key={value}
                                   className="hover-chroma-pill rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground"
                                 >
-                                  {index + 1}. {value}
+                                  {value}
                                 </span>
                               ))}
                             </div>
@@ -1140,12 +1243,12 @@ const Resume = () => {
                               Top 5 CliftonStrengths
                             </p>
                             <div className="flex flex-wrap gap-2">
-                              {cliftonStrengths.map((item, index) => (
+                              {cliftonStrengths.map((item) => (
                                 <span
                                   key={item}
                                   className="hover-chroma-pill rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground"
                                 >
-                                  {index + 1}. {item}
+                                  {item}
                                 </span>
                               ))}
                             </div>
@@ -1158,14 +1261,22 @@ const Resume = () => {
                           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                             Big Five Assessment
                           </p>
-                          <RadialIntensityGrid items={bigFiveScores} tone="hsl(var(--foreground))" />
+                            <RadialIntensityGrid
+                              items={bigFiveScores}
+                              tone="hsl(var(--foreground))"
+                              isActive={activeSectionId === "linguistic-psychometrics"}
+                            />
                         </div>
 
                         <div>
                           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                             DISC
                           </p>
-                          <RadialIntensityGrid items={discScores} tone="hsl(var(--primary))" />
+                            <RadialIntensityGrid
+                              items={discScores}
+                              tone="hsl(var(--primary))"
+                              isActive={activeSectionId === "linguistic-psychometrics"}
+                            />
                         </div>
 
                       </div>
@@ -1208,6 +1319,27 @@ const Resume = () => {
           );
         })}
       </main>
+
+      <ResumePageNavigation
+        onPrevious={goToPrevious}
+        onNext={goToNext}
+        isAtStart={isAtStart}
+        isAtEnd={isAtEnd}
+      />
+
+      <Link
+        to="#"
+        aria-label="Tools"
+        onClick={(event) => {
+          event.preventDefault();
+          setIsToolsOpen(true);
+        }}
+        className={`fixed bottom-4 left-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-left hover:scale-110 md:bottom-6 md:left-6 md:text-7xl ${
+          isToolsOpen ? "opacity-100" : "opacity-25"
+        }`}
+      >
+        ← tools
+      </Link>
 
       <Link
         to="/links"

@@ -40,7 +40,6 @@ export const SkillGroupsEditor = <T extends SkillGroups | ToolsGroups>({
                 rows={8}
                 className="w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground outline-none transition-colors focus:border-foreground/40"
               />
-              <p className="text-xs text-muted-foreground">One item per line.</p>
             </label>
           );
         })}

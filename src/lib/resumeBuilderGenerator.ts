@@ -1,5 +1,5 @@
 import type { ResumeBuilderContent } from "@/data/resumeBuilderContent";
-import resumeTemplate from "@/pages/Resume.tsx.bak?raw";
+import resumeTemplate from "@/pages/Resume.tsx?raw";
 
 export const resumeBuilderStorageKey = "my-link-gallery.resume-builder.draft.v1";
 
@@ -47,6 +47,46 @@ const normalizeEducationDetails = (value: unknown): ResumeBuilderContent["educat
     }));
 };
 
+const normalizeContactChannels = (value: unknown): ResumeBuilderContent["contactChannels"] => {
+  const rawItems = Array.isArray(value) ? value : [value];
+  return rawItems
+    .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+    .map((item) => ({
+      label: typeof item.label === "string" ? item.label : "",
+      value: typeof item.value === "string" ? item.value : "",
+      href: typeof item.href === "string" ? item.href : "",
+      className: typeof item.className === "string" ? item.className : "",
+      hidden: typeof item.hidden === "boolean" ? item.hidden : false,
+    }));
+};
+
+const buildExportContactChannels = (channels: ResumeBuilderContent["contactChannels"]) => {
+  return channels
+    .filter((channel) => !channel.hidden)
+    .map(({ hidden, ...channel }) => channel);
+};
+
+const stripContactSupplementalBlocks = (source: string) => {
+  let next = source;
+
+  // Remove only the explicit Contact "Partnership" block.
+  next = next.replace(
+    /\r?\n\s*<div className="space-y-2">\s*\r?\n\s*<p className="text-sm font-semibold uppercase tracking-\[0\.2em\] text-muted-foreground">\s*\r?\n\s*Partnership\s*\r?\n\s*<\/p>[\s\S]*?<\/div>/,
+    ""
+  );
+
+  // Remove only the explicit Contact "Inquiries?" block.
+  next = next.replace(
+    /\r?\n\s*<div className="space-y-2">\s*\r?\n\s*<p className="text-sm font-semibold uppercase tracking-\[0\.2em\] text-muted-foreground">\s*\r?\n\s*Inquiries\?\s*\r?\n\s*<\/p>[\s\S]*?<\/div>/,
+    ""
+  );
+
+  // If wrapper becomes empty after removing both blocks, remove it too.
+  next = next.replace(/\r?\n\s*<div className="space-y-5">\s*<\/div>/, "");
+
+  return next;
+};
+
 export const parseResumeContentFromSource = (source: string): ResumeBuilderContent | null => {
   try {
     const resumePagesLiteral = extractConstLiteral(source, "resumePages");
@@ -57,6 +97,7 @@ export const parseResumeContentFromSource = (source: string): ResumeBuilderConte
     const keySkillsLiteral = extractConstLiteral(source, "keySkills");
     const toolsAndEquipmentLiteral = extractConstLiteral(source, "toolsAndEquipment");
     const highlightedCredentialsLiteral = extractConstLiteral(source, "highlightedCredentials");
+    const contactChannelsLiteral = extractConstLiteral(source, "contactChannels");
     const overviewDetailsLiteral = extractConstLiteral(source, "overviewDetails");
     const rollingKeywordRowsLiteral = extractConstLiteral(source, "rollingKeywordRows");
 
@@ -69,6 +110,7 @@ export const parseResumeContentFromSource = (source: string): ResumeBuilderConte
       !keySkillsLiteral ||
       !toolsAndEquipmentLiteral ||
       !highlightedCredentialsLiteral ||
+      !contactChannelsLiteral ||
       !overviewDetailsLiteral ||
       !rollingKeywordRowsLiteral
     ) {
@@ -94,6 +136,7 @@ export const parseResumeContentFromSource = (source: string): ResumeBuilderConte
       keySkills: evalLiteral<ResumeBuilderContent["keySkills"]>(keySkillsLiteral),
       toolsAndEquipment: evalLiteral<ResumeBuilderContent["toolsAndEquipment"]>(toolsAndEquipmentLiteral),
       highlightedCredentials: evalLiteral<ResumeBuilderContent["highlightedCredentials"]>(highlightedCredentialsLiteral),
+      contactChannels: normalizeContactChannels(evalLiteral<unknown>(contactChannelsLiteral)),
       overviewDetails: overviewDetailsRaw.map((item) => ({ text: item.text ?? "" })),
       rollingKeywordRows: evalLiteral<ResumeBuilderContent["rollingKeywordRows"]>(rollingKeywordRowsLiteral),
     };
@@ -131,8 +174,10 @@ export const buildResumeTsx = (content: ResumeBuilderContent) => {
   output = replaceConst(output, "keySkills", formatJson(content.keySkills));
   output = replaceConst(output, "toolsAndEquipment", formatJson(content.toolsAndEquipment));
   output = replaceConst(output, "highlightedCredentials", formatJson(content.highlightedCredentials));
+  output = replaceConst(output, "contactChannels", formatJson(buildExportContactChannels(content.contactChannels)));
   output = replaceConst(output, "rollingKeywordRows", formatJson(content.rollingKeywordRows));
   output = replaceConst(output, "overviewDetails", buildOverviewDetailsLiteral(content.overviewDetails));
+  output = stripContactSupplementalBlocks(output);
 
   return output;
 };

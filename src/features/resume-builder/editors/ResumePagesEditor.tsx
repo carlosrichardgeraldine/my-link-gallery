@@ -53,6 +53,13 @@ const reorderArray = <T,>(items: T[], fromIndex: number, toIndex: number) => {
 };
 
 const lockedResumePageIds = new Set([
+  "other-working-experience",
+  "projects",
+  "key-skills",
+  "tools-equipment",
+  "highlighted-credentials",
+  "education-honors",
+  "contact",
   "health-and-safety",
   "languages",
   "portfolio",
@@ -69,9 +76,9 @@ export const ResumePagesEditor = ({
   onRollingKeywordRowsChange,
 }: ResumePagesEditorProps) => {
   const [openPage, setOpenPage] = useState<string>(items[0] ? "overview" : "");
-  const [dragState, setDragState] = useState<{ kind: "overview" | "job" | "locked"; index: number } | null>(null);
+  const [dragState, setDragState] = useState<{ kind: "overview" | "job"; index: number } | null>(null);
   const [dropTarget, setDropTarget] = useState<{
-    kind: "overview" | "job" | "locked";
+    kind: "overview" | "job";
     index: number;
     position: "before" | "after";
   } | null>(null);
@@ -80,18 +87,13 @@ export const ResumePagesEditor = ({
     (page) => page.id !== "overview" && !lockedResumePageIds.has(page.id)
   );
   const lockedPages = items.filter((page) => lockedResumePageIds.has(page.id));
-  const commitReorderedPages = (kind: "job" | "locked", reorderedPages: ResumePageContent[]) => {
-    const nextPages =
-      kind === "job"
-        ? [items[0], ...reorderedPages, ...lockedPages]
-        : [items[0], ...jobDescriptionPages, ...reorderedPages];
-
-    onChange(nextPages);
+  const commitReorderedPages = (reorderedPages: ResumePageContent[]) => {
+    onChange([items[0], ...reorderedPages, ...lockedPages]);
   };
 
   const handleDragOverRow = (
     event: DragEvent<HTMLDivElement>,
-    kind: "overview" | "job" | "locked",
+    kind: "overview" | "job",
     index: number
   ) => {
     event.preventDefault();
@@ -109,7 +111,7 @@ export const ResumePagesEditor = ({
 
   const handleDropReorder = (
     event: DragEvent<HTMLDivElement>,
-    kind: "overview" | "job" | "locked",
+    kind: "overview" | "job",
     targetIndex: number,
     position: "before" | "after"
   ) => {
@@ -122,7 +124,7 @@ export const ResumePagesEditor = ({
     }
 
     const sourceIndex = dragState.index;
-    const sourceItems = kind === "overview" ? overviewDetails : kind === "job" ? jobDescriptionPages : lockedPages;
+    const sourceItems = kind === "overview" ? overviewDetails : jobDescriptionPages;
     let nextIndex = position === "before" ? targetIndex : targetIndex + 1;
 
     if (sourceIndex < nextIndex) {
@@ -151,15 +153,11 @@ export const ResumePagesEditor = ({
     }
 
     if (kind === "job") {
-      commitReorderedPages("job", reorderArray(jobDescriptionPages, sourceIndex, nextIndex));
+      commitReorderedPages(reorderArray(jobDescriptionPages, sourceIndex, nextIndex));
       setDropTarget(null);
       setDragState(null);
       return;
     }
-
-    commitReorderedPages("locked", reorderArray(lockedPages, sourceIndex, nextIndex));
-    setDropTarget(null);
-    setDragState(null);
   };
 
   const handleAddPage = () => {
@@ -464,116 +462,6 @@ export const ResumePagesEditor = ({
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="locked" className="px-4">
-          <AccordionTrigger className="py-4 text-left no-underline hover:no-underline">
-            <div className="min-w-0 text-left">
-              <div className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Locked</div>
-              <div className="mt-1 truncate text-lg font-semibold text-foreground">Others</div>
-            </div>
-          </AccordionTrigger>
-          <AccordionContent className="pb-4 pt-2">
-            <div className="space-y-2 rounded-2xl border border-border/70 bg-card p-4">
-              <Accordion type="single" collapsible className="space-y-2">
-                {lockedPages.map((page, sectionIndex) => {
-                  const value = `locked-${sectionIndex}`;
-
-                  return (
-                    <AccordionItem
-                      key={page.id || `locked-${sectionIndex}`}
-                      value={value}
-                      className="relative rounded-2xl border border-border/70 bg-background px-4"
-                      onDragOver={(event) => handleDragOverRow(event, "locked", sectionIndex)}
-                      onDrop={(event) =>
-                        handleDropReorder(
-                          event,
-                          "locked",
-                          sectionIndex,
-                          dropTarget?.kind === "locked" && dropTarget.index === sectionIndex ? dropTarget.position : "before"
-                        )
-                      }
-                    >
-                      {dropTarget?.kind === "locked" && dropTarget.index === sectionIndex && dropTarget.position === "before" ? (
-                        <div className="pointer-events-none absolute -top-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
-                      ) : null}
-                      {dropTarget?.kind === "locked" && dropTarget.index === sectionIndex && dropTarget.position === "after" ? (
-                        <div className="pointer-events-none absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-foreground/70" />
-                      ) : null}
-                      <AccordionTrigger className="py-4 text-left no-underline hover:no-underline">
-                        <div className="flex min-w-0 items-center gap-1.5 text-left">
-                          <button
-                            type="button"
-                            draggable
-                            onDragStart={() => setDragState({ kind: "locked", index: sectionIndex })}
-                            onDragEnd={() => {
-                              setDropTarget(null);
-                              setDragState(null);
-                            }}
-                            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border-0 bg-transparent text-muted-foreground transition-colors hover:text-foreground cursor-grab active:cursor-grabbing"
-                            aria-label="Drag to reorder locked page"
-                            title="Drag to reorder"
-                          >
-                            <GripVertical className="h-3.5 w-3.5" />
-                          </button>
-                          <div className="min-w-0 flex-1 text-left">
-                            <div className="truncate text-lg font-semibold text-foreground">{page.title || "Untitled page"}</div>
-                            <div className="mt-1 truncate text-sm text-muted-foreground">{page.subtitle || "No subtitle"}</div>
-                          </div>
-                        </div>
-                      </AccordionTrigger>
-
-                      <AccordionContent className="pb-4 pt-2">
-                        <div className="space-y-3 rounded-2xl border border-border/70 bg-card p-4 text-sm text-foreground/90">
-                          <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">ID</p>
-                            <p className="mt-1">{page.id}</p>
-                          </div>
-                          <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Title</p>
-                            <p className="mt-1 font-medium text-foreground">{page.title}</p>
-                          </div>
-                          <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Subtitle</p>
-                            <p className="mt-1 text-muted-foreground">{page.subtitle || "No subtitle"}</p>
-                          </div>
-                          {page.summary ? (
-                            <div>
-                              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Summary</p>
-                              <p className="mt-1 leading-relaxed text-foreground/90">{page.summary}</p>
-                            </div>
-                          ) : null}
-                          {page.body?.length ? (
-                            <div>
-                              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Body lines</p>
-                              <ul className="mt-2 space-y-2">
-                                {page.body.map((line) => (
-                                  <li key={line} className="rounded-xl border border-border/70 bg-background px-3 py-2 text-foreground/90">
-                                    {line}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ) : null}
-                          {page.highlights?.length ? (
-                            <div>
-                              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Highlights</p>
-                              <div className="mt-2 flex flex-wrap gap-2">
-                                {page.highlights.map((highlight) => (
-                                  <span key={highlight} className="rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground">
-                                    {highlight}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          ) : null}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  );
-                })}
-              </Accordion>
-            </div>
-          </AccordionContent>
-        </AccordionItem>
       </Accordion>
 
       {items.length === 0 ? (

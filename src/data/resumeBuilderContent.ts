@@ -30,6 +30,14 @@ export type AwardItem = {
   note: string;
 };
 
+export type ContactChannel = {
+  label: string;
+  value: string;
+  href: string;
+  className: string;
+  hidden?: boolean;
+};
+
 export type SkillGroups = {
   proficient: string[];
   fluent: string[];
@@ -55,6 +63,7 @@ export type ResumeBuilderContent = {
   keySkills: SkillGroups;
   toolsAndEquipment: ToolsGroups;
   highlightedCredentials: string[];
+  contactChannels: ContactChannel[];
 };
 
 export const defaultResumeBuilderContent: ResumeBuilderContent = {
@@ -342,6 +351,43 @@ export const defaultResumeBuilderContent: ResumeBuilderContent = {
     "ISC2 Certified in Cybersecurity",
     "Certified ARIS Modeler Associate",
     "Camunda Knowledge - Business Analyst",
+  ],
+  contactChannels: [
+    {
+      label: "Email",
+      value: "carlosrichardgeraldine@outlook.com",
+      href: "mailto:carlosrichardgeraldine@outlook.com",
+      className: "border-red-400/80 text-red-500 dark:text-red-300",
+      hidden: false,
+    },
+    {
+      label: "LinkedIn",
+      value: "linkedin.com/in/carlosgeraldine",
+      href: "https://www.linkedin.com/in/carlosgeraldine/",
+      className: "border-blue-400/80 text-blue-600 dark:text-blue-300",
+      hidden: false,
+    },
+    {
+      label: "WhatsApp",
+      value: "+62 857-7007-8016",
+      href: "https://wa.me/6285770078016",
+      className: "border-emerald-400/80 text-emerald-600 dark:text-emerald-300",
+      hidden: false,
+    },
+    {
+      label: "Phone",
+      value: "+62 857-7007-8016",
+      href: "tel:+6285770078016",
+      className: "border-sky-400/80 text-sky-600 dark:text-sky-300",
+      hidden: false,
+    },
+    {
+      label: "SMS",
+      value: "+62 857-7007-8016",
+      href: "sms:+6285770078016",
+      className: "border-yellow-400/80 text-yellow-700 dark:text-yellow-300",
+      hidden: false,
+    },
   ],
 };
 

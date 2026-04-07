@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { ChevronLeft, ChevronRight, Pause, Play, SkipForward, Square, X } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Pause, Play, SkipForward, Square, X } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import ThemeToggle from "@/components/ThemeToggle";
 
@@ -654,7 +654,7 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
     const matchingPreset = timerPresets.find(
       (preset) => preset.focusMinutes === focusMinutes && preset.breakMinutes === breakMinutes
     );
-    return matchingPreset?.id ?? "custom";
+    return matchingPreset?.id ?? timerPresets[0].id;
   }, [focusMinutes, breakMinutes]);
 
   const selectPreset = (focus: number, rest: number) => {
@@ -772,23 +772,25 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
                   <div className="mt-4">
                     <label className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
                       Preset
-                      <select
-                        value={selectedPresetId}
-                        onChange={(event) => {
-                          const preset = timerPresets.find((item) => item.id === event.target.value);
-                          if (preset) {
-                            selectPreset(preset.focusMinutes, preset.breakMinutes);
-                          }
-                        }}
-                        className="mt-1 h-10 w-full rounded-xl border border-border bg-background px-3 text-sm font-normal tracking-normal text-foreground"
-                      >
-                        {timerPresets.map((preset) => (
-                          <option key={preset.id} value={preset.id}>
-                            {preset.label}
-                          </option>
-                        ))}
-                        <option value="custom">Custom</option>
-                      </select>
+                      <div className="relative mt-1">
+                        <select
+                          value={selectedPresetId}
+                          onChange={(event) => {
+                            const preset = timerPresets.find((item) => item.id === event.target.value);
+                            if (preset) {
+                              selectPreset(preset.focusMinutes, preset.breakMinutes);
+                            }
+                          }}
+                          className="h-10 w-full appearance-none rounded-xl border border-border bg-background px-3 pr-10 text-sm font-normal tracking-normal text-foreground"
+                        >
+                          {timerPresets.map((preset) => (
+                            <option key={preset.id} value={preset.id}>
+                              {preset.label}
+                            </option>
+                          ))}
+                        </select>
+                        <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                      </div>
                     </label>
                     <p className="mt-2 text-xs text-muted-foreground">
                       {timerPresets.find((preset) => preset.id === selectedPresetId)?.description ?? "Using custom timer values."}
@@ -874,7 +876,7 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
                   className="hover-chroma-border flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-5"
                   style={todoCardHeight ? { height: `${todoCardHeight}px` } : undefined}
                 >
-                  <h3 className="text-lg font-semibold text-foreground">Todo List (Session Cookie)</h3>
+                  <h3 className="text-lg font-semibold text-foreground">To-do List</h3>
 
                   <form onSubmit={handleAddTodo} className="mt-4 flex gap-2">
               <input
