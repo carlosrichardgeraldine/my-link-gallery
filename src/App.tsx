@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import Clarity from "@microsoft/clarity";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -32,6 +33,12 @@ const TitleManager = () => {
   useEffect(() => {
     const pageName = routeTitles[location.pathname] ?? "";
     document.title = pageName ? `${OWNER_NAME} | ${pageName}` : OWNER_NAME;
+    Clarity.setTag("app", "my-link-gallery");
+    Clarity.setTag("page", location.pathname);
+
+    if (pageName) {
+      Clarity.setTag("page_name", pageName);
+    }
   }, [location.pathname]);
 
   return null;

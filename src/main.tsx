@@ -1,4 +1,5 @@
 import { createRoot } from "react-dom/client";
+import Clarity from "@microsoft/clarity";
 import App from "./App.tsx";
 import "./index.css";
 
@@ -93,5 +94,6 @@ const setupHoverBorderPointerTracking = () => {
 
 setupHoverBorderPointerTracking();
 initializeThemeMode();
+Clarity.init("w7t8i6b7ve");
 
 createRoot(document.getElementById("root")!).render(<App />);
