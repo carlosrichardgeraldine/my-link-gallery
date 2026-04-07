@@ -9,94 +9,102 @@ import ResumeToolsPanel from "@/components/ResumeToolsPanel";
 
 const resumePages = [
   {
-    id: "overview",
-    title: "Carlos Richard Geraldine",
-    subtitle: "Bridge, design, and deliver solutions that matter.",
+    "id": "overview",
+    "title": "Carlos Richard Geraldine",
+    "subtitle": "Bridge, design, and deliver solutions that matter."
   },
   {
-    id: "work-1",
-    title: "Microsoft 365 Engineer at SoftwareOne Indonesia",
-    subtitle: "Freelance & On-site, Oct 2025 – Mar 2026 (7 months)",
-    summary: "Microsoft 365 engineering work centered on secure productivity, DLP deployment, and operational support for more than 10,000 users.",
-    body: [
+    "id": "work-1",
+    "title": "Microsoft 365 Engineer at SoftwareOne Indonesia",
+    "subtitle": "Freelance & On-site, Oct 2025 – Mar 2026 (7 months)",
+    "summary": "Microsoft 365 engineering work centered on secure productivity, DLP deployment, and operational support for more than 10,000 users.",
+    "body": [
       "Delivered configurations and policies for Microsoft 365, SharePoint Online, Exchange Online, Entra ID, Purview, and Intune, validating them and troubleshooting user and admin-reported issues to ensure compliance and secure endpoint and app management.",
       "Streamlined enterprise secure productivity deployments by resolving configuration inquiries and designing business dashboard using Power BI, reducing policy misconfigurations and accelerating rollout timelines.",
-      "Successfully deployed Data Loss Prevention (DLP) policies with 99% adoption rate to more than 10,000 users across Indonesia, ensuring consistent data governance and strengthening the organization's information-protection posture.",
+      "Successfully deployed Data Loss Prevention (DLP) policies with 99% adoption rate to more than 10,000 users across Indonesia, ensuring consistent data governance and strengthening the organization's information-protection posture."
     ],
-    highlights: ["Microsoft 365", "SharePoint", "Intune", "Purview", "DLP"],
-    accent: "bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500",
-    borderClass: "border-emerald-400/70",
+    "highlights": [
+      "Microsoft 365",
+      "SharePoint",
+      "Intune",
+      "Purview",
+      "DLP"
+    ],
+    "accent": "bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500",
+    "borderClass": "border-emerald-400/70"
   },
   {
-    id: "work-2",
-    title: "Functional Consultant at PT Dinamika Teknologi Informasi",
-    subtitle: "Contract & Remote, Jan 2025 – Sep 2025 (9 months)",
-    summary: "Functional consulting and project delivery for Dynamics 365 CRM, Power Platform, and Microsoft 365 for Education implementation.",
-    body: [
+    "id": "work-2",
+    "title": "Functional Consultant at PT Dinamika Teknologi Informasi",
+    "subtitle": "Contract & Remote, Jan 2025 – Sep 2025 (9 months)",
+    "summary": "Functional consulting and project delivery for Dynamics 365 CRM, Power Platform, and Microsoft 365 for Education implementation.",
+    "body": [
       "Collaborated with stakeholders to gather business requirements and translate them into functional specifications of Microsoft Dynamics 365 CRM and Power Platform solutions.",
       "Extended Dynamics 365 CE into 7 modules for education management system application using Power Platform and provided relevant training for the back-office staff and office administrator.",
-      "Supported the implementation and provided training session of Microsoft 365 for Education, which includes Office 365, Teams for Education, SharePoint Online, and Entra for teachers, educators and school admins.",
+      "Supported the implementation and provided training session of Microsoft 365 for Education, which includes Office 365, Teams for Education, SharePoint Online, and Entra for teachers, educators and school admins."
     ],
-    highlights: ["Dynamics 365", "Power Platform", "Project Management", "Training"],
-    accent: "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500",
-    borderClass: "border-amber-400/70",
+    "highlights": [
+      "Dynamics 365",
+      "Power Platform",
+      "Project Management",
+      "Training"
+    ],
+    "accent": "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500",
+    "borderClass": "border-amber-400/70"
   },
   {
-    id: "other-working-experience",
-    title: "Other Working Experience",
-    subtitle: "Additional role history before current consulting and M365 roles.",
-    noCard: true,
+    "id": "other-working-experience",
+    "title": "Other Working Experience",
+    "subtitle": "Additional role history before current consulting and M365 roles.",
+    "noCard": true
   },
   {
-    id: "projects",
-    title: "Projects",
-    subtitle: "Selected implementations and practice portfolios.",
+    "id": "projects",
+    "title": "Projects",
+    "subtitle": "Selected implementations and practice portfolios."
   },
   {
-    id: "key-skills",
-    title: "Key Skills",
-    subtitle: "Capability levels across business, technical, and delivery functions.",
-    noCard: true,
+    "id": "key-skills",
+    "title": "Key Skills",
+    "subtitle": "Capability levels across business, technical, and delivery functions.",
+    "noCard": true
   },
   {
-    id: "tools-equipment",
-    title: "Tools and Equipment",
-    subtitle: "Core platforms and tools grouped by proficiency level.",
-    noCard: true,
+    "id": "tools-equipment",
+    "title": "Tools and Equipment",
+    "subtitle": "Core platforms and tools grouped by proficiency level.",
+    "noCard": true
   },
   {
-    id: "highlighted-credentials",
-    title: "Highlighted Credentials",
-    subtitle: "Selected certifications and professional credentials.",
-    noCard: true,
+    "id": "highlighted-credentials",
+    "title": "Highlighted Credentials",
+    "subtitle": "Selected certifications and professional credentials.",
+    "noCard": true
   },
   {
-    id: "linguistic-psychometrics",
-    title: "Linguistic and Psychometrics",
-    subtitle: "Language proficiency and behavioral assessment profile.",
-    summary: "Strengths: strong language proficiency, analytical depth, and exploratory drive. Weaknesses: uneven consistency and emotional volatility under pressure. Opportunities: roles in strategy, communication, and cross-functional leadership. Threats: burnout risk and overextension in high-change environments.",
-    highlights: ["CEFR C1", "INFJ", "Type 3", "IAE", "Explorer", "Analytical"],
-    borderClass: "border-sky-400/70",
+    "id": "education-honors",
+    "title": "Education & Honors",
+    "subtitle": "Academic background and notable recognitions.",
+    "noCard": true
   },
   {
-    id: "education-honors",
-    title: "Education & Honors",
-    subtitle: "Academic background and notable recognitions.",
-    noCard: true,
-  },
-  {
-    id: "contact",
-    title: "Contact",
-    subtitle: "",
-    body: [
+    "id": "contact",
+    "title": "Contact",
+    "subtitle": "",
+    "body": [
       "Email: carlosrichardgeraldine@outlook.com",
       "LinkedIn: https://www.linkedin.com/in/carlosgeraldine/",
-      "WhatsApp: https://wa.me/6285770078016",
+      "WhatsApp: https://wa.me/6285770078016"
     ],
-    highlights: ["Email", "LinkedIn", "WhatsApp", "Linktree"],
-    accent: "bg-gradient-to-r from-slate-500 via-zinc-500 to-stone-500",
-    borderClass: "border-slate-400/70",
-  },
+    "highlights": [
+      "Email",
+      "LinkedIn",
+      "WhatsApp",
+      "Linktree"
+    ],
+    "accent": "bg-gradient-to-r from-slate-500 via-zinc-500 to-stone-500",
+    "borderClass": "border-slate-400/70"
+  }
 ];
 
 const projectItems = [
@@ -115,62 +123,71 @@ const projectItems = [
 
 const otherWorkingExperiences = [
   {
-    title: "Project Coordinator (Laravel/React Webdev Project) at Goals Academy",
-    subtitle: "Freelance & On-site, Jan 2024 - Dec 2024 (1 year)",
-    tags: ["Project Management", "Web Development"],
+    "title": "Project Coordinator (Laravel/React Webdev Project) at Goals Academy",
+    "subtitle": "Freelance & On-site, Jan 2024 - Dec 2024 (1 year)",
+    "tags": [
+      "Project Management",
+      "Web Development"
+    ]
   },
   {
-    title: "Business to Business (B2B) Area Account Officer at PT Agrinesia Raya",
-    subtitle: "Contract & On-site, Nov 2022 - Dec 2023 (1 year 2 months)",
-    tags: ["B2B Marketing", "Sales"],
+    "title": "Business to Business (B2B) Area Account Officer at PT Agrinesia Raya",
+    "subtitle": "Contract & On-site, Nov 2022 - Dec 2023 (1 year 2 months)",
+    "tags": [
+      "B2B Marketing",
+      "Sales"
+    ]
   },
   {
-    title: "Optician Assistant and Sales Counter at Optik Internasional Group",
-    subtitle: "Contract, Oct 2019 - Oct 2022 (3 years 1 months)",
-    tags: ["Sales", "Customer Service"],
-  },
+    "title": "Optician Assistant and Sales Counter at Optik Internasional Group",
+    "subtitle": "Contract, Oct 2019 - Oct 2022 (3 years 1 months)",
+    "tags": [
+      "Sales",
+      "Customer Service"
+    ]
+  }
 ];
 
 const educationDetails = [
   {
-    institution: "University of the People",
-    degree: "Bachelor of Science - BS, Computer Science",
-    period: "Oct 2023 - Jun 2027",
-    grade: "Grade: 3.25/4.0",
-    focus: "Database Management System (DBMS), Operating Systems",
+    "institution": "University of the People",
+    "degree": "Bachelor of Science - BS, Computer Science",
+    "period": "Oct 2023 - Jun 2027",
+    "grade": "Grade: 3.25/4.0",
+    "focus": "Database Management System (DBMS), Operating Systems"
   },
   {
-    institution: "",
-    degree: "",
-    period: "",
-    grade: "",
-    focus: "",
+    "institution": "",
+    "degree": "",
+    "period": "",
+    "grade": "",
+    "focus": ""
   },
   {
-    institution: "",
-    degree: "",
-    period: "",
-    grade: "",
-    focus: "",
-  },
+    "institution": "",
+    "degree": "",
+    "period": "",
+    "grade": "",
+    "focus": ""
+  }
 ];
 
 const honorsAndAwards = [
   {
-    title: "ASEAN Youth for Digital Action",
-    issuer: "Issued by ASEAN & Orbit Future Academy · Feb 2025",
-    note: "Professional Scholarship Awardee",
+    "title": "ASEAN Youth for Digital Action",
+    "issuer": "Issued by ASEAN & Orbit Future Academy · Feb 2025",
+    "note": "Professional Scholarship Awardee"
   },
   {
-    title: "University of the People Full Scholarship",
-    issuer: "Issued by University of the People · Dec 2024",
-    note: "Scholarship Awardee",
+    "title": "University of the People Full Scholarship",
+    "issuer": "Issued by University of the People · Dec 2024",
+    "note": "Scholarship Awardee"
   },
   {
-    title: "Beasiswa Kemendikbudristek ICE Institute Semester 2024.1",
-    issuer: "Issued by Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia · Feb 2024",
-    note: "Scholarship Awardee",
-  },
+    "title": "Beasiswa Kemendikbudristek ICE Institute Semester 2024.1",
+    "issuer": "Issued by Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia · Feb 2024",
+    "note": "Scholarship Awardee"
+  }
 ];
 
 const linguisticScores = [
@@ -216,12 +233,12 @@ const hollandCodes = ["IAE", "Investigative", "Artistic", "Enterprising"];
 const jungianArchetypes = ["Primary - The Explorer", "Secondary - The Rebel"];
 
 const keySkills = {
-  proficient: [
+  "proficient": [
     "Business Analysis",
     "IT Solutions Design",
-    "Low-code-no-code AI Platform",
+    "Low-code-no-code AI Platform"
   ],
-  fluent: [
+  "fluent": [
     "Project Management",
     "Presales",
     "Cloud Computing",
@@ -229,25 +246,26 @@ const keySkills = {
     "System Administration",
     "Identity & Access Management",
     "Data Loss Prevention",
-    "IT Service Management",
+    "IT Service Management"
   ],
-  entryLevel: [
+  "entryLevel": [
     "Microsoft Licensing",
     "Data Analysis",
     "Data Engineering",
     "Database Administration",
-    "Mobile Device Management",
-  ],
+    "Mobile Device Management"
+  ]
 };
 
 const toolsAndEquipment = {
-  proficient: [
+  "proficient": [
     "Power Apps",
-    "Power Automate", 
-    "Power BI", 
-    "Dataverse", 
-    "Purview"],
-  fluent: [
+    "Power Automate",
+    "Power BI",
+    "Dataverse",
+    "Purview"
+  ],
+  "fluent": [
     "Dynamics 365 CRM",
     "SharePoint Online",
     "Exchange Online",
@@ -265,9 +283,9 @@ const toolsAndEquipment = {
     "UML",
     "DFD",
     "FSD",
-    "BRD/PRD",
+    "BRD/PRD"
   ],
-  entryLevel: [
+  "entryLevel": [
     "Copilot Studio",
     "Azure Admin",
     "Azure DevOps",
@@ -281,9 +299,9 @@ const toolsAndEquipment = {
     "Microsoft Defender",
     "CyberArk PAM",
     "Debian",
-    "Ubuntu",
+    "Ubuntu"
   ],
-  introductory: [
+  "introductory": [
     "Microsoft Fabric",
     "Azure AI Services",
     "Microsoft Foundry",
@@ -296,8 +314,8 @@ const toolsAndEquipment = {
     "Datadog",
     "Okta",
     "Docker",
-    "Elastic",
-  ],
+    "Elastic"
+  ]
 };
 
 const highlightedCredentials = [
@@ -324,40 +342,40 @@ const highlightedCredentials = [
   "Google Project Management Professional Certificate",
   "ISC2 Certified in Cybersecurity",
   "Certified ARIS Modeler Associate",
-  "Camunda Knowledge - Business Analyst",
+  "Camunda Knowledge - Business Analyst"
 ];
 
 const contactChannels = [
   {
-    label: "Email",
-    value: "carlosrichardgeraldine@outlook.com",
-    href: "mailto:carlosrichardgeraldine@outlook.com",
-    className: "border-red-400/80 text-red-500 dark:text-red-300",
+    "label": "Email",
+    "value": "carlosrichardgeraldine@outlook.com",
+    "href": "mailto:carlosrichardgeraldine@outlook.com",
+    "className": "border-red-400/80 text-red-500 dark:text-red-300"
   },
   {
-    label: "LinkedIn",
-    value: "linkedin.com/in/carlosgeraldine",
-    href: "https://www.linkedin.com/in/carlosgeraldine/",
-    className: "border-blue-400/80 text-blue-600 dark:text-blue-300",
+    "label": "LinkedIn",
+    "value": "linkedin.com/in/carlosgeraldine",
+    "href": "https://www.linkedin.com/in/carlosgeraldine/",
+    "className": "border-blue-400/80 text-blue-600 dark:text-blue-300"
   },
   {
-    label: "WhatsApp",
-    value: "+62 857-7007-8016",
-    href: "https://wa.me/6285770078016",
-    className: "border-emerald-400/80 text-emerald-600 dark:text-emerald-300",
+    "label": "WhatsApp",
+    "value": "+62 857-7007-8016",
+    "href": "https://wa.me/6285770078016",
+    "className": "border-emerald-400/80 text-emerald-600 dark:text-emerald-300"
   },
   {
-    label: "Phone",
-    value: "+62 857-7007-8016",
-    href: "tel:+6285770078016",
-    className: "border-sky-400/80 text-sky-600 dark:text-sky-300",
+    "label": "Phone",
+    "value": "+62 857-7007-8016",
+    "href": "tel:+6285770078016",
+    "className": "border-sky-400/80 text-sky-600 dark:text-sky-300"
   },
   {
-    label: "SMS",
-    value: "+62 857-7007-8016",
-    href: "sms:+6285770078016",
-    className: "border-yellow-400/80 text-yellow-700 dark:text-yellow-300",
-  },
+    "label": "SMS",
+    "value": "+62 857-7007-8016",
+    "href": "sms:+6285770078016",
+    "className": "border-yellow-400/80 text-yellow-700 dark:text-yellow-300"
+  }
 ];
 
 const overviewDetails = [
@@ -376,22 +394,130 @@ const overviewDetails = [
   {
     icon: Briefcase,
     text: "Full time, contract, paid internship",
-  },
+  }
 ];
 
 const rollingKeywordRows = [
-  ["Leadership", "Communication", "Collaboration", "Stakeholder Management", "Problem Solving", "Critical Thinking", "Adaptability", "Initiative"],
-  ["Business Analysis", "Project Delivery", "Functional Consultant", "Presales", "Documentation", "Process Mapping", "Requirements Gathering", "Change Management"],
-  ["Microsoft 365", "SharePoint Online", "Exchange Online", "Power Platform", "Dynamics 365", "Entra ID", "Purview", "Intune"],
-  ["Data Loss Prevention", "Identity & Access", "Security Baseline", "Governance", "Compliance", "Endpoint Management", "Admin Support", "Troubleshooting"],
-  ["Power BI", "Power Apps", "Power Automate", "Dataverse", "SQL", "Python", "Dashboard", "Automation"],
-  ["ServiceNow", "Anaplan", "Salesforce", "Snowflake", "Azure", "DevOps", "CI/CD", "Docker"],
-  ["Training", "Workshops", "User Enablement", "Knowledge Transfer", "Presentation", "Mentoring", "Teamwork", "Coordination"],
-  ["Growth Mindset", "Continuous Learning", "Certification", "Cross-functional", "Execution", "Ownership", "Delivery Focus", "Impact"],
-  ["Customer Success", "Solution Design", "Roadmap", "Discovery", "Scoping", "Backlog", "Sprint", "Iteration"],
-  ["KPI", "SLA", "Escalation", "Root Cause", "Risk Mitigation", "Incident Response", "Service Quality", "Optimization"],
-  ["Documentation", "Standard Operating Procedure", "Playbook", "Handover", "Governance Model", "Audit Readiness", "Controls", "Assurance"],
-  ["Productivity", "Reliability", "Scalability", "Security", "Performance", "Adoption", "Enablement", "Outcome"],
+  [
+    "Leadership",
+    "Communication",
+    "Collaboration",
+    "Stakeholder Management",
+    "Problem Solving",
+    "Critical Thinking",
+    "Adaptability",
+    "Initiative"
+  ],
+  [
+    "Business Analysis",
+    "Project Delivery",
+    "Functional Consultant",
+    "Presales",
+    "Documentation",
+    "Process Mapping",
+    "Requirements Gathering",
+    "Change Management"
+  ],
+  [
+    "Microsoft 365",
+    "SharePoint Online",
+    "Exchange Online",
+    "Power Platform",
+    "Dynamics 365",
+    "Entra ID",
+    "Purview",
+    "Intune"
+  ],
+  [
+    "Data Loss Prevention",
+    "Identity & Access",
+    "Security Baseline",
+    "Governance",
+    "Compliance",
+    "Endpoint Management",
+    "Admin Support",
+    "Troubleshooting"
+  ],
+  [
+    "Power BI",
+    "Power Apps",
+    "Power Automate",
+    "Dataverse",
+    "SQL",
+    "Python",
+    "Dashboard",
+    "Automation"
+  ],
+  [
+    "ServiceNow",
+    "Anaplan",
+    "Salesforce",
+    "Snowflake",
+    "Azure",
+    "DevOps",
+    "CI/CD",
+    "Docker"
+  ],
+  [
+    "Training",
+    "Workshops",
+    "User Enablement",
+    "Knowledge Transfer",
+    "Presentation",
+    "Mentoring",
+    "Teamwork",
+    "Coordination"
+  ],
+  [
+    "Growth Mindset",
+    "Continuous Learning",
+    "Certification",
+    "Cross-functional",
+    "Execution",
+    "Ownership",
+    "Delivery Focus",
+    "Impact"
+  ],
+  [
+    "Customer Success",
+    "Solution Design",
+    "Roadmap",
+    "Discovery",
+    "Scoping",
+    "Backlog",
+    "Sprint",
+    "Iteration"
+  ],
+  [
+    "KPI",
+    "SLA",
+    "Escalation",
+    "Root Cause",
+    "Risk Mitigation",
+    "Incident Response",
+    "Service Quality",
+    "Optimization"
+  ],
+  [
+    "Documentation",
+    "Standard Operating Procedure",
+    "Playbook",
+    "Handover",
+    "Governance Model",
+    "Audit Readiness",
+    "Controls",
+    "Assurance"
+  ],
+  [
+    "Productivity",
+    "Reliability",
+    "Scalability",
+    "Security",
+    "Performance",
+    "Adoption",
+    "Enablement",
+    "Outcome"
+  ]
 ];
 
 type GroupCard = {
@@ -1089,47 +1215,6 @@ const Resume = () => {
                           ))}
                         </div>
                       </div>
-
-                      <div className="space-y-5">
-                        <div className="space-y-2">
-                          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                            Partnership
-                          </p>
-                          <div className="space-y-1 text-sm text-foreground/95">
-                            <p>Microsoft Solution Partner - CSP</p>
-                            <p>Bitdefender Bronze Partner</p>
-                            <p>Veeam ProPartner</p>
-                            <p>Acronis Partner</p>
-                            <p>Snowflake Partner Network</p>
-                          </div>
-                        </div>
-
-                        <div className="space-y-2">
-                          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                            Inquiries?
-                          </p>
-                          <div className="space-y-1 text-sm text-foreground/95">
-                            <p>
-                              email{" "}
-                              <a
-                                href="mailto:carlosgeraldine@bersama365.work.gd"
-                                className="underline decoration-border underline-offset-4 hover:opacity-80"
-                              >
-                                carlosgeraldine@bersama365.work.gd
-                              </a>
-                            </p>
-                            <p>
-                              whatsapp{" "}
-                              <a
-                                href="https://wa.me/6285770078016"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="underline decoration-border underline-offset-4 hover:opacity-80"
-                              >
-                                6285770078016
-                              </a>
-                            </p>
-                          </div>
                         </div>
                       </div>
                     </div>
