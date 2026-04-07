@@ -5,6 +5,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import ResumePageNavigation from "@/components/ResumePageNavigation";
 import { useResumePageNavigation } from "@/hooks/useResumePageNavigation";
 import MonochromePlusBackground from "@/components/MonochromePlusBackground";
+import ResumeToolsPanel from "@/components/ResumeToolsPanel";
 
 const resumePages = [
   {
@@ -808,6 +809,7 @@ const Resume = () => {
   const overviewHeroRef = useRef<HTMLDivElement | null>(null);
   const overviewCardsRef = useRef<HTMLDivElement | null>(null);
   const [activeSectionId, setActiveSectionId] = useState("overview");
+  const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [overviewWallMetrics, setOverviewWallMetrics] = useState({
     height: 0,
     offsetTop: 0,
@@ -879,12 +881,34 @@ const Resume = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsToolsOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
-    <div className="relative isolate flex h-screen min-h-screen flex-col overflow-hidden bg-background text-foreground">
+    <div className="relative isolate h-screen min-h-screen overflow-hidden bg-background text-foreground">
       <MonochromePlusBackground />
       <div className="page-base-glass" aria-hidden="true" />
 
-      <div className="relative z-10 flex min-h-0 flex-1 flex-col">
+      <div
+        className={`absolute inset-0 z-10 transition-all duration-300 ${
+          isToolsOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
+        <ResumeToolsPanel isOpen={isToolsOpen} onClose={() => setIsToolsOpen(false)} />
+      </div>
+
+      <div className={`relative z-20 flex h-full min-h-0 flex-col bg-transparent transition-transform duration-500 ease-out ${isToolsOpen ? "translate-x-full" : "translate-x-0"}`}>
       <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur-sm">
         <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
           <h1 className="text-base font-semibold text-foreground md:text-xl">Resume</h1>
@@ -1302,6 +1326,20 @@ const Resume = () => {
         isAtStart={isAtStart}
         isAtEnd={isAtEnd}
       />
+
+      <Link
+        to="#"
+        aria-label="Tools"
+        onClick={(event) => {
+          event.preventDefault();
+          setIsToolsOpen(true);
+        }}
+        className={`fixed bottom-4 left-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-left hover:scale-110 md:bottom-6 md:left-6 md:text-7xl ${
+          isToolsOpen ? "opacity-100" : "opacity-25"
+        }`}
+      >
+        ← tools
+      </Link>
 
       <Link
         to="/links"

@@ -557,6 +557,13 @@
   cursor: default;
 }
 
+.spotify-embed-host iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
+  border-radius: 12px;
+}
+
 .resume-pill-wall:has(.resume-keyword-pill:hover) .resume-keyword-pill {
   filter: blur(1px);
   opacity: 0.72;
