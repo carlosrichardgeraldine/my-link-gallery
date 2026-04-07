@@ -1,13 +1,29 @@
 # My Link Gallery
 
-My Link Gallery is a client-side Vite + React application that combines a curated link hub with a resume-focused portfolio page and an in-browser resume builder. The project is built around static content in `src/data`, polished UI components from Radix/shadcn, and a light amount of local browser state for theme and appearance preferences.
+My Link Gallery is a front-end-only Vite + React application that combines a curated link hub, a resume page, and an in-browser resume builder. The app uses static content, local browser state, and generated files rather than a backend.
+
+## Architecture
+
+The project is now organized by feature instead of by monolithic page files.
+
+- `src/App.tsx` owns routing, lazy loading, page title updates, Clarity tags, and the attribution footer.
+- `src/pages/Index.tsx` renders the link gallery view.
+- `src/pages/Resume.tsx` renders the public resume page.
+- `src/pages/LinkBuilder.tsx` provides the link editing experience.
+- `src/pages/ResumeBuilder.tsx` is the resume-builder shell and delegates most editor logic to feature modules.
+- `src/features/resume-builder/*` contains the extracted resume-builder editors and configuration.
+- `src/components/index/*` contains the link-gallery search and filtering UI.
+- `src/components/link-builder/*` contains link-builder specific editor pieces.
+- `src/hooks/*` contains shared hooks such as history and filtering behavior.
+- `src/data/*` holds the structured content used by the app.
+- `src/lib/*` contains utility and generator logic.
 
 ## What It Does
 
 - Presents a searchable, filterable gallery of personal links.
 - Renders a styled resume page with work history, projects, skills, education, and credentials.
 - Provides a resume builder that edits structured resume content in the browser and downloads a generated `Resume.tsx` file.
-- Supports light/dark theme switching plus background tint selection.
+- Supports light and dark theme switching plus background tint selection.
 - Uses a custom animated background and subtle hover effects for a more deliberate visual style.
 
 ## Routes
@@ -16,31 +32,9 @@ My Link Gallery is a client-side Vite + React application that combines a curate
 - `/links` - Link gallery.
 - `/resume` - Redirects to `/`.
 - `/resume-builder` - Resume builder.
+- `/links-builder` - Link builder.
+- `/docs` - Documentation page.
 - Any unknown route falls back to the 404 page.
-
-## Project Structure
-
-- `src/App.tsx` wires up routing, shared providers, and the global attribution footer.
-- `src/pages/Index.tsx` renders the link gallery with search, tag filtering, and pagination.
-- `src/pages/Resume.tsx` renders the resume view from the content data.
-- `src/pages/ResumeBuilder.tsx` provides the editing interface for resume content and the download action.
-- `src/data/links.ts` holds the link gallery data.
-- `src/data/resumeBuilderContent.ts` holds the default resume-builder content.
-- `src/lib/resumeBuilderGenerator.ts` converts builder state into a downloadable `Resume.tsx` file.
-- `src/components/*` contains shared UI, background, and filtering components.
-
-## Tech Stack
-
-- Vite
-- React 18
-- TypeScript
-- Tailwind CSS
-- shadcn/ui and Radix UI primitives
-- React Router
-- TanStack Query
-- Sonner for toasts
-- Vitest and Testing Library for unit tests
-- Playwright config is included for browser testing
 
 ## Content Model
 
@@ -57,21 +51,19 @@ Theme selection and background tint are persisted in `localStorage` so the UI re
 Install dependencies and start the dev server:
 
 ```bash
-bun install
-bun dev
+npm install
+npm run dev
 ```
-
-If you prefer another package manager, the standard Vite scripts also work.
 
 ## Scripts
 
-- `bun dev` - Start the development server.
-- `bun build` - Build the production bundle.
-- `bun build:dev` - Build with the development mode config.
-- `bun preview` - Preview the production build locally.
-- `bun lint` - Run ESLint across the project.
-- `bun test` - Run Vitest once.
-- `bun test:watch` - Run Vitest in watch mode.
+- `npm run dev` - Start the development server.
+- `npm run build` - Build the production bundle.
+- `npm run build:dev` - Build with the development mode config.
+- `npm run preview` - Preview the production build locally.
+- `npm run lint` - Run ESLint across the project.
+- `npm run test` - Run Vitest once.
+- `npm run test:watch` - Run Vitest in watch mode.
 
 ## Notes
 

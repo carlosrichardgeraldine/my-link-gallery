@@ -17,6 +17,11 @@ const initializeThemeMode = () => {
 };
 
 const setupHoverBorderPointerTracking = () => {
+	const explicitGlowSelector = ".hover-chroma-border, .hover-chroma-pill";
+	const pillSelector = ".hover-chroma-pill";
+	const borderSelector = ".hover-chroma-border, [class~='border'], [class*=' border-'], [class^='border-']";
+	const hoverGlowSelector = `${pillSelector}, ${borderSelector}`;
+	const glowRadius = 128;
 	const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 	const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
 
@@ -24,33 +29,85 @@ const setupHoverBorderPointerTracking = () => {
 		return;
 	}
 
-	let activeCard: HTMLElement | null = null;
-	let nextCard: HTMLElement | null = null;
-	let nextX = 0;
-	let nextY = 0;
+	let hasPointer = false;
+	let pointerX = 0;
+	let pointerY = 0;
 	let frameId = 0;
+	let activeElements = new Set<HTMLElement>();
+
+	const clearGlowProps = (element: HTMLElement) => {
+		element.style.removeProperty("--hb-x");
+		element.style.removeProperty("--hb-y");
+		element.style.removeProperty("--hb-opacity");
+	};
+
+	const isEligibleGlowElement = (element: HTMLElement) => {
+		if (element.matches(explicitGlowSelector)) {
+			return true;
+		}
+
+		if (element.matches(pillSelector)) {
+			return true;
+		}
+
+		if (!element.matches(borderSelector)) {
+			return false;
+		}
+
+		const nearestBorderAncestor = element.parentElement?.closest(borderSelector);
+		return !nearestBorderAncestor;
+	};
 
 	const applyPointerPosition = () => {
 		frameId = 0;
 
-		if (!nextCard) {
-			if (activeCard) {
-				activeCard.style.removeProperty("--hb-x");
-				activeCard.style.removeProperty("--hb-y");
-				activeCard = null;
-			}
+		if (!hasPointer) {
+			activeElements.forEach(clearGlowProps);
+			activeElements = new Set<HTMLElement>();
 			return;
 		}
 
-		if (activeCard && activeCard !== nextCard) {
-			activeCard.style.removeProperty("--hb-x");
-			activeCard.style.removeProperty("--hb-y");
-		}
+		const nextActiveElements = new Set<HTMLElement>();
+		document.querySelectorAll<HTMLElement>(hoverGlowSelector).forEach((element) => {
+			if (!isEligibleGlowElement(element)) {
+				return;
+			}
 
-		const rect = nextCard.getBoundingClientRect();
-		nextCard.style.setProperty("--hb-x", `${nextX - rect.left}px`);
-		nextCard.style.setProperty("--hb-y", `${nextY - rect.top}px`);
-		activeCard = nextCard;
+			const rect = element.getBoundingClientRect();
+
+			if (rect.width === 0 || rect.height === 0) {
+				return;
+			}
+
+			const nearestX = Math.min(Math.max(pointerX, rect.left), rect.right);
+			const nearestY = Math.min(Math.max(pointerY, rect.top), rect.bottom);
+			const distanceX = pointerX - nearestX;
+			const distanceY = pointerY - nearestY;
+			const distance = Math.hypot(distanceX, distanceY);
+
+			if (distance > glowRadius) {
+				return;
+			}
+
+			const opacity = 1 - distance / glowRadius;
+
+			if (opacity <= 0) {
+				return;
+			}
+
+			element.style.setProperty("--hb-x", `${pointerX - rect.left}px`);
+			element.style.setProperty("--hb-y", `${pointerY - rect.top}px`);
+			element.style.setProperty("--hb-opacity", opacity.toFixed(3));
+			nextActiveElements.add(element);
+		});
+
+		activeElements.forEach((element) => {
+			if (!nextActiveElements.has(element)) {
+				clearGlowProps(element);
+			}
+		});
+
+		activeElements = nextActiveElements;
 	};
 
 	const queuePointerUpdate = () => {
@@ -62,33 +119,24 @@ const setupHoverBorderPointerTracking = () => {
 	};
 
 	const clearActiveCard = () => {
-		nextCard = null;
-		if (!activeCard && !frameId) {
-			return;
-		}
+		hasPointer = false;
 		queuePointerUpdate();
 	};
 
 	document.addEventListener(
 		"pointermove",
 		(event) => {
-			const target = event.target as Element | null;
-			const card = target?.closest(".hover-chroma-border") as HTMLElement | null;
-
-			if (!card) {
-				clearActiveCard();
-				return;
-			}
-
-			nextCard = card;
-			nextX = event.clientX;
-			nextY = event.clientY;
+			hasPointer = true;
+			pointerX = event.clientX;
+			pointerY = event.clientY;
 			queuePointerUpdate();
 		},
 		{ passive: true }
 	);
 
 	document.addEventListener("pointerleave", clearActiveCard, { passive: true });
+	document.addEventListener("scroll", queuePointerUpdate, { passive: true, capture: true });
+	window.addEventListener("resize", queuePointerUpdate, { passive: true });
 	window.addEventListener("blur", clearActiveCard);
 };
 
