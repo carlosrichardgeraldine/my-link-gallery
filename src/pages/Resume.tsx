@@ -10,7 +10,7 @@ import ResumeToolsPanel from "@/components/ResumeToolsPanel";
 const resumePages = [
   {
     "id": "overview",
-    "title": "Kyle Jaden",
+    "title": "Caramelldansen",
     "subtitle": "Bridge and deliver solutions that matter."
   },
   {
