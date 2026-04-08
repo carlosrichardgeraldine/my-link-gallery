@@ -167,7 +167,7 @@ export const AttributionFooter = () => {
       key={integrityTick}
       data-origin-mark={ATTRIBUTION_MARK}
       data-testid="attribution-footer"
-      className="fixed inset-x-0 bottom-2 z-[2147483647] text-center text-[11px] font-medium text-muted-foreground/90"
+      className="fixed inset-x-0 bottom-2 z-[2147483647] hidden text-center text-[11px] font-medium text-muted-foreground/90 md:block"
     >
       {ATTRIBUTION_LEAD}
       <a

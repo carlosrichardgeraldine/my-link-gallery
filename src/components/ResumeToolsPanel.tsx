@@ -1,5 +1,6 @@
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { Link } from "react-router-dom";
 import { ChevronDown, ChevronLeft, ChevronRight, Pause, Play, SkipForward, Square, Volume2, VolumeX, X } from "lucide-react";
 import confetti from "canvas-confetti";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -1238,6 +1239,21 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
         </div>
 
         {!isOpen && <div className="h-10" />}
+      </div>
+
+      <div
+        className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-center border-t border-border bg-background/95 px-2 py-1.5 md:hidden"
+        style={{
+          paddingBottom: "calc(0.5rem + env(safe-area-inset-bottom))",
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => window.location.assign("/")}
+          className="inline-flex flex-1 items-center justify-center rounded-xl border border-border bg-card px-2 py-1 text-base font-semibold text-foreground transition-colors hover:bg-background mx-1"
+        >
+          Back to Home
+        </button>
       </div>
 
       {typeof document !== "undefined" &&

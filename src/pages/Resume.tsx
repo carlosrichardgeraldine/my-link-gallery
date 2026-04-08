@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRightLeft, Briefcase, ChevronLeft, ChevronRight, MapPinned, MapPin } from "lucide-react";
 import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "@/hooks/use-mobile";
 import ThemeToggle from "@/components/ThemeToggle";
 import {
   Dialog,
@@ -735,62 +736,25 @@ const ResumeKeywordPillWall = ({ style }: { style?: CSSProperties }) => {
   );
 };
 
+
+
 const RadialIntensityGrid = ({
   items,
   tone,
-  isActive = false,
 }: {
   items: Array<{ trait: string; value: number }>;
   tone: string;
-  isActive?: boolean;
 }) => {
-  const [animatedValues, setAnimatedValues] = useState(() => items.map(() => 0));
-
-  useEffect(() => {
-    if (!isActive) {
-      setAnimatedValues(items.map(() => 0));
-      return;
-    }
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (prefersReducedMotion) {
-      setAnimatedValues(items.map((item) => item.value));
-      return;
-    }
-
-    const durationMs = 1200;
-    const animationStart = performance.now();
-    let frame = 0;
-
-    const tick = (now: number) => {
-      const progress = Math.min((now - animationStart) / durationMs, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-
-      setAnimatedValues(items.map((item) => Math.round(item.value * eased)));
-
-      if (progress < 1) {
-        frame = window.requestAnimationFrame(tick);
-      }
-    };
-
-    frame = window.requestAnimationFrame(tick);
-
-    return () => {
-      window.cancelAnimationFrame(frame);
-    };
-  }, [isActive, items]);
-
   return (
     <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
-      {items.map((item, index) => {
-        const currentValue = animatedValues[index] ?? 0;
+      {items.map((item) => {
+        const currentValue = item.value;
         const endDeg = currentValue * 3.6;
 
         return (
-            <div
+          <div
             key={item.trait}
-              className="hover-chroma-border rounded-xl border border-border/70 bg-card/60 px-2 py-2"
+            className="hover-chroma-border rounded-xl border border-border/70 bg-card/60 px-2 py-2"
           >
             <div
               className="mx-auto h-14 w-14 rounded-full p-[3px]"
@@ -812,7 +776,7 @@ const RadialIntensityGrid = ({
   );
 };
 
-const Resume = () => {
+export default function Resume() {
   const sectionRefs = useRef<HTMLElement[]>([]);
   const overviewHeroRef = useRef<HTMLDivElement | null>(null);
   const overviewCardsRef = useRef<HTMLDivElement | null>(null);
@@ -824,6 +788,8 @@ const Resume = () => {
     height: 0,
     offsetTop: 0,
   });
+  const isMobile = useIsMobile();
+  const [showMobileBlockModal, setShowMobileBlockModal] = useState(false);
 
   useEffect(() => {
     try {
@@ -954,16 +920,46 @@ const Resume = () => {
         <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
           <h1 className="text-base font-semibold text-foreground md:text-xl">Resume</h1>
           <div className="flex items-center gap-3">
-            <Link
-              to="/resume-builder"
-              className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
-            >
-              Build your own
-            </Link>
+            {isMobile ? (
+              <button
+                type="button"
+                className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
+                onClick={() => setShowMobileBlockModal(true)}
+              >
+                Build your own
+              </button>
+            ) : (
+              <Link
+                to="/resume-builder"
+                className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
+              >
+                Build your own
+              </Link>
+            )}
             <ThemeToggle />
           </div>
         </div>
       </header>
+
+      <Dialog open={showMobileBlockModal} onOpenChange={setShowMobileBlockModal}>
+        <DialogContent className="sm:max-w-xl">
+          <DialogHeader>
+            <DialogTitle>Oops! Desktop-only</DialogTitle>
+            <DialogDescription>
+              Looks like this feature doesn't work on mobile. Hop onto a desktop to give it a try!
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <button
+              type="button"
+              onClick={() => setShowMobileBlockModal(false)}
+              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
+            >
+              Got it
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <main className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden snap-y snap-mandatory scroll-smooth">
         {resumePages.map((page, index) => {
@@ -1305,7 +1301,6 @@ const Resume = () => {
                             <RadialIntensityGrid
                               items={bigFiveScores}
                               tone="hsl(var(--foreground))"
-                              isActive={activeSectionId === "linguistic-psychometrics"}
                             />
                         </div>
 
@@ -1316,7 +1311,6 @@ const Resume = () => {
                             <RadialIntensityGrid
                               items={discScores}
                               tone="hsl(var(--primary))"
-                              isActive={activeSectionId === "linguistic-psychometrics"}
                             />
                         </div>
 
@@ -1361,11 +1355,10 @@ const Resume = () => {
         })}
       </main>
 
-      <Link
-        to="#"
+      <button
+        type="button"
         aria-label="Tools"
-        onClick={(event) => {
-          event.preventDefault();
+        onClick={() => {
           setIsToolsOpen(true);
 
           if (shouldShowToolsReminder) {
@@ -1379,25 +1372,56 @@ const Resume = () => {
             }
           }
         }}
-        className={`fixed bottom-4 left-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-left hover:scale-110 md:bottom-6 md:left-6 md:text-7xl ${
+        className={`hidden md:inline-flex fixed bottom-4 left-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-left hover:scale-110 md:bottom-6 md:left-6 md:text-7xl ${
           isToolsOpen ? "opacity-100" : "opacity-25"
         }`}
       >
         ← tools
-      </Link>
+      </button>
 
       <Link
         to="/links"
         aria-label="Links"
-        className={`fixed bottom-4 right-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-right hover:scale-110 md:bottom-6 md:right-6 md:text-7xl ${
+        className={`hidden md:inline-flex fixed bottom-4 right-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-right hover:scale-110 md:bottom-6 md:right-6 md:text-7xl ${
           activeSectionId === "contact" ? "opacity-100" : "opacity-25"
         }`}
       >
         links →
       </Link>
+
+      <div
+        className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 border-t border-border bg-background/95 px-4 py-2.5 md:hidden"
+        style={{
+          paddingBottom: "calc(0.9rem + env(safe-area-inset-bottom))",
+        }}
+      >
+        <button
+          type="button"
+          aria-label="Tools"
+          onClick={() => {
+            setIsToolsOpen(true);
+            if (shouldShowToolsReminder) {
+              setIsToolsReminderOpen(true);
+              setShouldShowToolsReminder(false);
+              try {
+                window.localStorage.setItem(TOOLS_REMINDER_SEEN_KEY, "1");
+              } catch {}
+            }
+          }}
+          className="inline-flex flex-1 items-center justify-center rounded-xl border border-border bg-card px-3 py-2 text-lg font-semibold text-foreground transition-colors hover:bg-background mx-1"
+        >
+          Tools
+        </button>
+        <Link
+          to="/links"
+          aria-label="Links"
+          className="inline-flex flex-1 items-center justify-center rounded-xl border border-border bg-card px-3 py-2 text-lg font-semibold text-foreground transition-colors hover:bg-background mx-1"
+        >
+          Links
+        </Link>
+      </div>
       </div>
     </div>
   );
 };
 
-export default Resume;
