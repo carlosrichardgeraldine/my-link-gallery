@@ -29,6 +29,8 @@ const DocsDeployment = lazy(() => import("./pages/DocsDeployment.tsx"));
 const Legal = lazy(() => import("./pages/Legal.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
+import dataJson from "@/data/data.json";
+
 const queryClient = new QueryClient();
 const ATTRIBUTION_LEAD = "Originally made by Carlos R. Geraldine ☆ ";
 export const ATTRIBUTION_URL = "https://github.com/carlosrichardgeraldine/my-link-gallery";
@@ -37,7 +39,7 @@ export const ATTRIBUTION_LEGAL_LABEL = "Legal";
 export const ATTRIBUTION_TEXT = `${ATTRIBUTION_LEAD}${ATTRIBUTION_URL} ☆ ${ATTRIBUTION_DOCUMENTATION_LABEL} ☆ ${ATTRIBUTION_LEGAL_LABEL}`;
 export const ATTRIBUTION_MARK = "𖤐";
 const ATTRIBUTION_FOOTER_ID = "origin-attribution-footer";
-const OWNER_NAME = "Carlos Richard Geraldine";
+const OWNER_NAME: string = (dataJson as { resume?: { resumePages?: Array<{ title?: string }> } }).resume?.resumePages?.[0]?.title ?? "My Link Gallery";
 const LEGAL_ACCEPTANCE_KEY = "my-link-gallery.legal.accepted.v1";
 
 const routeTitles: Record<string, string> = {
