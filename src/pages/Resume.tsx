@@ -855,6 +855,8 @@ export default function Resume() {
   const isMobile = useIsMobile();
   const [showMobileBlockModal, setShowMobileBlockModal] = useState(false);
   const [summaryModalPage, setSummaryModalPage] = useState<typeof resumePages[0] | null>(null);
+  const [showBigFiveModal, setShowBigFiveModal] = useState(false);
+  const [showDiscModal, setShowDiscModal] = useState(false);
 
   useEffect(() => {
     try {
@@ -1354,20 +1356,42 @@ export default function Resume() {
                           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                             Big Five Assessment
                           </p>
+                          {isMobile ? (
+                            <button
+                              type="button"
+                              onClick={() => setShowBigFiveModal(true)}
+                              className="mt-3 inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card/80"
+                            >
+                              <span>Show Big Five Assessment</span>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-60"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            </button>
+                          ) : (
                             <RadialIntensityGrid
                               items={bigFiveScores}
                               tone="hsl(var(--foreground))"
                             />
+                          )}
                         </div>
 
                         <div>
                           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                             DISC
                           </p>
+                          {isMobile ? (
+                            <button
+                              type="button"
+                              onClick={() => setShowDiscModal(true)}
+                              className="mt-3 inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card/80"
+                            >
+                              <span>Show DISC</span>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-60"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            </button>
+                          ) : (
                             <RadialIntensityGrid
                               items={discScores}
                               tone="hsl(var(--primary))"
                             />
+                          )}
                         </div>
 
                       </div>
@@ -1422,7 +1446,43 @@ export default function Resume() {
         })}
       </main>
 
-      <Dialog open={summaryModalPage !== null} onOpenChange={(open) => { if (!open) setSummaryModalPage(null); }}>
+      <Dialog open={showBigFiveModal} onOpenChange={setShowBigFiveModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Big Five Assessment</DialogTitle>
+          </DialogHeader>
+          <RadialIntensityGrid items={bigFiveScores} tone="hsl(var(--foreground))" />
+          <DialogFooter>
+            <button
+              type="button"
+              onClick={() => setShowBigFiveModal(false)}
+              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
+            >
+              Close
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showDiscModal} onOpenChange={setShowDiscModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>DISC</DialogTitle>
+          </DialogHeader>
+          <RadialIntensityGrid items={discScores} tone="hsl(var(--primary))" />
+          <DialogFooter>
+            <button
+              type="button"
+              onClick={() => setShowDiscModal(false)}
+              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
+            >
+              Close
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+            <Dialog open={summaryModalPage !== null} onOpenChange={(open) => { if (!open) setSummaryModalPage(null); }}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
             <DialogTitle>Summary</DialogTitle>
