@@ -1,3 +1,4 @@
+import React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { links, linksPageSettings } from "@/data/links";
@@ -51,7 +52,7 @@ const Index = () => {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-4 md:py-6">
+      <div className="container mx-auto px-4 pt-4 pb-24 md:py-6">
         <LinkSearchBar search={search} onSearchChange={setSearch} />
 
         <QuickTagsRow quickTags={quickTags} selectedTags={selectedTags} onToggleTag={toggleTag} />
@@ -92,12 +93,27 @@ const Index = () => {
       <Link
         to="/"
         aria-label="Resume"
-        className={`fixed bottom-4 left-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-left hover:scale-110 md:bottom-6 md:left-6 md:text-7xl ${
+        className={`hidden md:inline-flex fixed bottom-4 left-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-left hover:scale-110 md:bottom-6 md:left-6 md:text-7xl ${
           currentPage === totalPages ? "opacity-100" : "opacity-25"
         }`}
       >
         ← resume
       </Link>
+
+      <div
+        className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-center gap-2 border-t border-border bg-background/95 px-4 py-2.5 md:hidden"
+        style={{
+          paddingBottom: "calc(0.9rem + env(safe-area-inset-bottom))",
+        }}
+      >
+        <Link
+          to="/"
+          aria-label="Resume"
+          className="inline-flex flex-1 items-center justify-center rounded-xl border border-border bg-card px-3 py-2 text-lg font-semibold text-foreground transition-colors hover:bg-background mx-1"
+        >
+          Resume
+        </Link>
+      </div>
 
       </div>
 

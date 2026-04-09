@@ -1,14 +1,22 @@
 import type { ForkRepository, PublishCallbacks, PublishError, PublishMode, PublishState } from "@/lib/types/resumePublish";
+import docsTsxRaw from "@/pages/Docs.tsx?raw";
+import legalTsxRaw from "@/pages/Legal.tsx?raw";
+import viteConfigRaw from "../../vite.config.ts?raw";
 
 const GITHUB_API = "https://api.github.com";
 const UPSTREAM_OWNER = "carlosrichardgeraldine";
 const UPSTREAM_REPO = "my-link-gallery";
 const UPSTREAM_FULL_NAME = `${UPSTREAM_OWNER}/${UPSTREAM_REPO}`;
-const LINKS_PATH = "src/data/links-data.json";
+const DATA_PATH = "src/data/data.json";
+const WORKFLOWS_DIR = ".github/workflows";
 
-type GithubUser = {
-  login: string;
-};
+const SOURCE_SYNC_FILES: Array<{ path: string; content: string }> = [
+  { path: "src/pages/Docs.tsx", content: docsTsxRaw },
+  { path: "src/pages/Legal.tsx", content: legalTsxRaw },
+  { path: "vite.config.ts", content: viteConfigRaw },
+];
+
+type GithubUser = { login: string };
 
 type GithubRepo = {
   name: string;
@@ -29,24 +37,20 @@ const mapRepository = (repo: GithubRepo): ForkRepository => ({
 const toBase64 = (value: string) => {
   const bytes = new TextEncoder().encode(value);
   let binary = "";
-
   for (let index = 0; index < bytes.length; index += 1) {
     binary += String.fromCharCode(bytes[index]);
   }
-
   return btoa(binary);
 };
 
 const parseError = async (response: Response) => {
   let details = "";
-
   try {
     const data = (await response.json()) as { message?: string };
     details = data.message ?? "";
   } catch {
     details = "";
   }
-
   return details;
 };
 
@@ -56,7 +60,6 @@ const createPublishError = (error: PublishError): never => {
 
 const apiRequest = async <T>(path: string, token: string, init?: RequestInit): Promise<T> => {
   let response: Response;
-
   try {
     response = await fetch(`${GITHUB_API}${path}`, {
       ...init,
@@ -77,7 +80,6 @@ const apiRequest = async <T>(path: string, token: string, init?: RequestInit): P
 
   if (!response.ok) {
     const details = await parseError(response);
-
     if (response.status === 401) {
       createPublishError({
         code: "auth_failed",
@@ -85,7 +87,6 @@ const apiRequest = async <T>(path: string, token: string, init?: RequestInit): P
         details,
       });
     }
-
     createPublishError({
       code: "unexpected",
       message: "GitHub API request failed.",
@@ -98,44 +99,12 @@ const apiRequest = async <T>(path: string, token: string, init?: RequestInit): P
 
 const wait = (ms: number) => new Promise<void>((resolve) => window.setTimeout(resolve, ms));
 
-type WorkflowFile = { path: string; sha: string; type: string };
-
-const deleteWorkflowsFromFork = async (fork: ForkRepository, token: string, branch: string): Promise<void> => {
-  let files: WorkflowFile[] = [];
-
-  try {
-    const result = await apiRequest<WorkflowFile[]>(
-      `/repos/${fork.owner}/${fork.name}/contents/.github/workflows?ref=${encodeURIComponent(branch)}`,
-      token
-    );
-    if (Array.isArray(result)) files = result;
-  } catch {
-    return;
-  }
-
-  await Promise.allSettled(
-    files
-      .filter((f) => f.type === "file")
-      .map((file) =>
-        apiRequest(`/repos/${fork.owner}/${fork.name}/contents/${file.path}`, token, {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            message: "chore: remove default CI workflows (deploy using your own static hosting)",
-            sha: file.sha,
-            branch,
-          }),
-        }).catch(() => {})
-      )
-  );
-};
-
 type ResolvedTarget = {
   repository: ForkRepository;
   mode: PublishMode;
 };
 
-export type LinkPublishResult = {
+export type DataPublishResult = {
   fork: ForkRepository;
   branch: string;
   commitUrl: string;
@@ -145,29 +114,16 @@ export type LinkPublishResult = {
 
 const findExistingTargetRepository = async (token: string, userLogin: string): Promise<ForkRepository | null> => {
   const directRepoPath = `/repos/${userLogin}/${UPSTREAM_REPO}`;
-
   try {
     const directRepo = await apiRequest<GithubRepo>(directRepoPath, token);
-
-    if (directRepo.full_name === UPSTREAM_FULL_NAME) {
-      return mapRepository(directRepo);
-    }
-
-    if (directRepo.fork && directRepo.parent?.full_name === UPSTREAM_FULL_NAME) {
-      return mapRepository(directRepo);
-    }
+    if (directRepo.full_name === UPSTREAM_FULL_NAME) return mapRepository(directRepo);
+    if (directRepo.fork && directRepo.parent?.full_name === UPSTREAM_FULL_NAME) return mapRepository(directRepo);
   } catch {
     // Continue to repo search if the direct path is missing.
   }
-
   const repositories = await apiRequest<GithubRepo[]>("/user/repos?per_page=100&affiliation=owner", token);
-
   const matchedFork = repositories.find((repo) => repo.fork && repo.parent?.full_name === UPSTREAM_FULL_NAME);
-
-  if (!matchedFork) {
-    return null;
-  }
-
+  if (!matchedFork) return null;
   return mapRepository(matchedFork);
 };
 
@@ -176,22 +132,15 @@ const createForkAndResolve = async (token: string, userLogin: string): Promise<R
     await apiRequest<GithubRepo>(`/repos/${UPSTREAM_OWNER}/${UPSTREAM_REPO}/forks`, token, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        default_branch_only: true,
-      }),
+      body: JSON.stringify({ default_branch_only: true }),
     });
   } catch (error) {
     const publishError = error as PublishError;
     const details = (publishError.details ?? "").toLowerCase();
-
     if (userLogin === UPSTREAM_OWNER || details.includes("cannot fork") || details.includes("own repository")) {
       const upstream = await apiRequest<GithubRepo>(`/repos/${UPSTREAM_OWNER}/${UPSTREAM_REPO}`, token);
-      return {
-        repository: mapRepository(upstream),
-        mode: "owner_mode_upstream",
-      };
+      return { repository: mapRepository(upstream), mode: "owner_mode_upstream" };
     }
-
     createPublishError({
       code: "fork_create_failed",
       message: "Unable to create a fork for this account.",
@@ -201,15 +150,7 @@ const createForkAndResolve = async (token: string, userLogin: string): Promise<R
 
   for (let attempt = 0; attempt < 10; attempt += 1) {
     const resolved = await findExistingTargetRepository(token, userLogin);
-
-    if (resolved) {
-      await deleteWorkflowsFromFork(resolved, token, resolved.defaultBranch);
-      return {
-        repository: resolved,
-        mode: "created_new_fork",
-      };
-    }
-
+    if (resolved) return { repository: resolved, mode: "created_new_fork" };
     await wait(1200);
   }
 
@@ -222,55 +163,122 @@ const createForkAndResolve = async (token: string, userLogin: string): Promise<R
 
 const resolveTargetRepository = async (token: string): Promise<ResolvedTarget> => {
   const user = await apiRequest<GithubUser>("/user", token);
-
   const existingTarget = await findExistingTargetRepository(token, user.login);
-
   if (existingTarget) {
     return {
       repository: existingTarget,
       mode: existingTarget.fullName === UPSTREAM_FULL_NAME ? "owner_mode_upstream" : "used_existing_fork",
     };
   }
-
   if (user.login === UPSTREAM_OWNER) {
     const upstream = await apiRequest<GithubRepo>(`/repos/${UPSTREAM_OWNER}/${UPSTREAM_REPO}`, token);
-    return {
-      repository: mapRepository(upstream),
-      mode: "owner_mode_upstream",
-    };
+    return { repository: mapRepository(upstream), mode: "owner_mode_upstream" };
   }
-
   return createForkAndResolve(token, user.login);
 };
 
-const commitLinksFile = async (repo: ForkRepository, token: string, branch: string, linksSource: string) => {
-  const contentPath = `/repos/${repo.owner}/${repo.name}/contents/${LINKS_PATH}?ref=${encodeURIComponent(branch)}`;
-  const existing = await apiRequest<{ sha: string }>(contentPath, token);
+type WorkflowFile = { path: string; sha: string; type: string };
 
+const getWorkflowFilePaths = async (repo: ForkRepository, token: string, branch: string): Promise<string[]> => {
   try {
-    const updatePath = `/repos/${repo.owner}/${repo.name}/contents/${LINKS_PATH}`;
+    const result = await apiRequest<WorkflowFile[]>(
+      `/repos/${repo.owner}/${repo.name}/contents/${WORKFLOWS_DIR}?ref=${encodeURIComponent(branch)}`,
+      token
+    );
+    if (!Array.isArray(result)) return [];
+    return result.filter((f) => f.type === "file").map((f) => f.path);
+  } catch {
+    return [];
+  }
+};
 
-    const response = await apiRequest<{ content: { html_url: string } }>(updatePath, token, {
-      method: "PUT",
+type TreeItem =
+  | { path: string; mode: "100644"; type: "blob"; sha: string }
+  | { path: string; mode: "100644"; type: "blob"; sha: null };
+
+const commitDataWithCleanup = async (
+  repo: ForkRepository,
+  token: string,
+  branch: string,
+  dataSource: string
+): Promise<string> => {
+  try {
+    const base = `/repos/${repo.owner}/${repo.name}`;
+
+    const branchInfo = await apiRequest<{
+      commit: { sha: string; commit: { tree: { sha: string } } };
+    }>(`${base}/branches/${encodeURIComponent(branch)}`, token);
+
+    const baseCommitSha = branchInfo.commit.sha;
+    const baseTreeSha = branchInfo.commit.commit.tree.sha;
+
+    const createBlob = (content: string) =>
+      apiRequest<{ sha: string }>(`${base}/git/blobs`, token, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: toBase64(content), encoding: "base64" }),
+      });
+
+    const [dataBlob, ...rest] = await Promise.all([
+      createBlob(dataSource),
+      ...SOURCE_SYNC_FILES.map((f) => createBlob(f.content)),
+      getWorkflowFilePaths(repo, token, branch),
+    ]);
+
+    const sourceSyncBlobs = rest.slice(0, SOURCE_SYNC_FILES.length) as Array<{ sha: string }>;
+    const workflowPaths = rest[SOURCE_SYNC_FILES.length] as string[];
+
+    const treeItems: TreeItem[] = [
+      { path: DATA_PATH, mode: "100644", type: "blob", sha: dataBlob.sha },
+      ...SOURCE_SYNC_FILES.map((f, i): TreeItem => ({
+        path: f.path,
+        mode: "100644",
+        type: "blob",
+        sha: sourceSyncBlobs[i].sha,
+      })),
+      ...workflowPaths.map((p): TreeItem => ({ path: p, mode: "100644", type: "blob", sha: null })),
+    ];
+
+    const newTree = await apiRequest<{ sha: string }>(`${base}/git/trees`, token, {
+      method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        message: "chore: update links-data.json from builder",
-        content: toBase64(linksSource),
-        branch,
-        sha: existing.sha,
-      }),
+      body: JSON.stringify({ base_tree: baseTreeSha, tree: treeItems }),
     });
 
-    return response.content.html_url;
+    const commitMessage =
+      workflowPaths.length > 0
+        ? "chore: update data.json, sync source fixes, and remove CI workflows"
+        : "chore: update data.json and sync source fixes from builder";
+
+    const newCommit = await apiRequest<{ sha: string; html_url: string }>(
+      `${base}/git/commits`,
+      token,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: commitMessage,
+          tree: newTree.sha,
+          parents: [baseCommitSha],
+        }),
+      }
+    );
+
+    await apiRequest(`${base}/git/refs/heads/${encodeURIComponent(branch)}`, token, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sha: newCommit.sha, force: false }),
+    });
+
+    return newCommit.html_url;
   } catch (error) {
     if ((error as PublishError).code === "unexpected") {
       createPublishError({
         code: "commit_failed",
-        message: "Unable to commit links-data.json in the target repository.",
+        message: "Unable to commit data.json in the target repository.",
         details: (error as PublishError).details,
       });
     }
-
     throw error;
   }
 };
@@ -279,11 +287,11 @@ const notifyState = (callbacks: PublishCallbacks | undefined, state: PublishStat
   callbacks?.onStateChange?.(state);
 };
 
-export const publishLinksToFork = async (
+export const publishDataToFork = async (
   token: string,
-  linksSource: string,
+  dataSource: string,
   callbacks?: PublishCallbacks
-): Promise<LinkPublishResult> => {
+): Promise<DataPublishResult> => {
   notifyState(callbacks, "validating");
 
   notifyState(callbacks, "preparing");
@@ -292,7 +300,7 @@ export const publishLinksToFork = async (
   const branch = repo.defaultBranch;
 
   notifyState(callbacks, "committing");
-  const commitUrl = await commitLinksFile(repo, token, branch, linksSource);
+  const commitUrl = await commitDataWithCleanup(repo, token, branch, dataSource);
 
   notifyState(callbacks, "success");
 

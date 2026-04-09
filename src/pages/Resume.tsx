@@ -1,175 +1,38 @@
 import { ArrowLeft, ArrowRightLeft, Briefcase, ChevronLeft, ChevronRight, MapPinned, MapPin } from "lucide-react";
 import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "@/hooks/use-mobile";
 import ThemeToggle from "@/components/ThemeToggle";
-import ResumePageNavigation from "@/components/ResumePageNavigation";
-import { useResumePageNavigation } from "@/hooks/useResumePageNavigation";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import MonochromePlusBackground from "@/components/MonochromePlusBackground";
 import ResumeToolsPanel from "@/components/ResumeToolsPanel";
+import dataJson from "@/data/data.json";
+import type { ContactChannel } from "@/data/resumeBuilderContent";
 
-const resumePages = [
-  {
-    "id": "overview",
-    "title": "Kyle Jaden",
-    "subtitle": "Bridge and deliver solutions that matter."
-  },
-  {
-    "id": "work-1",
-    "title": "Microsoft 365 Engineer at SoftwareOne Indonesia",
-    "subtitle": "Freelance & On-site, Oct 2025 – Mar 2026 (7 months)",
-    "summary": "Microsoft 365 engineering work centered on secure productivity, DLP deployment, and operational support for more than 10,000 users.",
-    "body": [
-      "Delivered configurations and policies for Microsoft 365, SharePoint Online, Exchange Online, Entra ID, Purview, and Intune, validating them and troubleshooting user and admin-reported issues to ensure compliance and secure endpoint and app management.",
-      "Streamlined enterprise secure productivity deployments by resolving configuration inquiries and designing business dashboard using Power BI, reducing policy misconfigurations and accelerating rollout timelines.",
-      "Successfully deployed Data Loss Prevention (DLP) policies with 99% adoption rate to more than 10,000 users across Indonesia, ensuring consistent data governance and strengthening the organization's information-protection posture."
-    ],
-    "highlights": [
-      "Microsoft 365",
-      "SharePoint",
-      "Intune",
-      "Purview",
-      "DLP"
-    ],
-    "accent": "bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500",
-    "borderClass": "border-emerald-400/70"
-  },
-  {
-    "id": "work-2",
-    "title": "Functional Consultant at PT Dinamika Teknologi Informasi",
-    "subtitle": "Contract & Remote, Jan 2025 – Sep 2025 (9 months)",
-    "summary": "Functional consulting and project delivery for Dynamics 365 CRM, Power Platform, and Microsoft 365 for Education implementation.",
-    "body": [
-      "Collaborated with stakeholders to gather business requirements and translate them into functional specifications of Microsoft Dynamics 365 CRM and Power Platform solutions.",
-      "Extended Dynamics 365 CE into 7 modules for education management system application using Power Platform and provided relevant training for the back-office staff and office administrator.",
-      "Supported the implementation and provided training session of Microsoft 365 for Education, which includes Office 365, Teams for Education, SharePoint Online, and Entra for teachers, educators and school admins."
-    ],
-    "highlights": [
-      "Dynamics 365",
-      "Power Platform",
-      "Project Management",
-      "Training"
-    ],
-    "accent": "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500",
-    "borderClass": "border-amber-400/70"
-  },
-  {
-    "id": "other-working-experience",
-    "title": "Other Working Experience",
-    "subtitle": "Additional role history before current consulting and M365 roles.",
-    "noCard": true
-  },
-  {
-    "id": "projects",
-    "title": "Projects",
-    "subtitle": "Selected implementations and practice portfolios."
-  },
-  {
-    "id": "key-skills",
-    "title": "Key Skills",
-    "subtitle": "Capability levels across business, technical, and delivery functions.",
-    "noCard": true
-  },
-  {
-    "id": "tools-equipment",
-    "title": "Tools and Equipment",
-    "subtitle": "Core platforms and tools grouped by proficiency level.",
-    "noCard": true
-  },
-  {
-    "id": "highlighted-credentials",
-    "title": "Highlighted Credentials",
-    "subtitle": "Selected certifications and professional credentials.",
-    "noCard": true
-  },
-  {
-    "id": "education-honors",
-    "title": "Education & Honors",
-    "subtitle": "Academic background and notable recognitions.",
-    "noCard": true
-  },
-  {
-    "id": "contact",
-    "title": "Contact",
-    "subtitle": "",
-    "body": [
-      "Email: carlosrichardgeraldine@outlook.com",
-      "LinkedIn: https://www.linkedin.com/in/carlosgeraldine/",
-      "WhatsApp: https://wa.me/6285770078016"
-    ],
-    "highlights": [
-      "Email",
-      "LinkedIn",
-      "WhatsApp",
-      "Linktree"
-    ],
-    "accent": "bg-gradient-to-r from-slate-500 via-zinc-500 to-stone-500",
-    "borderClass": "border-slate-400/70"
-  }
-];
+const OVERVIEW_ICON_MAP = { MapPin, MapPinned, ArrowRightLeft, Briefcase } as const;
 
-const projectItems = [
-  "Microsoft Office 365, Purview DLP and Intune Implementation at national multi-finance company in Tangerang.",
-  "Extending Dynamics 365 CRM with Power Platform for private school in Jakarta + Google Workspace migration to Microsoft 365 for Education.",
-  "Snowflake Hands-On Essentials Data Warehouse, Data App (Streamlit), Data Lake, Data Engineering & Data Science labs.",
-  "ServiceNow Administration Fundamentals, Configure the CMDB & CMDB Health Simulator.",
-  "Salesforce Agentforce Service & Prompt Builder Templates.",
-  "Microsoft PowerUp Challenge Portfolio - simple Power Apps, Power Automate and Power BI solutions.",
-  "CI/CD, Serverless and Microservices using OpenStack (Podman, Kubernetes, OpenShift and Tekton) with IBM Skills Network.",
-  "Implementing CI/CD using Docker, Jenkins, Grafana, Prometheus with Dicoding Indonesia.",
-  "Rice University Engineering Project Management Capstone Project",
-  "University of California, Irvine Project Management Capstone Project",
-  "Anaplan Level 1 & 2 Model Builder Exercise."
-];
-
-const otherWorkingExperiences = [
-  {
-    "title": "Project Leader (Node.js/React Webdev Project) at Alameda Academy",
-    "subtitle": "Freelance & On-site, Jan 2024 - Dec 2024 (1 year)",
-    "tags": [
-      "Project Management",
-      "Web Development"
-    ]
-  },
-  {
-    "title": "Business to Business (B2B) Area Account Officer at PT PrimeBread Indonesia",
-    "subtitle": "Contract & On-site, Nov 2022 - Dec 2023 (1 year 2 months)",
-    "tags": [
-      "B2B Marketing",
-      "Sales"
-    ]
-  },
-  {
-    "title": "Optician Assistant and Sales Counter at Optik Melawai",
-    "subtitle": "Contract, Oct 2019 - Oct 2022 (3 years 1 months)",
-    "tags": [
-      "Sales",
-      "Customer Service"
-    ]
-  }
-];
-
-const educationDetails = [
-  {
-    "institution": "University of California, Berkeley",
-    "degree": "Bachelor of Science - BS, Computer Science",
-    "period": "Oct 2023 - Jun 2027",
-    "grade": "Grade: 3.25/4.0",
-    "focus": "Database Management System (DBMS), Operating Systems"
-  }
-];
-
-const honorsAndAwards = [
-  {
-    "title": "ASEAN Youth for Digital Action",
-    "issuer": "Issued by ASEAN & Orbit Future Academy · Feb 2025",
-    "note": "Professional Scholarship Awardee"
-  },
-  {
-    "title": "University of California Full Scholarship",
-    "issuer": "Issued by University of California · Dec 2024",
-    "note": "Scholarship Awardee"
-  }
-];
+const resumeData = dataJson.resume;
+const resumePages = resumeData.resumePages;
+const projectItems = resumeData.projectItems;
+const otherWorkingExperiences = resumeData.otherWorkingExperiences;
+const educationDetails = resumeData.educationDetails;
+const honorsAndAwards = resumeData.honorsAndAwards;
+const keySkills = resumeData.keySkills;
+const toolsAndEquipment = resumeData.toolsAndEquipment;
+const highlightedCredentials = resumeData.highlightedCredentials;
+const contactChannels = (resumeData.contactChannels as ContactChannel[]).filter((ch) => !ch.hidden);
+const overviewDetails = (resumeData.overviewDetails as Array<{ icon: string; text: string }>).map((item) => ({
+  icon: OVERVIEW_ICON_MAP[item.icon as keyof typeof OVERVIEW_ICON_MAP] ?? MapPin,
+  text: item.text,
+}));
+const rollingKeywordRows = resumeData.rollingKeywordRows;
 
 const linguisticScores = [
   {
@@ -213,281 +76,7 @@ const hollandCodes = ["IAE", "Investigative", "Artistic", "Enterprising"];
 
 const jungianArchetypes = ["Primary - The Explorer", "Secondary - The Rebel"];
 
-const keySkills = {
-  "proficient": [
-    "Business Analysis",
-    "IT Solutions Design",
-    "Low-code-no-code AI Platform"
-  ],
-  "fluent": [
-    "Project Management",
-    "Presales",
-    "Cloud Computing",
-    "IT Support",
-    "System Administration",
-    "Identity & Access Management",
-    "Data Loss Prevention",
-    "IT Service Management"
-  ],
-  "entryLevel": [
-    "Microsoft Licensing",
-    "Data Analysis",
-    "Data Engineering",
-    "Database Administration",
-    "Mobile Device Management"
-  ]
-};
-
-const toolsAndEquipment = {
-  "proficient": [
-    "Power Apps",
-    "Power Automate",
-    "Power BI",
-    "Dataverse",
-    "Purview"
-  ],
-  "fluent": [
-    "Dynamics 365 CRM",
-    "SharePoint Online",
-    "Exchange Online",
-    "Microsoft 365",
-    "Office 365",
-    "Snowflake",
-    "SQL",
-    "Python",
-    "Jira",
-    "Confluence",
-    "Camunda",
-    "Signavio",
-    "BPMN",
-    "DMN",
-    "UML",
-    "DFD",
-    "FSD",
-    "BRD/PRD"
-  ],
-  "entryLevel": [
-    "Copilot Studio",
-    "Azure Admin",
-    "Azure DevOps",
-    "Intune",
-    "Anaplan",
-    "Delinea",
-    "ManageEngine",
-    "Google Cloud Security Command Center",
-    "ServiceNow",
-    "Microsoft Entra",
-    "Microsoft Defender",
-    "CyberArk PAM",
-    "Debian",
-    "Ubuntu"
-  ],
-  "introductory": [
-    "Microsoft Fabric",
-    "Azure AI Services",
-    "Microsoft Foundry",
-    "Dynamics 365 ERP",
-    "Oracle Cloud",
-    "Oracle Fusion ERP",
-    "AWS Cloud Services",
-    "Salesforce",
-    "Creatio",
-    "Datadog",
-    "Okta",
-    "Docker",
-    "Elastic"
-  ]
-};
-
-const highlightedCredentials = [
-  "SailPoint Identity Security Leader Credential",
-  "Palo Alto Certified Network Security Associate (PCNSA)",
-  "Collibra Data Governance Foundations",
-  "Microsoft Certified: Dynamics 365 Customer Service Functional Consultant Associate",
-  "Microsoft Certified: Power Platform Solution Architect Expert",
-  "Microsoft Certified: Power Platform Functional Consultant Associate",
-  "Microsoft Certified: Information Security Administrator Associate",
-  "Microsoft Certified: Identity and Access Administrator Associate",
-  "Microsoft Certified: Dynamics 365 Customer Experience Analyst Associate",
-  "Microsoft Certified: Dynamics 365 Field Service Functional Consultant Associate",
-  "Snowflake SnowPro Associate: Platform Certification",
-  "ServiceNow Suite Certification - Data Foundations (CMDB and CSDM) Professional",
-  "SAP Certified - Business Transformation Consultant",
-  "SAP Certified - Organizational Change Management",
-  "LinkedIn Learning Change Management Professional Certificate",
-  "Microsoft Business Analyst Professional Certificate",
-  "Microsoft and LinkedIn Career Essentials in System Administration",
-  "Google Cybersecurity Professional Certificate",
-  "Google Business Intelligence Professional Certificate",
-  "Google IT Support Professional Certificate",
-  "Google Project Management Professional Certificate",
-  "ISC2 Certified in Cybersecurity",
-  "Certified ARIS Modeler Associate",
-  "Camunda Knowledge - Business Analyst"
-];
-
-const contactChannels = [
-  {
-    "label": "Email",
-    "value": "kylejaden@outlook.com",
-    "href": "mailto:kylejaden@outlook.com",
-    "className": "border-red-400/80 text-red-500 dark:text-red-300"
-  },
-  {
-    "label": "LinkedIn",
-    "value": "linkedin.com/in/kylejaden",
-    "href": "https://www.linkedin.com/in/carlosgeraldine/",
-    "className": "border-blue-400/80 text-blue-600 dark:text-blue-300"
-  },
-  {
-    "label": "WhatsApp",
-    "value": "+62 857-7007-8808",
-    "href": "https://wa.me/6285770078016",
-    "className": "border-emerald-400/80 text-emerald-600 dark:text-emerald-300"
-  }
-];
-
-const overviewDetails = [
-  {
-    icon: MapPin,
-    text: "Slipi, West Jakarta",
-  },
-  {
-    icon: MapPinned,
-    text: "from Banyuwangi, East Java",
-  },
-  {
-    icon: ArrowRightLeft,
-    text: "Ready to relocate across the country",
-  },
-  {
-    icon: Briefcase,
-    text: "Full time, contract, paid internship",
-  }
-];
-
-const rollingKeywordRows = [
-  [
-    "Leadership",
-    "Communication",
-    "Collaboration",
-    "Stakeholder Management",
-    "Problem Solving",
-    "Critical Thinking",
-    "Adaptability",
-    "Initiative"
-  ],
-  [
-    "Business Analysis",
-    "Project Delivery",
-    "Functional Consultant",
-    "Presales",
-    "Documentation",
-    "Process Mapping",
-    "Requirements Gathering",
-    "Change Management"
-  ],
-  [
-    "Microsoft 365",
-    "SharePoint Online",
-    "Exchange Online",
-    "Power Platform",
-    "Dynamics 365",
-    "Entra ID",
-    "Purview",
-    "Intune"
-  ],
-  [
-    "Data Loss Prevention",
-    "Identity & Access",
-    "Security Baseline",
-    "Governance",
-    "Compliance",
-    "Endpoint Management",
-    "Admin Support",
-    "Troubleshooting"
-  ],
-  [
-    "Power BI",
-    "Power Apps",
-    "Power Automate",
-    "Dataverse",
-    "SQL",
-    "Python",
-    "Dashboard",
-    "Automation"
-  ],
-  [
-    "ServiceNow",
-    "Anaplan",
-    "Salesforce",
-    "Snowflake",
-    "Azure",
-    "DevOps",
-    "CI/CD",
-    "Docker"
-  ],
-  [
-    "Training",
-    "Workshops",
-    "User Enablement",
-    "Knowledge Transfer",
-    "Presentation",
-    "Mentoring",
-    "Teamwork",
-    "Coordination"
-  ],
-  [
-    "Growth Mindset",
-    "Continuous Learning",
-    "Certification",
-    "Cross-functional",
-    "Execution",
-    "Ownership",
-    "Delivery Focus",
-    "Impact"
-  ],
-  [
-    "Customer Success",
-    "Solution Design",
-    "Roadmap",
-    "Discovery",
-    "Scoping",
-    "Backlog",
-    "Sprint",
-    "Iteration"
-  ],
-  [
-    "KPI",
-    "SLA",
-    "Escalation",
-    "Root Cause",
-    "Risk Mitigation",
-    "Incident Response",
-    "Service Quality",
-    "Optimization"
-  ],
-  [
-    "Documentation",
-    "Standard Operating Procedure",
-    "Playbook",
-    "Handover",
-    "Governance Model",
-    "Audit Readiness",
-    "Controls",
-    "Assurance"
-  ],
-  [
-    "Productivity",
-    "Reliability",
-    "Scalability",
-    "Security",
-    "Performance",
-    "Adoption",
-    "Enablement",
-    "Outcome"
-  ]
-];
+const TOOLS_REMINDER_SEEN_KEY = "my-link-gallery.tools-reminder-seen.v1";
 
 type GroupCard = {
   title: string;
@@ -507,97 +96,166 @@ const toolsAndEquipmentCards: GroupCard[] = [
   { title: "Introductory", items: toolsAndEquipment.introductory },
 ];
 
-const GroupedCardsCarousel = ({
-  cards,
-  lockHorizontalOnPortrait = false,
+const groupBorderGradients = [
+  "from-cyan-400/80 via-sky-400/70 to-blue-500/80",
+  "from-emerald-400/80 via-lime-400/70 to-yellow-400/80",
+  "from-fuchsia-400/80 via-pink-400/70 to-rose-500/80",
+  "from-violet-400/80 via-indigo-400/70 to-blue-400/80",
+  "from-amber-400/80 via-orange-400/70 to-red-500/80",
+  "from-teal-400/80 via-cyan-400/70 to-indigo-500/80",
+];
+
+const GroupDeckCard = ({
+  card,
+  gradientClass,
 }: {
-  cards: GroupCard[];
-  lockHorizontalOnPortrait?: boolean;
+  card: GroupCard;
+  gradientClass: string;
 }) => {
-  const [isScrollGuidanceVisible, setIsScrollGuidanceVisible] = useState(false);
-  const scrollFadeTimerRef = useRef<number | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    return () => {
-      if (scrollFadeTimerRef.current) {
-        window.clearTimeout(scrollFadeTimerRef.current);
-      }
-    };
+    const frame = window.requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
-  const handleHorizontalScroll = () => {
-    setIsScrollGuidanceVisible(true);
-
-    if (scrollFadeTimerRef.current) {
-      window.clearTimeout(scrollFadeTimerRef.current);
-    }
-
-    scrollFadeTimerRef.current = window.setTimeout(() => {
-      setIsScrollGuidanceVisible(false);
-      scrollFadeTimerRef.current = null;
-    }, 380);
-  };
-
-  const borderGradients = [
-    "from-cyan-400/80 via-sky-400/70 to-blue-500/80",
-    "from-emerald-400/80 via-lime-400/70 to-yellow-400/80",
-    "from-fuchsia-400/80 via-pink-400/70 to-rose-500/80",
-    "from-violet-400/80 via-indigo-400/70 to-blue-400/80",
-    "from-amber-400/80 via-orange-400/70 to-red-500/80",
-    "from-teal-400/80 via-cyan-400/70 to-indigo-500/80",
-  ];
-
   return (
-    <div className="relative w-full">
-      <div
-        className={`-mx-1 overflow-x-auto pb-2 ${
-          lockHorizontalOnPortrait ? "portrait-cards-scroll-track" : ""
-        }`}
-        onScroll={handleHorizontalScroll}
-      >
-        <div className="grouped-cards-track flex min-w-full snap-x snap-mandatory gap-4 px-1">
-          {cards.map((card, cardIndex) => (
-            <article
-              key={card.title}
-              className={`grouped-card min-w-[200px] sm:min-w-[230px] lg:min-w-[260px] flex-1 basis-0 snap-start rounded-2xl bg-gradient-to-br ${borderGradients[cardIndex % borderGradients.length]} p-[1px] shadow-[0_0_0_1px_rgba(255,255,255,0.08)]`}
+    <article
+      className={`h-full rounded-2xl bg-gradient-to-br ${gradientClass} p-[1px] shadow-[0_0_0_1px_rgba(255,255,255,0.08)] transition-all duration-500 ease-out ${
+        isVisible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+      }`}
+    >
+      <div className="flex h-full min-h-[200px] sm:min-h-[240px] flex-col rounded-2xl border border-border/70 bg-card p-4 sm:p-5">
+        <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+          {card.title}
+        </h3>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {card.items.map((item) => (
+            <span
+              key={item}
+              className="hover-chroma-pill rounded-full border border-border bg-background/70 px-2.5 py-1 text-xs leading-relaxed text-foreground/90 sm:px-3 sm:text-sm"
             >
-              <div className="h-full rounded-2xl border border-border/70 bg-card p-3 sm:p-4">
-                <h3 className="portrait-card-content-text text-sm font-semibold text-foreground sm:text-base">{card.title}</h3>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {card.items.map((item) => (
-                    <span
-                      key={item}
-                      className="portrait-card-content-text hover-chroma-pill rounded-full border border-border bg-background/70 px-2.5 py-1 text-xs leading-relaxed text-foreground/90 sm:px-3 sm:text-sm"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
+              {item}
+            </span>
           ))}
         </div>
       </div>
-
-      <div
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-1 transition-opacity duration-150 ${
-          isScrollGuidanceVisible ? "opacity-20" : "opacity-0"
-        }`}
-      >
-        <ChevronLeft className="h-5 w-5 text-foreground" />
-      </div>
-      <div
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-y-0 right-0 z-10 flex items-center pr-1 transition-opacity duration-150 ${
-          isScrollGuidanceVisible ? "opacity-20" : "opacity-0"
-        }`}
-      >
-        <ChevronRight className="h-5 w-5 text-foreground" />
-      </div>
-    </div>
+    </article>
   );
 };
+
+const PagedGroupedDeck = ({
+  cards,
+  isActive = false,
+}: {
+  cards: GroupCard[];
+  isActive?: boolean;
+}) => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const [hoverSide, setHoverSide] = useState<"left" | "right" | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const previousActiveRef = useRef(isActive);
+  const totalPages = cards.length;
+
+  useEffect(() => {
+    const wasInactive = !previousActiveRef.current;
+    previousActiveRef.current = isActive;
+    if (isActive && wasInactive) {
+      setCurrentPage(0);
+    }
+  }, [isActive]);
+
+  useEffect(() => {
+    if (!isActive || isHovered || totalPages <= 1) return;
+    const interval = window.setInterval(() => {
+      setCurrentPage((page) => (page === totalPages - 1 ? 0 : page + 1));
+    }, 7000);
+    return () => window.clearInterval(interval);
+  }, [currentPage, totalPages, isActive, isHovered]);
+
+  const goPrev = () => {
+    setCurrentPage((page) => (page === 0 ? totalPages - 1 : page - 1));
+  };
+
+  const goNext = () => {
+    setCurrentPage((page) => (page === totalPages - 1 ? 0 : page + 1));
+  };
+
+  return (
+    <div className="w-full">
+      <div
+        className="group relative w-full"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => {
+          setHoverSide(null);
+          setIsHovered(false);
+        }}
+      >
+        <div key={currentPage}>
+          <GroupDeckCard
+            card={cards[currentPage]}
+            gradientClass={groupBorderGradients[currentPage % groupBorderGradients.length]}
+          />
+        </div>
+
+        {totalPages > 1 && (
+          <>
+            <button
+              type="button"
+              aria-label="Previous group"
+              onMouseEnter={() => setHoverSide("left")}
+              onFocus={() => setHoverSide("left")}
+              onClick={goPrev}
+              className="absolute inset-y-0 left-0 z-10 w-1/2 cursor-pointer border-0 bg-transparent p-0 outline-none"
+            />
+            <button
+              type="button"
+              aria-label="Next group"
+              onMouseEnter={() => setHoverSide("right")}
+              onFocus={() => setHoverSide("right")}
+              onClick={goNext}
+              className="absolute inset-y-0 right-0 z-10 w-1/2 cursor-pointer border-0 bg-transparent p-0 outline-none"
+            />
+
+            <div
+              className={`pointer-events-none absolute inset-y-0 left-0 z-20 flex w-9 items-center justify-start transition-opacity duration-200 ${hoverSide === "left" ? "opacity-100" : "opacity-0"}`}
+            >
+              <div className="flex h-24 w-9 items-center justify-center rounded-r-full bg-card/90 border border-border border-l-0 shadow-sm">
+                <ChevronLeft className="h-5 w-5 text-foreground" />
+              </div>
+            </div>
+
+            <div
+              className={`pointer-events-none absolute inset-y-0 right-0 z-20 flex w-9 items-center justify-end transition-opacity duration-200 ${hoverSide === "right" ? "opacity-100" : "opacity-0"}`}
+            >
+              <div className="flex h-24 w-9 items-center justify-center rounded-l-full bg-card/90 border border-border border-r-0 shadow-sm">
+                <ChevronRight className="h-5 w-5 text-foreground" />
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+
+      {totalPages > 1 && (
+        <div className="mt-3 flex justify-center gap-1.5">
+          {cards.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Go to group ${i + 1}`}
+              onClick={() => setCurrentPage(i)}
+              className={`h-1.5 rounded-full transition-all duration-200 ${
+                i === currentPage ? "w-4 bg-foreground" : "w-1.5 bg-foreground/30"
+              }`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 const DeckEntryCard = ({
   item,
@@ -667,7 +325,8 @@ const PagedCardsDeck = ({
   showLogo?: boolean;
   isActive?: boolean;
 }) => {
-  const cardsPerPage = 8;
+  const isMobileView = useIsMobile();
+  const cardsPerPage = isMobileView ? 4 : 8;
   const [currentPage, setCurrentPage] = useState(1);
   const [hoverSide, setHoverSide] = useState<"left" | "right" | null>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -822,62 +481,25 @@ const ResumeKeywordPillWall = ({ style }: { style?: CSSProperties }) => {
   );
 };
 
+
+
 const RadialIntensityGrid = ({
   items,
   tone,
-  isActive = false,
 }: {
   items: Array<{ trait: string; value: number }>;
   tone: string;
-  isActive?: boolean;
 }) => {
-  const [animatedValues, setAnimatedValues] = useState(() => items.map(() => 0));
-
-  useEffect(() => {
-    if (!isActive) {
-      setAnimatedValues(items.map(() => 0));
-      return;
-    }
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (prefersReducedMotion) {
-      setAnimatedValues(items.map((item) => item.value));
-      return;
-    }
-
-    const durationMs = 1200;
-    const animationStart = performance.now();
-    let frame = 0;
-
-    const tick = (now: number) => {
-      const progress = Math.min((now - animationStart) / durationMs, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-
-      setAnimatedValues(items.map((item) => Math.round(item.value * eased)));
-
-      if (progress < 1) {
-        frame = window.requestAnimationFrame(tick);
-      }
-    };
-
-    frame = window.requestAnimationFrame(tick);
-
-    return () => {
-      window.cancelAnimationFrame(frame);
-    };
-  }, [isActive, items]);
-
   return (
     <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
-      {items.map((item, index) => {
-        const currentValue = animatedValues[index] ?? 0;
+      {items.map((item) => {
+        const currentValue = item.value;
         const endDeg = currentValue * 3.6;
 
         return (
-            <div
+          <div
             key={item.trait}
-              className="hover-chroma-border rounded-xl border border-border/70 bg-card/60 px-2 py-2"
+            className="hover-chroma-border rounded-xl border border-border/70 bg-card/60 px-2 py-2"
           >
             <div
               className="mx-auto h-14 w-14 rounded-full p-[3px]"
@@ -899,22 +521,31 @@ const RadialIntensityGrid = ({
   );
 };
 
-const Resume = () => {
+export default function Resume() {
   const sectionRefs = useRef<HTMLElement[]>([]);
   const overviewHeroRef = useRef<HTMLDivElement | null>(null);
   const overviewCardsRef = useRef<HTMLDivElement | null>(null);
   const [activeSectionId, setActiveSectionId] = useState("overview");
   const [isToolsOpen, setIsToolsOpen] = useState(false);
+  const [isToolsReminderOpen, setIsToolsReminderOpen] = useState(false);
+  const [shouldShowToolsReminder, setShouldShowToolsReminder] = useState(false);
   const [overviewWallMetrics, setOverviewWallMetrics] = useState({
     height: 0,
     offsetTop: 0,
   });
+  const isMobile = useIsMobile();
+  const [summaryModalPage, setSummaryModalPage] = useState<typeof resumePages[0] | null>(null);
+  const [showBigFiveModal, setShowBigFiveModal] = useState(false);
+  const [showDiscModal, setShowDiscModal] = useState(false);
 
-  const { goToPrevious, goToNext, isAtStart, isAtEnd } = useResumePageNavigation(
-    sectionRefs.current,
-    activeSectionId,
-    () => {}
-  );
+  useEffect(() => {
+    try {
+      const hasSeenReminder = window.localStorage.getItem(TOOLS_REMINDER_SEEN_KEY) === "1";
+      setShouldShowToolsReminder(!hasSeenReminder);
+    } catch {
+      setShouldShowToolsReminder(true);
+    }
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -980,6 +611,7 @@ const Resume = () => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsToolsOpen(false);
+        setIsToolsReminderOpen(false);
       }
     };
 
@@ -1003,6 +635,33 @@ const Resume = () => {
         <ResumeToolsPanel isOpen={isToolsOpen} onClose={() => setIsToolsOpen(false)} />
       </div>
 
+      <Dialog open={isToolsReminderOpen} onOpenChange={setIsToolsReminderOpen}>
+        <DialogContent className="sm:max-w-xl">
+          <DialogHeader>
+            <DialogTitle>Welcome to Tools</DialogTitle>
+            <DialogDescription>
+              Press <span className="font-medium text-foreground">Escape</span> to go back to home.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-3 text-sm leading-relaxed text-foreground/90">
+            <p>
+              Carlos loved learning, but staying focused wasn't always easy. One day he found a simple rhythm: short bursts of study, gentle lofi beats, and calm breaks. Studying suddenly felt lighter and clearer. Now it's your turn to step into that same flow.
+            </p>
+          </div>
+
+          <DialogFooter>
+            <button
+              type="button"
+              onClick={() => setIsToolsReminderOpen(false)}
+              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
+            >
+              Got it
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       <div className={`relative z-20 flex h-full min-h-0 flex-col bg-transparent transition-transform duration-500 ease-out ${isToolsOpen ? "translate-x-full" : "translate-x-0"}`}>
       <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur-sm">
         <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
@@ -1019,6 +678,7 @@ const Resume = () => {
         </div>
       </header>
 
+
       <main className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden snap-y snap-mandatory scroll-smooth">
         {resumePages.map((page, index) => {
           const showSidePanel = !page.noCard && page.id !== "projects" && index !== 0 && index !== resumePages.length - 1;
@@ -1032,11 +692,9 @@ const Resume = () => {
                 sectionRefs.current[index] = section;
               }
             }}
-            className={`snap-start min-h-full border-b border-border ${
-              page.id === "tools-equipment" ? "portrait-hide-section" : ""
-            }`}
+            className={"snap-start snap-always min-h-full border-b border-border"}
           >
-            <div className="container mx-auto flex min-h-full items-center px-4 py-12">
+            <div className="container mx-auto flex min-h-full items-center px-4 pt-12 pb-24 md:py-12">
               <div className="grid w-full gap-8 lg:grid-cols-[1.15fr_1.15fr_0.7fr] lg:grid-rows-[auto_1fr]">
                 <div
                   className="min-w-0 lg:col-span-3"
@@ -1046,14 +704,14 @@ const Resume = () => {
                     }
                   }}
                 >
-                  <h1 className="max-w-4xl pb-1 text-3xl font-bold leading-[1.05] sm:text-4xl md:text-6xl">
+                  <h1 className="max-w-4xl pb-1 text-2xl font-bold leading-tight sm:text-3xl md:text-6xl">
                     {page.title}
                   </h1>
                   <p className="mt-4 max-w-3xl text-sm text-muted-foreground sm:text-base md:text-lg">{page.subtitle}</p>
                 </div>
 
                 <div
-                    className={`min-w-0 min-h-[330px] ${showSidePanel ? "lg:col-span-2" : "lg:col-span-3"}`}
+                    className={`min-w-0 md:min-h-[330px] ${showSidePanel ? "lg:col-span-2" : "lg:col-span-3"}`}
                 >
                   {page.id === "overview" ? (
                     <div className="resume-overview-columns">
@@ -1146,23 +804,16 @@ const Resume = () => {
                       </div>
                     </div>
                   ) : page.id === "key-skills" ? (
-                    <div className="space-y-6">
-                      <GroupedCardsCarousel cards={keySkillsCards} lockHorizontalOnPortrait />
-
-                      <div className="portrait-only-block space-y-3">
-                        <div className="pb-1">
-                          <h2 className="max-w-4xl pb-1 text-3xl font-bold leading-[1.05] sm:text-4xl md:text-6xl">
-                            Tools and Equipment
-                          </h2>
-                          <p className="mt-4 max-w-3xl text-sm text-muted-foreground sm:text-base md:text-lg">
-                            Core platforms and tools grouped by proficiency level.
-                          </p>
-                        </div>
-                        <GroupedCardsCarousel cards={toolsAndEquipmentCards} lockHorizontalOnPortrait />
+                    <div className="space-y-8">
+                      <div className="space-y-2">
+                        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">Key Skills</p>
+                        <PagedGroupedDeck cards={keySkillsCards} isActive={activeSectionId === "key-skills"} />
+                      </div>
+                      <div className="space-y-2">
+                        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">Tools and Equipment</p>
+                        <PagedGroupedDeck cards={toolsAndEquipmentCards} isActive={activeSectionId === "key-skills"} />
                       </div>
                     </div>
-                  ) : page.id === "tools-equipment" ? (
-                    <GroupedCardsCarousel cards={toolsAndEquipmentCards} lockHorizontalOnPortrait />
                   ) : page.id === "contact" ? (
                     <div className="grid gap-8 md:grid-cols-2">
                       <div className="space-y-3">
@@ -1308,30 +959,47 @@ const Resume = () => {
                         </div>
                       </div>
 
-                      <div className="space-y-6">
-                        <div>
-                          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                            Big Five Assessment
-                          </p>
+                      {isMobile ? (
+                        <div className="flex flex-wrap gap-3">
+                          <button
+                            type="button"
+                            onClick={() => setShowBigFiveModal(true)}
+                            className="inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card/80"
+                          >
+                            <span>Big Five Assessment</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-60"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setShowDiscModal(true)}
+                            className="inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card/80"
+                          >
+                            <span>DISC</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-60"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="space-y-6">
+                          <div>
+                            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                              Big Five Assessment
+                            </p>
                             <RadialIntensityGrid
                               items={bigFiveScores}
                               tone="hsl(var(--foreground))"
-                              isActive={activeSectionId === "linguistic-psychometrics"}
                             />
-                        </div>
-
-                        <div>
-                          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                            DISC
-                          </p>
+                          </div>
+                          <div>
+                            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                              DISC
+                            </p>
                             <RadialIntensityGrid
                               items={discScores}
                               tone="hsl(var(--primary))"
-                              isActive={activeSectionId === "linguistic-psychometrics"}
                             />
+                          </div>
                         </div>
-
-                      </div>
+                      )}
                     </div>
                   ) : page.id === "highlighted-credentials" ? (
                     <HighlightedCredentialsDeck isActive={activeSectionId === page.id} />
@@ -1345,25 +1013,36 @@ const Resume = () => {
                 </div>
 
                 {showSidePanel && (
-                  <div className={`h-full min-h-[260px] rounded-[1.25rem] border bg-card p-4 shadow-sm md:p-5 ${page.borderClass}`}>
-                    <div className="flex h-full flex-col rounded-2xl border border-border/70 bg-background p-3 md:p-4">
-                      <p className="text-sm font-semibold">Summary</p>
-                      <p className="mt-3 border-l border-border/70 pl-3 text-[19px] italic leading-relaxed text-muted-foreground/90">
-                        {page.summary}
-                      </p>
+                  isMobile ? (
+                    <button
+                      type="button"
+                      onClick={() => setSummaryModalPage(page)}
+                      className="self-start inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card/80"
+                    >
+                      <span>Show Summary</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-60"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </button>
+                  ) : (
+                    <div className={`h-full min-h-[260px] rounded-[1.25rem] border bg-card p-4 shadow-sm md:p-5 ${page.borderClass}`}>
+                      <div className="flex h-full flex-col rounded-2xl border border-border/70 bg-background p-3 md:p-4">
+                        <p className="text-sm font-semibold">Summary</p>
+                        <p className="mt-3 border-l border-border/70 pl-3 text-[19px] italic leading-relaxed text-muted-foreground/90">
+                          {page.summary}
+                        </p>
 
-                      <div className="mt-auto pt-4 flex flex-wrap gap-2">
-                        {page.highlights.map((item) => (
-                          <span
-                            key={item}
-                            className="hover-chroma-pill rounded-full border border-border bg-card px-2.5 py-1 text-xs text-foreground"
-                          >
-                            {item}
-                          </span>
-                        ))}
+                        <div className="mt-auto pt-4 flex flex-wrap gap-2">
+                          {page.highlights.map((item) => (
+                            <span
+                              key={item}
+                              className="hover-chroma-pill rounded-full border border-border bg-card px-2.5 py-1 text-xs text-foreground"
+                            >
+                              {item}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )
                 )}
               </div>
             </div>
@@ -1372,39 +1051,143 @@ const Resume = () => {
         })}
       </main>
 
-      <ResumePageNavigation
-        onPrevious={goToPrevious}
-        onNext={goToNext}
-        isAtStart={isAtStart}
-        isAtEnd={isAtEnd}
-      />
+      <Dialog open={showBigFiveModal} onOpenChange={setShowBigFiveModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Big Five Assessment</DialogTitle>
+          </DialogHeader>
+          <RadialIntensityGrid items={bigFiveScores} tone="hsl(var(--foreground))" />
+          <DialogFooter>
+            <button
+              type="button"
+              onClick={() => setShowBigFiveModal(false)}
+              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
+            >
+              Close
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
-      <Link
-        to="#"
+      <Dialog open={showDiscModal} onOpenChange={setShowDiscModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>DISC</DialogTitle>
+          </DialogHeader>
+          <RadialIntensityGrid items={discScores} tone="hsl(var(--primary))" />
+          <DialogFooter>
+            <button
+              type="button"
+              onClick={() => setShowDiscModal(false)}
+              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
+            >
+              Close
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+            <Dialog open={summaryModalPage !== null} onOpenChange={(open) => { if (!open) setSummaryModalPage(null); }}>
+        <DialogContent className="sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle>Summary</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <p className="border-l-2 border-border pl-3 text-base italic leading-relaxed text-muted-foreground">
+              {summaryModalPage?.summary}
+            </p>
+            {summaryModalPage?.highlights && summaryModalPage.highlights.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {summaryModalPage.highlights.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-border bg-card px-2.5 py-1 text-xs text-foreground"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+          <DialogFooter>
+            <button
+              type="button"
+              onClick={() => setSummaryModalPage(null)}
+              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
+            >
+              Close
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+            <button
+        type="button"
         aria-label="Tools"
-        onClick={(event) => {
-          event.preventDefault();
+        onClick={() => {
           setIsToolsOpen(true);
+
+          if (shouldShowToolsReminder) {
+            setIsToolsReminderOpen(true);
+            setShouldShowToolsReminder(false);
+
+            try {
+              window.localStorage.setItem(TOOLS_REMINDER_SEEN_KEY, "1");
+            } catch {
+              // Ignore storage failures and allow session-only behavior.
+            }
+          }
         }}
-        className={`fixed bottom-4 left-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-left hover:scale-110 md:bottom-6 md:left-6 md:text-7xl ${
+        className={`hidden md:inline-flex fixed bottom-4 left-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-left hover:scale-110 md:bottom-6 md:left-6 md:text-7xl ${
           isToolsOpen ? "opacity-100" : "opacity-25"
         }`}
       >
         ← tools
-      </Link>
+      </button>
 
       <Link
         to="/links"
         aria-label="Links"
-        className={`fixed bottom-4 right-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-right hover:scale-110 md:bottom-6 md:right-6 md:text-7xl ${
+        className={`hidden md:inline-flex fixed bottom-4 right-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-right hover:scale-110 md:bottom-6 md:right-6 md:text-7xl ${
           activeSectionId === "contact" ? "opacity-100" : "opacity-25"
         }`}
       >
         links →
       </Link>
+
+      <div
+        className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 border-t border-border bg-background/95 px-4 py-2.5 md:hidden"
+        style={{
+          paddingBottom: "calc(0.9rem + env(safe-area-inset-bottom))",
+        }}
+      >
+        <button
+          type="button"
+          aria-label="Tools"
+          onClick={() => {
+            setIsToolsOpen(true);
+            if (shouldShowToolsReminder) {
+              setIsToolsReminderOpen(true);
+              setShouldShowToolsReminder(false);
+              try {
+                window.localStorage.setItem(TOOLS_REMINDER_SEEN_KEY, "1");
+              } catch {}
+            }
+          }}
+          className="inline-flex flex-1 items-center justify-center rounded-xl border border-border bg-card px-3 py-2 text-lg font-semibold text-foreground transition-colors hover:bg-background mx-1"
+        >
+          Tools
+        </button>
+        <Link
+          to="/links"
+          aria-label="Links"
+          className="inline-flex flex-1 items-center justify-center rounded-xl border border-border bg-card px-3 py-2 text-lg font-semibold text-foreground transition-colors hover:bg-background mx-1"
+        >
+          Links
+        </Link>
+      </div>
       </div>
     </div>
   );
 };
 
-export default Resume;

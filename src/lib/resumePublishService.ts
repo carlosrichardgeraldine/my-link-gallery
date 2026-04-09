@@ -4,7 +4,7 @@ const GITHUB_API = "https://api.github.com";
 const UPSTREAM_OWNER = "carlosrichardgeraldine";
 const UPSTREAM_REPO = "my-link-gallery";
 const UPSTREAM_FULL_NAME = `${UPSTREAM_OWNER}/${UPSTREAM_REPO}`;
-const RESUME_PATH = "src/pages/Resume.tsx";
+const RESUME_PATH = "src/data/resume-data.json";
 
 type GithubUser = {
   login: string;
@@ -98,6 +98,38 @@ const apiRequest = async <T>(path: string, token: string, init?: RequestInit): P
 
 const wait = (ms: number) => new Promise<void>((resolve) => window.setTimeout(resolve, ms));
 
+type WorkflowFile = { path: string; sha: string; type: string };
+
+const deleteWorkflowsFromFork = async (fork: ForkRepository, token: string, branch: string): Promise<void> => {
+  let files: WorkflowFile[] = [];
+
+  try {
+    const result = await apiRequest<WorkflowFile[]>(
+      `/repos/${fork.owner}/${fork.name}/contents/.github/workflows?ref=${encodeURIComponent(branch)}`,
+      token
+    );
+    if (Array.isArray(result)) files = result;
+  } catch {
+    return;
+  }
+
+  await Promise.allSettled(
+    files
+      .filter((f) => f.type === "file")
+      .map((file) =>
+        apiRequest(`/repos/${fork.owner}/${fork.name}/contents/${file.path}`, token, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: "chore: remove default CI workflows (deploy using your own static hosting)",
+            sha: file.sha,
+            branch,
+          }),
+        }).catch(() => {})
+      )
+  );
+};
+
 type ResolvedTarget = {
   repository: ForkRepository;
   mode: PublishMode;
@@ -171,6 +203,7 @@ const createForkAndResolve = async (token: string, userLogin: string): Promise<R
     const resolved = await findExistingTargetRepository(token, userLogin);
 
     if (resolved) {
+      await deleteWorkflowsFromFork(resolved, token, resolved.defaultBranch);
       return {
         repository: resolved,
         mode: "created_new_fork",
@@ -221,7 +254,7 @@ const commitResumeFile = async (fork: ForkRepository, token: string, branch: str
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        message: "chore: update resume from builder",
+        message: "chore: update resume-data.json from builder",
         content: toBase64(resumeSource),
         branch,
         sha: existing.sha,
@@ -233,7 +266,7 @@ const commitResumeFile = async (fork: ForkRepository, token: string, branch: str
     if ((error as PublishError).code === "unexpected") {
       createPublishError({
         code: "commit_failed",
-        message: "Unable to commit Resume.tsx in the target repository.",
+        message: "Unable to commit resume-data.json in the target repository.",
         details: (error as PublishError).details,
       });
     }
