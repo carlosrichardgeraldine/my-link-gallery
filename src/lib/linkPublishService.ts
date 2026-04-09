@@ -244,17 +244,17 @@ const resolveTargetRepository = async (token: string): Promise<ResolvedTarget> =
 };
 
 const commitLinksFile = async (repo: ForkRepository, token: string, branch: string, linksSource: string) => {
-  const contentPath = `/repos/${repo.owner}/${repo.name}/contents/${LINKS_PATH}?ref=${encodeURIComponent(branch)}`;
+  const attemptCommit = async () => {
+    const contentPath = `/repos/${repo.owner}/${repo.name}/contents/${LINKS_PATH}?ref=${encodeURIComponent(branch)}`;
 
-  let existingSha: string | undefined;
-  try {
-    const existing = await apiRequest<{ sha: string }>(contentPath, token);
-    existingSha = existing.sha;
-  } catch {
-    existingSha = undefined;
-  }
+    let existingSha: string | undefined;
+    try {
+      const existing = await apiRequest<{ sha: string }>(contentPath, token);
+      existingSha = existing.sha;
+    } catch {
+      existingSha = undefined;
+    }
 
-  try {
     const updatePath = `/repos/${repo.owner}/${repo.name}/contents/${LINKS_PATH}`;
     const payload: Record<string, string> = {
       message: existingSha ? "chore: update links-data.json from builder" : "chore: add links-data.json from builder",
@@ -270,15 +270,30 @@ const commitLinksFile = async (repo: ForkRepository, token: string, branch: stri
     });
 
     return response.content.html_url;
+  };
+
+  try {
+    return await attemptCommit();
   } catch (error) {
-    if ((error as PublishError).code === "unexpected") {
+    const publishError = error as PublishError;
+    if (publishError.code === "unexpected" && (publishError.details ?? "").includes("but expected")) {
+      try {
+        return await attemptCommit();
+      } catch (retryError) {
+        createPublishError({
+          code: "commit_failed",
+          message: "Unable to commit links-data.json in the target repository.",
+          details: (retryError as PublishError).details,
+        });
+      }
+    }
+    if (publishError.code === "unexpected") {
       createPublishError({
         code: "commit_failed",
         message: "Unable to commit links-data.json in the target repository.",
-        details: (error as PublishError).details,
+        details: publishError.details,
       });
     }
-
     throw error;
   }
 };

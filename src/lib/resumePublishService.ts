@@ -244,17 +244,17 @@ const resolveTargetRepository = async (token: string): Promise<ResolvedTarget> =
 };
 
 const commitResumeFile = async (fork: ForkRepository, token: string, branch: string, resumeSource: string) => {
-  const contentPath = `/repos/${fork.owner}/${fork.name}/contents/${RESUME_PATH}?ref=${encodeURIComponent(branch)}`;
+  const attemptCommit = async () => {
+    const contentPath = `/repos/${fork.owner}/${fork.name}/contents/${RESUME_PATH}?ref=${encodeURIComponent(branch)}`;
 
-  let existingSha: string | undefined;
-  try {
-    const existing = await apiRequest<{ sha: string }>(contentPath, token);
-    existingSha = existing.sha;
-  } catch {
-    existingSha = undefined;
-  }
+    let existingSha: string | undefined;
+    try {
+      const existing = await apiRequest<{ sha: string }>(contentPath, token);
+      existingSha = existing.sha;
+    } catch {
+      existingSha = undefined;
+    }
 
-  try {
     const updatePath = `/repos/${fork.owner}/${fork.name}/contents/${RESUME_PATH}`;
     const payload: Record<string, string> = {
       message: existingSha ? "chore: update resume-data.json from builder" : "chore: add resume-data.json from builder",
@@ -270,15 +270,30 @@ const commitResumeFile = async (fork: ForkRepository, token: string, branch: str
     });
 
     return response.content.html_url;
+  };
+
+  try {
+    return await attemptCommit();
   } catch (error) {
-    if ((error as PublishError).code === "unexpected") {
+    const publishError = error as PublishError;
+    if (publishError.code === "unexpected" && (publishError.details ?? "").includes("but expected")) {
+      try {
+        return await attemptCommit();
+      } catch (retryError) {
+        createPublishError({
+          code: "commit_failed",
+          message: "Unable to commit resume-data.json in the target repository.",
+          details: (retryError as PublishError).details,
+        });
+      }
+    }
+    if (publishError.code === "unexpected") {
       createPublishError({
         code: "commit_failed",
         message: "Unable to commit resume-data.json in the target repository.",
-        details: (error as PublishError).details,
+        details: publishError.details,
       });
     }
-
     throw error;
   }
 };
