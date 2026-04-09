@@ -139,6 +139,35 @@ const ResumeBuilder = () => {
     }
   };
 
+  const handlePublish = async () => {
+    const token = publishToken.trim();
+
+    if (!token) {
+      toast.error("Enter a GitHub token before publishing.");
+      return;
+    }
+
+    const generatedSource = buildResumeTsx(content);
+    const outcome = await publish(token, generatedSource);
+
+    setPublishToken("");
+
+    if (outcome) {
+      toast.success("Publish completed and deployment started.");
+    } else {
+      toast.error("Publish failed. Review details in the dialog.");
+    }
+  };
+
+  const handlePublishDialogChange = (open: boolean) => {
+    setIsPublishOpen(open);
+
+    if (!open) {
+      setPublishToken("");
+      resetPublish();
+    }
+  };
+
   const sectionButtons = sections.map((section) => {
     const active = activeSection === section.id;
 

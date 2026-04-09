@@ -835,49 +835,6 @@ export default function Resume() {
                           ))}
                         </div>
                       </div>
-
-                      <div className="space-y-5">
-                        <div className="space-y-2">
-                          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                            Partnership
-                          </p>
-                          <div className="space-y-1 text-sm text-foreground/95">
-                            <p>Microsoft Solution Partner - CSP</p>
-                            <p>Bitdefender Bronze Partner</p>
-                            <p>Veeam ProPartner</p>
-                            <p>Acronis Partner</p>
-                            <p>Snowflake Partner Network</p>
-                          </div>
-                        </div>
-
-                        <div className="space-y-2">
-                          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                            Inquiries?
-                          </p>
-                          <div className="space-y-1 text-sm text-foreground/95">
-                            <p>
-                              email{" "}
-                              <a
-                                href="mailto:carlosgeraldine@bersama365.work.gd"
-                                className="underline decoration-border underline-offset-4 hover:opacity-80"
-                              >
-                                carlosgeraldine@bersama365.work.gd
-                              </a>
-                            </p>
-                            <p>
-                              whatsapp{" "}
-                              <a
-                                href="https://wa.me/6285770078016"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="underline decoration-border underline-offset-4 hover:opacity-80"
-                              >
-                                6285770078016
-                              </a>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   ) : page.id === "linguistic-psychometrics" ? (
                     <div className="grid gap-8 lg:grid-cols-2">
