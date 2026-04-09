@@ -67,14 +67,14 @@ const TitleManager = () => {
     const pageName = routeTitles[location.pathname] ?? "";
     document.title = pageName ? `${OWNER_NAME} | ${pageName}` : OWNER_NAME;
 
-    if (typeof window.clarity === "function") {
-      Clarity.setTag("app", "my-link-gallery");
-      Clarity.setTag("page", location.pathname);
+    // if (typeof window.clarity === "function") {
+    //   Clarity.setTag("app", "my-link-gallery");
+    //   Clarity.setTag("page", location.pathname);
 
-      if (pageName) {
-        Clarity.setTag("page_name", pageName);
-      }
-    }
+    //   if (pageName) {
+    //     Clarity.setTag("page_name", pageName);
+    //   }
+    // }
   }, [location.pathname]);
 
   return null;
