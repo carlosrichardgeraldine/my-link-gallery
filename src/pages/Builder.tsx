@@ -234,11 +234,10 @@ const Builder = () => {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="inline-flex items-center gap-1.5 rounded-xl border border-foreground bg-foreground px-3 py-1.5 text-xs font-medium text-background transition-colors hover:opacity-90 md:text-sm"
+          title="Generate"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-foreground bg-foreground text-background transition-colors hover:opacity-90"
         >
-          <Download className="h-3.5 w-3.5" />
-          Generate
-          <ChevronDown className="h-3 w-3 opacity-70" />
+          <Download className="h-4 w-4" />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[160px]">
@@ -276,8 +275,9 @@ const Builder = () => {
         <Redo2 className="h-4 w-4" />
       </button>
       <button type="button" onClick={handleResumeReset}
-        className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm">
-        <RotateCcw className="h-3.5 w-3.5" /> Reset
+        className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-background text-foreground transition-colors hover:bg-card"
+        aria-label="Reset" title="Reset">
+        <RotateCcw className="h-4 w-4" />
       </button>
       {generateDropdown}
       {publishButton}
@@ -297,8 +297,9 @@ const Builder = () => {
         <Redo2 className="h-4 w-4" />
       </button>
       <button type="button" onClick={handleLinksReset}
-        className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm">
-        <RotateCcw className="h-3.5 w-3.5" /> Reset
+        className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-background text-foreground transition-colors hover:bg-card"
+        aria-label="Reset" title="Reset">
+        <RotateCcw className="h-4 w-4" />
       </button>
       {generateDropdown}
       {publishButton}
