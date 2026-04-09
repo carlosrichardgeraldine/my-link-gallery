@@ -533,7 +533,6 @@ export default function Resume() {
     offsetTop: 0,
   });
   const isMobile = useIsMobile();
-  const [showMobileBlockModal, setShowMobileBlockModal] = useState(false);
   const [summaryModalPage, setSummaryModalPage] = useState<typeof resumePages[0] | null>(null);
   const [showBigFiveModal, setShowBigFiveModal] = useState(false);
   const [showDiscModal, setShowDiscModal] = useState(false);
@@ -667,46 +666,17 @@ export default function Resume() {
         <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
           <h1 className="text-base font-semibold text-foreground md:text-xl">Resume</h1>
           <div className="flex items-center gap-3">
-            {isMobile ? (
-              <button
-                type="button"
-                className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
-                onClick={() => setShowMobileBlockModal(true)}
-              >
-                Build your own
-              </button>
-            ) : (
-              <Link
-                to="/resume-builder"
-                className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
-              >
-                Build your own
-              </Link>
-            )}
+            <Link
+              to="/resume-builder"
+              className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
+            >
+              Build your own
+            </Link>
             <ThemeToggle />
           </div>
         </div>
       </header>
 
-      <Dialog open={showMobileBlockModal} onOpenChange={setShowMobileBlockModal}>
-        <DialogContent className="sm:max-w-xl">
-          <DialogHeader>
-            <DialogTitle>Oops! Desktop-only</DialogTitle>
-            <DialogDescription>
-              Looks like this feature doesn't work on mobile. Hop onto a desktop to give it a try!
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <button
-              type="button"
-              onClick={() => setShowMobileBlockModal(false)}
-              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
-            >
-              Got it
-            </button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
 
       <main className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden snap-y snap-mandatory scroll-smooth">
         {resumePages.map((page, index) => {
