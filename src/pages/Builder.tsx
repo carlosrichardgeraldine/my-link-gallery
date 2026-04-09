@@ -67,7 +67,7 @@ const Builder = () => {
   const [resumeActiveSection, setResumeActiveSection] = useState<SectionId>("resumePages");
   const [resumeIsStatusExpanded, setResumeIsStatusExpanded] = useState(false);
   const [resumeIsSectionsExpanded, setResumeIsSectionsExpanded] = useState(false);
-  const [resumeIsOnboardingOpen, setResumeIsOnboardingOpen] = useState(true);
+  const [isOnboardingOpen, setIsOnboardingOpen] = useState(true);
   const [resumeBuilderStatusHeight, setResumeBuilderStatusHeight] = useState(0);
   const resumeBuilderStatusRef = useRef<HTMLElement | null>(null);
   const resumeEditorScrollRef = useRef<HTMLDivElement | null>(null);
@@ -146,7 +146,6 @@ const Builder = () => {
     return parsed ?? createLinkBuilderContent();
   });
 
-  const [linksIsOnboardingOpen, setLinksIsOnboardingOpen] = useState(true);
   const linksContentRef = useRef(linksContent);
 
   const {
@@ -537,46 +536,40 @@ const Builder = () => {
         </DialogContent>
       </Dialog>
 
-      {/* ── Resume onboarding ─────────────────────────────────────── */}
-      <Dialog open={resumeIsOnboardingOpen && activeTab === "resume"} onOpenChange={setResumeIsOnboardingOpen}>
+      {/* ── Combined onboarding (shown once) ─────────────────────── */}
+      <Dialog open={isOnboardingOpen} onOpenChange={setIsOnboardingOpen}>
         <DialogContent className="sm:max-w-xl">
           <DialogHeader>
-            <DialogTitle>Build Your Own Resume Page</DialogTitle>
-            <DialogDescription>Follow these steps to customize and publish your resume page.</DialogDescription>
+            <DialogTitle>Welcome to the Builder</DialogTitle>
+            <DialogDescription>
+              This builder lets you customize both your <span className="font-medium text-foreground">Resume</span> and <span className="font-medium text-foreground">Links</span> pages from one place.
+            </DialogDescription>
           </DialogHeader>
-          <ol className="space-y-2 pl-5 text-sm leading-relaxed text-foreground/90 list-decimal">
-            <li>Edit your resume content in this builder.</li>
-            <li>Use <span className="font-medium text-foreground">Generate → Download Resume.tsx</span> to download the file manually.</li>
-            <li>Use <span className="font-medium text-foreground">Publish</span> to send both files to GitHub directly at once.</li>
-            <li>Publish auto-detects your fork, creates one if needed, or uses upstream owner mode.</li>
-            <li>Publish commits directly to the deployment branch and triggers CI/CD immediately.</li>
-          </ol>
+          <div className="space-y-4 text-sm leading-relaxed text-foreground/90">
+            <div className="space-y-1.5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Resume tab</p>
+              <ul className="space-y-1 pl-4 list-disc text-foreground/80">
+                <li>Edit resume sections, projects, and credentials.</li>
+                <li>Use <span className="font-medium text-foreground">Generate → Download Resume.tsx</span> for a manual download.</li>
+              </ul>
+            </div>
+            <div className="space-y-1.5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Links tab</p>
+              <ul className="space-y-1 pl-4 list-disc text-foreground/80">
+                <li>Add, reorder, and edit all your link cards.</li>
+                <li>Use <span className="font-medium text-foreground">Generate → Download links.ts</span> for a manual download.</li>
+              </ul>
+            </div>
+            <div className="rounded-xl border border-border bg-muted/30 px-4 py-3 space-y-1">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Publishing</p>
+              <p className="text-foreground/80">
+                The <span className="font-medium text-foreground">Publish</span> button sends <span className="font-medium text-foreground">both</span> files to GitHub simultaneously. It auto-detects your fork, creates one if needed, and commits directly to the deployment branch.
+              </p>
+            </div>
+          </div>
           <DialogFooter>
-            <button type="button" onClick={() => setResumeIsOnboardingOpen(false)}
-              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card">
-              Got it
-            </button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
-      {/* ── Links onboarding ──────────────────────────────────────── */}
-      <Dialog open={linksIsOnboardingOpen && activeTab === "links"} onOpenChange={setLinksIsOnboardingOpen}>
-        <DialogContent className="sm:max-w-xl">
-          <DialogHeader>
-            <DialogTitle>Build Your Own Link Page</DialogTitle>
-            <DialogDescription>Follow these steps to customize and publish your own links page.</DialogDescription>
-          </DialogHeader>
-          <ol className="list-decimal space-y-2 pl-5 text-sm leading-relaxed text-foreground/90">
-            <li>Edit your links content in this builder.</li>
-            <li>Use <span className="font-medium text-foreground">Generate → Download links.ts</span> to download the file manually.</li>
-            <li>Use <span className="font-medium text-foreground">Publish</span> to send both files to GitHub directly at once.</li>
-            <li>Publish auto-detects your fork, creates one if needed, or uses upstream owner mode.</li>
-            <li>Publish commits directly to the deployment branch and triggers CI/CD immediately.</li>
-          </ol>
-          <DialogFooter>
-            <button type="button" onClick={() => setLinksIsOnboardingOpen(false)}
-              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card">
+            <button type="button" onClick={() => setIsOnboardingOpen(false)}
+              className="inline-flex items-center justify-center rounded-2xl border border-foreground bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90">
               Got it
             </button>
           </DialogFooter>
