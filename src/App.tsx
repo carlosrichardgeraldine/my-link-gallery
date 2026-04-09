@@ -5,6 +5,7 @@ import Clarity from "@microsoft/clarity";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -67,11 +68,14 @@ const TitleManager = () => {
   useEffect(() => {
     const pageName = routeTitles[location.pathname] ?? "";
     document.title = pageName ? `${OWNER_NAME} | ${pageName}` : OWNER_NAME;
-    Clarity.setTag("app", "my-link-gallery");
-    Clarity.setTag("page", location.pathname);
 
-    if (pageName) {
-      Clarity.setTag("page_name", pageName);
+    if (typeof window.clarity === "function") {
+      Clarity.setTag("app", "my-link-gallery");
+      Clarity.setTag("page", location.pathname);
+
+      if (pageName) {
+        Clarity.setTag("page_name", pageName);
+      }
     }
   }, [location.pathname]);
 
@@ -192,6 +196,7 @@ export const AttributionFooter = () => {
 
 const FirstVisitAgreement = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [clarityConsent, setClarityConsent] = useState(true);
 
   useEffect(() => {
     const hasAccepted = window.localStorage.getItem(LEGAL_ACCEPTANCE_KEY);
@@ -204,8 +209,13 @@ const FirstVisitAgreement = () => {
   const handleAgree = () => {
     window.localStorage.setItem(
       LEGAL_ACCEPTANCE_KEY,
-      JSON.stringify({ acceptedAt: new Date().toISOString() })
+      JSON.stringify({ acceptedAt: new Date().toISOString(), clarityConsent })
     );
+
+    if (clarityConsent) {
+      Clarity.init("w7t8i6b7ve");
+    }
+
     setIsOpen(false);
   };
 
@@ -219,7 +229,7 @@ const FirstVisitAgreement = () => {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-3 text-sm leading-relaxed text-foreground/90">
+        <div className="space-y-4 text-sm leading-relaxed text-foreground/90">
           <p>
             By clicking <span className="font-medium text-foreground">I Agree</span>, you acknowledge the legal terms published on the Legal page.
           </p>
@@ -228,6 +238,23 @@ const FirstVisitAgreement = () => {
               Read Privacy Notice, License, and Terms
             </Link>
           </p>
+
+          <div className="rounded-xl border border-border bg-muted/40 p-4 space-y-2">
+            <p className="font-medium text-foreground text-sm">Analytics &amp; Tracking</p>
+            <p className="text-muted-foreground text-xs leading-relaxed">
+              This site uses <span className="font-medium text-foreground">Microsoft Clarity</span> to collect anonymized usage data (session recordings, heatmaps, and interaction metrics) to help improve the experience. No personally identifiable information is collected.
+            </p>
+            <label className="flex items-center gap-3 cursor-pointer pt-1">
+              <Checkbox
+                id="clarity-consent"
+                checked={clarityConsent}
+                onCheckedChange={(checked) => setClarityConsent(checked === true)}
+              />
+              <span className="text-sm text-foreground select-none">
+                Allow Microsoft Clarity analytics
+              </span>
+            </label>
+          </div>
         </div>
 
         <DialogFooter>
