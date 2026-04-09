@@ -20,21 +20,20 @@ A frontend-only React + Vite web application serving as a personal link hub (sim
 - `src/components/ui/` — Reusable shadcn/ui primitives
 - `src/components/index/` — Link gallery components (search, filters)
 - `src/hooks/` — Shared custom hooks
-- `src/data/` — Separated data files: `resume-data.json` (all resume content), `links-data.json` (all link content), TypeScript type/accessor files (`resumeBuilderContent.ts`, `linkBuilderContent.ts`, `links.ts`)
-- `src/lib/` — Utility functions and generators
+- `src/data/` — Single merged `data.json` (resume + links combined), TypeScript type/accessor files (`resumeBuilderContent.ts`, `linkBuilderContent.ts`, `links.ts`)
+- `src/lib/` — Utility functions and generators (`dataGenerator.ts`, `dataPublishService.ts`)
 - `public/` — Static assets
 - `docs/` — Project documentation
 
 ## Data Architecture
 
-Resume and links content is **fully separated** from logic code:
+All content is stored in a **single merged JSON file**:
 
-- **`src/data/resume-data.json`** — Single source of truth for all resume content (pages, skills, experience, education, credentials, contact channels, overview details, keyword rows). `Resume.tsx` imports and reads this file directly.
-- **`src/data/links-data.json`** — Single source of truth for all link content (settings and link items). `links.ts` re-exports from this file.
+- **`src/data/data.json`** — Single source of truth for both resume and links content. Top-level keys: `resume` (all resume fields) and `links` (settings + link items). `Resume.tsx` reads from `data.resume`, `links.ts` reads from `data.links`.
 
-The builders generate and publish these JSON files:
-- Resume builder → generates `resume-data.json` via `buildResumeDataJson` / `downloadResumeDataJson`
-- Links builder → generates `links-data.json` via `buildLinksDataJson` / `downloadLinksDataJson`
+The builder generates and publishes one combined file:
+- Both builders → generate a single `data.json` via `buildDataJson` / `downloadDataJson` (`src/lib/dataGenerator.ts`)
+- Publishing commits `src/data/data.json` once via `dataPublishService.ts` and `useDataPublish` hook
 
 The psychometric section in `Resume.tsx` (Big Five, DISC, linguistic scores, etc.) is intentionally kept static (hardcoded) as it is not editable via the builder.
 
