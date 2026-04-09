@@ -421,97 +421,166 @@ const toolsAndEquipmentCards: GroupCard[] = [
   { title: "Introductory", items: toolsAndEquipment.introductory },
 ];
 
-const GroupedCardsCarousel = ({
-  cards,
-  lockHorizontalOnPortrait = false,
+const groupBorderGradients = [
+  "from-cyan-400/80 via-sky-400/70 to-blue-500/80",
+  "from-emerald-400/80 via-lime-400/70 to-yellow-400/80",
+  "from-fuchsia-400/80 via-pink-400/70 to-rose-500/80",
+  "from-violet-400/80 via-indigo-400/70 to-blue-400/80",
+  "from-amber-400/80 via-orange-400/70 to-red-500/80",
+  "from-teal-400/80 via-cyan-400/70 to-indigo-500/80",
+];
+
+const GroupDeckCard = ({
+  card,
+  gradientClass,
 }: {
-  cards: GroupCard[];
-  lockHorizontalOnPortrait?: boolean;
+  card: GroupCard;
+  gradientClass: string;
 }) => {
-  const [isScrollGuidanceVisible, setIsScrollGuidanceVisible] = useState(false);
-  const scrollFadeTimerRef = useRef<number | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    return () => {
-      if (scrollFadeTimerRef.current) {
-        window.clearTimeout(scrollFadeTimerRef.current);
-      }
-    };
+    const frame = window.requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
-  const handleHorizontalScroll = () => {
-    setIsScrollGuidanceVisible(true);
-
-    if (scrollFadeTimerRef.current) {
-      window.clearTimeout(scrollFadeTimerRef.current);
-    }
-
-    scrollFadeTimerRef.current = window.setTimeout(() => {
-      setIsScrollGuidanceVisible(false);
-      scrollFadeTimerRef.current = null;
-    }, 380);
-  };
-
-  const borderGradients = [
-    "from-cyan-400/80 via-sky-400/70 to-blue-500/80",
-    "from-emerald-400/80 via-lime-400/70 to-yellow-400/80",
-    "from-fuchsia-400/80 via-pink-400/70 to-rose-500/80",
-    "from-violet-400/80 via-indigo-400/70 to-blue-400/80",
-    "from-amber-400/80 via-orange-400/70 to-red-500/80",
-    "from-teal-400/80 via-cyan-400/70 to-indigo-500/80",
-  ];
-
   return (
-    <div className="relative w-full">
-      <div
-        className={`-mx-1 overflow-x-auto pb-2 ${
-          lockHorizontalOnPortrait ? "portrait-cards-scroll-track" : ""
-        }`}
-        onScroll={handleHorizontalScroll}
-      >
-        <div className="grouped-cards-track flex min-w-full snap-x snap-mandatory gap-4 px-1">
-          {cards.map((card, cardIndex) => (
-            <article
-              key={card.title}
-              className={`grouped-card min-w-[200px] sm:min-w-[230px] lg:min-w-[260px] flex-1 basis-0 snap-start rounded-2xl bg-gradient-to-br ${borderGradients[cardIndex % borderGradients.length]} p-[1px] shadow-[0_0_0_1px_rgba(255,255,255,0.08)]`}
+    <article
+      className={`h-full rounded-2xl bg-gradient-to-br ${gradientClass} p-[1px] shadow-[0_0_0_1px_rgba(255,255,255,0.08)] transition-all duration-500 ease-out ${
+        isVisible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+      }`}
+    >
+      <div className="flex h-full min-h-[200px] sm:min-h-[240px] flex-col rounded-2xl border border-border/70 bg-card p-4 sm:p-5">
+        <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+          {card.title}
+        </h3>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {card.items.map((item) => (
+            <span
+              key={item}
+              className="hover-chroma-pill rounded-full border border-border bg-background/70 px-2.5 py-1 text-xs leading-relaxed text-foreground/90 sm:px-3 sm:text-sm"
             >
-              <div className="h-full rounded-2xl border border-border/70 bg-card p-3 sm:p-4">
-                <h3 className="portrait-card-content-text text-sm font-semibold text-foreground sm:text-base">{card.title}</h3>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {card.items.map((item) => (
-                    <span
-                      key={item}
-                      className="portrait-card-content-text hover-chroma-pill rounded-full border border-border bg-background/70 px-2.5 py-1 text-xs leading-relaxed text-foreground/90 sm:px-3 sm:text-sm"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
+              {item}
+            </span>
           ))}
         </div>
       </div>
-
-      <div
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-1 transition-opacity duration-150 ${
-          isScrollGuidanceVisible ? "opacity-20" : "opacity-0"
-        }`}
-      >
-        <ChevronLeft className="h-5 w-5 text-foreground" />
-      </div>
-      <div
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-y-0 right-0 z-10 flex items-center pr-1 transition-opacity duration-150 ${
-          isScrollGuidanceVisible ? "opacity-20" : "opacity-0"
-        }`}
-      >
-        <ChevronRight className="h-5 w-5 text-foreground" />
-      </div>
-    </div>
+    </article>
   );
 };
+
+const PagedGroupedDeck = ({
+  cards,
+  isActive = false,
+}: {
+  cards: GroupCard[];
+  isActive?: boolean;
+}) => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const [hoverSide, setHoverSide] = useState<"left" | "right" | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const previousActiveRef = useRef(isActive);
+  const totalPages = cards.length;
+
+  useEffect(() => {
+    const wasInactive = !previousActiveRef.current;
+    previousActiveRef.current = isActive;
+    if (isActive && wasInactive) {
+      setCurrentPage(0);
+    }
+  }, [isActive]);
+
+  useEffect(() => {
+    if (!isActive || isHovered || totalPages <= 1) return;
+    const interval = window.setInterval(() => {
+      setCurrentPage((page) => (page === totalPages - 1 ? 0 : page + 1));
+    }, 7000);
+    return () => window.clearInterval(interval);
+  }, [currentPage, totalPages, isActive, isHovered]);
+
+  const goPrev = () => {
+    setCurrentPage((page) => (page === 0 ? totalPages - 1 : page - 1));
+  };
+
+  const goNext = () => {
+    setCurrentPage((page) => (page === totalPages - 1 ? 0 : page + 1));
+  };
+
+  return (
+    <div className="w-full">
+      <div
+        className="group relative w-full"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => {
+          setHoverSide(null);
+          setIsHovered(false);
+        }}
+      >
+        <div key={currentPage}>
+          <GroupDeckCard
+            card={cards[currentPage]}
+            gradientClass={groupBorderGradients[currentPage % groupBorderGradients.length]}
+          />
+        </div>
+
+        {totalPages > 1 && (
+          <>
+            <button
+              type="button"
+              aria-label="Previous group"
+              onMouseEnter={() => setHoverSide("left")}
+              onFocus={() => setHoverSide("left")}
+              onClick={goPrev}
+              className="absolute inset-y-0 left-0 z-10 w-1/2 cursor-pointer border-0 bg-transparent p-0 outline-none"
+            />
+            <button
+              type="button"
+              aria-label="Next group"
+              onMouseEnter={() => setHoverSide("right")}
+              onFocus={() => setHoverSide("right")}
+              onClick={goNext}
+              className="absolute inset-y-0 right-0 z-10 w-1/2 cursor-pointer border-0 bg-transparent p-0 outline-none"
+            />
+
+            <div
+              className={`pointer-events-none absolute inset-y-0 left-0 z-20 flex w-9 items-center justify-start transition-opacity duration-200 ${hoverSide === "left" ? "opacity-100" : "opacity-0"}`}
+            >
+              <div className="flex h-24 w-9 items-center justify-center rounded-r-full bg-card/90 border border-border border-l-0 shadow-sm">
+                <ChevronLeft className="h-5 w-5 text-foreground" />
+              </div>
+            </div>
+
+            <div
+              className={`pointer-events-none absolute inset-y-0 right-0 z-20 flex w-9 items-center justify-end transition-opacity duration-200 ${hoverSide === "right" ? "opacity-100" : "opacity-0"}`}
+            >
+              <div className="flex h-24 w-9 items-center justify-center rounded-l-full bg-card/90 border border-border border-r-0 shadow-sm">
+                <ChevronRight className="h-5 w-5 text-foreground" />
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+
+      {totalPages > 1 && (
+        <div className="mt-3 flex justify-center gap-1.5">
+          {cards.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Go to group ${i + 1}`}
+              onClick={() => setCurrentPage(i)}
+              className={`h-1.5 rounded-full transition-all duration-200 ${
+                i === currentPage ? "w-4 bg-foreground" : "w-1.5 bg-foreground/30"
+              }`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 const DeckEntryCard = ({
   item,
@@ -974,9 +1043,7 @@ export default function Resume() {
                 sectionRefs.current[index] = section;
               }
             }}
-            className={`snap-start snap-always min-h-full border-b border-border ${
-              page.id === "tools-equipment" ? "portrait-hide-section" : ""
-            }`}
+            className={"snap-start snap-always min-h-full border-b border-border"}
           >
             <div className="container mx-auto flex min-h-full items-center px-4 py-12">
               <div className="grid w-full gap-8 lg:grid-cols-[1.15fr_1.15fr_0.7fr] lg:grid-rows-[auto_1fr]">
@@ -1088,23 +1155,9 @@ export default function Resume() {
                       </div>
                     </div>
                   ) : page.id === "key-skills" ? (
-                    <div className="space-y-6">
-                      <GroupedCardsCarousel cards={keySkillsCards} lockHorizontalOnPortrait />
-
-                      <div className="portrait-only-block space-y-3">
-                        <div className="pb-1">
-                          <h2 className="max-w-4xl pb-1 text-3xl font-bold leading-[1.05] sm:text-4xl md:text-6xl">
-                            Tools and Equipment
-                          </h2>
-                          <p className="mt-4 max-w-3xl text-sm text-muted-foreground sm:text-base md:text-lg">
-                            Core platforms and tools grouped by proficiency level.
-                          </p>
-                        </div>
-                        <GroupedCardsCarousel cards={toolsAndEquipmentCards} lockHorizontalOnPortrait />
-                      </div>
-                    </div>
+                    <PagedGroupedDeck cards={keySkillsCards} isActive={activeSectionId === "key-skills"} />
                   ) : page.id === "tools-equipment" ? (
-                    <GroupedCardsCarousel cards={toolsAndEquipmentCards} lockHorizontalOnPortrait />
+                    <PagedGroupedDeck cards={toolsAndEquipmentCards} isActive={activeSectionId === "tools-equipment"} />
                   ) : page.id === "contact" ? (
                     <div className="grid gap-8 md:grid-cols-2">
                       <div className="space-y-3">
