@@ -7,6 +7,7 @@ const GITHUB_API = "https://api.github.com";
 const UPSTREAM_OWNER = "carlosrichardgeraldine";
 const UPSTREAM_REPO = "my-link-gallery";
 const UPSTREAM_FULL_NAME = `${UPSTREAM_OWNER}/${UPSTREAM_REPO}`;
+const UPSTREAM_BRANCH = "public-prod";
 const DATA_PATH = "src/data/data.json";
 const WORKFLOWS_DIR = ".github/workflows";
 
@@ -127,12 +128,24 @@ const findExistingTargetRepository = async (token: string, userLogin: string): P
   return mapRepository(matchedFork);
 };
 
+const setForkDefaultBranch = async (repo: ForkRepository, token: string): Promise<void> => {
+  try {
+    await apiRequest(`/repos/${repo.owner}/${repo.name}`, token, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ default_branch: UPSTREAM_BRANCH }),
+    });
+  } catch {
+    // Best-effort — commits will still target UPSTREAM_BRANCH even if this fails.
+  }
+};
+
 const createForkAndResolve = async (token: string, userLogin: string): Promise<ResolvedTarget> => {
   try {
     await apiRequest<GithubRepo>(`/repos/${UPSTREAM_OWNER}/${UPSTREAM_REPO}/forks`, token, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ default_branch_only: true }),
+      body: JSON.stringify({}),
     });
   } catch (error) {
     const publishError = error as PublishError;
@@ -150,7 +163,10 @@ const createForkAndResolve = async (token: string, userLogin: string): Promise<R
 
   for (let attempt = 0; attempt < 10; attempt += 1) {
     const resolved = await findExistingTargetRepository(token, userLogin);
-    if (resolved) return { repository: resolved, mode: "created_new_fork" };
+    if (resolved) {
+      await setForkDefaultBranch(resolved, token);
+      return { repository: resolved, mode: "created_new_fork" };
+    }
     await wait(1200);
   }
 
@@ -297,7 +313,7 @@ export const publishDataToFork = async (
   notifyState(callbacks, "preparing");
   const target = await resolveTargetRepository(token);
   const repo = target.repository;
-  const branch = repo.defaultBranch;
+  const branch = UPSTREAM_BRANCH;
 
   notifyState(callbacks, "committing");
   const commitUrl = await commitDataWithCleanup(repo, token, branch, dataSource);

@@ -4,6 +4,7 @@ const GITHUB_API = "https://api.github.com";
 const UPSTREAM_OWNER = "carlosrichardgeraldine";
 const UPSTREAM_REPO = "my-link-gallery";
 const UPSTREAM_FULL_NAME = `${UPSTREAM_OWNER}/${UPSTREAM_REPO}`;
+const UPSTREAM_BRANCH = "public-prod";
 const RESUME_PATH = "src/data/resume-data.json";
 
 type GithubUser = {
@@ -171,14 +172,24 @@ const findExistingTargetRepository = async (token: string, userLogin: string): P
   return mapRepository(matchedFork);
 };
 
+const setForkDefaultBranch = async (fork: ForkRepository, token: string): Promise<void> => {
+  try {
+    await apiRequest(`/repos/${fork.owner}/${fork.name}`, token, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ default_branch: UPSTREAM_BRANCH }),
+    });
+  } catch {
+    // Best-effort — commits will still target UPSTREAM_BRANCH even if this fails.
+  }
+};
+
 const createForkAndResolve = async (token: string, userLogin: string): Promise<ResolvedTarget> => {
   try {
     await apiRequest<GithubRepo>(`/repos/${UPSTREAM_OWNER}/${UPSTREAM_REPO}/forks`, token, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        default_branch_only: true,
-      }),
+      body: JSON.stringify({}),
     });
   } catch (error) {
     const publishError = error as PublishError;
@@ -203,7 +214,8 @@ const createForkAndResolve = async (token: string, userLogin: string): Promise<R
     const resolved = await findExistingTargetRepository(token, userLogin);
 
     if (resolved) {
-      await deleteWorkflowsFromFork(resolved, token, resolved.defaultBranch);
+      await setForkDefaultBranch(resolved, token);
+      await deleteWorkflowsFromFork(resolved, token, UPSTREAM_BRANCH);
       return {
         repository: resolved,
         mode: "created_new_fork",
@@ -289,7 +301,7 @@ export const publishResumeToFork = async (
   notifyState(callbacks, "preparing");
   const target = await resolveTargetRepository(token);
   const fork = target.repository;
-  const branch = fork.defaultBranch;
+  const branch = UPSTREAM_BRANCH;
 
   notifyState(callbacks, "committing");
   const commitUrl = await commitResumeFile(fork, token, branch, resumeSource);
