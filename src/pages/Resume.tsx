@@ -854,6 +854,7 @@ export default function Resume() {
   });
   const isMobile = useIsMobile();
   const [showMobileBlockModal, setShowMobileBlockModal] = useState(false);
+  const [summaryModalPage, setSummaryModalPage] = useState<typeof resumePages[0] | null>(null);
 
   useEffect(() => {
     try {
@@ -1383,25 +1384,36 @@ export default function Resume() {
                 </div>
 
                 {showSidePanel && (
-                  <div className={`h-full min-h-[260px] rounded-[1.25rem] border bg-card p-4 shadow-sm md:p-5 ${page.borderClass}`}>
-                    <div className="flex h-full flex-col rounded-2xl border border-border/70 bg-background p-3 md:p-4">
-                      <p className="text-sm font-semibold">Summary</p>
-                      <p className="mt-3 border-l border-border/70 pl-3 text-[19px] italic leading-relaxed text-muted-foreground/90">
-                        {page.summary}
-                      </p>
+                  isMobile ? (
+                    <button
+                      type="button"
+                      onClick={() => setSummaryModalPage(page)}
+                      className="self-start inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card/80"
+                    >
+                      <span>Show Summary</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-60"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </button>
+                  ) : (
+                    <div className={`h-full min-h-[260px] rounded-[1.25rem] border bg-card p-4 shadow-sm md:p-5 ${page.borderClass}`}>
+                      <div className="flex h-full flex-col rounded-2xl border border-border/70 bg-background p-3 md:p-4">
+                        <p className="text-sm font-semibold">Summary</p>
+                        <p className="mt-3 border-l border-border/70 pl-3 text-[19px] italic leading-relaxed text-muted-foreground/90">
+                          {page.summary}
+                        </p>
 
-                      <div className="mt-auto pt-4 flex flex-wrap gap-2">
-                        {page.highlights.map((item) => (
-                          <span
-                            key={item}
-                            className="hover-chroma-pill rounded-full border border-border bg-card px-2.5 py-1 text-xs text-foreground"
-                          >
-                            {item}
-                          </span>
-                        ))}
+                        <div className="mt-auto pt-4 flex flex-wrap gap-2">
+                          {page.highlights.map((item) => (
+                            <span
+                              key={item}
+                              className="hover-chroma-pill rounded-full border border-border bg-card px-2.5 py-1 text-xs text-foreground"
+                            >
+                              {item}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )
                 )}
               </div>
             </div>
@@ -1410,7 +1422,41 @@ export default function Resume() {
         })}
       </main>
 
-      <button
+      <Dialog open={summaryModalPage !== null} onOpenChange={(open) => { if (!open) setSummaryModalPage(null); }}>
+        <DialogContent className="sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle>Summary</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <p className="border-l-2 border-border pl-3 text-base italic leading-relaxed text-muted-foreground">
+              {summaryModalPage?.summary}
+            </p>
+            {summaryModalPage?.highlights && summaryModalPage.highlights.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {summaryModalPage.highlights.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-border bg-card px-2.5 py-1 text-xs text-foreground"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+          <DialogFooter>
+            <button
+              type="button"
+              onClick={() => setSummaryModalPage(null)}
+              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
+            >
+              Close
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+            <button
         type="button"
         aria-label="Tools"
         onClick={() => {
