@@ -7,8 +7,6 @@ const routeTable = [
   { path: "/", purpose: "Primary resume experience", notes: "Main landing page." },
   { path: "/links", purpose: "Link gallery", notes: "Search, filtering, and pagination." },
   { path: "/resume", purpose: "Legacy path", notes: "Redirects to /." },
-  { path: "/resume-builder", purpose: "Resume content editor", notes: "Generates Resume.tsx output." },
-  { path: "/links-builder", purpose: "Link content editor", notes: "Generates links.ts output." },
   { path: "/docs", purpose: "Documentation hub", notes: "Top-level docs index." },
   { path: "/docs/overview-manual", purpose: "Manual", notes: "High-level setup and maintenance guide." },
   { path: "/docs/architecture", purpose: "Architecture docs", notes: "Feature and module boundaries." },

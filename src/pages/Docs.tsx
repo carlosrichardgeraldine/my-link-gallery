@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen, LayoutGrid, Route, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, LayoutGrid, Route } from "lucide-react";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
 import MonochromePlusBackground from "@/components/MonochromePlusBackground";
@@ -59,8 +59,6 @@ const docsSections = [
 const quickLinks = [
   { label: "Resume", href: "/", icon: Route },
   { label: "Links", href: "/links", icon: LayoutGrid },
-  { label: "Resume Builder", href: "/resume-builder", icon: Sparkles },
-  { label: "Link Builder", href: "/links-builder", icon: Sparkles },
 ];
 
 const docsContents = [

@@ -1,6 +1,6 @@
 # My Link Gallery
 
-A frontend-only React + Vite web application serving as a personal link hub (similar to Linktree), a styled resume page, and an in-browser resume builder.
+A frontend-only React + Vite web application serving as a personal link hub (similar to Linktree) and a styled resume page.
 
 ## Tech Stack
 
@@ -15,13 +15,12 @@ A frontend-only React + Vite web application serving as a personal link hub (sim
 
 ## Project Structure
 
-- `src/pages/` — Main route components (Index, Resume, ResumeBuilder)
-- `src/features/` — Resume builder editors and configuration
+- `src/pages/` — Main route components (Index, Resume, Docs pages, Legal, NotFound)
 - `src/components/ui/` — Reusable shadcn/ui primitives
 - `src/components/index/` — Link gallery components (search, filters)
 - `src/hooks/` — Shared custom hooks
-- `src/data/` — Single merged `data.json` (resume + links combined), TypeScript type/accessor files (`resumeBuilderContent.ts`, `linkBuilderContent.ts`, `links.ts`)
-- `src/lib/` — Utility functions and generators (`dataGenerator.ts`, `dataPublishService.ts`)
+- `src/data/` — Single merged `data.json` (resume + links combined), TypeScript accessor files (`links.ts`)
+- `src/lib/` — Utility functions
 - `public/` — Static assets
 - `docs/` — Project documentation
 
@@ -31,11 +30,19 @@ All content is stored in a **single merged JSON file**:
 
 - **`src/data/data.json`** — Single source of truth for both resume and links content. Top-level keys: `resume` (all resume fields) and `links` (settings + link items). `Resume.tsx` reads from `data.resume`, `links.ts` reads from `data.links`.
 
-The builder generates and publishes one combined file:
-- Both builders → generate a single `data.json` via `buildDataJson` / `downloadDataJson` (`src/lib/dataGenerator.ts`)
-- Publishing commits `src/data/data.json` once via `dataPublishService.ts` and `useDataPublish` hook
+The psychometric section in `Resume.tsx` (Big Five, DISC, linguistic scores, etc.) is intentionally kept static (hardcoded).
 
-The psychometric section in `Resume.tsx` (Big Five, DISC, linguistic scores, etc.) is intentionally kept static (hardcoded) as it is not editable via the builder.
+## Key Routes
+
+- `/` — Resume page
+- `/links` — Link gallery
+- `/docs` — Documentation hub
+- `/legal` — Legal / Privacy
+
+## Notes
+
+- "Build your own" buttons on the Resume and Links pages link externally to `https://build.carlosgeraldine.eu.org`
+- Builder tool code (pages, features, hooks, generators) has been removed from this branch
 
 ## Development
 

@@ -41,12 +41,14 @@ const Index = () => {
         <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
           <h1 className="text-base font-semibold text-foreground md:text-xl">{linksPageSettings.title}</h1>
           <div className="flex items-center gap-3">
-            <Link
-              to="/links-builder"
+            <a
+              href="https://build.carlosgeraldine.eu.org"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
             >
               Build your own
-            </Link>
+            </a>
             <ThemeToggle />
           </div>
         </div>

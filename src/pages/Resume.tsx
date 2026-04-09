@@ -14,7 +14,7 @@ import {
 import MonochromePlusBackground from "@/components/MonochromePlusBackground";
 import ResumeToolsPanel from "@/components/ResumeToolsPanel";
 import dataJson from "@/data/data.json";
-import type { ContactChannel } from "@/data/resumeBuilderContent";
+type ContactChannel = { label: string; value: string; hidden?: boolean; href?: string };
 
 const OVERVIEW_ICON_MAP = { MapPin, MapPinned, ArrowRightLeft, Briefcase } as const;
 
@@ -667,12 +667,14 @@ export default function Resume() {
         <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
           <h1 className="text-base font-semibold text-foreground md:text-xl">Resume</h1>
           <div className="flex items-center gap-3">
-            <Link
-              to="/resume-builder"
+            <a
+              href="https://build.carlosgeraldine.eu.org"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
             >
               Build your own
-            </Link>
+            </a>
             <ThemeToggle />
           </div>
         </div>
