@@ -12,6 +12,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { createResumeBuilderContent, type ResumeBuilderContent } from "@/data/resumeBuilderContent";
 import { createLinkBuilderContent, type LinkBuilderContent } from "@/data/linkBuilderContent";
@@ -61,10 +67,7 @@ const Builder = () => {
   const [resumeActiveSection, setResumeActiveSection] = useState<SectionId>("resumePages");
   const [resumeIsStatusExpanded, setResumeIsStatusExpanded] = useState(false);
   const [resumeIsSectionsExpanded, setResumeIsSectionsExpanded] = useState(false);
-  const [resumeIsNotesOpen, setResumeIsNotesOpen] = useState(false);
   const [resumeIsOnboardingOpen, setResumeIsOnboardingOpen] = useState(true);
-  const [resumeIsPublishOpen, setResumeIsPublishOpen] = useState(false);
-  const [resumePublishToken, setResumePublishToken] = useState("");
   const [resumeBuilderStatusHeight, setResumeBuilderStatusHeight] = useState(0);
   const resumeBuilderStatusRef = useRef<HTMLElement | null>(null);
   const resumeEditorScrollRef = useRef<HTMLDivElement | null>(null);
@@ -86,18 +89,12 @@ const Builder = () => {
   useEffect(() => {
     const element = resumeBuilderStatusRef.current;
     if (!element) return;
-
     const updateHeight = () => setResumeBuilderStatusHeight(element.offsetHeight);
     updateHeight();
-
     const resizeObserver = new ResizeObserver(updateHeight);
     resizeObserver.observe(element);
     window.addEventListener("resize", updateHeight);
-
-    return () => {
-      resizeObserver.disconnect();
-      window.removeEventListener("resize", updateHeight);
-    };
+    return () => { resizeObserver.disconnect(); window.removeEventListener("resize", updateHeight); };
   }, [resumeIsStatusExpanded]);
 
   useEffect(() => {
@@ -107,31 +104,10 @@ const Builder = () => {
     }
   }, [activeTab]);
 
-  const handleResumeGenerate = () => {
-    downloadResumeTsx(resumeContent, resumeCurrentSource);
-    setResumeIsNotesOpen(true);
-    toast.success("Resume.tsx downloaded.");
-  };
-
   const handleResumeReset = () => {
     resumeReset(createResumeBuilderContent());
     setResumeActiveSection("resumePages");
     toast.success("Builder reset to the current Resume.tsx defaults.");
-  };
-
-  const handleResumePublish = async () => {
-    const token = resumePublishToken.trim();
-    if (!token) { toast.error("Enter a GitHub token before publishing."); return; }
-    const generatedSource = buildResumeTsx(resumeContent, resumeCurrentSource);
-    const outcome = await resumePublish(token, generatedSource);
-    setResumePublishToken("");
-    if (outcome) toast.success("Publish completed and deployment started.");
-    else toast.error("Publish failed. Review details in the dialog.");
-  };
-
-  const handleResumePublishDialogChange = (open: boolean) => {
-    setResumeIsPublishOpen(open);
-    if (!open) { setResumePublishToken(""); resumeResetPublish(); }
   };
 
   const resumeSectionButtons = sections.map((section) => {
@@ -171,9 +147,6 @@ const Builder = () => {
   });
 
   const [linksIsOnboardingOpen, setLinksIsOnboardingOpen] = useState(true);
-  const [linksIsGeneratedNotesOpen, setLinksIsGeneratedNotesOpen] = useState(false);
-  const [linksIsPublishOpen, setLinksIsPublishOpen] = useState(false);
-  const [linksPublishToken, setLinksPublishToken] = useState("");
   const linksContentRef = useRef(linksContent);
 
   const {
@@ -202,33 +175,95 @@ const Builder = () => {
     });
   };
 
-  const handleLinksGenerate = () => {
-    downloadLinksTs(linksContentRef.current);
-    setLinksIsGeneratedNotesOpen(true);
-    toast.success("links.ts downloaded.");
-  };
-
   const handleLinksReset = () => {
     linksReset(createLinkBuilderContent());
     toast.success("Builder reset to the current links.ts defaults.");
   };
 
-  const handleLinksPublish = async () => {
-    const token = linksPublishToken.trim();
+  // ── Shared: Generate dropdown ────────────────────────────────────────────
+  const handleDownloadResume = () => {
+    downloadResumeTsx(resumeContent, resumeCurrentSource);
+    toast.success("Resume.tsx downloaded.");
+  };
+
+  const handleDownloadLinks = () => {
+    downloadLinksTs(linksContentRef.current);
+    toast.success("links.ts downloaded.");
+  };
+
+  // ── Shared: Combined publish ──────────────────────────────────────────────
+  const [isPublishOpen, setIsPublishOpen] = useState(false);
+  const [publishToken, setPublishToken] = useState("");
+
+  const isPublishing = isResumePublishing || isLinksPublishing;
+
+  const handlePublishDialogChange = (open: boolean) => {
+    setIsPublishOpen(open);
+    if (!open) {
+      setPublishToken("");
+      resumeResetPublish();
+      linksResetPublish();
+    }
+  };
+
+  const handleCombinedPublish = async () => {
+    const token = publishToken.trim();
     if (!token) { toast.error("Enter a GitHub token before publishing."); return; }
-    const generatedSource = buildLinksTs(linksContentRef.current);
-    const outcome = await linksPublish(token, generatedSource);
-    setLinksPublishToken("");
-    if (outcome) toast.success("Publish completed and PR is ready.");
-    else toast.error("Publish failed. Review details in the dialog.");
+
+    const resumeSource = buildResumeTsx(resumeContent, resumeCurrentSource);
+    const linksSource = buildLinksTs(linksContentRef.current);
+
+    const [resumeOutcome, linksOutcome] = await Promise.allSettled([
+      resumePublish(token, resumeSource),
+      linksPublish(token, linksSource),
+    ]);
+
+    setPublishToken("");
+
+    const resumeOk = resumeOutcome.status === "fulfilled" && resumeOutcome.value !== null;
+    const linksOk = linksOutcome.status === "fulfilled" && linksOutcome.value !== null;
+
+    if (resumeOk && linksOk) toast.success("Both files published successfully.");
+    else if (resumeOk) toast.warning("Resume.tsx published, but links.ts failed.");
+    else if (linksOk) toast.warning("links.ts published, but Resume.tsx failed.");
+    else toast.error("Both publishes failed. Review details in the dialog.");
   };
 
-  const handleLinksPublishDialogChange = (open: boolean) => {
-    setLinksIsPublishOpen(open);
-    if (!open) { setLinksPublishToken(""); linksResetPublish(); }
-  };
+  // ── Shared toolbar ────────────────────────────────────────────────────────
+  const generateDropdown = (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          type="button"
+          className="inline-flex items-center gap-1.5 rounded-xl border border-foreground bg-foreground px-3 py-1.5 text-xs font-medium text-background transition-colors hover:opacity-90 md:text-sm"
+        >
+          <Download className="h-3.5 w-3.5" />
+          Generate
+          <ChevronDown className="h-3 w-3 opacity-70" />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="min-w-[160px]">
+        <DropdownMenuItem onClick={handleDownloadResume}>
+          Download Resume.tsx
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={handleDownloadLinks}>
+          Download links.ts
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
 
-  // ── Shared toolbar controls per tab ──────────────────────────────────────
+  const publishButton = (
+    <button
+      type="button"
+      onClick={() => setIsPublishOpen(true)}
+      className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
+    >
+      <Send className="h-3.5 w-3.5" />
+      Publish
+    </button>
+  );
+
   const resumeControls = (
     <>
       <button type="button" onClick={resumeUndo} disabled={!resumeCanUndo}
@@ -245,14 +280,8 @@ const Builder = () => {
         className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm">
         <RotateCcw className="h-3.5 w-3.5" /> Reset
       </button>
-      <button type="button" onClick={handleResumeGenerate}
-        className="inline-flex items-center gap-1.5 rounded-xl border border-foreground bg-foreground px-3 py-1.5 text-xs font-medium text-background transition-colors hover:opacity-90 md:text-sm">
-        <Download className="h-3.5 w-3.5" /> Generate
-      </button>
-      <button type="button" onClick={() => setResumeIsPublishOpen(true)}
-        className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm">
-        <Send className="h-3.5 w-3.5" /> Publish
-      </button>
+      {generateDropdown}
+      {publishButton}
     </>
   );
 
@@ -272,14 +301,8 @@ const Builder = () => {
         className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm">
         <RotateCcw className="h-3.5 w-3.5" /> Reset
       </button>
-      <button type="button" onClick={handleLinksGenerate}
-        className="inline-flex items-center gap-1.5 rounded-xl border border-foreground bg-foreground px-3 py-1.5 text-xs font-medium text-background transition-colors hover:opacity-90 md:text-sm">
-        <Download className="h-3.5 w-3.5" /> Generate
-      </button>
-      <button type="button" onClick={() => setLinksIsPublishOpen(true)}
-        className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm">
-        <Send className="h-3.5 w-3.5" /> Publish
-      </button>
+      {generateDropdown}
+      {publishButton}
     </>
   );
 
@@ -293,8 +316,6 @@ const Builder = () => {
         {/* ── Shared header ─────────────────────────────────────── */}
         <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur-sm">
           <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
-
-            {/* Tab toggle */}
             <div className="flex items-center rounded-xl border border-border bg-muted/40 p-0.5 text-sm shrink-0">
               <button
                 type="button"
@@ -322,7 +343,6 @@ const Builder = () => {
               </button>
             </div>
 
-            {/* Active tab controls */}
             <div className="flex items-center gap-2">
               {activeTab === "resume" ? resumeControls : linksControls}
               <ThemeToggle />
@@ -336,7 +356,6 @@ const Builder = () => {
           {/* Resume builder */}
           <div className={cx("absolute inset-0 overflow-hidden", activeTab !== "resume" && "hidden")}>
             <main className="container mx-auto grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)] gap-6 overflow-hidden px-4 py-6 lg:grid-cols-[18rem_minmax(0,1fr)] lg:grid-rows-1 lg:py-8">
-
               <aside className="rounded-3xl border border-border bg-card p-4 shadow-sm max-h-[38vh] overflow-hidden lg:h-full lg:max-h-none">
                 <div className="flex h-full min-h-0 flex-col">
                   <div className="flex items-start justify-between gap-3">
@@ -391,14 +410,12 @@ const Builder = () => {
                   <BuilderPanel activeSection={resumeActiveSection} content={resumeContent} setContent={(next) => setResumeWithHistory(next)} />
                 </div>
               </div>
-
             </main>
           </div>
 
           {/* Links builder */}
           <div className={cx("absolute inset-0 overflow-hidden", activeTab !== "links" && "hidden")}>
             <main className="container mx-auto grid h-full min-h-0 gap-6 overflow-hidden px-4 py-6 lg:grid-cols-[18rem_minmax(0,1fr)] lg:py-8">
-
               <aside className="rounded-3xl border border-border bg-card p-4 shadow-sm">
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">Sections</p>
                 <nav className="mt-4 space-y-2">
@@ -415,85 +432,112 @@ const Builder = () => {
                   onChange={(next) => updateLinksContent((current) => ({ ...current, links: next }))}
                 />
               </div>
-
             </main>
           </div>
-
         </div>
       </div>
 
-      {/* ── Resume dialogs ────────────────────────────────────────── */}
-      <Dialog open={resumeIsNotesOpen} onOpenChange={setResumeIsNotesOpen}>
-        <DialogContent className="sm:max-w-xl">
-          <DialogHeader><DialogTitle>Generated Resume.tsx downloaded</DialogTitle></DialogHeader>
-          <div className="space-y-3 text-sm leading-relaxed text-foreground/90">
-            <p>The Generate button downloads a full <span className="font-medium text-foreground">Resume.tsx</span> file. It does not write to the workspace or commit anything.</p>
-            <p>Replace your source file manually after reviewing the download.</p>
-          </div>
-          <DialogFooter>
-            <button type="button" onClick={() => setResumeIsNotesOpen(false)}
-              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card">
-              Close
-            </button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={resumeIsPublishOpen} onOpenChange={handleResumePublishDialogChange}>
+      {/* ── Combined publish dialog ───────────────────────────────── */}
+      <Dialog open={isPublishOpen} onOpenChange={handlePublishDialogChange}>
         <DialogContent className="sm:max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Publish Resume.tsx to GitHub</DialogTitle>
+            <DialogTitle>Publish to GitHub</DialogTitle>
             <DialogDescription>
-              This flow uses your fork when available, creates one automatically when needed, and falls back to the existing repository when the token belongs to the upstream owner. It commits directly to the deployment branch so CI/CD starts immediately without a merge step. The token is used in-memory only and cleared when this dialog closes.
+              Publishes both <span className="font-medium text-foreground">Resume.tsx</span> and <span className="font-medium text-foreground">links.ts</span> to your fork simultaneously. The token is used in-memory only and cleared when this dialog closes.
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-3 text-sm leading-relaxed text-foreground/90">
+
+          <div className="space-y-4 text-sm leading-relaxed text-foreground/90">
             <label className="block space-y-2">
               <span className="text-sm font-medium text-foreground">GitHub personal access token</span>
-              <Input type="password" autoComplete="off" spellCheck={false} value={resumePublishToken}
-                onChange={(e) => setResumePublishToken(e.target.value)} placeholder="ghp_..." disabled={isResumePublishing} />
+              <Input
+                type="password"
+                autoComplete="off"
+                spellCheck={false}
+                value={publishToken}
+                onChange={(e) => setPublishToken(e.target.value)}
+                placeholder="ghp_..."
+                disabled={isPublishing}
+              />
             </label>
-            {resumePublishStatusLabel && <p className="text-sm text-muted-foreground">{resumePublishStatusLabel}</p>}
-            {resumePublishError && (
-              <div className="rounded-2xl border border-destructive/40 bg-destructive/5 p-3 text-sm text-foreground">
-                <p className="font-medium">{resumePublishError.message}</p>
-                {resumePublishError.details && <p className="mt-1 text-muted-foreground">{resumePublishError.details}</p>}
-                {resumePublishError.code === "network_or_cors" && (
-                  <p className="mt-2 text-muted-foreground">Fallback: use Generate to download Resume.tsx, commit it to your fork manually, then open a pull request.</p>
+
+            {/* Resume status */}
+            {(resumePublishState !== "idle" || resumePublishError || resumePublishResult) && (
+              <div className="rounded-2xl border border-border/70 bg-muted/30 p-4 space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Resume.tsx</p>
+                {resumePublishStatusLabel && <p className="text-sm text-muted-foreground">{resumePublishStatusLabel}</p>}
+                {resumePublishError && (
+                  <div className="rounded-xl border border-destructive/40 bg-destructive/5 p-3 text-sm">
+                    <p className="font-medium text-foreground">{resumePublishError.message}</p>
+                    {resumePublishError.details && <p className="mt-1 text-muted-foreground">{resumePublishError.details}</p>}
+                    {resumePublishError.code === "network_or_cors" && (
+                      <p className="mt-2 text-muted-foreground">Use Generate → Download Resume.tsx to get the file manually.</p>
+                    )}
+                  </div>
+                )}
+                {resumePublishResult && (
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="inline-flex items-center rounded-full border border-border bg-card px-2.5 py-0.5 text-xs font-medium text-foreground">
+                        {publishModeLabels[resumePublishResult.publishMode]}
+                      </span>
+                      <span className="text-muted-foreground text-xs">Branch: {resumePublishResult.branch}</span>
+                    </div>
+                    <a href={resumePublishResult.commitUrl} target="_blank" rel="noreferrer"
+                      className="inline-flex items-center rounded-lg border border-border bg-background px-2.5 py-1 text-xs font-medium text-foreground transition-colors hover:bg-card">
+                      View commit
+                    </a>
+                  </div>
                 )}
               </div>
             )}
-            {resumePublishResult && (
-              <div className="rounded-2xl border border-border/70 bg-background p-3 text-sm">
-                <p className="font-medium text-foreground">Publish complete</p>
-                <div className="mt-2">
-                  <span className="inline-flex items-center rounded-full border border-border bg-card px-2.5 py-1 text-xs font-medium text-foreground">{publishModeLabels[resumePublishResult.publishMode]}</span>
-                </div>
-                <p className="mt-1 text-muted-foreground">Fork: {resumePublishResult.fork.fullName}</p>
-                <p className="mt-1 text-muted-foreground">Branch: {resumePublishResult.branch}</p>
-                <p className="mt-1 text-muted-foreground">Deployment has been triggered automatically from this publish.</p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  <a href={resumePublishResult.commitUrl} target="_blank" rel="noreferrer"
-                    className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm">
-                    View commit
-                  </a>
-                </div>
+
+            {/* Links status */}
+            {(linksPublishState !== "idle" || linksPublishError || linksPublishResult) && (
+              <div className="rounded-2xl border border-border/70 bg-muted/30 p-4 space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">links.ts</p>
+                {linksPublishStatusLabel && <p className="text-sm text-muted-foreground">{linksPublishStatusLabel}</p>}
+                {linksPublishError && (
+                  <div className="rounded-xl border border-destructive/40 bg-destructive/5 p-3 text-sm">
+                    <p className="font-medium text-foreground">{linksPublishError.message}</p>
+                    {linksPublishError.details && <p className="mt-1 text-muted-foreground">{linksPublishError.details}</p>}
+                    {linksPublishError.code === "network_or_cors" && (
+                      <p className="mt-2 text-muted-foreground">Use Generate → Download links.ts to get the file manually.</p>
+                    )}
+                  </div>
+                )}
+                {linksPublishResult && (
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="inline-flex items-center rounded-full border border-border bg-card px-2.5 py-0.5 text-xs font-medium text-foreground">
+                        {publishModeLabels[linksPublishResult.publishMode]}
+                      </span>
+                      <span className="text-muted-foreground text-xs">Branch: {linksPublishResult.branch}</span>
+                    </div>
+                    <a href={linksPublishResult.commitUrl} target="_blank" rel="noreferrer"
+                      className="inline-flex items-center rounded-lg border border-border bg-background px-2.5 py-1 text-xs font-medium text-foreground transition-colors hover:bg-card">
+                      View commit
+                    </a>
+                  </div>
+                )}
               </div>
             )}
           </div>
+
           <DialogFooter>
-            <button type="button" onClick={() => handleResumePublishDialogChange(false)} disabled={isResumePublishing}
+            <button type="button" onClick={() => handlePublishDialogChange(false)} disabled={isPublishing}
               className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card disabled:cursor-not-allowed disabled:opacity-60">
               Close
             </button>
-            <button type="button" onClick={handleResumePublish} disabled={isResumePublishing}
+            <button type="button" onClick={handleCombinedPublish} disabled={isPublishing}
               className="inline-flex items-center justify-center rounded-2xl border border-foreground bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60">
-              {isResumePublishing ? "Publishing..." : "Publish to GitHub"}
+              {isPublishing ? "Publishing..." : "Publish Both to GitHub"}
             </button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
+      {/* ── Resume onboarding ─────────────────────────────────────── */}
       <Dialog open={resumeIsOnboardingOpen && activeTab === "resume"} onOpenChange={setResumeIsOnboardingOpen}>
         <DialogContent className="sm:max-w-xl">
           <DialogHeader>
@@ -502,8 +546,8 @@ const Builder = () => {
           </DialogHeader>
           <ol className="space-y-2 pl-5 text-sm leading-relaxed text-foreground/90 list-decimal">
             <li>Edit your resume content in this builder.</li>
-            <li>Use Generate to download Resume.tsx for manual workflows.</li>
-            <li>Use Publish to send generated Resume.tsx to GitHub directly.</li>
+            <li>Use <span className="font-medium text-foreground">Generate → Download Resume.tsx</span> to download the file manually.</li>
+            <li>Use <span className="font-medium text-foreground">Publish</span> to send both files to GitHub directly at once.</li>
             <li>Publish auto-detects your fork, creates one if needed, or uses upstream owner mode.</li>
             <li>Publish commits directly to the deployment branch and triggers CI/CD immediately.</li>
           </ol>
@@ -516,77 +560,7 @@ const Builder = () => {
         </DialogContent>
       </Dialog>
 
-      {/* ── Links dialogs ─────────────────────────────────────────── */}
-      <Dialog open={linksIsGeneratedNotesOpen} onOpenChange={setLinksIsGeneratedNotesOpen}>
-        <DialogContent className="sm:max-w-xl">
-          <DialogHeader>
-            <DialogTitle>Generated links.ts downloaded</DialogTitle>
-            <DialogDescription>Replace your source links data file manually after reviewing the download.</DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <button type="button" onClick={() => setLinksIsGeneratedNotesOpen(false)}
-              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card">
-              Close
-            </button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={linksIsPublishOpen} onOpenChange={handleLinksPublishDialogChange}>
-        <DialogContent className="sm:max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>Publish links.ts to GitHub</DialogTitle>
-            <DialogDescription>
-              This flow uses your fork when available, creates one automatically when needed, and falls back to the existing repository when the token belongs to the upstream owner. It commits directly to the deployment branch so CI/CD starts immediately without a merge step. The token is used in-memory only and cleared when this dialog closes.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-3 text-sm leading-relaxed text-foreground/90">
-            <label className="block space-y-2">
-              <span className="text-sm font-medium text-foreground">GitHub personal access token</span>
-              <Input type="password" autoComplete="off" spellCheck={false} value={linksPublishToken}
-                onChange={(e) => setLinksPublishToken(e.target.value)} placeholder="ghp_..." disabled={isLinksPublishing} />
-            </label>
-            {linksPublishStatusLabel && <p className="text-sm text-muted-foreground">{linksPublishStatusLabel}</p>}
-            {linksPublishError && (
-              <div className="rounded-2xl border border-destructive/40 bg-destructive/5 p-3 text-sm text-foreground">
-                <p className="font-medium">{linksPublishError.message}</p>
-                {linksPublishError.details && <p className="mt-1 text-muted-foreground">{linksPublishError.details}</p>}
-                {linksPublishError.code === "network_or_cors" && (
-                  <p className="mt-2 text-muted-foreground">Fallback: use Generate to download links.ts, commit it to your fork manually, then open a pull request.</p>
-                )}
-              </div>
-            )}
-            {linksPublishResult && (
-              <div className="rounded-2xl border border-border/70 bg-background p-3 text-sm">
-                <p className="font-medium text-foreground">Publish complete</p>
-                <div className="mt-2">
-                  <span className="inline-flex items-center rounded-full border border-border bg-card px-2.5 py-1 text-xs font-medium text-foreground">{publishModeLabels[linksPublishResult.publishMode]}</span>
-                </div>
-                <p className="mt-1 text-muted-foreground">Fork: {linksPublishResult.fork.fullName}</p>
-                <p className="mt-1 text-muted-foreground">Branch: {linksPublishResult.branch}</p>
-                <p className="mt-1 text-muted-foreground">Deployment has been triggered automatically from this publish.</p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  <a href={linksPublishResult.commitUrl} target="_blank" rel="noreferrer"
-                    className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm">
-                    View commit
-                  </a>
-                </div>
-              </div>
-            )}
-          </div>
-          <DialogFooter>
-            <button type="button" onClick={() => handleLinksPublishDialogChange(false)} disabled={isLinksPublishing}
-              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card disabled:cursor-not-allowed disabled:opacity-60">
-              Close
-            </button>
-            <button type="button" onClick={handleLinksPublish} disabled={isLinksPublishing}
-              className="inline-flex items-center justify-center rounded-2xl border border-foreground bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60">
-              {isLinksPublishing ? "Publishing..." : "Publish to GitHub"}
-            </button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
+      {/* ── Links onboarding ──────────────────────────────────────── */}
       <Dialog open={linksIsOnboardingOpen && activeTab === "links"} onOpenChange={setLinksIsOnboardingOpen}>
         <DialogContent className="sm:max-w-xl">
           <DialogHeader>
@@ -595,8 +569,8 @@ const Builder = () => {
           </DialogHeader>
           <ol className="list-decimal space-y-2 pl-5 text-sm leading-relaxed text-foreground/90">
             <li>Edit your links content in this builder.</li>
-            <li>Use Generate to download links.ts for manual workflows.</li>
-            <li>Use Publish to send generated links.ts to GitHub directly.</li>
+            <li>Use <span className="font-medium text-foreground">Generate → Download links.ts</span> to download the file manually.</li>
+            <li>Use <span className="font-medium text-foreground">Publish</span> to send both files to GitHub directly at once.</li>
             <li>Publish auto-detects your fork, creates one if needed, or uses upstream owner mode.</li>
             <li>Publish commits directly to the deployment branch and triggers CI/CD immediately.</li>
           </ol>
