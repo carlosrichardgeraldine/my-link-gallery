@@ -1,4 +1,6 @@
 import type { ForkRepository, PublishCallbacks, PublishError, PublishMode, PublishState } from "@/lib/types/resumePublish";
+import docsTsxRaw from "@/pages/Docs.tsx?raw";
+import legalTsxRaw from "@/pages/Legal.tsx?raw";
 
 const GITHUB_API = "https://api.github.com";
 const UPSTREAM_OWNER = "carlosrichardgeraldine";
@@ -6,6 +8,11 @@ const UPSTREAM_REPO = "my-link-gallery";
 const UPSTREAM_FULL_NAME = `${UPSTREAM_OWNER}/${UPSTREAM_REPO}`;
 const DATA_PATH = "src/data/data.json";
 const WORKFLOWS_DIR = ".github/workflows";
+
+const SOURCE_SYNC_FILES: Array<{ path: string; content: string }> = [
+  { path: "src/pages/Docs.tsx", content: docsTsxRaw },
+  { path: "src/pages/Legal.tsx", content: legalTsxRaw },
+];
 
 type GithubUser = { login: string };
 
@@ -203,17 +210,30 @@ const commitDataWithCleanup = async (
     const baseCommitSha = branchInfo.commit.sha;
     const baseTreeSha = branchInfo.commit.commit.tree.sha;
 
-    const [blobResponse, workflowPaths] = await Promise.all([
+    const createBlob = (content: string) =>
       apiRequest<{ sha: string }>(`${base}/git/blobs`, token, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: toBase64(dataSource), encoding: "base64" }),
-      }),
+        body: JSON.stringify({ content: toBase64(content), encoding: "base64" }),
+      });
+
+    const [dataBlob, ...rest] = await Promise.all([
+      createBlob(dataSource),
+      ...SOURCE_SYNC_FILES.map((f) => createBlob(f.content)),
       getWorkflowFilePaths(repo, token, branch),
     ]);
 
+    const sourceSyncBlobs = rest.slice(0, SOURCE_SYNC_FILES.length) as Array<{ sha: string }>;
+    const workflowPaths = rest[SOURCE_SYNC_FILES.length] as string[];
+
     const treeItems: TreeItem[] = [
-      { path: DATA_PATH, mode: "100644", type: "blob", sha: blobResponse.sha },
+      { path: DATA_PATH, mode: "100644", type: "blob", sha: dataBlob.sha },
+      ...SOURCE_SYNC_FILES.map((f, i): TreeItem => ({
+        path: f.path,
+        mode: "100644",
+        type: "blob",
+        sha: sourceSyncBlobs[i].sha,
+      })),
       ...workflowPaths.map((p): TreeItem => ({ path: p, mode: "100644", type: "blob", sha: null })),
     ];
 
@@ -225,8 +245,8 @@ const commitDataWithCleanup = async (
 
     const commitMessage =
       workflowPaths.length > 0
-        ? "chore: update data.json and remove CI workflows from builder"
-        : "chore: update data.json from builder";
+        ? "chore: update data.json, sync source fixes, and remove CI workflows"
+        : "chore: update data.json and sync source fixes from builder";
 
     const newCommit = await apiRequest<{ sha: string; html_url: string }>(
       `${base}/git/commits`,
