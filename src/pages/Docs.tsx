@@ -198,6 +198,18 @@ const Docs = () => {
         </div>
       </div>
     </div>
+
+    <div
+      className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-center border-t border-border bg-background/95 px-2 py-1.5 md:hidden"
+      style={{ paddingBottom: "calc(0.5rem + env(safe-area-inset-bottom))" }}
+    >
+      <Link
+        to="/"
+        className="inline-flex flex-1 items-center justify-center rounded-xl border border-border bg-card px-2 py-1 text-base font-semibold text-foreground transition-colors hover:bg-background mx-1"
+      >
+        Back to Home
+      </Link>
+    </div>
   );
 };
 
