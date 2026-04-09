@@ -1,0 +1,48 @@
+Create a wizard page where it's asking the user whether they're setting this up for the first time or just to edit.
+
+Wizard steps for first timer when they open the Builder page:
+1. Go to GitHub then top-right profile icon then "Settings".
+2. Scroll down the left menu to "Developer" settings.
+3. Select "Personal access tokens" then "Fine-grained tokens".
+4. Click "Generate new token".
+5. Give it a clear name (e.g., My Links Gallery Publishing Token).
+6. Choose an expiration date (GitHub recommends not using “No expiration”).
+7. Select your personal account as the Resource Owner
+8. Choose "Only select repositories" then pick the repo you just forked (yourusername/my-links-gallery)
+9. Set Required Permissions to fork, clone, push, commit, and create branches, you need:
+	a. Contents set to Read & Write
+	b. Pull requests set to Read & Write
+	c. Issues set to Read & Write
+10. Scroll down and click "Generate" token.
+11. Copy it immediately to a notepad or secrets manager — GitHub will not show it again.
+12. Go back to the builder and edit all the details including your resume and your links
+13. Select Publish and enter the Github PAT you just created
+After this part of the wizard, go back to the builder page
+
+this part of the wizard shows when the first time user has clicked "Publish" then finalize the "Publish" process:
+14. The publisher will automatically fork and commit the changes for you
+15. Assumbing you already have an Azure account (if you don't, go register for Azure Free Trial or Azure for Students)
+16. Open in the new tab and open the Azure Portal (https://portal.azure.com)
+17. In Azure Portal, search for Static Web Apps and create new
+18. Select your active subscription
+19. leave the Resource Group empty (or edit it if you need to manage the RG)
+20. Give the resource a name (e.g. carlos-resume)
+21. Select Free as the Plan type (IMPORTANT!)
+22. Pick GitHub as the Source
+23. Connect your GitHub account to Azure Static Web Apps
+24. Select your username in the Organization dropdown
+25. Select the my-links-gallery repository
+26. Select main branch (or other branch if you made a customization to the code)
+27. Leave alone other configurations and just click "Review + create"
+28. Select Create
+29. At the resource deployment page, click "Go to Resource" once it is ready
+30. You can find the link to your newly created website there
+31. Wait for 5-10 minutes and your website is ready
+
+Wizard steps for those who has already forked the repo when they open the Builder page:
+1. Visit your own page 
+2. Go to the builder
+3. Edit all the details including your resume and your links
+4. Select Publish and enter the Github PAT you just created for the account with the forked repo
+5. The publisher will automatically commit the changes for you
+6. Since the CI/CD is already setup by Azure, you just need to wait for few minutes

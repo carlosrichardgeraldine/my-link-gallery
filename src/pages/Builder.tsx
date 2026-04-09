@@ -4,6 +4,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
 import MonochromePlusBackground from "@/components/MonochromePlusBackground";
 import LinkItemsEditor from "@/components/link-builder/LinkItemsEditor";
+import BuilderWizard, { AzureDeploySteps } from "@/components/BuilderWizard";
 import {
   Dialog,
   DialogContent,
@@ -379,7 +380,7 @@ const Builder = () => {
 
       {/* ── Publish dialog ───────────────────────────────── */}
       <Dialog open={isPublishOpen} onOpenChange={handlePublishDialogChange}>
-        <DialogContent className="sm:max-w-2xl">
+        <DialogContent className="sm:max-w-2xl max-h-[90vh] flex flex-col overflow-hidden">
           <DialogHeader>
             <DialogTitle>Publish to GitHub</DialogTitle>
             <DialogDescription>
@@ -387,7 +388,7 @@ const Builder = () => {
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-4 text-sm leading-relaxed text-foreground/90">
+          <div className="flex-1 overflow-y-auto space-y-4 text-sm leading-relaxed text-foreground/90">
             <label className="block space-y-2">
               <span className="text-sm font-medium text-foreground">GitHub personal access token</span>
               <Input
@@ -431,6 +432,10 @@ const Builder = () => {
                 )}
               </div>
             )}
+
+            {publishResult && publishResult.publishMode === "created_new_fork" && (
+              <AzureDeploySteps />
+            )}
           </div>
 
           <DialogFooter>
@@ -446,45 +451,8 @@ const Builder = () => {
         </DialogContent>
       </Dialog>
 
-      {/* ── Onboarding dialog ─────────────────────────────── */}
-      <Dialog open={isOnboardingOpen} onOpenChange={setIsOnboardingOpen}>
-        <DialogContent className="sm:max-w-xl">
-          <DialogHeader>
-            <DialogTitle>Welcome to the Builder</DialogTitle>
-            <DialogDescription>
-              This builder lets you customize both your <span className="font-medium text-foreground">Resume</span> and <span className="font-medium text-foreground">Links</span> pages from one place.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 text-sm leading-relaxed text-foreground/90">
-            <div className="space-y-1.5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Resume tab</p>
-              <ul className="space-y-1 pl-4 list-disc text-foreground/80">
-                <li>Edit resume sections, projects, and credentials.</li>
-                <li>Use the <span className="font-medium text-foreground">download button</span> to save data.json locally.</li>
-              </ul>
-            </div>
-            <div className="space-y-1.5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Links tab</p>
-              <ul className="space-y-1 pl-4 list-disc text-foreground/80">
-                <li>Add, reorder, and edit all your link cards.</li>
-                <li>Use the <span className="font-medium text-foreground">download button</span> to save data.json locally.</li>
-              </ul>
-            </div>
-            <div className="rounded-xl border border-border bg-muted/30 px-4 py-3 space-y-1">
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Publishing</p>
-              <p className="text-foreground/80">
-                The <span className="font-medium text-foreground">Publish</span> button commits a single <span className="font-medium text-foreground">data.json</span> — containing both your resume and links — to GitHub. It auto-detects your fork, creates one if needed, and commits directly to the deployment branch.
-              </p>
-            </div>
-          </div>
-          <DialogFooter>
-            <button type="button" onClick={() => setIsOnboardingOpen(false)}
-              className="inline-flex items-center justify-center rounded-2xl border border-foreground bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90">
-              Got it
-            </button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      {/* ── Onboarding wizard ─────────────────────────────── */}
+      <BuilderWizard open={isOnboardingOpen} onClose={() => setIsOnboardingOpen(false)} />
 
       <div
         className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-center border-t border-border bg-background/95 px-2 py-1.5 md:hidden"
