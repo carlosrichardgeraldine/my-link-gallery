@@ -68,15 +68,11 @@ export type ResumeBuilderContent = {
   contactChannels: ContactChannel[];
 };
 
-const LINGUISTIC_PSYCHOMETRICS_PAGE_ID = "linguistic-psychometrics";
-
 export const createResumeBuilderContent = (): ResumeBuilderContent => {
   const data = dataJson.resume;
 
   return {
-    resumePages: (data.resumePages as ResumePageContent[]).filter(
-      (page) => page.id !== LINGUISTIC_PSYCHOMETRICS_PAGE_ID
-    ),
+    resumePages: data.resumePages as ResumePageContent[],
     overviewDetails: data.overviewDetails.map((item) => ({ text: item.text })),
     rollingKeywordRows: data.rollingKeywordRows as string[][],
     projectItems: data.projectItems as string[],

@@ -64,7 +64,6 @@ const lockedResumePageIds = new Set([
   "languages",
   "portfolio",
   "who-am-i",
-  "linguistic-psychometrics",
 ]);
 
 export const ResumePagesEditor = ({

@@ -57,14 +57,6 @@
       "noCard": true
     },
     {
-      "id": "linguistic-psychometrics",
-      "title": "Linguistic and Psychometrics",
-      "subtitle": "Language proficiency and behavioral assessment profile.",
-      "summary": "Strengths: strong language proficiency, analytical depth, and exploratory drive. Weaknesses: uneven consistency and emotional volatility under pressure. Opportunities: roles in strategy, communication, and cross-functional leadership. Threats: burnout risk and overextension in high-change environments.",
-      "highlights": ["CEFR C1", "INFJ", "Type 3", "IAE", "Explorer", "Analytical"],
-      "borderClass": "border-sky-400/70"
-    },
-    {
       "id": "education-honors",
       "title": "Education & Honors",
       "subtitle": "Academic background and notable recognitions.",
