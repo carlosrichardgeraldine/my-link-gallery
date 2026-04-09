@@ -1,0 +1,121 @@
+/usr/bin/docker run --name be2190118485aafc441a3a2dcc125b1f3b60a_2216ed --label 8be219 --workdir /github/workspace --rm -e "INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN" -e "INPUT_REPO_TOKEN" -e "INPUT_ACTION" -e "INPUT_APP_LOCATION" -e "INPUT_API_LOCATION" -e "INPUT_OUTPUT_LOCATION" -e "INPUT_API_BUILD_COMMAND" -e "INPUT_APP_ARTIFACT_LOCATION" -e "INPUT_APP_BUILD_COMMAND" -e "INPUT_ROUTES_LOCATION" -e "INPUT_SKIP_APP_BUILD" -e "INPUT_CONFIG_FILE_LOCATION" -e "INPUT_SKIP_API_BUILD" -e "INPUT_PRODUCTION_BRANCH" -e "INPUT_DEPLOYMENT_ENVIRONMENT" -e "INPUT_IS_STATIC_EXPORT" -e "INPUT_DATA_API_LOCATION" -e "INPUT_GITHUB_ID_TOKEN" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_ENVIRONMENT" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e "ACTIONS_RESULTS_URL" -e "ACTIONS_ORCHESTRATION_ID" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp":"/github/runner_temp" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/my-link-gallery/my-link-gallery":"/github/workspace" 8be219:0118485aafc441a3a2dcc125b1f3b60a
+DeploymentId: dd040b6a-8988-4b30-acbe-417ce2c84000
+
+Try to validate location at: '/github/workspace'.
+App Directory Location: '/' was found.
+Try to validate location at: '/github/workspace/swa-db-connections'.
+Looking for event info
+Starting to build app with Oryx
+Azure Static Web Apps utilizes Oryx to build both static applications and Azure Functions. You can find more details on Oryx here: https://github.com/microsoft/Oryx
+---Oryx build logs---
+
+
+Operation performed by Microsoft Oryx, https://github.com/Microsoft/Oryx
+You can report issues at https://github.com/Microsoft/Oryx/issues
+
+Oryx Version: 0.2.20260109.4+7d54dd5970dbbf3ae6bdcf4dee57b07816a392ce, Commit: 7d54dd5970dbbf3ae6bdcf4dee57b07816a392ce, ReleaseTagName: 20260109.4
+
+Build Operation ID: 386ffbe93072b4ed
+OS Type           : bullseye
+Image Type        : githubactions
+
+Primary SDK Storage URL: https://oryx-cdn.microsoft.io
+Backup SDK Storage URL: 
+Detecting platforms...
+Detected following platforms:
+  nodejs: 22.22.0
+Version '22.22.0' of platform 'nodejs' is not installed. Generating script to install it...
+Detected the following frameworks: Typescript,React
+
+
+Source directory     : /github/workspace
+Destination directory: /bin/staticsites/dd040b6a-8988-4b30-acbe-417ce2c84000-swa-oryx/app
+
+Installing platform...
+
+Downloading and extracting 'nodejs' version '22.22.0' to '/tmp/oryx/platforms/nodejs/22.22.0'...
+Detected image debian flavor: bullseye.
+Binaries download done in 1 sec(s).
+Verifying checksum...
+Extracting contents...
+performing sha512 checksum for: nodejs...
+Checksum verification done in 0 sec(s).
+
+Platform installation done in 2 sec(s).
+Running build script snippets...
+Removing existing manifest file
+Creating directory for command manifest file if it does not exist
+Creating a manifest file...
+Node Build Command Manifest file created.
+
+Using Node version:
+v22.22.0
+
+Using Npm version:
+10.9.4
+
+Running 'npm install'...
+
+npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+
+added 496 packages, and audited 497 packages in 7s
+
+107 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+Running 'npm run build'...
+
+
+> vite_react_shadcn_ts@0.0.0 build
+> vite build
+
+vite v8.0.8 building client environment for production...
+
+transforming...✓ 1757 modules transformed.
+✗ Build failed in 1.08s
+error during build:
+Build failed with 2 errors:
+
+[builtin:vite-transform] Error: Expected `,` or `)` but found `Identifier`
+     ╭─[ src/pages/Docs.tsx:203:7 ]
+     │
+ 110 │   return (
+     │          ┬  
+     │          ╰── Opened here
+     │ 
+ 203 │       className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-center border-t border-border bg-background/95 px-2 py-1.5 md:hidden"
+     │       ────┬────  
+     │           ╰────── `,` or `)` expected
+─────╯
+
+[builtin:vite-transform] Error: Expected `,` or `)` but found `Identifier`
+    ╭─[ src/pages/Legal.tsx:88:7 ]
+    │
+  9 │   return (
+    │          ┬  
+    │          ╰── Opened here
+    │ 
+ 88 │       className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-center border-t border-border bg-background/95 px-2 py-1.5 md:hidden"
+    │       ────┬────  
+    │           ╰────── `,` or `)` expected
+────╯
+
+    at aggregateBindingErrorsIntoJsError (file:///github/workspace/node_modules/rolldown/dist/shared/error-w0u7biK-.mjs:48:18)
+    at unwrapBindingResult (file:///github/workspace/node_modules/rolldown/dist/shared/error-w0u7biK-.mjs:18:128)
+    at #build (file:///github/workspace/node_modules/rolldown/dist/shared/rolldown-build-DtGk-m96.mjs:3313:34)
+    at async buildEnvironment (file:///github/workspace/node_modules/vite/dist/node/chunks/node.js:32954:64)
+    at async Object.build (file:///github/workspace/node_modules/vite/dist/node/chunks/node.js:33376:19)
+    at async Object.buildApp (file:///github/workspace/node_modules/vite/dist/node/chunks/node.js:33373:153)
+    at async CAC.<anonymous> (file:///github/workspace/node_modules/vite/dist/node/cli.js:778:3) {
+  errors: [Getter/Setter]
+}
+
+
+---End of Oryx build logs---
+Oryx has failed to build the solution.
+
+For further information, please visit the Azure Static Web Apps documentation at https://docs.microsoft.com/en-us/azure/static-web-apps/
+If you believe this behavior is unexpected, please raise a GitHub issue at https://github.com/azure/static-web-apps/issues/
+Exiting
