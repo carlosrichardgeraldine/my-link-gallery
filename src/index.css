@@ -628,19 +628,24 @@
 [data-side="right"][data-align="end"]    { transform-origin: bottom left;  }
 
 /* ── Flashcard flip animation ──────────────────────────────────────────── */
+
+/*
+ * The scene is a flex child — let it shrink/grow up to the max-width,
+ * and use clamp() so the height tracks viewport width on mobile and caps
+ * out on large screens. The aspect-ratio hint lets the browser do the
+ * math; clamp() prevents the card from being too short on narrow phones
+ * or too tall on ultra-wide screens.
+ */
 .flashcard-scene {
-  perspective: 1200px;
+  perspective: 1400px;
   width: 100%;
   max-width: 42rem;
-  height: 20rem;
+  /* scales: ~14 rem on a 320 px phone → ~24 rem on a 768 px tablet → 26 rem cap */
+  height: clamp(14rem, 50vw, 26rem);
   cursor: pointer;
   outline: none;
-}
-
-@media (min-width: 768px) {
-  .flashcard-scene {
-    height: 24rem;
-  }
+  /* keep the scene from growing wider than its column */
+  flex-shrink: 0;
 }
 
 .flashcard {
@@ -648,7 +653,9 @@
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
+  /* override the site-wide 700 ms theme transition so only the flip runs */
   transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1) !important;
+  will-change: transform;
 }
 
 .flashcard--flipped {
@@ -661,6 +668,13 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   overflow-y: auto;
+  /*
+   * Suppress the site-wide `transition: transform 700ms` on these elements.
+   * Without this, the static `rotateY(180deg)` on the back face animates
+   * from 0 → 180 ° on every page load and theme change, making the card
+   * jump or briefly show the wrong face.
+   */
+  transition: none !important;
 }
 
 .flashcard-face--back {
