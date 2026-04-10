@@ -332,9 +332,6 @@ export default function FlashcardPage() {
                   <span className="text-sm font-semibold text-foreground">
                     {index + 1} <span className="text-muted-foreground font-normal">/ {queue.length}</span>
                   </span>
-                  <p className="text-[10px] text-muted-foreground">
-                    ← → to navigate · Space to flip
-                  </p>
                 </div>
 
                 <button
