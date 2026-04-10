@@ -38,14 +38,14 @@ const Index = () => {
       <div className="relative z-10">
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur-sm">
-        <div className="container mx-auto flex h-14 items-center justify-between gap-3 px-4 md:h-16">
-          <h1 className="text-base font-semibold text-foreground md:text-2xl">{linksPageSettings.title}</h1>
+        <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
+          <h1 className="text-base font-semibold text-foreground md:text-xl">{linksPageSettings.title}</h1>
           <div className="flex items-center gap-3">
             <a
               href="https://build.carlosgeraldine.eu.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:px-5 md:py-2.5 md:text-base"
+              className="inline-flex items-center rounded-xl border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-card md:text-sm"
             >
               Build your own
             </a>

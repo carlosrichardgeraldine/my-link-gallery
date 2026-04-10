@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Component, type ErrorInfo, type ReactNode, lazy, Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import AppNav from "@/components/AppNav";
 import Clarity from "@microsoft/clarity";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -17,6 +18,7 @@ import {
 
 const Index = lazy(() => import("./pages/Index.tsx"));
 const Resume = lazy(() => import("./pages/Resume.tsx"));
+const Tools = lazy(() => import("./pages/Tools.tsx"));
 const Pomodoro = lazy(() => import("./pages/Pomodoro.tsx"));
 const Docs = lazy(() => import("./pages/Docs.tsx"));
 const DocsOverviewManual = lazy(() => import("./pages/DocsOverviewManual.tsx"));
@@ -289,7 +291,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Resume />} />
                 <Route path="/links" element={<Index />} />
-                <Route path="/tools" element={<Pomodoro />} />
+                <Route path="/tools" element={<Tools />} />
                 <Route path="/pomodoro" element={<Pomodoro />} />
                 <Route path="/resume" element={<Navigate to="/" replace />} />
                 <Route path="/docs" element={<Docs />} />
@@ -308,6 +310,7 @@ const App = () => (
               </Routes>
             </Suspense>
 
+            <AppNav />
             <AttributionFooter />
             <FirstVisitAgreement />
           </div>
