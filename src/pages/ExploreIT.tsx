@@ -158,7 +158,32 @@ export default function ExploreIT() {
       <div className="relative z-10 flex flex-1 flex-col">
         <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur-sm">
           <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
-            <h1 className="text-base font-semibold text-foreground md:text-xl">exploreIT</h1>
+            <div className="flex items-center gap-2">
+              <h1 className="text-base font-semibold text-foreground md:text-xl">exploreIT</h1>
+              {totalPages > 1 && (
+                <div className="flex items-center gap-1 ml-2">
+                  <button
+                    type="button"
+                    onClick={() => goTo(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    aria-label="Previous page"
+                    className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors hover:bg-muted disabled:pointer-events-none disabled:opacity-40"
+                  >
+                    <ChevronLeft className="h-3.5 w-3.5" />
+                  </button>
+                  <span className="text-xs text-muted-foreground px-1">{currentPage}/{totalPages}</span>
+                  <button
+                    type="button"
+                    onClick={() => goTo(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    aria-label="Next page"
+                    className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors hover:bg-muted disabled:pointer-events-none disabled:opacity-40"
+                  >
+                    <ChevronRight className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              )}
+            </div>
             <ThemeToggle />
           </div>
         </header>
@@ -185,33 +210,6 @@ export default function ExploreIT() {
             ))}
           </ul>
 
-          {totalPages > 1 && (
-            <div className="mt-4 flex items-center justify-between gap-3">
-              <button
-                type="button"
-                onClick={() => goTo(currentPage - 1)}
-                disabled={currentPage === 1}
-                aria-label="Previous page"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card text-foreground transition-colors hover:bg-muted disabled:pointer-events-none disabled:opacity-40"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-
-              <span className="text-xs text-muted-foreground">
-                Page {currentPage} of {totalPages}
-              </span>
-
-              <button
-                type="button"
-                onClick={() => goTo(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                aria-label="Next page"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card text-foreground transition-colors hover:bg-muted disabled:pointer-events-none disabled:opacity-40"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-          )}
         </main>
       </div>
 
