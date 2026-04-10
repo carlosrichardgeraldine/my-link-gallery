@@ -44,7 +44,7 @@ function FlipCard({
     >
       <div className={`flashcard${flipped ? " flashcard--flipped" : ""}`}>
         {/* Front */}
-        <div className="flashcard-face flashcard-face--front hover-chroma-border rounded-2xl border border-border bg-card shadow-sm">
+        <div className="flashcard-face flashcard-face--front rounded-2xl border border-border bg-card shadow-sm">
           <div className="flex h-full flex-col items-center justify-center gap-4 p-6 text-center md:p-10">
             <div className="flex flex-wrap justify-center gap-1.5">
               {card.tags.map((t) => (
@@ -65,7 +65,7 @@ function FlipCard({
         </div>
 
         {/* Back */}
-        <div className="flashcard-face flashcard-face--back hover-chroma-border rounded-2xl border border-border bg-card shadow-sm">
+        <div className="flashcard-face flashcard-face--back rounded-2xl border border-border bg-card shadow-sm">
           <div className="flex h-full flex-col items-center justify-center gap-5 p-6 text-center md:p-10">
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               Definition

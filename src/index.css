@@ -663,7 +663,13 @@
 }
 
 .flashcard-face {
-  position: absolute;
+  /*
+   * !important needed: .hover-chroma-border (used on siblings elsewhere)
+   * sets `position: relative` with equal specificity, and it appears later
+   * in the sheet. Without !important both faces fall into normal block flow
+   * and the back renders below the front instead of overlapping it.
+   */
+  position: absolute !important;
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
