@@ -166,7 +166,10 @@ export default function ExploreIT() {
         </header>
 
         <main className="container mx-auto flex flex-1 flex-col px-4 py-4 md:py-6">
-          <div className="mb-4 flex items-center gap-3 md:mb-6">
+          <div className="mb-4 flex items-center justify-between gap-3 md:mb-6">
+            <p className="text-sm text-muted-foreground">
+              {itRoles.length} IT roles — select one to explore its description, skills, and learning path.
+            </p>
             {totalPages > 1 && (
               <div className="inline-flex shrink-0 items-center gap-2">
                 <button
@@ -189,9 +192,6 @@ export default function ExploreIT() {
                 </button>
               </div>
             )}
-            <p className="text-sm text-muted-foreground">
-              {itRoles.length} IT roles — select one to explore its description, skills, and learning path.
-            </p>
           </div>
 
           <ul className="flex-1 divide-y divide-border rounded-2xl border border-border bg-card/60 backdrop-blur-sm overflow-hidden">
