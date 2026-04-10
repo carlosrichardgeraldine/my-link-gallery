@@ -1,6 +1,5 @@
 import { useState, useMemo } from "react";
-import { ChevronLeft, ChevronRight, ExternalLink, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { itRoles, roleMap, type ITRole } from "@/data/exploreIT";
 import { useIsMobile } from "@/hooks/use-mobile";
 import MonochromePlusBackground from "@/components/MonochromePlusBackground";
@@ -159,18 +158,7 @@ export default function ExploreIT() {
       <div className="relative z-10 flex flex-1 flex-col">
         <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur-sm">
           <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
-            <div className="flex items-center gap-3">
-              <Link
-                to="/"
-                aria-label="Back to resume"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                <span className="hidden sm:inline">Resume</span>
-              </Link>
-              <span className="text-border/60">|</span>
-              <h1 className="text-base font-semibold text-foreground md:text-xl">exploreIT</h1>
-            </div>
+            <h1 className="text-base font-semibold text-foreground md:text-xl">exploreIT</h1>
             <ThemeToggle />
           </div>
         </header>

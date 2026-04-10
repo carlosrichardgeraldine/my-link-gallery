@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Clock,
@@ -31,6 +31,18 @@ const navItems: NavItem[] = [
 const AppNav = () => {
   const location = useLocation();
   const [open, setOpen] = useState(false);
+  const [nudge, setNudge] = useState(false);
+  const nudgeTimer = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    nudgeTimer.current = setInterval(() => {
+      if (!open) {
+        setNudge(true);
+        setTimeout(() => setNudge(false), 700);
+      }
+    }, 2 * 60 * 1000);
+    return () => { if (nudgeTimer.current) clearInterval(nudgeTimer.current); };
+  }, [open]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -40,9 +52,9 @@ const AppNav = () => {
           aria-label={open ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={open}
           aria-haspopup="dialog"
-          className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-border bg-card text-foreground shadow-lg backdrop-blur-sm transition-all hover:scale-105 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:bottom-8 md:right-8 md:h-16 md:w-16"
+          className={`fixed bottom-5 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-2xl border-2 border-border bg-card text-foreground shadow-lg backdrop-blur-sm transition-all hover:scale-105 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:bottom-8 md:right-8 md:h-12 md:w-12${nudge ? " animate-nav-nudge" : ""}`}
         >
-          <Grid2X2 className="h-6 w-6 md:h-7 md:w-7" />
+          <Grid2X2 className="h-5 w-5" />
         </button>
       </PopoverTrigger>
 
