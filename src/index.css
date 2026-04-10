@@ -587,12 +587,26 @@
 }
 
 /* ── Floating modal origin fix ─────────────────────────────────────────────
-   Radix sets data-side / data-align on every Popover / DropdownMenu content
-   element. We map those to the correct transform-origin so zoom-in/out
-   animations emerge from the trigger button rather than the viewport centre.
-   We also suppress the global 700 ms transition while the animation plays so
-   the two don't fight each other.
+   Radix Popper uses [data-radix-popper-content-wrapper] as the positioning
+   wrapper and sets its `transform: translate(x,y)` via floating-ui. Because
+   the wrapper starts at (0,0) and floating-ui updates the transform after the
+   first paint, the global `transition: transform 700ms` makes it literally
+   fly from the top of the page to the correct position. We zero-out every
+   transition on the wrapper so positioning is instant, then let the inner
+   content element's CSS animation (animate-in/animate-out) handle the
+   appearance effect.
+
+   We also set the correct transform-origin on the inner content element so
+   the zoom animation appears to emerge from the trigger button rather than
+   from the centre of the popup.
 ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Kill the 700ms position-fly on the wrapper */
+[data-radix-popper-content-wrapper] {
+  transition-property: none !important;
+}
+
+/* 2. Correct zoom origin on the inner content element */
 [data-side][data-align] {
   transition-property: none !important;
 }
