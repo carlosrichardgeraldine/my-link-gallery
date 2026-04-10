@@ -10,7 +10,6 @@ import {
   Image,
   Link2,
   Newspaper,
-  Wrench,
 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
@@ -21,7 +20,6 @@ type NavItem =
 const navItems: NavItem[] = [
   { label: "Resume", href: "/", icon: FileText },
   { label: "Links", href: "/links", icon: Link2 },
-  { label: "Tools", href: "/tools", icon: Wrench },
   { label: "Pomodoro", href: "/pomodoro", icon: Clock },
   { label: "Flashcard", href: null, icon: GraduationCap, soon: true },
   { label: "exploreIT", href: null, icon: Cpu, soon: true },
@@ -42,9 +40,9 @@ const AppNav = () => {
           aria-label={open ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={open}
           aria-haspopup="dialog"
-          className="fixed bottom-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-md backdrop-blur-sm transition-all hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:bottom-6 md:right-6"
+          className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-border bg-card text-foreground shadow-lg backdrop-blur-sm transition-all hover:scale-105 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:bottom-8 md:right-8 md:h-16 md:w-16"
         >
-          <Grid2X2 className="h-4 w-4" />
+          <Grid2X2 className="h-6 w-6 md:h-7 md:w-7" />
         </button>
       </PopoverTrigger>
 
