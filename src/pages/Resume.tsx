@@ -12,7 +12,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import MonochromePlusBackground from "@/components/MonochromePlusBackground";
-import ResumeToolsPanel from "@/components/ResumeToolsPanel";
 import dataJson from "@/data/data.json";
 type ContactChannel = { label: string; value: string; hidden?: boolean; href?: string };
 
@@ -75,8 +74,6 @@ const schwartzValues = ["Stimulation", "Self-Direction", "Achievement"];
 const hollandCodes = ["IAE", "Investigative", "Artistic", "Enterprising"];
 
 const jungianArchetypes = ["Primary - The Explorer", "Secondary - The Rebel"];
-
-const TOOLS_REMINDER_SEEN_KEY = "my-link-gallery.tools-reminder-seen.v1";
 
 type GroupCard = {
   title: string;
@@ -526,26 +523,14 @@ export default function Resume() {
   const overviewHeroRef = useRef<HTMLDivElement | null>(null);
   const overviewCardsRef = useRef<HTMLDivElement | null>(null);
   const [activeSectionId, setActiveSectionId] = useState("overview");
-  const [isToolsOpen, setIsToolsOpen] = useState(false);
-  const [isToolsReminderOpen, setIsToolsReminderOpen] = useState(false);
-  const [shouldShowToolsReminder, setShouldShowToolsReminder] = useState(false);
+  const isMobile = useIsMobile();
   const [overviewWallMetrics, setOverviewWallMetrics] = useState({
     height: 0,
     offsetTop: 0,
   });
-  const isMobile = useIsMobile();
   const [summaryModalPage, setSummaryModalPage] = useState<typeof resumePages[0] | null>(null);
   const [showBigFiveModal, setShowBigFiveModal] = useState(false);
   const [showDiscModal, setShowDiscModal] = useState(false);
-
-  useEffect(() => {
-    try {
-      const hasSeenReminder = window.localStorage.getItem(TOOLS_REMINDER_SEEN_KEY) === "1";
-      setShouldShowToolsReminder(!hasSeenReminder);
-    } catch {
-      setShouldShowToolsReminder(true);
-    }
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -607,62 +592,12 @@ export default function Resume() {
     };
   }, []);
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsToolsOpen(false);
-        setIsToolsReminderOpen(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
-
   return (
     <div className="relative isolate h-screen min-h-screen overflow-hidden bg-background text-foreground">
       <MonochromePlusBackground />
       <div className="page-base-glass" aria-hidden="true" />
 
-      <div
-        className={`absolute inset-0 z-10 transition-all duration-300 ${
-          isToolsOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-        }`}
-      >
-        <ResumeToolsPanel isOpen={isToolsOpen} onClose={() => setIsToolsOpen(false)} />
-      </div>
-
-      <Dialog open={isToolsReminderOpen} onOpenChange={setIsToolsReminderOpen}>
-        <DialogContent className="sm:max-w-xl">
-          <DialogHeader>
-            <DialogTitle>Welcome to Tools</DialogTitle>
-            <DialogDescription>
-              Press <span className="font-medium text-foreground">Escape</span> to go back to home.
-            </DialogDescription>
-          </DialogHeader>
-
-          <div className="space-y-3 text-sm leading-relaxed text-foreground/90">
-            <p>
-              Carlos loved learning, but staying focused wasn't always easy. One day he found a simple rhythm: short bursts of study, gentle lofi beats, and calm breaks. Studying suddenly felt lighter and clearer. Now it's your turn to step into that same flow.
-            </p>
-          </div>
-
-          <DialogFooter>
-            <button
-              type="button"
-              onClick={() => setIsToolsReminderOpen(false)}
-              className="inline-flex items-center justify-center rounded-2xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
-            >
-              Got it
-            </button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
-      <div className={`relative z-20 flex h-full min-h-0 flex-col bg-transparent transition-transform duration-500 ease-out ${isToolsOpen ? "translate-x-full" : "translate-x-0"}`}>
+      <div className="relative z-20 flex h-full min-h-0 flex-col bg-transparent">
       <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur-sm">
         <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
           <h1 className="text-base font-semibold text-foreground md:text-xl">Resume</h1>
@@ -1123,71 +1058,6 @@ export default function Resume() {
         </DialogContent>
       </Dialog>
 
-            <button
-        type="button"
-        aria-label="Tools"
-        onClick={() => {
-          setIsToolsOpen(true);
-
-          if (shouldShowToolsReminder) {
-            setIsToolsReminderOpen(true);
-            setShouldShowToolsReminder(false);
-
-            try {
-              window.localStorage.setItem(TOOLS_REMINDER_SEEN_KEY, "1");
-            } catch {
-              // Ignore storage failures and allow session-only behavior.
-            }
-          }
-        }}
-        className={`hidden md:inline-flex fixed bottom-4 left-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-left hover:scale-110 md:bottom-6 md:left-6 md:text-7xl ${
-          isToolsOpen ? "opacity-100" : "opacity-25"
-        }`}
-      >
-        ← tools
-      </button>
-
-      <Link
-        to="/links"
-        aria-label="Links"
-        className={`hidden md:inline-flex fixed bottom-4 right-4 z-40 select-none text-5xl font-bold leading-none tracking-tight text-foreground transition-all duration-300 origin-bottom-right hover:scale-110 md:bottom-6 md:right-6 md:text-7xl ${
-          activeSectionId === "contact" ? "opacity-100" : "opacity-25"
-        }`}
-      >
-        links →
-      </Link>
-
-      <div
-        className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 border-t border-border bg-background/95 px-4 py-2.5 md:hidden"
-        style={{
-          paddingBottom: "calc(0.9rem + env(safe-area-inset-bottom))",
-        }}
-      >
-        <button
-          type="button"
-          aria-label="Tools"
-          onClick={() => {
-            setIsToolsOpen(true);
-            if (shouldShowToolsReminder) {
-              setIsToolsReminderOpen(true);
-              setShouldShowToolsReminder(false);
-              try {
-                window.localStorage.setItem(TOOLS_REMINDER_SEEN_KEY, "1");
-              } catch {}
-            }
-          }}
-          className="inline-flex flex-1 items-center justify-center rounded-xl border border-border bg-card px-3 py-2 text-lg font-semibold text-foreground transition-colors hover:bg-background mx-1"
-        >
-          Tools
-        </button>
-        <Link
-          to="/links"
-          aria-label="Links"
-          className="inline-flex flex-1 items-center justify-center rounded-xl border border-border bg-card px-3 py-2 text-lg font-semibold text-foreground transition-colors hover:bg-background mx-1"
-        >
-          Links
-        </Link>
-      </div>
       </div>
     </div>
   );

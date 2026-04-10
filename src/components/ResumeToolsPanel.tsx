@@ -1,6 +1,5 @@
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
 import { ChevronDown, ChevronLeft, ChevronRight, Pause, Play, SkipForward, Square, Volume2, VolumeX, X } from "lucide-react";
 import confetti from "canvas-confetti";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -155,11 +154,6 @@ const spotifyFullPlaylists = [
 
 type SpotifyFullPlaylistId = (typeof spotifyFullPlaylists)[number]["id"];
 
-interface ResumeToolsPanelProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
 type SpotifyPlayerId = "compact" | "full";
 
 interface SpotifyPlaybackState {
@@ -206,7 +200,7 @@ declare global {
   }
 }
 
-const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
+const ResumeToolsPanel = () => {
   const pomodoroCardRef = useRef<HTMLElement | null>(null);
   const compactSpotifyEmbedHostRef = useRef<HTMLDivElement | null>(null);
   const spotifyControllersRef = useRef<Partial<Record<SpotifyPlayerId, SpotifyEmbedController>>>({});
@@ -963,7 +957,7 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
   const activeToolsTitle = activeCarouselPage === 0 ? "Pomodoro + Tasks" : "Spotify";
 
   return (
-    <section className="relative z-10 h-full overflow-y-auto bg-transparent text-foreground">
+    <section className="relative z-10 bg-transparent text-foreground">
       <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur-sm">
         <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
           <h1 className="text-base font-semibold text-foreground md:text-xl">Tools</h1>
@@ -1238,22 +1232,7 @@ const ResumeToolsPanel = ({ isOpen, onClose }: ResumeToolsPanelProps) => {
           </div>
         </div>
 
-        {!isOpen && <div className="h-10" />}
-      </div>
-
-      <div
-        className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-center border-t border-border bg-background/95 px-2 py-1.5 md:hidden"
-        style={{
-          paddingBottom: "calc(0.5rem + env(safe-area-inset-bottom))",
-        }}
-      >
-        <button
-          type="button"
-          onClick={() => window.location.assign("/")}
-          className="inline-flex flex-1 items-center justify-center rounded-xl border border-border bg-card px-2 py-1 text-base font-semibold text-foreground transition-colors hover:bg-background mx-1"
-        >
-          Back to Home
-        </button>
+        <div className="h-16" />
       </div>
 
       {typeof document !== "undefined" &&
