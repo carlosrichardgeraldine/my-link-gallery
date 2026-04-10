@@ -586,6 +586,33 @@
   animation: nav-nudge 0.6s ease-in-out;
 }
 
+/* ── Floating modal origin fix ─────────────────────────────────────────────
+   Radix sets data-side / data-align on every Popover / DropdownMenu content
+   element. We map those to the correct transform-origin so zoom-in/out
+   animations emerge from the trigger button rather than the viewport centre.
+   We also suppress the global 700 ms transition while the animation plays so
+   the two don't fight each other.
+────────────────────────────────────────────────────────────────────────── */
+[data-side][data-align] {
+  transition-property: none !important;
+}
+
+[data-side="top"][data-align="start"]  { transform-origin: bottom left;   }
+[data-side="top"][data-align="center"] { transform-origin: bottom center;  }
+[data-side="top"][data-align="end"]    { transform-origin: bottom right;   }
+
+[data-side="bottom"][data-align="start"]  { transform-origin: top left;   }
+[data-side="bottom"][data-align="center"] { transform-origin: top center;  }
+[data-side="bottom"][data-align="end"]    { transform-origin: top right;   }
+
+[data-side="left"][data-align="start"]  { transform-origin: top right;    }
+[data-side="left"][data-align="center"] { transform-origin: center right;  }
+[data-side="left"][data-align="end"]    { transform-origin: bottom right;  }
+
+[data-side="right"][data-align="start"]  { transform-origin: top left;    }
+[data-side="right"][data-align="center"] { transform-origin: center left;  }
+[data-side="right"][data-align="end"]    { transform-origin: bottom left;  }
+
 @keyframes resume-pill-marquee {
   from {
     transform: translateX(0);
