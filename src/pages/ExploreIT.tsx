@@ -166,32 +166,33 @@ export default function ExploreIT() {
         </header>
 
         <main className="container mx-auto flex flex-1 flex-col px-4 py-4 md:py-6">
-          <p className="mb-4 text-sm text-muted-foreground md:mb-6">
-            {itRoles.length} IT roles — select one to explore its description, skills, and learning path.
-          </p>
-
-          {totalPages > 1 && (
-            <div className="mb-2 inline-flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => goTo(currentPage - 1)}
-                disabled={currentPage === 1}
-                aria-label="Previous page"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-background text-foreground disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => goTo(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                aria-label="Next page"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-background text-foreground disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-          )}
+          <div className="mb-4 flex items-center gap-3 md:mb-6">
+            {totalPages > 1 && (
+              <div className="inline-flex shrink-0 items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => goTo(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  aria-label="Previous page"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-background text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => goTo(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  aria-label="Next page"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-background text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+            )}
+            <p className="text-sm text-muted-foreground">
+              {itRoles.length} IT roles — select one to explore its description, skills, and learning path.
+            </p>
+          </div>
 
           <ul className="flex-1 divide-y divide-border rounded-2xl border border-border bg-card/60 backdrop-blur-sm overflow-hidden">
             {paged.map((role) => (
