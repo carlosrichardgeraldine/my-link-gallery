@@ -332,21 +332,6 @@ export default function FlashcardPage() {
                   <span className="text-sm font-semibold text-foreground">
                     {index + 1} <span className="text-muted-foreground font-normal">/ {queue.length}</span>
                   </span>
-                  <div className="flex gap-1">
-                    {queue.map((_, i) => (
-                      <button
-                        key={i}
-                        type="button"
-                        onClick={() => goTo(i)}
-                        aria-label={`Go to card ${i + 1}`}
-                        className={`h-1.5 rounded-full transition-all ${
-                          i === index
-                            ? "w-4 bg-foreground"
-                            : "w-1.5 bg-border hover:bg-muted-foreground"
-                        }`}
-                      />
-                    ))}
-                  </div>
                   <p className="text-[10px] text-muted-foreground">
                     ← → to navigate · Space to flip
                   </p>
