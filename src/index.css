@@ -627,6 +627,46 @@
 [data-side="right"][data-align="center"] { transform-origin: center left;  }
 [data-side="right"][data-align="end"]    { transform-origin: bottom left;  }
 
+/* ── Flashcard flip animation ──────────────────────────────────────────── */
+.flashcard-scene {
+  perspective: 1200px;
+  width: 100%;
+  max-width: 42rem;
+  height: 20rem;
+  cursor: pointer;
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .flashcard-scene {
+    height: 24rem;
+  }
+}
+
+.flashcard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1) !important;
+}
+
+.flashcard--flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow-y: auto;
+}
+
+.flashcard-face--back {
+  transform: rotateY(180deg);
+}
+
 @keyframes resume-pill-marquee {
   from {
     transform: translateX(0);

@@ -22,7 +22,7 @@ const navItems: NavItem[] = [
   { label: "Links", href: "/links", icon: Link2 },
   { label: "Pomodoro", href: "/pomodoro", icon: Clock },
   { label: "exploreIT", href: "/explore", icon: Cpu },
-  { label: "Flashcard", href: null, icon: GraduationCap, soon: true },
+  { label: "Flashcard", href: "/flashcard", icon: GraduationCap },
   { label: "Blog", href: null, icon: Newspaper, soon: true },
   { label: "Memes", href: null, icon: Image, soon: true },
   { label: "Games", href: null, icon: Gamepad2, soon: true },

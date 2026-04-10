@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Cloud Computing Fundamentals",
+    "description": "15 essential IT cloud computing terms every professional should know.",
+    "createdAt": "2026-04-10"
+  },
+  "cards": [
+    {
+      "id": "cc-001",
+      "term": "Cloud Computing",
+      "definition": "The delivery of computing services—including servers, storage, databases, networking, software, and analytics—over the internet (\"the cloud\") to offer faster innovation, flexible resources, and economies of scale.",
+      "hint": "Think of renting compute power instead of buying hardware.",
+      "tags": ["Fundamentals"]
+    },
+    {
+      "id": "cc-002",
+      "term": "IaaS — Infrastructure as a Service",
+      "definition": "A cloud service model that provides virtualized computing infrastructure over the internet. Users rent virtual machines, storage, and networking instead of owning physical hardware. Examples: AWS EC2, Azure VMs, Google Compute Engine.",
+      "hint": "You manage OS and up; the provider manages the hardware.",
+      "tags": ["Service Models", "Fundamentals"]
+    },
+    {
+      "id": "cc-003",
+      "term": "PaaS — Platform as a Service",
+      "definition": "A cloud service model that provides a managed platform for developing, running, and managing applications without dealing with the underlying infrastructure. Examples: Heroku, Google App Engine, Azure App Service.",
+      "hint": "You manage your app and data; the provider manages everything below.",
+      "tags": ["Service Models", "Fundamentals"]
+    },
+    {
+      "id": "cc-004",
+      "term": "SaaS — Software as a Service",
+      "definition": "A cloud service model where software is delivered over the internet on a subscription basis. Users access the application via a browser without installing or managing anything. Examples: Gmail, Salesforce, Microsoft 365.",
+      "hint": "You just use the software; the provider manages everything.",
+      "tags": ["Service Models", "Fundamentals"]
+    },
+    {
+      "id": "cc-005",
+      "term": "Virtualization",
+      "definition": "The process of creating a software-based (virtual) version of a physical resource such as a server, storage device, or network. It allows multiple virtual machines to run on a single physical host, improving resource utilization.",
+      "hint": "One physical machine, many logical machines.",
+      "tags": ["Infrastructure", "Fundamentals"]
+    },
+    {
+      "id": "cc-006",
+      "term": "Container",
+      "definition": "A lightweight, standalone, executable package that includes everything needed to run a piece of software: code, runtime, libraries, and settings. Containers share the host OS kernel, making them more efficient than full VMs. Docker is the most popular runtime.",
+      "hint": "Like a VM but sharing the OS kernel — much lighter.",
+      "tags": ["Infrastructure", "DevOps"]
+    },
+    {
+      "id": "cc-007",
+      "term": "Kubernetes (K8s)",
+      "definition": "An open-source container orchestration system that automates the deployment, scaling, and management of containerized applications across clusters of machines. Originally designed by Google, now maintained by the CNCF.",
+      "hint": "The conductor for your Docker container orchestra.",
+      "tags": ["DevOps", "Orchestration"]
+    },
+    {
+      "id": "cc-008",
+      "term": "Serverless Computing",
+      "definition": "A cloud execution model where the cloud provider dynamically manages server allocation and provisioning. Developers deploy code (functions) that run in response to events. Billing is based on actual execution time. Examples: AWS Lambda, Azure Functions, Google Cloud Functions.",
+      "hint": "Servers still exist — you just don't manage them.",
+      "tags": ["Service Models", "DevOps"]
+    },
+    {
+      "id": "cc-009",
+      "term": "Load Balancer",
+      "definition": "A device or software that distributes incoming network traffic across multiple servers to ensure no single server bears too much demand. This improves availability and responsiveness. Can operate at Layer 4 (transport) or Layer 7 (application).",
+      "hint": "The traffic cop that keeps servers from being overwhelmed.",
+      "tags": ["Networking", "Availability"]
+    },
+    {
+      "id": "cc-010",
+      "term": "Auto Scaling",
+      "definition": "A cloud feature that automatically adjusts the number of compute resources (e.g., virtual machines or containers) based on current demand. It scales out (adds resources) during high traffic and scales in (removes resources) during low traffic, optimizing cost and performance.",
+      "hint": "Your infrastructure breathes with your traffic.",
+      "tags": ["Infrastructure", "Cost Optimization"]
+    },
+    {
+      "id": "cc-011",
+      "term": "CDN — Content Delivery Network",
+      "definition": "A geographically distributed network of proxy servers and data centers that delivers web content to users based on their location. By caching content closer to end users, a CDN reduces latency and improves load times. Examples: Cloudflare, AWS CloudFront, Akamai.",
+      "hint": "Copies of your content, spread around the globe.",
+      "tags": ["Networking", "Performance"]
+    },
+    {
+      "id": "cc-012",
+      "term": "VPC — Virtual Private Cloud",
+      "definition": "An isolated, logically defined section of a public cloud where users can launch resources in a virtual network they define. It provides control over IP address ranges, subnets, route tables, and network gateways, combining cloud scalability with private network security.",
+      "hint": "Your own private island inside a public cloud.",
+      "tags": ["Networking", "Security"]
+    },
+    {
+      "id": "cc-013",
+      "term": "Object Storage",
+      "definition": "A storage architecture that manages data as objects (each containing data, metadata, and a unique identifier) rather than files in a hierarchy or blocks on a disk. Highly scalable and ideal for unstructured data. Examples: AWS S3, Azure Blob Storage, Google Cloud Storage.",
+      "hint": "Flat storage with unique IDs, perfect for huge amounts of data.",
+      "tags": ["Storage", "Infrastructure"]
+    },
+    {
+      "id": "cc-014",
+      "term": "Microservices",
+      "definition": "An architectural approach where an application is built as a collection of small, independently deployable services, each responsible for a specific business capability. Services communicate via APIs. This enables independent scaling, deployment, and development of each service.",
+      "hint": "Many small apps working together instead of one big app.",
+      "tags": ["Architecture", "DevOps"]
+    },
+    {
+      "id": "cc-015",
+      "term": "High Availability (HA)",
+      "definition": "A system design approach aimed at ensuring an agreed level of operational performance (uptime) for a higher-than-normal period. Typically achieved through redundancy, failover mechanisms, and eliminating single points of failure. Often expressed as a percentage, e.g., 99.9% (\"three nines\") uptime.",
+      "hint": "If one component fails, another takes over instantly.",
+      "tags": ["Availability", "Architecture"]
+    }
+  ]
+}

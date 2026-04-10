@@ -30,6 +30,7 @@ const DocsNotes = lazy(() => import("./pages/DocsNotes.tsx"));
 const DocsUiUx = lazy(() => import("./pages/DocsUiUx.tsx"));
 const DocsVisualComponents = lazy(() => import("./pages/DocsVisualComponents.tsx"));
 const DocsDeployment = lazy(() => import("./pages/DocsDeployment.tsx"));
+const Flashcard = lazy(() => import("./pages/Flashcard.tsx"));
 const Legal = lazy(() => import("./pages/Legal.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
@@ -50,6 +51,7 @@ const routeTitles: Record<string, string> = {
   "/links": "Links",
   "/pomodoro": "Pomodoro",
   "/explore": "exploreIT",
+  "/flashcard": "Flashcard",
   "/docs": "Documentation",
   "/docs/overview-manual": "Overview Manual",
   "/docs/architecture": "Architecture",
@@ -293,6 +295,7 @@ const App = () => (
                 <Route path="/links" element={<Index />} />
                 <Route path="/pomodoro" element={<Pomodoro />} />
                 <Route path="/explore" element={<ExploreIT />} />
+                <Route path="/flashcard" element={<Flashcard />} />
                 <Route path="/resume" element={<Navigate to="/" replace />} />
                 <Route path="/docs" element={<Docs />} />
                 <Route path="/docs/overview-manual" element={<DocsOverviewManual />} />
