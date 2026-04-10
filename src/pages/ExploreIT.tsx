@@ -194,18 +194,19 @@ export default function ExploreIT() {
             )}
           </div>
 
-          <ul className="flex-1 divide-y divide-border rounded-2xl border border-border bg-card/60 backdrop-blur-sm overflow-hidden">
+          <ul className="divide-y divide-border rounded-2xl border border-border bg-card/60 backdrop-blur-sm overflow-hidden">
             {paged.map((role) => (
               <li key={role.id}>
                 <button
                   type="button"
                   onClick={() => openRole(role)}
-                  className="flex w-full flex-col gap-0.5 px-4 py-3.5 text-left transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring md:flex-row md:items-center md:gap-4 md:py-3"
+                  className="flex w-full items-center gap-3 px-4 py-4 text-left transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
                 >
-                  <span className="text-sm font-semibold text-foreground md:w-56 md:shrink-0">
-                    {role.title}
-                  </span>
-                  <span className="text-xs text-muted-foreground md:text-sm">{role.summary}</span>
+                  <div className="flex flex-1 flex-col gap-1">
+                    <span className="text-sm font-semibold text-foreground">{role.title}</span>
+                    <span className="text-xs text-muted-foreground">{role.summary}</span>
+                  </div>
+                  <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground" />
                 </button>
               </li>
             ))}
