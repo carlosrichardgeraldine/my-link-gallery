@@ -1,0 +1,224 @@
+export type ITRole = {
+  id: string;
+  title: string;
+  summary: string;
+  description: string;
+  tags: string[];
+  relatedRoles: string[];
+  roadmapUrl: string;
+};
+
+export const itRoles: ITRole[] = [
+  {
+    id: "frontend-developer",
+    title: "Frontend Developer",
+    summary: "Builds the visual side of web apps users interact with.",
+    description:
+      "Frontend developers create the user-facing layer of web applications using HTML, CSS, and JavaScript. They translate designs into responsive, accessible interfaces and collaborate closely with designers and backend engineers to deliver polished experiences.",
+    tags: ["Web", "JavaScript", "CSS", "React", "UI"],
+    relatedRoles: ["full-stack-developer", "ui-ux-designer", "backend-developer"],
+    roadmapUrl: "https://roadmap.sh/frontend",
+  },
+  {
+    id: "backend-developer",
+    title: "Backend Developer",
+    summary: "Powers the server logic, databases, and APIs behind the scenes.",
+    description:
+      "Backend developers design and maintain the server-side systems that power applications — REST and GraphQL APIs, databases, authentication, and business logic. They ensure reliability, performance, and security at the data layer.",
+    tags: ["APIs", "Node.js", "Python", "Databases", "SQL"],
+    relatedRoles: ["frontend-developer", "full-stack-developer", "database-administrator", "devops-engineer"],
+    roadmapUrl: "https://roadmap.sh/backend",
+  },
+  {
+    id: "full-stack-developer",
+    title: "Full Stack Developer",
+    summary: "Handles both client and server sides of an application end-to-end.",
+    description:
+      "Full stack developers are comfortable across the entire technology stack — from designing database schemas and building APIs to crafting pixel-perfect UIs. They serve as versatile contributors in small teams and startups.",
+    tags: ["Web", "JavaScript", "APIs", "Databases", "React"],
+    relatedRoles: ["frontend-developer", "backend-developer", "devops-engineer"],
+    roadmapUrl: "https://roadmap.sh/full-stack",
+  },
+  {
+    id: "devops-engineer",
+    title: "DevOps Engineer",
+    summary: "Bridges development and operations to ship software reliably.",
+    description:
+      "DevOps engineers build and maintain the pipelines, infrastructure, and processes that enable teams to deploy software continuously and safely. They work with CI/CD tools, containerisation, monitoring, and cloud platforms.",
+    tags: ["CI/CD", "Docker", "Kubernetes", "Cloud", "Linux"],
+    relatedRoles: ["backend-developer", "cloud-architect", "site-reliability-engineer", "system-administrator"],
+    roadmapUrl: "https://roadmap.sh/devops",
+  },
+  {
+    id: "cloud-architect",
+    title: "Cloud Architect",
+    summary: "Designs scalable, resilient infrastructure on cloud platforms.",
+    description:
+      "Cloud architects plan and oversee an organisation's cloud computing strategy — selecting services, designing network topology, enforcing security policies, and optimising costs across AWS, Azure, or GCP.",
+    tags: ["AWS", "Azure", "GCP", "Networking", "Security"],
+    relatedRoles: ["devops-engineer", "site-reliability-engineer", "cybersecurity-analyst"],
+    roadmapUrl: "https://roadmap.sh/aws",
+  },
+  {
+    id: "data-scientist",
+    title: "Data Scientist",
+    summary: "Extracts insights and builds predictive models from complex data.",
+    description:
+      "Data scientists combine statistics, programming, and domain expertise to analyse large datasets, build predictive models, and communicate findings to stakeholders. Python, R, and SQL are core tools of the trade.",
+    tags: ["Python", "Statistics", "ML", "SQL", "Visualisation"],
+    relatedRoles: ["machine-learning-engineer", "data-engineer", "ai-engineer"],
+    roadmapUrl: "https://roadmap.sh/data-scientist",
+  },
+  {
+    id: "machine-learning-engineer",
+    title: "Machine Learning Engineer",
+    summary: "Builds and deploys scalable ML models in production systems.",
+    description:
+      "ML engineers operationalise machine learning — turning research prototypes into reliable, efficient systems that serve predictions at scale. They bridge data science and software engineering, focusing on model serving, monitoring, and retraining pipelines.",
+    tags: ["Python", "TensorFlow", "PyTorch", "MLOps", "APIs"],
+    relatedRoles: ["data-scientist", "ai-engineer", "backend-developer"],
+    roadmapUrl: "https://roadmap.sh/mlops",
+  },
+  {
+    id: "ai-engineer",
+    title: "AI Engineer",
+    summary: "Integrates AI and LLMs into products and workflows.",
+    description:
+      "AI engineers build applications that leverage large language models, vision models, and other AI systems via APIs and fine-tuning. They design prompts, build agentic workflows, and integrate AI capabilities into real-world products.",
+    tags: ["LLMs", "Python", "APIs", "Prompt Engineering", "RAG"],
+    relatedRoles: ["machine-learning-engineer", "data-scientist", "backend-developer"],
+    roadmapUrl: "https://roadmap.sh/ai-engineer",
+  },
+  {
+    id: "cybersecurity-analyst",
+    title: "Cybersecurity Analyst",
+    summary: "Protects systems and data from threats, breaches, and attacks.",
+    description:
+      "Cybersecurity analysts monitor networks and systems for threats, respond to incidents, conduct vulnerability assessments, and implement controls to protect organisational assets. They work across defensive (blue team) and offensive (red team) disciplines.",
+    tags: ["Security", "Networking", "SIEM", "Linux", "Compliance"],
+    relatedRoles: ["cloud-architect", "network-engineer", "devops-engineer"],
+    roadmapUrl: "https://roadmap.sh/cyber-security",
+  },
+  {
+    id: "mobile-developer",
+    title: "Mobile Developer",
+    summary: "Creates native and cross-platform apps for iOS and Android.",
+    description:
+      "Mobile developers build apps that run on smartphones and tablets. They work with native platforms (Swift/Kotlin) or cross-platform frameworks (React Native, Flutter) to deliver fast, intuitive, and platform-consistent experiences.",
+    tags: ["iOS", "Android", "Swift", "Kotlin", "React Native"],
+    relatedRoles: ["frontend-developer", "ui-ux-designer", "backend-developer"],
+    roadmapUrl: "https://roadmap.sh/android",
+  },
+  {
+    id: "database-administrator",
+    title: "Database Administrator",
+    summary: "Manages, optimises, and secures database systems.",
+    description:
+      "DBAs are responsible for database installation, configuration, performance tuning, backup and recovery, and security. They work with relational (PostgreSQL, MySQL) and NoSQL (MongoDB, Redis) systems.",
+    tags: ["SQL", "PostgreSQL", "MySQL", "Performance", "Backups"],
+    relatedRoles: ["backend-developer", "data-engineer", "data-scientist"],
+    roadmapUrl: "https://roadmap.sh/postgresql-dba",
+  },
+  {
+    id: "data-engineer",
+    title: "Data Engineer",
+    summary: "Builds the pipelines and infrastructure that move and store data.",
+    description:
+      "Data engineers design and maintain data pipelines, warehouses, and lakes that enable analytics and ML teams to work with clean, reliable data at scale. They work with tools like Airflow, Spark, dbt, and cloud data warehouses.",
+    tags: ["Python", "SQL", "ETL", "Spark", "Data Warehousing"],
+    relatedRoles: ["data-scientist", "database-administrator", "machine-learning-engineer"],
+    roadmapUrl: "https://roadmap.sh/data-engineer",
+  },
+  {
+    id: "qa-engineer",
+    title: "QA Engineer",
+    summary: "Ensures software quality through testing and automation.",
+    description:
+      "QA engineers design and execute test plans, write automated test suites, and collaborate with developers to catch bugs early. They cover unit, integration, end-to-end, performance, and accessibility testing.",
+    tags: ["Testing", "Automation", "Selenium", "CI/CD", "Bug Tracking"],
+    relatedRoles: ["frontend-developer", "backend-developer", "devops-engineer"],
+    roadmapUrl: "https://roadmap.sh/qa",
+  },
+  {
+    id: "site-reliability-engineer",
+    title: "Site Reliability Engineer",
+    summary: "Keeps large-scale production systems available and performant.",
+    description:
+      "SREs apply software engineering to operations — defining SLOs, building observability stacks, automating toil, and leading incident response. The role originated at Google and blends dev skills with ops discipline.",
+    tags: ["Observability", "Kubernetes", "Linux", "On-call", "Automation"],
+    relatedRoles: ["devops-engineer", "cloud-architect", "backend-developer"],
+    roadmapUrl: "https://roadmap.sh/sre",
+  },
+  {
+    id: "system-administrator",
+    title: "System Administrator",
+    summary: "Maintains servers, networks, and internal IT infrastructure.",
+    description:
+      "SysAdmins install, configure, and maintain servers, operating systems, and enterprise software. They handle user management, backups, patching, and troubleshooting to keep organisational systems running smoothly.",
+    tags: ["Linux", "Windows Server", "Networking", "Active Directory", "Bash"],
+    relatedRoles: ["devops-engineer", "network-engineer", "cybersecurity-analyst"],
+    roadmapUrl: "https://roadmap.sh/system-design",
+  },
+  {
+    id: "network-engineer",
+    title: "Network Engineer",
+    summary: "Designs and manages the networks that connect systems and users.",
+    description:
+      "Network engineers plan, build, and maintain LAN, WAN, and cloud networking infrastructure. They configure routers, switches, firewalls, and VPNs, and optimise for performance, redundancy, and security.",
+    tags: ["TCP/IP", "Routing", "Firewalls", "VPN", "Cisco"],
+    relatedRoles: ["system-administrator", "cybersecurity-analyst", "cloud-architect"],
+    roadmapUrl: "https://roadmap.sh/network",
+  },
+  {
+    id: "ui-ux-designer",
+    title: "UI/UX Designer",
+    summary: "Crafts intuitive, accessible, and delightful user experiences.",
+    description:
+      "UI/UX designers research user needs, create wireframes and prototypes, and define the visual language of a product. They work closely with developers and stakeholders to ensure the final product is usable and engaging.",
+    tags: ["Figma", "User Research", "Prototyping", "Accessibility", "Design Systems"],
+    relatedRoles: ["frontend-developer", "product-manager", "mobile-developer"],
+    roadmapUrl: "https://roadmap.sh/ux-design",
+  },
+  {
+    id: "product-manager",
+    title: "Product Manager",
+    summary: "Defines the vision, strategy, and roadmap for a product.",
+    description:
+      "Product managers sit at the intersection of business, technology, and design. They prioritise the backlog, align stakeholders, define success metrics, and guide the team to ship features that solve real user problems.",
+    tags: ["Strategy", "Roadmapping", "Agile", "Stakeholders", "Metrics"],
+    relatedRoles: ["ui-ux-designer", "frontend-developer", "data-scientist"],
+    roadmapUrl: "https://roadmap.sh/product-manager",
+  },
+  {
+    id: "blockchain-developer",
+    title: "Blockchain Developer",
+    summary: "Builds decentralised applications and smart contracts.",
+    description:
+      "Blockchain developers write and audit smart contracts, build dApps, and work with distributed ledger protocols like Ethereum, Solana, or Polkadot. They understand cryptography, consensus mechanisms, and token economics.",
+    tags: ["Solidity", "Ethereum", "Web3", "Smart Contracts", "Cryptography"],
+    relatedRoles: ["backend-developer", "cybersecurity-analyst", "full-stack-developer"],
+    roadmapUrl: "https://roadmap.sh/blockchain",
+  },
+  {
+    id: "game-developer",
+    title: "Game Developer",
+    summary: "Creates interactive games across platforms and engines.",
+    description:
+      "Game developers design and implement gameplay mechanics, graphics systems, physics, audio, and multiplayer features. They use engines like Unity or Unreal and languages such as C# or C++ to bring game worlds to life.",
+    tags: ["Unity", "Unreal", "C#", "C++", "Graphics"],
+    relatedRoles: ["frontend-developer", "ui-ux-designer", "mobile-developer"],
+    roadmapUrl: "https://roadmap.sh/game-developer",
+  },
+  {
+    id: "software-architect",
+    title: "Software Architect",
+    summary: "Defines the high-level structure and technical direction of systems.",
+    description:
+      "Software architects make high-impact decisions about system design — choosing patterns, frameworks, and integration strategies. They balance trade-offs between scalability, maintainability, security, and delivery speed.",
+    tags: ["System Design", "Patterns", "Microservices", "APIs", "Leadership"],
+    relatedRoles: ["backend-developer", "cloud-architect", "site-reliability-engineer", "devops-engineer"],
+    roadmapUrl: "https://roadmap.sh/software-architect",
+  },
+];
+
+export const roleMap = new Map(itRoles.map((r) => [r.id, r]));
