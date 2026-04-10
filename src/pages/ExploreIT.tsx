@@ -170,48 +170,45 @@ export default function ExploreIT() {
             {itRoles.length} IT roles — select one to explore its description, skills, and learning path.
           </p>
 
-          <div className="relative flex-1">
-            {totalPages > 1 && (
-              <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5">
-                <button
-                  type="button"
-                  onClick={() => goTo(currentPage - 1)}
-                  disabled={currentPage === 1}
-                  aria-label="Previous page"
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-background text-foreground disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </button>
-                <span className="text-xs text-muted-foreground">{currentPage}/{totalPages}</span>
-                <button
-                  type="button"
-                  onClick={() => goTo(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                  aria-label="Next page"
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-background text-foreground disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-              </div>
-            )}
+          {totalPages > 1 && (
+            <div className="mb-2 inline-flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => goTo(currentPage - 1)}
+                disabled={currentPage === 1}
+                aria-label="Previous page"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-background text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => goTo(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                aria-label="Next page"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-background text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          )}
 
-            <ul className={`divide-y divide-border rounded-2xl border border-border bg-card/60 backdrop-blur-sm overflow-hidden ${totalPages > 1 ? "pt-14" : ""}`}>
-              {paged.map((role) => (
-                <li key={role.id}>
-                  <button
-                    type="button"
-                    onClick={() => openRole(role)}
-                    className="flex w-full flex-col gap-0.5 px-4 py-3.5 text-left transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring md:flex-row md:items-center md:gap-4 md:py-3"
-                  >
-                    <span className="text-sm font-semibold text-foreground md:w-56 md:shrink-0">
-                      {role.title}
-                    </span>
-                    <span className="text-xs text-muted-foreground md:text-sm">{role.summary}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="flex-1 divide-y divide-border rounded-2xl border border-border bg-card/60 backdrop-blur-sm overflow-hidden">
+            {paged.map((role) => (
+              <li key={role.id}>
+                <button
+                  type="button"
+                  onClick={() => openRole(role)}
+                  className="flex w-full flex-col gap-0.5 px-4 py-3.5 text-left transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring md:flex-row md:items-center md:gap-4 md:py-3"
+                >
+                  <span className="text-sm font-semibold text-foreground md:w-56 md:shrink-0">
+                    {role.title}
+                  </span>
+                  <span className="text-xs text-muted-foreground md:text-sm">{role.summary}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
 
         </main>
       </div>
