@@ -297,8 +297,8 @@ const Pomodoro = () => {
 
       <div className="relative z-10">
         <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur-sm">
-          <div className="container mx-auto flex h-12 items-center justify-between gap-3 px-4 md:h-14">
-            <h1 className="text-base font-semibold text-foreground md:text-xl">Pomodoro</h1>
+          <div className="container mx-auto flex h-14 items-center justify-between gap-3 px-4 md:h-16">
+            <h1 className="text-base font-semibold text-foreground md:text-2xl">Pomodoro</h1>
             <div className="flex items-center gap-3">
               <ThemeToggle />
             </div>
