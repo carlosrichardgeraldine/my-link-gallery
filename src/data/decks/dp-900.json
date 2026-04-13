@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0",
     "name": "Azure Data Fundamentals (DP-900)",
-    "description": "10 foundational Azure data and analytics concepts for the DP-900 certification exam.",
+    "description": "Foundational Azure data and analytics concepts for the DP-900 certification exam.",
     "createdAt": "2026-04-13"
   },
   "cards": [
@@ -75,6 +75,286 @@
       "definition": "Batch Processing collects data over a period of time and processes it together in a scheduled job — e.g., end-of-day payroll calculations. High throughput but introduces latency. Stream Processing handles data continuously in real time as it arrives — e.g., credit card fraud detection within milliseconds. Azure services: Azure Data Factory / Synapse (batch), Azure Stream Analytics / Event Hubs (streaming).",
       "hint": "Batch = process a pile at scheduled intervals. Stream = process each item the instant it arrives.",
       "tags": ["Data Concepts", "Analytics"]
+    },
+    {
+      "id": "dp900-011",
+      "term": "Tables, Rows, and Columns",
+      "definition": "Relational databases store data in tables (entities), rows (records), and columns (attributes). Each row represents a single item, and each column defines a data field with a specific data type. This structure enforces consistency and supports SQL queries.",
+      "hint": "Tables = entities, rows = records, columns = attributes.",
+      "tags": ["Relational", "Data Concepts"]
+    },
+    {
+      "id": "dp900-012",
+      "term": "Primary Keys and Foreign Keys",
+      "definition": "A primary key uniquely identifies each row in a table. A foreign key links one table to another, enforcing referential integrity. These relationships form the backbone of relational database design.",
+      "hint": "Primary = unique ID. Foreign = link between tables.",
+      "tags": ["Relational", "Data Modeling"]
+    },
+    {
+      "id": "dp900-013",
+      "term": "Normalization",
+      "definition": "A database design technique that reduces redundancy and improves data integrity by splitting data into related tables. Common normal forms include 1NF, 2NF, and 3NF. Used primarily in OLTP systems.",
+      "hint": "Break data into smaller tables to avoid duplication.",
+      "tags": ["Relational", "Data Modeling"]
+    },
+    {
+      "id": "dp900-014",
+      "term": "Denormalization",
+      "definition": "The process of combining tables to improve read performance, often used in OLAP and reporting systems. Reduces joins but increases redundancy.",
+      "hint": "Fewer tables, faster reads — at the cost of duplication.",
+      "tags": ["Analytics", "Data Modeling"]
+    },
+    {
+      "id": "dp900-015",
+      "term": "Star Schema",
+      "definition": "A common OLAP data model with a central fact table (metrics) connected to multiple dimension tables (descriptive attributes). Optimized for analytical queries and used in data warehouses.",
+      "hint": "Fact table in the middle, dimensions around it.",
+      "tags": ["Analytics", "Data Modeling"]
+    },
+    {
+      "id": "dp900-016",
+      "term": "Columnar Storage",
+      "definition": "A storage format where data is stored column-by-column instead of row-by-row. Greatly improves compression and analytical query performance. Used in Synapse dedicated SQL pools.",
+      "hint": "Store data by column for fast analytics.",
+      "tags": ["Analytics", "Storage"]
+    },
+    {
+      "id": "dp900-017",
+      "term": "Azure SQL Managed Instance",
+      "definition": "A managed SQL Server instance offering near 100% compatibility with on-prem SQL Server. Supports SQL Agent, cross-database queries, and instance-level features. Ideal for lift-and-shift migrations.",
+      "hint": "Full SQL Server features without managing the OS.",
+      "tags": ["Relational", "Azure Services"]
+    },
+    {
+      "id": "dp900-018",
+      "term": "Azure Database for PostgreSQL",
+      "definition": "A fully managed PostgreSQL database service with built-in high availability, backups, and scaling. Supports open-source extensions and is ideal for modern app development.",
+      "hint": "Managed PostgreSQL with enterprise reliability.",
+      "tags": ["Relational", "Azure Services"]
+    },
+    {
+      "id": "dp900-019",
+      "term": "Azure Database for MySQL",
+      "definition": "A managed MySQL database service offering automated patching, backups, and scaling. Supports community MySQL features and is commonly used for web applications.",
+      "hint": "MySQL in Azure, fully managed.",
+      "tags": ["Relational", "Azure Services"]
+    },
+    {
+      "id": "dp900-020",
+      "term": "Cosmos DB Consistency Levels",
+      "definition": "Cosmos DB offers five consistency levels: Strong, Bounded Staleness, Session, Consistent Prefix, and Eventual. They balance latency, availability, and data accuracy. Session is the default.",
+      "hint": "Five levels — from Strong to Eventual.",
+      "tags": ["Non-Relational", "Azure Services"]
+    },
+    {
+      "id": "dp900-021",
+      "term": "Cosmos DB Partitioning",
+      "definition": "Cosmos DB uses logical partitions based on a partition key to distribute data across physical partitions. Good partition key choices ensure even distribution and high throughput.",
+      "hint": "Partition key = how Cosmos spreads your data.",
+      "tags": ["Non-Relational", "Scalability"]
+    },
+    {
+      "id": "dp900-022",
+      "term": "Azure Databricks",
+      "definition": "A fast, collaborative Apache Spark platform optimized for big data and machine learning. Supports notebooks, Delta Lake, and scalable compute clusters.",
+      "hint": "Spark-based analytics and ML with collaborative notebooks.",
+      "tags": ["Analytics", "Big Data"]
+    },
+    {
+      "id": "dp900-023",
+      "term": "Delta Lake",
+      "definition": "An open-source storage layer that brings ACID transactions to data lakes. Supports versioning, schema enforcement, and time travel. Used heavily in Databricks.",
+      "hint": "ACID transactions on your data lake.",
+      "tags": ["Storage", "Analytics"]
+    },
+    {
+      "id": "dp900-024",
+      "term": "Data Ingestion",
+      "definition": "The process of collecting and importing data from various sources into a storage or analytics system. Can be batch or streaming. Tools include Data Factory, Event Hubs, and IoT Hub.",
+      "hint": "Getting data into your system — batch or real-time.",
+      "tags": ["Data Concepts", "ETL"]
+    },
+    {
+      "id": "dp900-025",
+      "term": "Data Transformation",
+      "definition": "The process of cleaning, shaping, and enriching data to make it usable for analytics. Includes filtering, joining, aggregating, and standardizing data. Performed in Data Factory, Databricks, or Synapse.",
+      "hint": "Turning raw data into usable data.",
+      "tags": ["ETL", "Analytics"]
+    },
+    {
+      "id": "dp900-026",
+      "term": "Data Visualization",
+      "definition": "The presentation of data through charts, dashboards, and reports to help users understand insights. Power BI is the primary visualization tool in Azure ecosystems.",
+      "hint": "Turning data into charts and dashboards.",
+      "tags": ["Analytics", "Visualization"]
+    },
+    {
+      "id": "dp900-027",
+      "term": "Data Governance",
+      "definition": "The set of processes and policies that ensure data quality, security, privacy, and compliance. Includes cataloging, lineage, and access control. Azure Purview (Microsoft Purview) is the governance solution.",
+      "hint": "Policies and controls that keep data trustworthy and secure.",
+      "tags": ["Governance", "Security"]
+    },
+    {
+      "id": "dp900-028",
+      "term": "Microsoft Purview",
+      "definition": "A unified data governance service that provides data cataloging, lineage tracking, classification, and compliance management across on-premises and cloud data sources.",
+      "hint": "The data catalog and governance tool for Azure.",
+      "tags": ["Governance", "Azure Services"]
+    },
+    {
+      "id": "dp900-029",
+      "term": "Data Security: Encryption at Rest and In Transit",
+      "definition": "Encryption at rest protects stored data using technologies like AES-256. Encryption in transit protects data moving across networks using TLS. Azure services enable both by default.",
+      "hint": "Data encrypted while stored and while moving.",
+      "tags": ["Security", "Data Concepts"]
+    },
+    {
+      "id": "dp900-030",
+      "term": "Data Retention and Archiving",
+      "definition": "Policies that determine how long data is stored and when it is moved to cheaper storage tiers. Azure Blob Storage supports Hot, Cool, and Archive tiers for cost optimization.",
+      "hint": "Keep data as long as needed, then move it to cheaper storage.",
+      "tags": ["Storage", "Governance"]
+    },
+    {
+      "id": "dp900-031",
+      "term": "Structured vs. Semi-Structured vs. Unstructured Data",
+      "definition": "Structured data fits neatly into tables with defined schemas (SQL databases). Semi-structured data has tags or markers but no fixed schema (JSON, XML). Unstructured data has no predefined format (images, PDFs, audio). Azure services support all three types.",
+      "hint": "Structured = tables. Semi-structured = JSON. Unstructured = media files.",
+      "tags": ["Data Concepts", "Fundamentals"]
+    },
+    {
+      "id": "dp900-032",
+      "term": "Data Lakehouse",
+      "definition": "A modern architecture combining the reliability of data warehouses with the flexibility of data lakes. Supports both structured and unstructured data. Implemented in Azure using Databricks + Delta Lake + Synapse.",
+      "hint": "Warehouse + data lake in one architecture.",
+      "tags": ["Analytics", "Architecture"]
+    },
+    {
+      "id": "dp900-033",
+      "term": "ETL vs. ELT",
+      "definition": "ETL extracts, transforms, then loads data into a warehouse. ELT extracts, loads, then transforms data inside a scalable engine like Synapse or Databricks. ELT is preferred for big data workloads.",
+      "hint": "ETL = transform before loading. ELT = transform after loading.",
+      "tags": ["ETL", "Data Concepts"]
+    },
+    {
+      "id": "dp900-034",
+      "term": "Azure SQL Edge",
+      "definition": "A small-footprint SQL engine optimized for IoT and edge devices. Supports streaming, time-series data, and local analytics.",
+      "hint": "SQL for IoT and edge scenarios.",
+      "tags": ["Edge", "Relational"]
+    },
+    {
+      "id": "dp900-035",
+      "term": "Azure IoT Hub",
+      "definition": "A managed service for connecting, monitoring, and managing IoT devices. Often used as an ingestion point for streaming analytics pipelines.",
+      "hint": "The gateway for IoT device data.",
+      "tags": ["Streaming", "IoT"]
+    },
+    {
+      "id": "dp900-036",
+      "term": "Azure Event Hubs Capture",
+      "definition": "A feature that automatically writes Event Hubs streaming data into Azure Data Lake or Blob Storage for batch analytics.",
+      "hint": "Auto-save streaming data into your data lake.",
+      "tags": ["Streaming", "Analytics"]
+    },
+    {
+      "id": "dp900-037",
+      "term": "PolyBase",
+      "definition": "A technology in Synapse and SQL Server that allows querying external data sources (Data Lake, Blob Storage) using T-SQL without moving the data.",
+      "hint": "Query external files using SQL.",
+      "tags": ["Analytics", "Integration"]
+    },
+    {
+      "id": "dp900-038",
+      "term": "Azure Synapse Serverless SQL",
+      "definition": "A pay-per-query SQL engine that queries data directly from Data Lake without provisioning compute. Ideal for exploratory analytics.",
+      "hint": "Query files in your data lake without a dedicated cluster.",
+      "tags": ["Analytics", "Azure Services"]
+    },
+    {
+      "id": "dp900-039",
+      "term": "Azure Synapse Dedicated SQL Pool",
+      "definition": "A provisioned, massively parallel processing (MPP) data warehouse for large-scale analytical workloads. Optimized for high-performance SQL queries.",
+      "hint": "Provisioned data warehouse with MPP power.",
+      "tags": ["Analytics", "Data Warehouse"]
+    },
+    {
+      "id": "dp900-040",
+      "term": "Massively Parallel Processing (MPP)",
+      "definition": "A distributed computing architecture where queries are split across multiple compute nodes to process data in parallel. Used in Synapse dedicated SQL pools.",
+      "hint": "Break big queries into smaller pieces across many nodes.",
+      "tags": ["Analytics", "Performance"]
+    },
+    {
+      "id": "dp900-041",
+      "term": "Azure HDInsight",
+      "definition": "A managed big data service supporting open-source frameworks like Hadoop, Spark, Hive, and Kafka. Often used for legacy big data workloads.",
+      "hint": "Managed Hadoop/Spark clusters in Azure.",
+      "tags": ["Big Data", "Azure Services"]
+    },
+    {
+      "id": "dp900-042",
+      "term": "Azure Machine Learning Integration",
+      "definition": "Azure ML integrates with Synapse, Databricks, and Data Lake to train and deploy machine learning models using enterprise-scale data.",
+      "hint": "ML models trained directly on your analytics data.",
+      "tags": ["Machine Learning", "Analytics"]
+    },
+    {
+      "id": "dp900-043",
+      "term": "Data Lineage",
+      "definition": "The ability to track the origin, movement, and transformation of data across systems. Microsoft Purview provides automated lineage tracking.",
+      "hint": "Know where your data came from and how it changed.",
+      "tags": ["Governance", "Data Concepts"]
+    },
+    {
+      "id": "dp900-044",
+      "term": "Data Cataloging",
+      "definition": "The process of organizing and indexing data assets so users can easily discover and understand them. Purview provides a searchable data catalog.",
+      "hint": "A searchable inventory of all your data assets.",
+      "tags": ["Governance", "Metadata"]
+    },
+    {
+      "id": "dp900-045",
+      "term": "Data Classification",
+      "definition": "Labeling data based on sensitivity (e.g., public, confidential, highly confidential). Helps enforce security and compliance policies.",
+      "hint": "Tag data based on how sensitive it is.",
+      "tags": ["Security", "Governance"]
+    },
+    {
+      "id": "dp900-046",
+      "term": "ACID Transactions",
+      "definition": "A set of properties ensuring reliable database transactions: Atomicity, Consistency, Isolation, Durability. Critical for OLTP systems.",
+      "hint": "The reliability rules for database transactions.",
+      "tags": ["Relational", "Data Concepts"]
+    },
+    {
+      "id": "dp900-047",
+      "term": "BASE Properties",
+      "definition": "A model used in NoSQL systems: Basically Available, Soft-state, Eventually consistent. Prioritizes availability and scalability over strict consistency.",
+      "hint": "The NoSQL alternative to ACID.",
+      "tags": ["Non-Relational", "Data Concepts"]
+    },
+    {
+      "id": "dp900-048",
+      "term": "Time-Series Data",
+      "definition": "Data indexed by time, often used in IoT, telemetry, and monitoring scenarios. Azure services like Cosmos DB and SQL Edge support time-series workloads.",
+      "hint": "Data points tracked over time — like sensor readings.",
+      "tags": ["Data Concepts", "IoT"]
+    },
+    {
+      "id": "dp900-049",
+      "term": "Data Sharding",
+      "definition": "A horizontal partitioning technique that splits large datasets across multiple databases or nodes to improve scalability and performance.",
+      "hint": "Split big datasets into smaller pieces across servers.",
+      "tags": ["Scalability", "Data Concepts"]
+    },
+    {
+      "id": "dp900-050",
+      "term": "Data Replication",
+      "definition": "The process of copying data across multiple locations to improve availability and performance. Cosmos DB automatically replicates data globally.",
+      "hint": "Keep multiple copies of data for reliability.",
+      "tags": ["Availability", "Data Concepts"]
     }
   ]
 }

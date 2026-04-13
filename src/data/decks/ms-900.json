@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0",
     "name": "Microsoft 365 Fundamentals (MS-900)",
-    "description": "10 foundational Microsoft 365 cloud service concepts for the MS-900 certification exam.",
+    "description": "Foundational Microsoft 365 cloud service concepts for the MS-900 certification exam.",
     "createdAt": "2026-04-13"
   },
   "cards": [
@@ -75,6 +75,286 @@
       "definition": "Microsoft guarantees 99.9% uptime SLA for Microsoft 365 (financially backed). Service health is monitored in the Microsoft 365 Admin Centre → Service Health dashboard, showing active incidents, advisories, and history. The Microsoft Service Trust Portal provides compliance documentation, audit reports, and data protection information for regulatory due diligence.",
       "hint": "99.9% uptime promise, with a live health dashboard so you always know the service status.",
       "tags": ["Availability", "Fundamentals"]
+    },
+    {
+      "id": "ms900-011",
+      "term": "Microsoft 365 Apps (formerly Office Apps)",
+      "definition": "The suite of productivity applications included with Microsoft 365: Word, Excel, PowerPoint, Outlook, OneNote, and Access (PC only). Available as web apps, mobile apps, and desktop apps depending on the licence. Desktop apps require Business Standard, Business Premium, E3, or E5.",
+      "hint": "Word, Excel, PowerPoint — in web, mobile, or desktop form depending on your plan.",
+      "tags": ["Apps", "Productivity"]
+    },
+    {
+      "id": "ms900-012",
+      "term": "Microsoft 365 Groups",
+      "definition": "A membership service that connects users across Microsoft 365. Creating a Group automatically provisions a shared mailbox, SharePoint site, Planner board, OneNote, and Teams workspace (if enabled). Groups simplify collaboration and permissions.",
+      "hint": "The membership engine behind Teams, SharePoint, Planner, and more.",
+      "tags": ["Collaboration", "Identity"]
+    },
+    {
+      "id": "ms900-013",
+      "term": "Exchange Online",
+      "definition": "Microsoft's cloud-hosted email and calendaring service. Provides 50–100 GB mailboxes, shared mailboxes, anti-malware filtering, retention policies, and Outlook integration. Supports hybrid deployments with on-prem Exchange.",
+      "hint": "Enterprise-grade email and calendars in the cloud.",
+      "tags": ["Email", "Apps"]
+    },
+    {
+      "id": "ms900-014",
+      "term": "Microsoft Planner",
+      "definition": "A lightweight task and project management tool integrated with Microsoft 365 Groups. Provides Kanban-style boards, task assignments, due dates, and progress tracking. Often used for team task management.",
+      "hint": "Simple Kanban boards for team tasks.",
+      "tags": ["Collaboration", "Apps"]
+    },
+    {
+      "id": "ms900-015",
+      "term": "Microsoft Loop",
+      "definition": "A collaborative workspace for real-time co-authoring. Loop components (tables, lists, tasks) stay in sync across Teams, Outlook, and other apps. Loop workspaces help teams organize ideas and content.",
+      "hint": "Real-time collaborative components that sync everywhere.",
+      "tags": ["Collaboration", "Apps"]
+    },
+    {
+      "id": "ms900-016",
+      "term": "Microsoft Viva",
+      "definition": "An employee experience platform integrated into Microsoft Teams. Modules include Viva Connections (intranet), Viva Learning (training), Viva Insights (productivity analytics), Viva Goals (OKRs), and Viva Engage (community).",
+      "hint": "Employee experience tools built directly into Teams.",
+      "tags": ["Employee Experience", "Apps"]
+    },
+    {
+      "id": "ms900-017",
+      "term": "Zero Trust Security Model",
+      "definition": "A Microsoft security framework that assumes no implicit trust. Every access request must be authenticated, authorized, and continuously validated. Core principles: verify explicitly, use least privilege, assume breach.",
+      "hint": "Never trust — always verify.",
+      "tags": ["Security", "Identity"]
+    },
+    {
+      "id": "ms900-018",
+      "term": "Conditional Access",
+      "definition": "A Microsoft Entra ID feature that enforces access rules based on user, device, location, risk level, and app. Common policies: require MFA, block legacy authentication, enforce compliant devices.",
+      "hint": "If X condition is true, then allow or block access.",
+      "tags": ["Security", "Identity"]
+    },
+    {
+      "id": "ms900-019",
+      "term": "Multi-Factor Authentication (MFA)",
+      "definition": "Adds a second layer of authentication beyond passwords. Methods include Microsoft Authenticator app, SMS codes, phone calls, and FIDO2 keys. Required for Zero Trust and recommended for all users.",
+      "hint": "Something you know + something you have.",
+      "tags": ["Security", "Identity"]
+    },
+    {
+      "id": "ms900-020",
+      "term": "Data Loss Prevention (DLP)",
+      "definition": "Policies that detect and prevent sharing of sensitive information (credit cards, SSNs, health data). Applies to Exchange, SharePoint, OneDrive, and Teams. Can block, warn, or audit risky actions.",
+      "hint": "Stops sensitive data from leaking outside the organisation.",
+      "tags": ["Security", "Compliance"]
+    },
+    {
+      "id": "ms900-021",
+      "term": "Sensitivity Labels",
+      "definition": "Labels that classify and protect documents and emails. Can apply encryption, watermarking, access restrictions, and automatic classification. Managed in the Microsoft Purview Compliance Portal.",
+      "hint": "Confidential, Highly Confidential — with automatic protection.",
+      "tags": ["Compliance", "Security"]
+    },
+    {
+      "id": "ms900-022",
+      "term": "Retention Policies",
+      "definition": "Policies that determine how long content is kept or deleted across Microsoft 365. Used for regulatory compliance, legal requirements, and information governance.",
+      "hint": "Keep content for as long as required — delete when appropriate.",
+      "tags": ["Compliance", "Governance"]
+    },
+    {
+      "id": "ms900-023",
+      "term": "Microsoft Purview eDiscovery",
+      "definition": "Tools for legal teams to search, preserve, and export content across Microsoft 365. Supports legal hold, case management, and advanced search queries.",
+      "hint": "Search and preserve data for legal investigations.",
+      "tags": ["Compliance", "Security"]
+    },
+    {
+      "id": "ms900-024",
+      "term": "Microsoft Secure Score",
+      "definition": "A security analytics tool that evaluates your organisation's security posture and recommends improvements. Higher scores indicate stronger security configurations.",
+      "hint": "A security grade for your Microsoft 365 environment.",
+      "tags": ["Security", "Analytics"]
+    },
+    {
+      "id": "ms900-025",
+      "term": "Microsoft 365 Admin Center",
+      "definition": "The central portal for managing users, groups, licenses, billing, and service health. Specialized admin centers exist for Teams, SharePoint, Exchange, and Security.",
+      "hint": "The main dashboard for managing Microsoft 365.",
+      "tags": ["Administration", "Management"]
+    },
+    {
+      "id": "ms900-026",
+      "term": "Cloud Computing Models",
+      "definition": "Microsoft 365 is a SaaS offering. Azure provides IaaS (VMs, storage), PaaS (App Service, SQL Database), and SaaS (Microsoft 365 apps). MS-900 requires understanding the differences between these cloud models.",
+      "hint": "IaaS = infrastructure. PaaS = platform. SaaS = ready-to-use apps.",
+      "tags": ["Cloud", "Fundamentals"]
+    },
+    {
+      "id": "ms900-027",
+      "term": "Shared Responsibility Model",
+      "definition": "Microsoft manages the infrastructure, uptime, and security of the Microsoft 365 cloud. Customers manage data, identities, devices, and access policies. Security responsibilities shift depending on the service.",
+      "hint": "Microsoft secures the cloud; you secure your data and users.",
+      "tags": ["Security", "Cloud"]
+    },
+    {
+      "id": "ms900-028",
+      "term": "Microsoft 365 Copilot",
+      "definition": "An AI assistant integrated into Microsoft 365 apps. Helps draft emails, summarize meetings, analyze Excel data, generate PowerPoint slides, and answer questions using your organizational data. Requires Microsoft 365 E3/E5 or Business Standard/Premium plus a Copilot license.",
+      "hint": "AI built into Word, Excel, PowerPoint, Outlook, and Teams.",
+      "tags": ["AI", "Productivity"]
+    },
+    {
+      "id": "ms900-029",
+      "term": "Teams Phone",
+      "definition": "An add-on that turns Microsoft Teams into a full cloud-based phone system. Supports PSTN calling, auto attendants, call queues, voicemail, and number porting. Requires Teams Phone license and calling plan or Direct Routing.",
+      "hint": "Use Teams as your organisation's phone system.",
+      "tags": ["Collaboration", "Voice"]
+    },
+    {
+      "id": "ms900-030",
+      "term": "Microsoft 365 Backup and Restore",
+      "definition": "Microsoft provides platform-level redundancy and retention, but customers are responsible for long-term backup needs. Third-party backup solutions are often used for extended retention, point-in-time restore, and compliance.",
+      "hint": "Microsoft protects the service — you protect your long-term data.",
+      "tags": ["Backup", "Governance"]
+    },
+    {
+      "id": "ms900-031",
+      "term": "Microsoft 365 Tenant",
+      "definition": "A dedicated instance of Microsoft 365 services assigned to an organization. Each tenant has its own Entra ID directory, domain configuration, licensing pool, and data boundary. Tenants are isolated from one another for security and compliance.",
+      "hint": "Your organization's private Microsoft 365 environment.",
+      "tags": ["Administration", "Identity"]
+    },
+    {
+      "id": "ms900-032",
+      "term": "Microsoft 365 Domains",
+      "definition": "Organizations can add custom domains (e.g., company.com) to personalize email addresses and Teams identities. DNS records (MX, TXT, CNAME) must be configured for verification and mail routing.",
+      "hint": "Use your own company domain for email and Teams.",
+      "tags": ["Administration", "Identity"]
+    },
+    {
+      "id": "ms900-033",
+      "term": "Exchange Online Protection (EOP)",
+      "definition": "Built-in email filtering that protects against spam, malware, and phishing. Included in all Microsoft 365 plans. Provides anti-spoofing, quarantine, and connection filtering.",
+      "hint": "Email security that blocks spam and malicious messages.",
+      "tags": ["Security", "Email"]
+    },
+    {
+      "id": "ms900-034",
+      "term": "Microsoft Defender for Office 365",
+      "definition": "Advanced email and collaboration protection. Features include Safe Links, Safe Attachments, anti-phishing policies, and attack simulation training. Included in Microsoft 365 E5 or as an add-on.",
+      "hint": "Advanced protection for email, OneDrive, SharePoint, and Teams.",
+      "tags": ["Security", "Defender"]
+    },
+    {
+      "id": "ms900-035",
+      "term": "Microsoft Defender for Endpoint",
+      "definition": "Endpoint detection and response (EDR) solution that protects Windows, macOS, Linux, iOS, and Android devices. Provides threat detection, vulnerability management, and automated remediation.",
+      "hint": "Advanced security for laptops, desktops, and mobile devices.",
+      "tags": ["Security", "Device Management"]
+    },
+    {
+      "id": "ms900-036",
+      "term": "Microsoft Secure Score Improvement Actions",
+      "definition": "Secure Score provides prioritized recommendations such as enabling MFA, blocking legacy authentication, configuring DLP, and applying sensitivity labels. Each action increases the organization's security posture.",
+      "hint": "A checklist of actions to strengthen your security.",
+      "tags": ["Security", "Analytics"]
+    },
+    {
+      "id": "ms900-037",
+      "term": "Microsoft 365 Message Encryption (OME)",
+      "definition": "Encrypts emails so only intended recipients can read them. Works with Outlook, Gmail, and other providers. Users can encrypt messages with sensitivity labels or manually via Outlook.",
+      "hint": "Encrypt emails to protect sensitive information.",
+      "tags": ["Security", "Email"]
+    },
+    {
+      "id": "ms900-038",
+      "term": "Microsoft 365 Data Residency",
+      "definition": "Microsoft stores customer data in regional datacenters based on the tenant's geography. Data residency ensures compliance with local regulations such as GDPR.",
+      "hint": "Your Microsoft 365 data stays in your region.",
+      "tags": ["Compliance", "Cloud"]
+    },
+    {
+      "id": "ms900-039",
+      "term": "Microsoft 365 Multi-Geo",
+      "definition": "An add-on that allows organizations to store data in multiple geographic locations within a single tenant. Useful for multinational companies with data residency requirements.",
+      "hint": "Store data in multiple regions within one tenant.",
+      "tags": ["Compliance", "Cloud"]
+    },
+    {
+      "id": "ms900-040",
+      "term": "Microsoft 365 Network Connectivity Principles",
+      "definition": "Microsoft recommends direct internet connections for Microsoft 365 traffic, avoiding VPN hairpinning. Uses local DNS resolution and optimized routing to Microsoft's global network.",
+      "hint": "Direct, local internet breakout improves Microsoft 365 performance.",
+      "tags": ["Networking", "Cloud"]
+    },
+    {
+      "id": "ms900-041",
+      "term": "Microsoft 365 Apps Update Channels",
+      "definition": "Update channels determine how frequently Office apps receive new features: Current Channel (monthly), Monthly Enterprise Channel, and Semi-Annual Enterprise Channel (twice per year).",
+      "hint": "Choose how often Office apps get updates.",
+      "tags": ["Apps", "Administration"]
+    },
+    {
+      "id": "ms900-042",
+      "term": "Microsoft 365 Service Level Agreement (SLA)",
+      "definition": "Microsoft provides a financially backed 99.9% uptime SLA for Microsoft 365 services. If uptime falls below SLA, customers may receive service credits.",
+      "hint": "Microsoft guarantees 99.9% availability for Microsoft 365.",
+      "tags": ["Availability", "Cloud"]
+    },
+    {
+      "id": "ms900-043",
+      "term": "Microsoft 365 Backup vs. Retention",
+      "definition": "Retention policies preserve or delete data based on rules. Backup solutions create point-in-time copies for recovery. Microsoft 365 includes retention but not full backup; third-party backup is often required.",
+      "hint": "Retention ≠ backup — both serve different purposes.",
+      "tags": ["Compliance", "Backup"]
+    },
+    {
+      "id": "ms900-044",
+      "term": "Microsoft 365 Apps for Enterprise",
+      "definition": "The enterprise version of Office apps with advanced features like shared computer activation, enterprise licensing, and integration with Microsoft 365 E3/E5.",
+      "hint": "The enterprise-grade version of Office desktop apps.",
+      "tags": ["Apps", "Licensing"]
+    },
+    {
+      "id": "ms900-045",
+      "term": "Microsoft Stream (on SharePoint)",
+      "definition": "A video platform integrated with SharePoint and OneDrive. Supports meeting recordings, screen captures, transcripts, and video sharing with organizational permissions.",
+      "hint": "Store and share videos securely inside Microsoft 365.",
+      "tags": ["Collaboration", "Apps"]
+    },
+    {
+      "id": "ms900-046",
+      "term": "Microsoft Whiteboard",
+      "definition": "A collaborative digital canvas for brainstorming, diagrams, and workshops. Integrated with Teams meetings for real-time co-authoring.",
+      "hint": "A shared digital whiteboard for teams.",
+      "tags": ["Collaboration", "Apps"]
+    },
+    {
+      "id": "ms900-047",
+      "term": "Microsoft Bookings",
+      "definition": "An online scheduling tool that integrates with Outlook calendars. Customers can book appointments through a web page. Useful for service-based businesses.",
+      "hint": "Let customers book appointments directly online.",
+      "tags": ["Apps", "Productivity"]
+    },
+    {
+      "id": "ms900-048",
+      "term": "Microsoft Forms",
+      "definition": "A lightweight survey and quiz tool for collecting feedback, polls, and assessments. Responses export to Excel and integrate with Power Automate.",
+      "hint": "Create surveys and quizzes in minutes.",
+      "tags": ["Apps", "Productivity"]
+    },
+    {
+      "id": "ms900-049",
+      "term": "Microsoft Sway",
+      "definition": "A web-based storytelling and presentation tool for creating interactive reports, newsletters, and presentations. Content is automatically formatted for web and mobile.",
+      "hint": "Create interactive, web-based presentations easily.",
+      "tags": ["Apps", "Productivity"]
+    },
+    {
+      "id": "ms900-050",
+      "term": "Microsoft 365 Learning Pathways",
+      "definition": "A customizable training portal built on SharePoint that provides Microsoft 365 tutorials, onboarding content, and user adoption resources.",
+      "hint": "A built-in training portal to help users learn Microsoft 365.",
+      "tags": ["Adoption", "Training"]
     }
   ]
 }

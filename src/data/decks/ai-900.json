@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0",
     "name": "Azure AI Fundamentals (AI-900)",
-    "description": "10 foundational Azure AI and machine learning concepts for the AI-900 certification exam.",
+    "description": "Foundational Azure AI and machine learning concepts for the AI-900 certification exam.",
     "createdAt": "2026-04-13"
   },
   "cards": [
@@ -75,6 +75,286 @@
       "definition": "Three fundamental ML task types: Regression predicts a continuous numeric value (e.g., house price, temperature). Classification assigns input to a discrete category (e.g., spam/not spam, disease/no disease). Clustering groups unlabelled data into natural segments based on similarity — no predefined labels needed. Regression and Classification are supervised; Clustering is unsupervised.",
       "hint": "Regression = a number. Classification = a category. Clustering = find groups on your own.",
       "tags": ["Machine Learning", "Fundamentals"]
+    },
+    {
+      "id": "ai900-011",
+      "term": "Supervised Learning",
+      "definition": "A machine learning approach where models learn from labelled data — meaning each training example includes both input features and the correct output. Common tasks include classification and regression. Azure Machine Learning supports supervised learning through AutoML, Designer modules, and custom training scripts.",
+      "hint": "Learning with the answer key provided.",
+      "tags": ["Machine Learning", "Supervised Learning"]
+    },
+    {
+      "id": "ai900-012",
+      "term": "Unsupervised Learning",
+      "definition": "A machine learning technique where models discover patterns in unlabelled data. The system identifies structure on its own, such as grouping similar items (clustering) or reducing dimensionality. Azure ML supports unsupervised algorithms like K-means and PCA.",
+      "hint": "Finding hidden patterns without knowing the correct answers.",
+      "tags": ["Machine Learning", "Unsupervised Learning"]
+    },
+    {
+      "id": "ai900-013",
+      "term": "Model Training vs. Inference",
+      "definition": "Training is the process of feeding data into an algorithm so it can learn patterns and produce a model. Inference is using that trained model to make predictions on new, unseen data. Azure ML allows training in compute clusters and deploying inference endpoints for real-time or batch predictions.",
+      "hint": "Training = learning. Inference = using what was learned.",
+      "tags": ["Machine Learning", "Fundamentals"]
+    },
+    {
+      "id": "ai900-014",
+      "term": "Azure AI Search",
+      "definition": "A cloud search service that uses AI to index, enrich, and retrieve information from structured and unstructured data. Cognitive Search integrates Cognitive Services to extract key phrases, detect language, perform OCR, and generate semantic search results.",
+      "hint": "Search engine + AI enrichment for your data.",
+      "tags": ["AI Services", "Search"]
+    },
+    {
+      "id": "ai900-015",
+      "term": "Automated Machine Learning (AutoML)",
+      "definition": "A feature in Azure Machine Learning that automatically selects algorithms, tunes hyperparameters, and evaluates models to find the best-performing one. Ideal for users with limited ML expertise. Supports classification, regression, and forecasting tasks.",
+      "hint": "Let Azure try all the ML options for you.",
+      "tags": ["Machine Learning", "Azure ML"]
+    },
+    {
+      "id": "ai900-016",
+      "term": "Data Drift",
+      "definition": "A phenomenon where the statistical properties of input data change over time, causing model performance to degrade. Azure ML's Data Drift Monitor detects shifts in data distributions so teams can retrain or update models proactively.",
+      "hint": "When your model's world changes and predictions get worse.",
+      "tags": ["Machine Learning", "Model Monitoring"]
+    },
+    {
+      "id": "ai900-017",
+      "term": "Classification Metrics",
+      "definition": "Metrics used to evaluate classification models, including accuracy, precision, recall, and F1-score. Azure ML provides these metrics in experiment runs and AutoML outputs to help determine model quality.",
+      "hint": "How you judge if a classifier is actually good.",
+      "tags": ["Machine Learning", "Evaluation"]
+    },
+    {
+      "id": "ai900-018",
+      "term": "Azure Form Recognizer",
+      "definition": "An AI service that extracts structured data from documents such as invoices, receipts, forms, and IDs. Uses OCR plus machine learning to identify fields, tables, and key-value pairs. Custom models can be trained with your own documents.",
+      "hint": "Turn PDFs and forms into usable data automatically.",
+      "tags": ["Cognitive Services", "Document AI"]
+    },
+    {
+      "id": "ai900-019",
+      "term": "Conversational Language Understanding (CLU)",
+      "definition": "A service within Azure AI Language that identifies user intents and extracts key entities from natural language input. Used in chatbots and virtual assistants to interpret what the user wants. Replaces older LUIS (Language Understanding) capabilities.",
+      "hint": "Helps bots understand what users mean, not just what they type.",
+      "tags": ["NLP", "Conversational AI"]
+    },
+    {
+      "id": "ai900-020",
+      "term": "Model Deployment Options",
+      "definition": "Azure ML supports multiple deployment targets: real-time endpoints (for low-latency predictions), batch endpoints (for large offline scoring jobs), and edge deployments (for IoT devices). Each option balances performance, cost, and operational needs.",
+      "hint": "Where your trained model lives and how it serves predictions.",
+      "tags": ["Machine Learning", "Deployment"]
+    },
+    {
+      "id": "ai900-021",
+      "term": "Feature Engineering",
+      "definition": "The process of selecting, transforming, or creating input variables (features) to improve model performance. Azure ML supports feature engineering through pipelines, AutoML transformations, and custom preprocessing scripts.",
+      "hint": "Shaping your data so the model learns better.",
+      "tags": ["Machine Learning", "Data Preparation"]
+    },
+    {
+      "id": "ai900-022",
+      "term": "Azure AI Speech",
+      "definition": "A suite of speech capabilities including speech-to-text, text-to-speech, speech translation, and speaker recognition. Supports custom voice models and real-time streaming. Useful for voice assistants and transcription scenarios.",
+      "hint": "Turning spoken words into text — and back again.",
+      "tags": ["Speech", "Cognitive Services"]
+    },
+    {
+      "id": "ai900-023",
+      "term": "Reinforcement Learning",
+      "definition": "A machine learning paradigm where an agent learns by interacting with an environment and receiving rewards or penalties. While not a major Azure ML feature, AI-900 requires understanding the concept at a high level.",
+      "hint": "Learning by trial, error, and rewards.",
+      "tags": ["Machine Learning", "Fundamentals"]
+    },
+    {
+      "id": "ai900-024",
+      "term": "Azure AI Content Safety",
+      "definition": "A service that detects harmful, unsafe, or inappropriate content across text and images. Helps developers moderate user-generated content and comply with safety standards.",
+      "hint": "AI that filters out harmful or unsafe content.",
+      "tags": ["Responsible AI", "AI Services"]
+    },
+    {
+      "id": "ai900-025",
+      "term": "Data Labeling",
+      "definition": "The process of adding tags or annotations to raw data so it can be used for supervised learning. Azure ML provides Data Labeling projects for images and text, enabling teams to create high-quality labelled datasets.",
+      "hint": "Giving examples the correct answers so models can learn.",
+      "tags": ["Machine Learning", "Data Preparation"]
+    },
+    {
+      "id": "ai900-026",
+      "term": "Azure AI Vision",
+      "definition": "The modernized vision service combining OCR, image analysis, face detection, and spatial analysis. Supports custom models and integrates with Azure AI Studio for building vision-powered apps.",
+      "hint": "The upgraded home for Azure's image and video intelligence.",
+      "tags": ["Computer Vision", "AI Services"]
+    },
+    {
+      "id": "ai900-027",
+      "term": "Forecasting",
+      "definition": "A supervised ML task that predicts future values based on historical time-series data. AutoML in Azure ML includes specialized forecasting capabilities such as seasonality detection and holiday effects.",
+      "hint": "Predicting what happens next based on past trends.",
+      "tags": ["Machine Learning", "Time Series"]
+    },
+    {
+      "id": "ai900-028",
+      "term": "Azure AI Studio",
+      "definition": "A unified environment for building, evaluating, and deploying generative AI and traditional ML solutions. Integrates Azure OpenAI, prompt engineering tools, model catalog, and deployment workflows.",
+      "hint": "The central workspace for building AI apps in Azure.",
+      "tags": ["AI Services", "Generative AI"]
+    },
+    {
+      "id": "ai900-029",
+      "term": "Model Explainability",
+      "definition": "Tools and techniques that help interpret how a model makes predictions. Azure ML provides feature importance charts, SHAP values, and interpretability dashboards to support transparency and Responsible AI.",
+      "hint": "Understanding why the model made that prediction.",
+      "tags": ["Responsible AI", "Model Monitoring"]
+    },
+    {
+      "id": "ai900-030",
+      "term": "Azure AI Translator",
+      "definition": "A cloud-based translation service supporting 100+ languages. Provides text translation, transliteration, and dictionary lookup. Often used in multilingual apps and global chatbots.",
+      "hint": "Instant language translation powered by Azure.",
+      "tags": ["NLP", "Cognitive Services"]
+    },
+    {
+      "id": "ai900-031",
+      "term": "Training Data vs. Test Data",
+      "definition": "Training data is used to teach a model patterns, while test data evaluates how well the model generalizes to unseen examples. Azure ML automatically splits data during AutoML runs.",
+      "hint": "Learn with one dataset, prove it works with another.",
+      "tags": ["Machine Learning", "Fundamentals"]
+    },
+    {
+      "id": "ai900-032",
+      "term": "Overfitting",
+      "definition": "A condition where a model learns noise or irrelevant details in the training data, causing poor performance on new data. Azure ML mitigates overfitting using cross-validation and regularization.",
+      "hint": "Great on training data, bad on real-world data.",
+      "tags": ["Machine Learning", "Model Evaluation"]
+    },
+    {
+      "id": "ai900-033",
+      "term": "Underfitting",
+      "definition": "When a model is too simple to capture underlying patterns in the data, resulting in poor performance on both training and test sets.",
+      "hint": "Model is too simple to learn anything useful.",
+      "tags": ["Machine Learning", "Model Evaluation"]
+    },
+    {
+      "id": "ai900-034",
+      "term": "Azure Databricks",
+      "definition": "A collaborative analytics platform optimized for big data and machine learning. Integrates with Azure ML for scalable data prep and model training.",
+      "hint": "Big data + ML notebooks powered by Apache Spark.",
+      "tags": ["Data", "Machine Learning"]
+    },
+    {
+      "id": "ai900-035",
+      "term": "Azure Cognitive Search Skillsets",
+      "definition": "Pipelines that enrich content using AI skills such as OCR, key phrase extraction, and entity recognition before indexing.",
+      "hint": "AI-powered preprocessing for search indexing.",
+      "tags": ["Search", "AI Services"]
+    },
+    {
+      "id": "ai900-036",
+      "term": "Classification Algorithms",
+      "definition": "Algorithms used to assign inputs to categories, such as logistic regression, decision trees, and neural networks. Azure ML supports these through AutoML and custom training.",
+      "hint": "Models that answer: which category does this belong to?",
+      "tags": ["Machine Learning", "Algorithms"]
+    },
+    {
+      "id": "ai900-037",
+      "term": "Regression Algorithms",
+      "definition": "Algorithms that predict numeric values, such as linear regression, random forest regression, and gradient boosting. Common in forecasting and pricing models.",
+      "hint": "Models that output a number, not a label.",
+      "tags": ["Machine Learning", "Algorithms"]
+    },
+    {
+      "id": "ai900-038",
+      "term": "Azure AI Document Intelligence",
+      "definition": "The modernized Form Recognizer service for extracting structured data from documents using OCR, layout analysis, and custom models.",
+      "hint": "AI that reads and understands documents.",
+      "tags": ["Document AI", "Cognitive Services"]
+    },
+    {
+      "id": "ai900-039",
+      "term": "Azure AI Content Understanding",
+      "definition": "A service that uses NLP to classify, summarize, and extract insights from text. Useful for knowledge mining and document processing.",
+      "hint": "AI that reads text and pulls out meaning.",
+      "tags": ["NLP", "AI Services"]
+    },
+    {
+      "id": "ai900-040",
+      "term": "Prompt Engineering",
+      "definition": "The practice of designing effective prompts to guide generative AI models like GPT. Azure OpenAI Studio provides tools for prompt testing and evaluation.",
+      "hint": "Crafting instructions that get the best output from AI.",
+      "tags": ["Generative AI", "AI Services"]
+    },
+    {
+      "id": "ai900-041",
+      "term": "Vector Search",
+      "definition": "A search technique that uses embeddings to find semantically similar content. Azure AI Search supports vector search for RAG (retrieval-augmented generation) scenarios.",
+      "hint": "Search based on meaning, not keywords.",
+      "tags": ["Search", "Generative AI"]
+    },
+    {
+      "id": "ai900-042",
+      "term": "Embeddings",
+      "definition": "Numeric vector representations of text or images that capture semantic meaning. Used in similarity search, clustering, and RAG pipelines.",
+      "hint": "Turning text into numbers that capture meaning.",
+      "tags": ["NLP", "Generative AI"]
+    },
+    {
+      "id": "ai900-043",
+      "term": "Azure AI Personalizer (Legacy)",
+      "definition": "A reinforcement-learning-based service that ranked content for personalization scenarios. Now replaced by Azure AI Recommendations.",
+      "hint": "AI that chooses the best option for each user.",
+      "tags": ["Decision", "AI Services"]
+    },
+    {
+      "id": "ai900-044",
+      "term": "Azure AI Recommendations",
+      "definition": "A service that generates personalized product or content recommendations using collaborative filtering and ML models.",
+      "hint": "Suggests what users are most likely to want next.",
+      "tags": ["AI Services", "Decision"]
+    },
+    {
+      "id": "ai900-045",
+      "term": "Data Normalization",
+      "definition": "A preprocessing step that scales numeric features to a consistent range, improving model stability and performance.",
+      "hint": "Putting all numeric features on the same scale.",
+      "tags": ["Machine Learning", "Data Preparation"]
+    },
+    {
+      "id": "ai900-046",
+      "term": "Confusion Matrix",
+      "definition": "A table that shows correct and incorrect predictions for classification models, helping evaluate performance across classes.",
+      "hint": "A grid showing where the model got things right or wrong.",
+      "tags": ["Machine Learning", "Evaluation"]
+    },
+    {
+      "id": "ai900-047",
+      "term": "Azure AI Metrics Advisor",
+      "definition": "A service that monitors time-series data and detects anomalies, diagnosing root causes using AI.",
+      "hint": "AI that watches your metrics and flags unusual behavior.",
+      "tags": ["AI Services", "Monitoring"]
+    },
+    {
+      "id": "ai900-048",
+      "term": "Azure AI Video Indexer",
+      "definition": "A service that extracts insights from video, including speech transcription, face detection, scene segmentation, and sentiment.",
+      "hint": "AI that understands what's happening inside videos.",
+      "tags": ["Video AI", "Cognitive Services"]
+    },
+    {
+      "id": "ai900-049",
+      "term": "Model Lifecycle",
+      "definition": "The stages of building an ML solution: data collection, preparation, training, evaluation, deployment, and monitoring. Azure ML supports each stage with dedicated tools.",
+      "hint": "The full journey from raw data to deployed model.",
+      "tags": ["Machine Learning", "Fundamentals"]
+    },
+    {
+      "id": "ai900-050",
+      "term": "Azure AI Safety Evaluations",
+      "definition": "Tools in Azure AI Studio that test generative AI models for harmful, biased, or unsafe outputs before deployment.",
+      "hint": "Ensuring generative AI behaves responsibly.",
+      "tags": ["Responsible AI", "Generative AI"]
     }
   ]
 }

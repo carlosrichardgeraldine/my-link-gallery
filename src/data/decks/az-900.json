@@ -2,79 +2,359 @@
   "meta": {
     "version": "1.0",
     "name": "Azure Fundamentals (AZ-900)",
-    "description": "10 foundational Microsoft Azure concepts for the AZ-900 certification exam.",
+    "description": "Foundational Microsoft Azure concepts for the AZ-900 certification exam.",
     "createdAt": "2026-04-13"
   },
   "cards": [
     {
-      "id": "az-001",
+      "id": "az900-001",
       "term": "Azure Resource Groups",
       "definition": "A Resource Group is a logical container that holds related Azure resources for an application or environment (e.g., VMs, storage accounts, databases). All resources in a group share the same lifecycle — you can deploy, update, and delete them together. Resource Groups also define the scope for access control (RBAC), policies, and billing cost tracking.",
       "hint": "Think of a Resource Group as a folder that organises and shares permissions across related Azure resources.",
       "tags": ["Management", "Fundamentals"]
     },
     {
-      "id": "az-002",
+      "id": "az900-002",
       "term": "Azure Virtual Machines",
       "definition": "Azure VMs are on-demand, scalable compute resources that run Windows or Linux. You choose a VM size (vCPUs and RAM), an OS image, storage (managed disks), and networking. VMs are an IaaS offering — you manage the OS and software; Azure manages the physical hardware. Common scenarios: migrating on-premises workloads, custom software environments, and dev/test environments.",
       "hint": "A VM gives you full control of an OS in the cloud — like a PC in a remote data centre.",
       "tags": ["Compute", "IaaS"]
     },
     {
-      "id": "az-003",
+      "id": "az900-003",
       "term": "Azure Blob Storage",
       "definition": "Azure Blob Storage is Microsoft's object storage solution for the cloud, optimised for storing massive amounts of unstructured data such as images, videos, backups, and log files. It has three access tiers: Hot (frequently accessed), Cool (infrequently accessed, lower cost), and Archive (rarely accessed, lowest cost but retrieval takes hours). Data is organised into Storage Accounts → Containers → Blobs.",
       "hint": "Hot = fast and pricey. Cool = cheaper to store. Archive = very cheap but slow to retrieve.",
       "tags": ["Storage", "Fundamentals"]
     },
     {
-      "id": "az-004",
+      "id": "az900-004",
       "term": "Microsoft Entra ID (Azure Active Directory)",
       "definition": "Microsoft Entra ID (formerly Azure Active Directory) is Azure's cloud-based identity and access management service. It authenticates users and controls access to Azure resources and Microsoft 365 apps using Single Sign-On (SSO), Multi-Factor Authentication (MFA), and Conditional Access policies. It is different from on-premises Windows Server Active Directory — it is designed for internet-based, cloud services.",
       "hint": "Entra ID = the cloud identity system that decides who can log in and what they can access.",
       "tags": ["Security", "Identity"]
     },
     {
-      "id": "az-005",
+      "id": "az900-005",
       "term": "Azure Virtual Network (VNet)",
       "definition": "An Azure Virtual Network (VNet) is the fundamental building block of your private network in Azure. It enables Azure resources to communicate securely with each other, the internet, and on-premises networks. VNets are divided into Subnets. Features include: Network Security Groups (NSGs) for traffic filtering, VNet Peering for connecting VNets, and VPN Gateway or ExpressRoute for hybrid connectivity.",
       "hint": "VNet = your private slice of Azure's network. NSG = the firewall ruleset on subnets and NICs.",
       "tags": ["Networking", "Fundamentals"]
     },
     {
-      "id": "az-006",
+      "id": "az900-006",
       "term": "Azure App Service",
       "definition": "Azure App Service is a fully managed PaaS for hosting web applications, REST APIs, and mobile back-ends. Supported languages and runtimes include .NET, Node.js, Java, Python, PHP, and Ruby. Azure handles the infrastructure, OS patching, and scaling. Key features: built-in autoscaling, custom domains and SSL, deployment slots (staging/production swap), and CI/CD integration.",
       "hint": "Just upload your code — App Service handles the servers, runtime, and scaling for you.",
       "tags": ["Compute", "PaaS"]
     },
     {
-      "id": "az-007",
+      "id": "az900-007",
       "term": "Azure Regions and Availability Zones",
       "definition": "An Azure Region is a geographical area containing one or more data centres connected by a low-latency network (e.g., East US, UK South). An Availability Zone (AZ) is a physically separate data centre within a region with independent power, cooling, and networking. Deploying across AZs protects against single data-centre failure and provides 99.99% VM uptime SLA. Region Pairs provide disaster recovery across geographies.",
       "hint": "Region = city. Availability Zone = separate building in that city. Region Pair = backup city.",
       "tags": ["Availability", "Fundamentals"]
     },
     {
-      "id": "az-008",
+      "id": "az900-008",
       "term": "Azure Pricing Models and Cost Management",
       "definition": "Azure offers several pricing options: Pay-As-You-Go (PAYG) — billed per second/minute, no upfront commitment; Reserved Instances — 1- or 3-year commitment for up to 72% savings; Azure Hybrid Benefit — bring existing Windows Server / SQL Server licences to save up to 40%; Spot VMs — unused capacity at deep discount. Azure Cost Management + Billing and the Pricing Calculator are tools for estimating and monitoring spend.",
       "hint": "PAYG = flexible. Reserved = commitment discount. Spot = cheapest but interruptible.",
       "tags": ["Cost Optimization", "Fundamentals"]
     },
     {
-      "id": "az-009",
+      "id": "az900-009",
       "term": "Azure Shared Responsibility Model",
       "definition": "Responsibility for security is shared between Microsoft and the customer and shifts depending on the service type. Microsoft always manages physical data centres, network infrastructure, and hypervisors. Customers always manage their data, identities, and devices. For IaaS (VMs), the customer also manages the OS, runtime, and apps. For PaaS (App Service), Microsoft takes on OS and runtime. For SaaS (Microsoft 365), Microsoft manages almost everything.",
       "hint": "As you move from IaaS → PaaS → SaaS, Microsoft takes on more responsibility.",
       "tags": ["Security", "Fundamentals"]
     },
     {
-      "id": "az-010",
+      "id": "az900-010",
       "term": "Azure Monitor and Azure Advisor",
       "definition": "Azure Monitor is the unified observability platform for collecting, analysing, and acting on telemetry from Azure resources: metrics, logs (via Log Analytics / KQL queries), and alerts. Azure Advisor is a personalised cloud consultant that analyses your usage and recommends improvements across five categories: Cost, Security, Reliability, Operational Excellence, and Performance. Both are frequently tested in AZ-900.",
       "hint": "Monitor = watch what's happening. Advisor = get recommendations on how to improve.",
       "tags": ["Observability", "Management"]
+    },
+    {
+      "id": "az900-011",
+      "term": "Azure Functions",
+      "definition": "Azure Functions is a serverless compute service that runs event-driven code without requiring you to manage servers. You pay only for execution time. Common triggers include HTTP requests, timers, queues, and blob events. Ideal for lightweight APIs, automation, and background tasks.",
+      "hint": "Serverless code that runs only when triggered.",
+      "tags": ["Compute", "Serverless"]
+    },
+    {
+      "id": "az900-012",
+      "term": "Azure Logic Apps",
+      "definition": "A serverless workflow automation service that integrates systems and services using connectors (e.g., Outlook, SQL, Salesforce). Logic Apps are designed for low-code business process automation and can orchestrate multi-step workflows.",
+      "hint": "Automate workflows visually with connectors.",
+      "tags": ["Integration", "Serverless"]
+    },
+    {
+      "id": "az900-013",
+      "term": "Azure SQL Database",
+      "definition": "A fully managed relational database service based on SQL Server. Provides automatic backups, patching, high availability, and scaling. Supports serverless compute tier and hyperscale storage. Ideal for transactional workloads.",
+      "hint": "Managed SQL Server in the cloud — no OS or patching required.",
+      "tags": ["Database", "PaaS"]
+    },
+    {
+      "id": "az900-014",
+      "term": "Azure Cosmos DB",
+      "definition": "A globally distributed NoSQL database service with single-digit millisecond latency and automatic multi-region replication. Supports multiple APIs: Core (SQL), MongoDB, Cassandra, Gremlin, and Table. Offers guaranteed SLAs for throughput, latency, availability, and consistency.",
+      "hint": "Planet-scale NoSQL with multiple APIs and global distribution.",
+      "tags": ["Database", "NoSQL"]
+    },
+    {
+      "id": "az900-015",
+      "term": "Azure Storage Redundancy Options",
+      "definition": "Azure Storage provides redundancy levels: LRS (local), ZRS (zone), GRS (geo), and RA-GRS (read-access geo). LRS keeps 3 copies in one data center; ZRS spreads across zones; GRS replicates to a paired region; RA-GRS allows read access to the secondary region.",
+      "hint": "LRS = local. ZRS = zones. GRS = cross-region. RA-GRS = readable backup region.",
+      "tags": ["Storage", "Availability"]
+    },
+    {
+      "id": "az900-016",
+      "term": "Azure Firewall",
+      "definition": "A cloud-native, stateful firewall-as-a-service that provides network and application-level filtering. Supports threat intelligence, FQDN filtering, and outbound SNAT. Fully managed and scalable.",
+      "hint": "A managed firewall that protects your Azure network.",
+      "tags": ["Security", "Networking"]
+    },
+    {
+      "id": "az900-017",
+      "term": "Network Security Groups (NSGs)",
+      "definition": "NSGs filter inbound and outbound traffic to Azure resources using allow/deny rules based on IP, port, and protocol. Commonly applied to subnets or NICs. They act as a basic firewall for VNets.",
+      "hint": "Rule-based traffic filtering for VNets and subnets.",
+      "tags": ["Networking", "Security"]
+    },
+    {
+      "id": "az900-018",
+      "term": "Azure VPN Gateway",
+      "definition": "A service that provides secure, encrypted tunnels between on-premises networks and Azure VNets using IPsec/IKE. Supports site-to-site, point-to-site, and VNet-to-VNet connections.",
+      "hint": "Encrypted tunnel connecting on-premises to Azure.",
+      "tags": ["Networking", "Hybrid"]
+    },
+    {
+      "id": "az900-019",
+      "term": "Azure ExpressRoute",
+      "definition": "A private, dedicated connection between your on-premises network and Azure, bypassing the public internet. Offers higher reliability, lower latency, and enhanced security. Often used for enterprise-grade workloads.",
+      "hint": "Private fiber connection to Azure — not over the internet.",
+      "tags": ["Networking", "Hybrid"]
+    },
+    {
+      "id": "az900-020",
+      "term": "Azure Load Balancer",
+      "definition": "A Layer 4 load balancer that distributes incoming traffic across healthy VM instances. Supports inbound and outbound scenarios. Available in Basic and Standard SKUs.",
+      "hint": "Distributes TCP/UDP traffic across VMs.",
+      "tags": ["Networking", "Compute"]
+    },
+    {
+      "id": "az900-021",
+      "term": "Azure Application Gateway",
+      "definition": "A Layer 7 load balancer with features like SSL termination, URL-based routing, and Web Application Firewall (WAF). Ideal for web applications needing advanced traffic control.",
+      "hint": "Load balancing for web apps with WAF protection.",
+      "tags": ["Networking", "Security"]
+    },
+    {
+      "id": "az900-022",
+      "term": "Azure Web Application Firewall (WAF)",
+      "definition": "A security feature of Application Gateway and Front Door that protects web apps from common exploits like SQL injection and cross-site scripting. Uses OWASP rulesets.",
+      "hint": "Protects web apps from common internet attacks.",
+      "tags": ["Security", "Networking"]
+    },
+    {
+      "id": "az900-023",
+      "term": "Azure Kubernetes Service (AKS)",
+      "definition": "A managed Kubernetes service that handles cluster provisioning, upgrades, and scaling. You manage containerized applications; Azure manages the control plane. Integrates with ACR for container images.",
+      "hint": "Managed Kubernetes for running containers at scale.",
+      "tags": ["Compute", "Containers"]
+    },
+    {
+      "id": "az900-024",
+      "term": "Azure Container Instances (ACI)",
+      "definition": "A serverless container runtime for running containers without managing VMs or orchestrators. Ideal for quick tasks, batch jobs, and lightweight microservices.",
+      "hint": "Run containers instantly — no cluster required.",
+      "tags": ["Compute", "Containers"]
+    },
+    {
+      "id": "az900-025",
+      "term": "Azure Policy",
+      "definition": "A governance service that enforces rules across Azure resources, such as allowed VM sizes, required tags, or mandatory encryption. Helps ensure compliance and prevent misconfigurations.",
+      "hint": "Enforce rules and compliance across your Azure environment.",
+      "tags": ["Governance", "Security"]
+    },
+    {
+      "id": "az900-026",
+      "term": "Role-Based Access Control (RBAC)",
+      "definition": "RBAC controls who can access Azure resources and what actions they can perform. Roles include Owner, Contributor, and Reader. Permissions are assigned at the subscription, resource group, or resource level.",
+      "hint": "Assign permissions based on roles, not individuals.",
+      "tags": ["Security", "Identity"]
+    },
+    {
+      "id": "az900-027",
+      "term": "Azure Blueprints",
+      "definition": "A service that packages policies, role assignments, ARM templates, and resource groups into a reusable governance template. Useful for deploying compliant environments consistently.",
+      "hint": "Reusable templates for compliant Azure environments.",
+      "tags": ["Governance", "Management"]
+    },
+    {
+      "id": "az900-028",
+      "term": "Azure Backup",
+      "definition": "A cloud-based backup solution for VMs, SQL databases, file shares, and on-premises servers. Provides long-term retention, encryption, and centralized management.",
+      "hint": "Simple, secure backups for cloud and on-prem workloads.",
+      "tags": ["Backup", "Recovery"]
+    },
+    {
+      "id": "az900-029",
+      "term": "Azure Site Recovery (ASR)",
+      "definition": "A disaster recovery service that replicates workloads to another Azure region or on-premises site. Supports failover, failback, and DR drills with minimal downtime.",
+      "hint": "Disaster recovery for VMs and apps.",
+      "tags": ["Recovery", "Availability"]
+    },
+    {
+      "id": "az900-030",
+      "term": "Azure Service Health",
+      "definition": "A personalized dashboard showing the health of Azure services and regions you use. Provides outage alerts, planned maintenance notifications, and RCA reports.",
+      "hint": "Your personalized view of Azure outages and maintenance.",
+      "tags": ["Management", "Monitoring"]
+    },
+    {
+      "id": "az900-031",
+      "term": "Azure Cloud Shell",
+      "definition": "A browser-based command-line environment for managing Azure resources using Bash or PowerShell. Comes preinstalled with Azure CLI, Azure PowerShell, Git, and common tools. Runs in a temporary container with persistent storage via an Azure File Share.",
+      "hint": "A ready-to-use Azure CLI/PowerShell environment in your browser.",
+      "tags": ["Management", "Tools"]
+    },
+    {
+      "id": "az900-032",
+      "term": "Azure CLI vs. Azure PowerShell",
+      "definition": "Azure CLI is a cross-platform command-line tool using simple commands (az ...). Azure PowerShell uses PowerShell cmdlets (Get-Az...). Both manage Azure resources, but PowerShell is preferred for automation in Windows-heavy environments.",
+      "hint": "CLI = cross-platform. PowerShell = PowerShell cmdlets.",
+      "tags": ["Management", "Tools"]
+    },
+    {
+      "id": "az900-033",
+      "term": "Azure Resource Manager (ARM)",
+      "definition": "The deployment and management layer for Azure. ARM handles resource provisioning, RBAC, tags, locks, and templates. All Azure operations go through ARM APIs.",
+      "hint": "The engine behind all Azure deployments and permissions.",
+      "tags": ["Management", "Governance"]
+    },
+    {
+      "id": "az900-034",
+      "term": "ARM Templates",
+      "definition": "JSON-based infrastructure-as-code files used to deploy Azure resources consistently. Support parameters, variables, and modular templates. Enable repeatable, version-controlled deployments.",
+      "hint": "Declarative JSON templates for Azure infrastructure.",
+      "tags": ["IaC", "Management"]
+    },
+    {
+      "id": "az900-035",
+      "term": "Azure Bicep",
+      "definition": "A domain-specific language (DSL) for deploying Azure resources using infrastructure-as-code. More concise and readable than ARM JSON. Compiles to ARM templates.",
+      "hint": "A cleaner, simpler way to write ARM templates.",
+      "tags": ["IaC", "Management"]
+    },
+    {
+      "id": "az900-036",
+      "term": "Azure Availability Sets",
+      "definition": "A grouping of VMs across fault domains (power/cooling) and update domains (maintenance cycles). Ensures at least one VM stays up during hardware failures or updates. Provides 99.95% VM SLA.",
+      "hint": "Protect VMs from data center failures and maintenance.",
+      "tags": ["Availability", "Compute"]
+    },
+    {
+      "id": "az900-037",
+      "term": "Azure Dedicated Hosts",
+      "definition": "Physical servers dedicated to a single customer. Useful for compliance, licensing, and isolation requirements. You control VM placement on the host.",
+      "hint": "Your own physical server in Azure's data center.",
+      "tags": ["Compute", "Security"]
+    },
+    {
+      "id": "az900-038",
+      "term": "Azure Disk Storage Types",
+      "definition": "Azure offers several disk types: Standard HDD (low cost), Standard SSD (balanced), Premium SSD (high performance), and Ultra Disk (extreme performance). Used for VMs and databases.",
+      "hint": "HDD = cheapest. Premium/Ultra = fastest.",
+      "tags": ["Storage", "Compute"]
+    },
+    {
+      "id": "az900-039",
+      "term": "Azure Files",
+      "definition": "A fully managed file share service using SMB or NFS protocols. Supports lift-and-shift of on-premises file shares. Can be mounted by Windows, Linux, and macOS.",
+      "hint": "Cloud file shares accessible like a network drive.",
+      "tags": ["Storage", "Hybrid"]
+    },
+    {
+      "id": "az900-040",
+      "term": "Azure Queue Storage",
+      "definition": "A simple messaging service for decoupling components. Stores millions of lightweight messages for asynchronous processing.",
+      "hint": "Lightweight message queues for distributed apps.",
+      "tags": ["Storage", "Integration"]
+    },
+    {
+      "id": "az900-041",
+      "term": "Azure Event Grid",
+      "definition": "A fully managed event routing service that enables reactive, event-driven architectures. Supports millions of events per second with low latency.",
+      "hint": "Publish/subscribe event routing for serverless apps.",
+      "tags": ["Integration", "Serverless"]
+    },
+    {
+      "id": "az900-042",
+      "term": "Azure Event Hubs",
+      "definition": "A big data streaming platform for ingesting millions of events per second. Commonly used for telemetry, IoT, and real-time analytics pipelines.",
+      "hint": "High-throughput event ingestion for analytics.",
+      "tags": ["Analytics", "Integration"]
+    },
+    {
+      "id": "az900-043",
+      "term": "Azure Data Lake Storage",
+      "definition": "A scalable, secure data lake built on top of Blob Storage. Optimized for analytics workloads and supports hierarchical namespaces.",
+      "hint": "Massive-scale storage for analytics and big data.",
+      "tags": ["Analytics", "Storage"]
+    },
+    {
+      "id": "az900-044",
+      "term": "Azure Synapse Analytics",
+      "definition": "An integrated analytics service combining data warehousing, big data processing, and data integration. Supports SQL pools, Spark, pipelines, and Synapse Studio.",
+      "hint": "Unified analytics: data warehouse + big data + pipelines.",
+      "tags": ["Analytics", "Data"]
+    },
+    {
+      "id": "az900-045",
+      "term": "Azure Data Factory",
+      "definition": "A cloud-based ETL/ELT service for data movement and transformation. Uses pipelines, activities, and connectors to integrate data across systems.",
+      "hint": "ETL pipelines for moving and transforming data.",
+      "tags": ["Data", "Integration"]
+    },
+    {
+      "id": "az900-046",
+      "term": "Microsoft Defender for Cloud",
+      "definition": "A unified cloud security posture management (CSPM) and workload protection platform. Provides security recommendations, threat detection, and compliance assessments.",
+      "hint": "Security recommendations and threat protection for Azure.",
+      "tags": ["Security", "Monitoring"]
+    },
+    {
+      "id": "az900-047",
+      "term": "Zero Trust Security Model",
+      "definition": "A security approach that assumes no implicit trust. Every access request must be authenticated, authorized, and continuously validated. Core principles: verify explicitly, use least privilege, assume breach.",
+      "hint": "Never trust, always verify.",
+      "tags": ["Security", "Identity"]
+    },
+    {
+      "id": "az900-048",
+      "term": "Azure Tags",
+      "definition": "Key-value metadata applied to Azure resources for organization, cost tracking, automation, and governance. Examples: environment=prod, owner=carlos.",
+      "hint": "Labels that help organize and track resources.",
+      "tags": ["Management", "Governance"]
+    },
+    {
+      "id": "az900-049",
+      "term": "Azure Resource Locks",
+      "definition": "Locks prevent accidental deletion or modification of critical resources. Two types: CanNotDelete (read-only + modify allowed) and ReadOnly (no changes allowed).",
+      "hint": "Protect important resources from accidental changes.",
+      "tags": ["Governance", "Security"]
+    },
+    {
+      "id": "az900-050",
+      "term": "Azure Subscriptions",
+      "definition": "A logical container for billing, resource management, and access control. Organizations often use multiple subscriptions for separation of environments, departments, or cost centers.",
+      "hint": "The billing and management boundary for Azure resources.",
+      "tags": ["Management", "Fundamentals"]
     }
   ]
 }

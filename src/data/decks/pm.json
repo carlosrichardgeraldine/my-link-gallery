@@ -1,0 +1,1410 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Project Management Fundamentals",
+    "description": "Key project management concepts and terminology — methodologies, tools, roles, and best practices for successful project delivery.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "pm-001",
+      "term": "Project",
+      "definition": "A temporary endeavor undertaken to create a unique product, service, or result. Has a defined beginning and end.",
+      "hint": "Temporary + unique.",
+      "tags": ["Fundamentals"]
+    },
+    {
+      "id": "pm-002",
+      "term": "Project Management",
+      "definition": "The application of knowledge, skills, tools, and techniques to project activities to meet project requirements.",
+      "hint": "Managing work to meet goals.",
+      "tags": ["Fundamentals"]
+    },
+    {
+      "id": "pm-003",
+      "term": "Program",
+      "definition": "A group of related projects managed in a coordinated way to obtain benefits not available from managing them individually.",
+      "hint": "Multiple related projects.",
+      "tags": ["Fundamentals"]
+    },
+    {
+      "id": "pm-004",
+      "term": "Portfolio",
+      "definition": "A collection of projects, programs, and operations managed together to achieve strategic objectives.",
+      "hint": "Projects aligned to strategy.",
+      "tags": ["Fundamentals"]
+    },
+    {
+      "id": "pm-005",
+      "term": "Project Life Cycle",
+      "definition": "The series of phases a project passes through from start to finish. Can be predictive, agile, or hybrid.",
+      "hint": "Phases from start to end.",
+      "tags": ["Lifecycle"]
+    },
+    {
+      "id": "pm-006",
+      "term": "Predictive (Waterfall) Approach",
+      "definition": "A project approach where scope, schedule, and cost are determined early and changes are tightly controlled.",
+      "hint": "Plan everything upfront.",
+      "tags": ["Approach"]
+    },
+    {
+      "id": "pm-007",
+      "term": "Agile Approach",
+      "definition": "An iterative approach that delivers value in small increments, emphasizing collaboration, flexibility, and customer feedback.",
+      "hint": "Iterate and adapt.",
+      "tags": ["Approach"]
+    },
+    {
+      "id": "pm-008",
+      "term": "Hybrid Approach",
+      "definition": "Combines predictive and agile practices to fit project needs.",
+      "hint": "Mix of waterfall + agile.",
+      "tags": ["Approach"]
+    },
+    {
+      "id": "pm-009",
+      "term": "Project Charter",
+      "definition": "A document that formally authorizes a project and gives the project manager authority to apply resources.",
+      "hint": "Official project kickoff document.",
+      "tags": ["Initiating"]
+    },
+    {
+      "id": "pm-010",
+      "term": "Stakeholder",
+      "definition": "Any individual or group who may affect, be affected by, or perceive themselves to be affected by the project.",
+      "hint": "Anyone with interest in the project.",
+      "tags": ["Stakeholders"]
+    },
+    {
+      "id": "pm-011",
+      "term": "Stakeholder Register",
+      "definition": "A document listing stakeholders, their interests, influence, and engagement strategies.",
+      "hint": "Who they are + what they need.",
+      "tags": ["Stakeholders"]
+    },
+    {
+      "id": "pm-012",
+      "term": "Scope",
+      "definition": "The work required to deliver a product, service, or result with specified features and functions.",
+      "hint": "What's included in the project.",
+      "tags": ["Scope"]
+    },
+    {
+      "id": "pm-013",
+      "term": "Work Breakdown Structure (WBS)",
+      "definition": "A hierarchical decomposition of project deliverables into smaller, manageable components.",
+      "hint": "Break work into pieces.",
+      "tags": ["Scope"]
+    },
+    {
+      "id": "pm-014",
+      "term": "Schedule Baseline",
+      "definition": "The approved version of the project schedule used to measure performance.",
+      "hint": "Official timeline.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-015",
+      "term": "Critical Path",
+      "definition": "The sequence of activities that determines the shortest possible project duration.",
+      "hint": "Longest path = shortest project.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-016",
+      "term": "Cost Baseline",
+      "definition": "The approved version of the project budget used to measure cost performance.",
+      "hint": "Official budget.",
+      "tags": ["Cost"]
+    },
+    {
+      "id": "pm-017",
+      "term": "Quality Management",
+      "definition": "Ensuring the project meets requirements through quality planning, assurance, and control.",
+      "hint": "Meet standards.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "pm-018",
+      "term": "Risk",
+      "definition": "An uncertain event that may have a positive or negative impact on project objectives.",
+      "hint": "Uncertainty that affects the project.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-019",
+      "term": "Risk Register",
+      "definition": "A document listing identified risks, their analysis, and response plans.",
+      "hint": "List of risks + plans.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-020",
+      "term": "Issue Log",
+      "definition": "Tracks current problems that require action, unlike risks which are uncertain.",
+      "hint": "Problems happening now.",
+      "tags": ["Execution"]
+    },
+    {
+      "id": "pm-021",
+      "term": "Change Control",
+      "definition": "A structured process for evaluating and approving changes to scope, schedule, or cost.",
+      "hint": "Manage changes properly.",
+      "tags": ["Control"]
+    },
+    {
+      "id": "pm-022",
+      "term": "Change Control Board (CCB)",
+      "definition": "A group responsible for reviewing and approving project changes.",
+      "hint": "Approves changes.",
+      "tags": ["Control"]
+    },
+    {
+      "id": "pm-023",
+      "term": "Project Manager",
+      "definition": "The person assigned to lead the project team and achieve project objectives.",
+      "hint": "Leads the project.",
+      "tags": ["Roles"]
+    },
+    {
+      "id": "pm-024",
+      "term": "Project Team",
+      "definition": "Individuals performing project work, including specialists and contributors.",
+      "hint": "People doing the work.",
+      "tags": ["Roles"]
+    },
+    {
+      "id": "pm-025",
+      "term": "Servant Leadership",
+      "definition": "A leadership style common in agile where the leader supports the team by removing obstacles.",
+      "hint": "Leader serves the team.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-026",
+      "term": "Scrum",
+      "definition": "An agile framework using sprints, roles (Scrum Master, Product Owner, Developers), and ceremonies.",
+      "hint": "Popular agile framework.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-027",
+      "term": "Sprint",
+      "definition": "A fixed-length iteration (usually 1–4 weeks) where a Scrum team delivers a usable increment.",
+      "hint": "Short development cycle.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-028",
+      "term": "Product Backlog",
+      "definition": "A prioritized list of features, enhancements, and fixes maintained by the Product Owner.",
+      "hint": "To-do list for the product.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-029",
+      "term": "Sprint Backlog",
+      "definition": "The set of items the team commits to completing during a sprint.",
+      "hint": "Sprint to-do list.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-030",
+      "term": "Daily Standup",
+      "definition": "A short daily meeting where the team synchronizes work and identifies blockers.",
+      "hint": "Daily sync.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-031",
+      "term": "Kanban",
+      "definition": "A visual workflow method focused on limiting work in progress and improving flow.",
+      "hint": "Visual board + flow.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-032",
+      "term": "Requirements Gathering",
+      "definition": "The process of identifying what stakeholders need from the project.",
+      "hint": "Find out what people need.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "pm-033",
+      "term": "Business Analysis",
+      "definition": "Identifying business needs and recommending solutions that deliver value.",
+      "hint": "Understand needs → propose solutions.",
+      "tags": ["BA"]
+    },
+    {
+      "id": "pm-034",
+      "term": "User Stories",
+      "definition": "Short descriptions of functionality from the user's perspective, common in agile.",
+      "hint": "As a user, I want…",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-035",
+      "term": "Acceptance Criteria",
+      "definition": "Conditions that must be met for a deliverable to be accepted.",
+      "hint": "Definition of done.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "pm-036",
+      "term": "Project Baseline",
+      "definition": "The approved scope, schedule, and cost plan used to measure performance.",
+      "hint": "Official plan.",
+      "tags": ["Control"]
+    },
+    {
+      "id": "pm-037",
+      "term": "Earned Value Management (EVM)",
+      "definition": "A technique that integrates scope, schedule, and cost to measure project performance.",
+      "hint": "Performance measurement.",
+      "tags": ["Performance"]
+    },
+    {
+      "id": "pm-038",
+      "term": "Cost Variance (CV)",
+      "definition": "A measure of cost performance: CV = EV – AC.",
+      "hint": "Positive = under budget.",
+      "tags": ["Performance"]
+    },
+    {
+      "id": "pm-039",
+      "term": "Schedule Variance (SV)",
+      "definition": "A measure of schedule performance: SV = EV – PV.",
+      "hint": "Positive = ahead of schedule.",
+      "tags": ["Performance"]
+    },
+    {
+      "id": "pm-040",
+      "term": "Procurement",
+      "definition": "Acquiring goods or services from outside the organization.",
+      "hint": "Buying what you need.",
+      "tags": ["Procurement"]
+    },
+    {
+      "id": "pm-041",
+      "term": "Contract Types",
+      "definition": "Common types include fixed-price, cost-reimbursable, and time-and-materials.",
+      "hint": "How vendors get paid.",
+      "tags": ["Procurement"]
+    },
+    {
+      "id": "pm-042",
+      "term": "Communications Management",
+      "definition": "Ensuring timely and appropriate planning, creation, distribution, and storage of project information.",
+      "hint": "Right info to right people.",
+      "tags": ["Communication"]
+    },
+    {
+      "id": "pm-043",
+      "term": "RACI Matrix",
+      "definition": "A responsibility assignment chart showing who is Responsible, Accountable, Consulted, and Informed.",
+      "hint": "Clarify roles.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-044",
+      "term": "Team Development",
+      "definition": "Building team skills, trust, and collaboration to improve performance.",
+      "hint": "Grow the team.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-045",
+      "term": "Conflict Resolution",
+      "definition": "Techniques include collaborating, compromising, smoothing, forcing, and withdrawing.",
+      "hint": "Resolve disagreements.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-046",
+      "term": "Lessons Learned",
+      "definition": "Documenting what went well and what could improve for future projects.",
+      "hint": "Learn from experience.",
+      "tags": ["Closing"]
+    },
+    {
+      "id": "pm-047",
+      "term": "Project Closure",
+      "definition": "Finalizing all activities, obtaining acceptance, releasing resources, and archiving documents.",
+      "hint": "Officially end the project.",
+      "tags": ["Closing"]
+    },
+    {
+      "id": "pm-048",
+      "term": "Benefits Realization",
+      "definition": "Ensuring the project delivers the expected business value after completion.",
+      "hint": "Did the project deliver value?",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "pm-049",
+      "term": "Organizational Process Assets (OPAs)",
+      "definition": "Internal assets such as templates, policies, and historical information that influence project success.",
+      "hint": "Internal tools and knowledge.",
+      "tags": ["Environment"]
+    },
+    {
+      "id": "pm-050",
+      "term": "Enterprise Environmental Factors (EEFs)",
+      "definition": "External or internal factors that influence project execution, such as culture, regulations, or market conditions.",
+      "hint": "Environment the project operates in.",
+      "tags": ["Environment"]
+    },
+    {
+      "id": "pm-051",
+      "term": "Project Governance",
+      "definition": "The framework that defines roles, responsibilities, and decision-making processes for project oversight.",
+      "hint": "Who decides what in the project.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "pm-052",
+      "term": "Organizational Governance",
+      "definition": "The overall structure of policies, procedures, and norms that guide organizational behavior and project alignment.",
+      "hint": "How the organization sets rules.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "pm-053",
+      "term": "Organizational Structure Types",
+      "definition": "Common structures include functional, matrix (weak/strong), and projectized — each affecting authority and resource availability.",
+      "hint": "Functional vs matrix vs projectized.",
+      "tags": ["Environment"]
+    },
+    {
+      "id": "pm-054",
+      "term": "Functional Organization",
+      "definition": "An organization where employees report to functional managers; project managers have little authority.",
+      "hint": "PM has low power.",
+      "tags": ["Environment"]
+    },
+    {
+      "id": "pm-055",
+      "term": "Projectized Organization",
+      "definition": "An organization where project managers have full authority and teams are dedicated to projects.",
+      "hint": "PM has high power.",
+      "tags": ["Environment"]
+    },
+    {
+      "id": "pm-056",
+      "term": "Matrix Organization",
+      "definition": "A structure where employees report to both functional and project managers. Can be weak, balanced, or strong.",
+      "hint": "Dual reporting lines.",
+      "tags": ["Environment"]
+    },
+    {
+      "id": "pm-057",
+      "term": "Project Management Office (PMO)",
+      "definition": "A group that standardizes project processes and provides governance. Types: supportive, controlling, directive.",
+      "hint": "Central project support.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "pm-058",
+      "term": "Supportive PMO",
+      "definition": "Provides templates and best practices; low control.",
+      "hint": "Advisory role.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "pm-059",
+      "term": "Controlling PMO",
+      "definition": "Requires compliance with project standards and methodologies.",
+      "hint": "Moderate control.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "pm-060",
+      "term": "Directive PMO",
+      "definition": "Directly manages projects and assigns project managers.",
+      "hint": "High control.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "pm-061",
+      "term": "Project Scope Statement",
+      "definition": "A detailed description of project deliverables, boundaries, acceptance criteria, and assumptions.",
+      "hint": "What's included and excluded.",
+      "tags": ["Scope"]
+    },
+    {
+      "id": "pm-062",
+      "term": "Requirements Traceability Matrix (RTM)",
+      "definition": "Links requirements to objectives, deliverables, and test cases to ensure coverage.",
+      "hint": "Track requirements end-to-end.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "pm-063",
+      "term": "Decomposition",
+      "definition": "Breaking down deliverables into smaller components for planning and estimating.",
+      "hint": "Break work into pieces.",
+      "tags": ["Scope"]
+    },
+    {
+      "id": "pm-064",
+      "term": "Activity List",
+      "definition": "A detailed list of all activities required to complete project work.",
+      "hint": "List of tasks.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-065",
+      "term": "Activity Sequencing",
+      "definition": "Determining the logical order of activities using dependencies.",
+      "hint": "Order of tasks.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-066",
+      "term": "Dependency Types",
+      "definition": "Finish-to-Start (FS), Start-to-Start (SS), Finish-to-Finish (FF), Start-to-Finish (SF).",
+      "hint": "FS, SS, FF, SF.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-067",
+      "term": "Leads and Lags",
+      "definition": "Lead allows acceleration; lag introduces delay between activities.",
+      "hint": "Adjust timing between tasks.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-068",
+      "term": "Three-Point Estimating",
+      "definition": "Uses optimistic, pessimistic, and most likely estimates to calculate expected duration or cost.",
+      "hint": "O + M + P.",
+      "tags": ["Estimating"]
+    },
+    {
+      "id": "pm-069",
+      "term": "PERT Formula",
+      "definition": "Expected duration = (O + 4M + P) / 6.",
+      "hint": "Weighted average estimate.",
+      "tags": ["Estimating"]
+    },
+    {
+      "id": "pm-070",
+      "term": "Resource Leveling",
+      "definition": "Adjusting the schedule to address resource over-allocation.",
+      "hint": "Fix overloaded resources.",
+      "tags": ["Resources"]
+    },
+    {
+      "id": "pm-071",
+      "term": "Resource Smoothing",
+      "definition": "Adjusting activities within float to avoid resource peaks without changing the critical path.",
+      "hint": "Smooth resource usage.",
+      "tags": ["Resources"]
+    },
+    {
+      "id": "pm-072",
+      "term": "Cost Estimating",
+      "definition": "Developing an approximation of the cost of resources needed to complete project work.",
+      "hint": "Predict project costs.",
+      "tags": ["Cost"]
+    },
+    {
+      "id": "pm-073",
+      "term": "Cost of Quality (COQ)",
+      "definition": "Includes prevention, appraisal, and failure costs.",
+      "hint": "Cost to ensure quality.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "pm-074",
+      "term": "Quality Assurance",
+      "definition": "Auditing processes to ensure quality standards are followed.",
+      "hint": "Check the process.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "pm-075",
+      "term": "Quality Control",
+      "definition": "Monitoring deliverables to ensure they meet quality requirements.",
+      "hint": "Check the product.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "pm-076",
+      "term": "Risk Appetite",
+      "definition": "The degree of uncertainty an organization is willing to accept.",
+      "hint": "How much risk is okay?",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-077",
+      "term": "Risk Tolerance",
+      "definition": "The acceptable variation in project outcomes.",
+      "hint": "How much deviation is allowed.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-078",
+      "term": "Risk Threshold",
+      "definition": "The level at which risk becomes unacceptable.",
+      "hint": "The line you don't cross.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-079",
+      "term": "Risk Response Strategies (Threats)",
+      "definition": "Avoid, transfer, mitigate, accept, escalate.",
+      "hint": "Ways to handle negative risks.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-080",
+      "term": "Risk Response Strategies (Opportunities)",
+      "definition": "Exploit, enhance, share, accept, escalate.",
+      "hint": "Ways to handle positive risks.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-081",
+      "term": "Procurement Management Plan",
+      "definition": "Defines how procurement will be planned, executed, and controlled.",
+      "hint": "Plan for buying things.",
+      "tags": ["Procurement"]
+    },
+    {
+      "id": "pm-082",
+      "term": "Make-or-Buy Analysis",
+      "definition": "Determines whether work should be performed internally or outsourced.",
+      "hint": "Do we build or buy?",
+      "tags": ["Procurement"]
+    },
+    {
+      "id": "pm-083",
+      "term": "Bid Documents",
+      "definition": "Includes RFPs, RFQs, and IFBs used to solicit vendor proposals.",
+      "hint": "Documents to request vendor bids.",
+      "tags": ["Procurement"]
+    },
+    {
+      "id": "pm-084",
+      "term": "Source Selection Criteria",
+      "definition": "Factors used to evaluate vendor proposals, such as cost, experience, and technical capability.",
+      "hint": "How vendors are chosen.",
+      "tags": ["Procurement"]
+    },
+    {
+      "id": "pm-085",
+      "term": "Team Charter",
+      "definition": "A document that defines team values, agreements, and working norms.",
+      "hint": "How the team works together.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-086",
+      "term": "Tuckman Ladder",
+      "definition": "Team development stages: forming, storming, norming, performing, adjourning.",
+      "hint": "Stages of team growth.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-087",
+      "term": "Motivation Theories",
+      "definition": "Includes Maslow, Herzberg, McGregor, and Expectancy Theory.",
+      "hint": "What motivates people.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-088",
+      "term": "Communication Channels Formula",
+      "definition": "Channels = n(n−1)/2, where n = number of stakeholders.",
+      "hint": "More people = more complexity.",
+      "tags": ["Communication"]
+    },
+    {
+      "id": "pm-089",
+      "term": "Communication Methods",
+      "definition": "Interactive, push, and pull communication.",
+      "hint": "Ways to share information.",
+      "tags": ["Communication"]
+    },
+    {
+      "id": "pm-090",
+      "term": "Servant Leadership Behaviors",
+      "definition": "Includes listening, empathy, stewardship, and removing impediments.",
+      "hint": "Support the team.",
+      "tags": ["Leadership"]
+    },
+    {
+      "id": "pm-091",
+      "term": "Agile Ceremonies",
+      "definition": "Sprint planning, daily standup, sprint review, sprint retrospective.",
+      "hint": "Agile meetings.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-092",
+      "term": "Agile Artifacts",
+      "definition": "Product backlog, sprint backlog, increment.",
+      "hint": "Agile deliverables.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-093",
+      "term": "Hybrid Governance",
+      "definition": "Combines predictive oversight with agile flexibility.",
+      "hint": "Govern both waterfall + agile.",
+      "tags": ["Hybrid"]
+    },
+    {
+      "id": "pm-094",
+      "term": "Minimum Viable Product (MVP)",
+      "definition": "A version of a product with just enough features to gather feedback.",
+      "hint": "Smallest usable version.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-095",
+      "term": "Value Delivery",
+      "definition": "Ensuring project outcomes create measurable benefits for stakeholders.",
+      "hint": "Deliver real value.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "pm-096",
+      "term": "Business Case",
+      "definition": "A justification for the project, outlining benefits, costs, and risks.",
+      "hint": "Why the project exists.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "pm-097",
+      "term": "Benefits Management Plan",
+      "definition": "Describes how and when project benefits will be delivered and measured.",
+      "hint": "Plan for realizing benefits.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "pm-098",
+      "term": "Project Performance Domain",
+      "definition": "A PMI concept describing areas of focus such as team, development approach, planning, and delivery.",
+      "hint": "PMI's performance categories.",
+      "tags": ["Performance"]
+    },
+    {
+      "id": "pm-099",
+      "term": "Professional Responsibility",
+      "definition": "Acting ethically, honestly, and in alignment with PMI's Code of Ethics.",
+      "hint": "Do the right thing.",
+      "tags": ["Ethics"]
+    },
+    {
+      "id": "pm-100",
+      "term": "Tailoring",
+      "definition": "Adapting project management processes to fit the project's size, complexity, and context.",
+      "hint": "Customize your approach.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "pm-101",
+      "term": "Project Integration Management",
+      "definition": "The processes required to unify, coordinate, and manage project activities across all knowledge areas.",
+      "hint": "Brings all project parts together.",
+      "tags": ["Integration"]
+    },
+    {
+      "id": "pm-102",
+      "term": "Develop Project Management Plan",
+      "definition": "The process of defining, preparing, and coordinating all subsidiary plans into a single integrated plan.",
+      "hint": "The master plan.",
+      "tags": ["Integration"]
+    },
+    {
+      "id": "pm-103",
+      "term": "Direct and Manage Project Work",
+      "definition": "Leading and performing the work defined in the project plan to achieve objectives.",
+      "hint": "Do the work.",
+      "tags": ["Execution"]
+    },
+    {
+      "id": "pm-104",
+      "term": "Manage Project Knowledge",
+      "definition": "Using existing knowledge and creating new knowledge to support project outcomes.",
+      "hint": "Use what you know; learn what you don't.",
+      "tags": ["Knowledge"]
+    },
+    {
+      "id": "pm-105",
+      "term": "Monitor and Control Project Work",
+      "definition": "Tracking, reviewing, and regulating project progress to meet performance objectives.",
+      "hint": "Check progress and adjust.",
+      "tags": ["Control"]
+    },
+    {
+      "id": "pm-106",
+      "term": "Perform Integrated Change Control",
+      "definition": "Reviewing and approving changes to project baselines.",
+      "hint": "Approve or reject changes.",
+      "tags": ["Control"]
+    },
+    {
+      "id": "pm-107",
+      "term": "Close Project or Phase",
+      "definition": "Finalizing all activities to formally complete the project or phase.",
+      "hint": "Officially finish the project.",
+      "tags": ["Closing"]
+    },
+    {
+      "id": "pm-108",
+      "term": "Project Scope Creep",
+      "definition": "Uncontrolled expansion of project scope without adjustments to time, cost, or resources.",
+      "hint": "Scope grows without approval.",
+      "tags": ["Scope"]
+    },
+    {
+      "id": "pm-109",
+      "term": "Validate Scope",
+      "definition": "Formal acceptance of completed deliverables by the customer or sponsor.",
+      "hint": "Get deliverables approved.",
+      "tags": ["Scope"]
+    },
+    {
+      "id": "pm-110",
+      "term": "Control Scope",
+      "definition": "Monitoring scope and managing changes to the scope baseline.",
+      "hint": "Keep scope in check.",
+      "tags": ["Scope"]
+    },
+    {
+      "id": "pm-111",
+      "term": "Rolling Wave Planning",
+      "definition": "Planning near-term work in detail and future work at a higher level.",
+      "hint": "Plan as you go.",
+      "tags": ["Planning"]
+    },
+    {
+      "id": "pm-112",
+      "term": "Schedule Compression",
+      "definition": "Shortening the schedule without reducing scope using crashing or fast tracking.",
+      "hint": "Speed up the project.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-113",
+      "term": "Crashing",
+      "definition": "Adding resources to shorten schedule duration at increased cost.",
+      "hint": "Spend more to finish faster.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-114",
+      "term": "Fast Tracking",
+      "definition": "Performing activities in parallel that were originally planned sequentially.",
+      "hint": "Do tasks at the same time.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-115",
+      "term": "Bottom-Up Estimating",
+      "definition": "Estimating individual work packages and rolling them up to total project estimates.",
+      "hint": "Estimate small pieces → sum up.",
+      "tags": ["Estimating"]
+    },
+    {
+      "id": "pm-116",
+      "term": "Analogous Estimating",
+      "definition": "Using historical data from similar projects to estimate duration or cost.",
+      "hint": "Use past projects as reference.",
+      "tags": ["Estimating"]
+    },
+    {
+      "id": "pm-117",
+      "term": "Parametric Estimating",
+      "definition": "Using statistical relationships (e.g., cost per unit) to estimate project work.",
+      "hint": "Use formulas to estimate.",
+      "tags": ["Estimating"]
+    },
+    {
+      "id": "pm-118",
+      "term": "Reserve Analysis",
+      "definition": "Determining contingency and management reserves for risks.",
+      "hint": "Budget for uncertainty.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-119",
+      "term": "Cost Aggregation",
+      "definition": "Summing estimated costs by work package to create the cost baseline.",
+      "hint": "Add up all costs.",
+      "tags": ["Cost"]
+    },
+    {
+      "id": "pm-120",
+      "term": "Quality Metrics",
+      "definition": "Specific measures used to evaluate quality performance.",
+      "hint": "How quality is measured.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "pm-121",
+      "term": "Control Charts",
+      "definition": "Graphs used to determine whether a process is stable and within control limits.",
+      "hint": "Monitor process stability.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "pm-122",
+      "term": "Cause-and-Effect Diagram",
+      "definition": "A visual tool (Ishikawa diagram) used to identify root causes of problems.",
+      "hint": "Fishbone diagram.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "pm-123",
+      "term": "Histogram",
+      "definition": "A bar chart showing frequency distribution of data.",
+      "hint": "Visualize data distribution.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "pm-124",
+      "term": "Scatter Diagram",
+      "definition": "Shows relationships between two variables to identify trends.",
+      "hint": "Correlation chart.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "pm-125",
+      "term": "Risk Probability and Impact Matrix",
+      "definition": "A grid used to prioritize risks based on likelihood and impact.",
+      "hint": "Rank risks.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-126",
+      "term": "Qualitative Risk Analysis",
+      "definition": "Assessing risks based on probability, impact, and urgency.",
+      "hint": "Rank risks quickly.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-127",
+      "term": "Quantitative Risk Analysis",
+      "definition": "Numerically analyzing the effect of risks on project objectives.",
+      "hint": "Use numbers and models.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-128",
+      "term": "Monte Carlo Simulation",
+      "definition": "A quantitative technique that simulates thousands of scenarios to predict outcomes.",
+      "hint": "Simulate many possibilities.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-129",
+      "term": "Risk Audits",
+      "definition": "Assessing the effectiveness of risk responses and processes.",
+      "hint": "Check if risk management works.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-130",
+      "term": "Procurement Negotiation",
+      "definition": "Discussing terms with vendors to reach agreement on scope, cost, and responsibilities.",
+      "hint": "Agree on contract terms.",
+      "tags": ["Procurement"]
+    },
+    {
+      "id": "pm-131",
+      "term": "Contract Closure",
+      "definition": "Completing and settling contracts, resolving claims, and documenting results.",
+      "hint": "Close vendor agreements.",
+      "tags": ["Procurement"]
+    },
+    {
+      "id": "pm-132",
+      "term": "Team Management Plan",
+      "definition": "Defines how team members will be acquired, developed, and managed.",
+      "hint": "Plan for managing people.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-133",
+      "term": "Emotional Intelligence (EQ)",
+      "definition": "The ability to understand and manage your own emotions and those of others.",
+      "hint": "Manage emotions effectively.",
+      "tags": ["Leadership"]
+    },
+    {
+      "id": "pm-134",
+      "term": "Conflict Sources",
+      "definition": "Common sources include schedules, priorities, resources, technical opinions, and personalities.",
+      "hint": "Why conflicts happen.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-135",
+      "term": "Negotiation",
+      "definition": "A discussion aimed at reaching agreement between parties.",
+      "hint": "Find a win-win.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-136",
+      "term": "Servant Leadership",
+      "definition": "A leadership style focused on supporting the team by removing obstacles and enabling success.",
+      "hint": "Leader serves the team.",
+      "tags": ["Leadership"]
+    },
+    {
+      "id": "pm-137",
+      "term": "Agile Mindset",
+      "definition": "A way of thinking that values collaboration, adaptability, and continuous improvement.",
+      "hint": "Think agile.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-138",
+      "term": "Agile Release Planning",
+      "definition": "High-level planning that outlines major deliverables and timelines across multiple iterations.",
+      "hint": "Plan multiple sprints.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-139",
+      "term": "Velocity",
+      "definition": "The amount of work a team completes in a sprint, used for forecasting.",
+      "hint": "Team speed.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-140",
+      "term": "Burndown Chart",
+      "definition": "A graph showing remaining work over time in a sprint.",
+      "hint": "Track sprint progress.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-141",
+      "term": "Burnup Chart",
+      "definition": "Shows work completed over time toward a total scope.",
+      "hint": "Track progress toward completion.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-142",
+      "term": "Definition of Ready (DoR)",
+      "definition": "Criteria that a backlog item must meet before being accepted into a sprint.",
+      "hint": "Ready to start.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-143",
+      "term": "Definition of Done (DoD)",
+      "definition": "A shared understanding of what it means for work to be complete.",
+      "hint": "Done means done.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-144",
+      "term": "Hybrid Scheduling",
+      "definition": "Combining predictive milestones with agile iterations.",
+      "hint": "Mix waterfall + agile timelines.",
+      "tags": ["Hybrid"]
+    },
+    {
+      "id": "pm-145",
+      "term": "Business Requirements",
+      "definition": "High-level needs of the organization that justify the project.",
+      "hint": "Why the business needs this.",
+      "tags": ["BA"]
+    },
+    {
+      "id": "pm-146",
+      "term": "Functional Requirements",
+      "definition": "Describe what the system or product must do.",
+      "hint": "System behavior.",
+      "tags": ["BA"]
+    },
+    {
+      "id": "pm-147",
+      "term": "Nonfunctional Requirements",
+      "definition": "Describe system qualities such as performance, security, and usability.",
+      "hint": "System qualities.",
+      "tags": ["BA"]
+    },
+    {
+      "id": "pm-148",
+      "term": "Gap Analysis",
+      "definition": "Identifying the difference between current and desired performance.",
+      "hint": "What's missing?",
+      "tags": ["BA"]
+    },
+    {
+      "id": "pm-149",
+      "term": "Feasibility Study",
+      "definition": "Evaluates whether a project is viable technically, financially, and operationally.",
+      "hint": "Is this project doable?",
+      "tags": ["BA"]
+    },
+    {
+      "id": "pm-150",
+      "term": "Ethical Decision-Making",
+      "definition": "Applying PMI's ethical standards to ensure fairness, honesty, and responsibility in project decisions.",
+      "hint": "Do the right thing.",
+      "tags": ["Ethics"]
+    },
+    {
+      "id": "pm-151",
+      "term": "Project Vision Statement",
+      "definition": "A high-level description of the future state the project aims to achieve.",
+      "hint": "Where the project is headed.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "pm-152",
+      "term": "Project Mission Statement",
+      "definition": "Defines the purpose of the project and why it exists.",
+      "hint": "Why the project exists.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "pm-153",
+      "term": "Business Value",
+      "definition": "The measurable benefit delivered by a project, such as revenue, efficiency, or customer satisfaction.",
+      "hint": "What the project delivers to the business.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "pm-154",
+      "term": "Organizational Culture",
+      "definition": "Shared values, beliefs, and behaviors that influence project execution.",
+      "hint": "How the organization behaves.",
+      "tags": ["Environment"]
+    },
+    {
+      "id": "pm-155",
+      "term": "Project Assumptions",
+      "definition": "Factors considered true for planning purposes but not yet verified.",
+      "hint": "Things we assume are true.",
+      "tags": ["Planning"]
+    },
+    {
+      "id": "pm-156",
+      "term": "Project Constraints",
+      "definition": "Limitations such as scope, schedule, cost, quality, resources, and risk.",
+      "hint": "Boundaries you must work within.",
+      "tags": ["Planning"]
+    },
+    {
+      "id": "pm-157",
+      "term": "Project Deliverable",
+      "definition": "Any unique and verifiable product, result, or capability produced by the project.",
+      "hint": "What the project produces.",
+      "tags": ["Scope"]
+    },
+    {
+      "id": "pm-158",
+      "term": "Milestone",
+      "definition": "A significant point or event in the project schedule with zero duration.",
+      "hint": "Major checkpoint.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-159",
+      "term": "Float (Slack)",
+      "definition": "The amount of time an activity can be delayed without affecting the project end date.",
+      "hint": "Schedule flexibility.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-160",
+      "term": "Free Float",
+      "definition": "Time an activity can be delayed without delaying the next activity.",
+      "hint": "Delay without affecting successor.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-161",
+      "term": "Total Float",
+      "definition": "Time an activity can be delayed without delaying the project finish date.",
+      "hint": "Delay without affecting project end.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-162",
+      "term": "Project Calendar",
+      "definition": "Specifies working days and hours for the project.",
+      "hint": "When work can happen.",
+      "tags": ["Schedule"]
+    },
+    {
+      "id": "pm-163",
+      "term": "Resource Calendar",
+      "definition": "Shows availability of specific resources.",
+      "hint": "When people/equipment are available.",
+      "tags": ["Resources"]
+    },
+    {
+      "id": "pm-164",
+      "term": "Cost Management Plan",
+      "definition": "Defines how project costs will be estimated, budgeted, and controlled.",
+      "hint": "Plan for managing money.",
+      "tags": ["Cost"]
+    },
+    {
+      "id": "pm-165",
+      "term": "Funding Limit Reconciliation",
+      "definition": "Adjusting the project schedule to align with funding constraints.",
+      "hint": "Match spending to funding.",
+      "tags": ["Cost"]
+    },
+    {
+      "id": "pm-166",
+      "term": "Quality Policy",
+      "definition": "An organizational-level statement defining quality expectations.",
+      "hint": "Company's quality philosophy.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "pm-167",
+      "term": "Benchmarking",
+      "definition": "Comparing project practices or performance to industry standards.",
+      "hint": "Compare to best practices.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "pm-168",
+      "term": "Affinity Diagram",
+      "definition": "A tool that organizes ideas into categories for analysis.",
+      "hint": "Group similar ideas.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "pm-169",
+      "term": "Nominal Group Technique",
+      "definition": "A structured method for group brainstorming and prioritization.",
+      "hint": "Structured brainstorming.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-170",
+      "term": "Multi-Criteria Decision Analysis",
+      "definition": "A technique for evaluating options using weighted criteria.",
+      "hint": "Score options to choose best.",
+      "tags": ["Decision Making"]
+    },
+    {
+      "id": "pm-171",
+      "term": "Risk Breakdown Structure (RBS)",
+      "definition": "A hierarchical representation of project risks by category.",
+      "hint": "Risk categories tree.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-172",
+      "term": "Risk Triggers",
+      "definition": "Warning signs that a risk is about to occur.",
+      "hint": "Early warning signs.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-173",
+      "term": "Fallback Plan",
+      "definition": "A backup plan used if the primary risk response fails.",
+      "hint": "Plan B for risks.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-174",
+      "term": "Residual Risk",
+      "definition": "Risk that remains after response strategies are implemented.",
+      "hint": "Leftover risk.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-175",
+      "term": "Secondary Risk",
+      "definition": "A new risk created by implementing a risk response.",
+      "hint": "Risk caused by risk response.",
+      "tags": ["Risk"]
+    },
+    {
+      "id": "pm-176",
+      "term": "Procurement Statement of Work (SOW)",
+      "definition": "Describes the work to be performed by a vendor.",
+      "hint": "Vendor's work description.",
+      "tags": ["Procurement"]
+    },
+    {
+      "id": "pm-177",
+      "term": "Claims Administration",
+      "definition": "Managing and resolving disputes or claims with vendors.",
+      "hint": "Handle vendor disputes.",
+      "tags": ["Procurement"]
+    },
+    {
+      "id": "pm-178",
+      "term": "Team Performance Assessment",
+      "definition": "Evaluating team effectiveness and identifying improvement opportunities.",
+      "hint": "Check how the team is doing.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-179",
+      "term": "Leadership Styles",
+      "definition": "Includes transformational, transactional, servant, and laissez-faire leadership.",
+      "hint": "Different ways to lead.",
+      "tags": ["Leadership"]
+    },
+    {
+      "id": "pm-180",
+      "term": "Transformational Leadership",
+      "definition": "Inspires and motivates the team to exceed expectations.",
+      "hint": "Lead by inspiring.",
+      "tags": ["Leadership"]
+    },
+    {
+      "id": "pm-181",
+      "term": "Transactional Leadership",
+      "definition": "Focuses on rewards and penalties to manage performance.",
+      "hint": "Lead through incentives.",
+      "tags": ["Leadership"]
+    },
+    {
+      "id": "pm-182",
+      "term": "Laissez-Faire Leadership",
+      "definition": "A hands-off style where the team has high autonomy.",
+      "hint": "Minimal leader involvement.",
+      "tags": ["Leadership"]
+    },
+    {
+      "id": "pm-183",
+      "term": "Servant Leadership",
+      "definition": "A leader who prioritizes team needs and removes obstacles.",
+      "hint": "Support the team.",
+      "tags": ["Leadership"]
+    },
+    {
+      "id": "pm-184",
+      "term": "Team Ground Rules",
+      "definition": "Agreements on acceptable team behaviors.",
+      "hint": "Team behavior guidelines.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-185",
+      "term": "Virtual Teams",
+      "definition": "Teams that work remotely across locations and time zones.",
+      "hint": "Distributed team.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-186",
+      "term": "Communication Requirements Analysis",
+      "definition": "Determining stakeholder information needs and communication methods.",
+      "hint": "What info people need.",
+      "tags": ["Communication"]
+    },
+    {
+      "id": "pm-187",
+      "term": "Push Communication",
+      "definition": "Information sent to recipients without requiring confirmation.",
+      "hint": "Email, newsletters.",
+      "tags": ["Communication"]
+    },
+    {
+      "id": "pm-188",
+      "term": "Pull Communication",
+      "definition": "Information stored for stakeholders to access when needed.",
+      "hint": "Intranet, knowledge base.",
+      "tags": ["Communication"]
+    },
+    {
+      "id": "pm-189",
+      "term": "Interactive Communication",
+      "definition": "Two-way communication such as meetings or calls.",
+      "hint": "Real-time exchange.",
+      "tags": ["Communication"]
+    },
+    {
+      "id": "pm-190",
+      "term": "Agile Team Roles",
+      "definition": "Product Owner, Scrum Master, Developers.",
+      "hint": "Key agile roles.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-191",
+      "term": "Agile Estimation Techniques",
+      "definition": "Includes story points, t-shirt sizing, and planning poker.",
+      "hint": "Estimate agile work.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-192",
+      "term": "Agile Retrospective",
+      "definition": "A meeting to reflect on the sprint and identify improvements.",
+      "hint": "Improve each sprint.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-193",
+      "term": "Agile Increment",
+      "definition": "A usable product slice delivered at the end of each sprint.",
+      "hint": "Working product each sprint.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "pm-194",
+      "term": "Hybrid Risk Management",
+      "definition": "Combines predictive risk planning with agile risk reviews.",
+      "hint": "Risk in hybrid projects.",
+      "tags": ["Hybrid"]
+    },
+    {
+      "id": "pm-195",
+      "term": "Business Analyst Role",
+      "definition": "Bridges the gap between business needs and project solutions.",
+      "hint": "Connect business + project.",
+      "tags": ["BA"]
+    },
+    {
+      "id": "pm-196",
+      "term": "Requirements Prioritization",
+      "definition": "Techniques like MoSCoW or Kano to rank requirements.",
+      "hint": "Rank what matters most.",
+      "tags": ["BA"]
+    },
+    {
+      "id": "pm-197",
+      "term": "Solution Evaluation",
+      "definition": "Assessing whether the delivered solution meets business needs.",
+      "hint": "Did the solution work?",
+      "tags": ["BA"]
+    },
+    {
+      "id": "pm-198",
+      "term": "Project Ethics",
+      "definition": "Applying honesty, fairness, respect, and responsibility in project decisions.",
+      "hint": "Ethical behavior.",
+      "tags": ["Ethics"]
+    },
+    {
+      "id": "pm-199",
+      "term": "Conflict Management Techniques",
+      "definition": "Includes collaborating, compromising, smoothing, forcing, and withdrawing.",
+      "hint": "Resolve disagreements.",
+      "tags": ["Team"]
+    },
+    {
+      "id": "pm-200",
+      "term": "Continuous Improvement",
+      "definition": "Ongoing effort to improve processes, products, and team performance.",
+      "hint": "Always getting better.",
+      "tags": ["Performance"]
+    }
+  ]
+}

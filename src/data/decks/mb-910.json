@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0",
     "name": "Microsoft Dynamics 365 Fundamentals CRM (MB-910)",
-    "description": "10 foundational Dynamics 365 customer engagement and CRM concepts for the MB-910 certification exam.",
+    "description": "Foundational Dynamics 365 customer engagement and CRM concepts for the MB-910 certification exam.",
     "createdAt": "2026-04-13"
   },
   "cards": [
@@ -75,6 +75,286 @@
       "definition": "Dynamics 365 Customer Engagement apps are built on Power Platform: Model-driven Apps = the UI framework, Dataverse = the data store, Power Automate = workflow automation, Power BI = analytics dashboards embedded in app views, and Copilot Studio = custom chatbots for customer or agent self-service. This integration means no-code extensions to Dynamics 365 are built with the same Power Platform tools.",
       "hint": "Dynamics 365 is essentially a set of Power Platform apps with pre-built CRM logic.",
       "tags": ["Platform", "Integration"]
+    },
+    {
+      "id": "mb910-011",
+      "term": "Dynamics 365 Sales Insights",
+      "definition": "An AI-driven add-on for Dynamics 365 Sales that provides predictive lead scoring, opportunity scoring, relationship analytics, conversation intelligence, and recommended next actions. Helps sellers prioritise deals and improve forecasting accuracy.",
+      "hint": "AI that tells sellers which deals and leads deserve attention.",
+      "tags": ["Sales", "AI"]
+    },
+    {
+      "id": "mb910-012",
+      "term": "Lead Qualification Process",
+      "definition": "In Dynamics 365 Sales, qualifying a lead automatically creates an Account, Contact, and Opportunity. The lead becomes read-only after qualification, preserving historical data while moving the prospect into the sales pipeline.",
+      "hint": "Qualify a lead → create Account + Contact + Opportunity.",
+      "tags": ["Sales", "CRM"]
+    },
+    {
+      "id": "mb910-013",
+      "term": "Opportunity Management",
+      "definition": "Opportunities represent potential revenue. Sellers track estimated revenue, probability, stakeholders, competitors, and activities. Opportunities move through customizable business process stages (e.g., Qualify → Develop → Propose → Close).",
+      "hint": "The heart of the sales pipeline — track deals from start to finish.",
+      "tags": ["Sales", "CRM"]
+    },
+    {
+      "id": "mb910-014",
+      "term": "Quotes, Orders, and Invoices",
+      "definition": "Quotes provide pricing to customers. When accepted, they convert to Orders. Orders can then be invoiced. Dynamics 365 Sales supports product catalogs, price lists, and discounting rules to automate pricing.",
+      "hint": "Quote → Order → Invoice — the sales closing workflow.",
+      "tags": ["Sales", "Commerce"]
+    },
+    {
+      "id": "mb910-015",
+      "term": "Knowledge Management in Customer Service",
+      "definition": "Knowledge articles provide agents with answers, troubleshooting steps, and documentation. Articles can be surfaced automatically during case resolution and published to customer self-service portals.",
+      "hint": "Centralised answers for agents and customers.",
+      "tags": ["Customer Service", "Knowledge"]
+    },
+    {
+      "id": "mb910-016",
+      "term": "Omnichannel for Customer Service",
+      "definition": "An add-on that enables real-time support across chat, SMS, social channels, voice, and Teams. Includes unified agent routing, sentiment analysis, and a single workspace for all interactions.",
+      "hint": "All customer communication channels in one agent workspace.",
+      "tags": ["Customer Service", "Omnichannel"]
+    },
+    {
+      "id": "mb910-017",
+      "term": "Service Level Agreements (SLAs)",
+      "definition": "SLAs define response and resolution time targets for cases. Dynamics 365 tracks SLA timers, pauses, and failures, helping organisations meet contractual support commitments.",
+      "hint": "Timers that ensure support cases meet response deadlines.",
+      "tags": ["Customer Service", "Compliance"]
+    },
+    {
+      "id": "mb910-018",
+      "term": "Entitlements",
+      "definition": "Entitlements define how much support a customer is entitled to — such as number of cases, hours of support, or specific channels. Cases validate entitlements automatically.",
+      "hint": "Defines how much support a customer has paid for.",
+      "tags": ["Customer Service", "Contracts"]
+    },
+    {
+      "id": "mb910-019",
+      "term": "Work Orders in Field Service",
+      "definition": "Work Orders define the tasks, products, and services required for a field visit. They include incident types, service tasks, parts, and billing details. Technicians complete work orders using the Field Service mobile app.",
+      "hint": "The job ticket technicians follow on-site.",
+      "tags": ["Field Service", "Operations"]
+    },
+    {
+      "id": "mb910-020",
+      "term": "Resource Scheduling Optimization (RSO)",
+      "definition": "An AI-based scheduling engine that automatically assigns technicians based on skills, travel time, availability, and priority. Helps organisations reduce travel costs and improve SLA compliance.",
+      "hint": "AI that auto-schedules technicians efficiently.",
+      "tags": ["Field Service", "AI"]
+    },
+    {
+      "id": "mb910-021",
+      "term": "Customer Journeys",
+      "definition": "Automated workflows in Customer Insights – Journeys that send personalised messages based on triggers such as form submissions, segment membership, or customer actions. Supports email, SMS, push notifications, and Teams messages.",
+      "hint": "Automated marketing paths that react to customer behaviour.",
+      "tags": ["Marketing", "Automation"]
+    },
+    {
+      "id": "mb910-022",
+      "term": "Customer Segments",
+      "definition": "Groups of customers defined by demographic, behavioural, or transactional criteria. Segments power targeted marketing campaigns and personalised experiences across Dynamics 365.",
+      "hint": "Target groups for marketing and personalisation.",
+      "tags": ["Marketing", "Segmentation"]
+    },
+    {
+      "id": "mb910-023",
+      "term": "Real-Time Marketing",
+      "definition": "A capability in Customer Insights – Journeys that triggers actions instantly based on customer behaviour (e.g., abandoned cart, email click). Supports event-based orchestration and dynamic content.",
+      "hint": "Marketing that reacts instantly to customer actions.",
+      "tags": ["Marketing", "Real-Time"]
+    },
+    {
+      "id": "mb910-024",
+      "term": "Dataverse Security Roles",
+      "definition": "Security roles define what users can read, write, append, delete, or share. Access can be scoped at the user, business unit, or organisation level. Common roles include Salesperson, Customer Service Representative, and System Administrator.",
+      "hint": "Permissions that control what each user can do in Dynamics.",
+      "tags": ["Security", "Dataverse"]
+    },
+    {
+      "id": "mb910-025",
+      "term": "Business Units and Teams",
+      "definition": "Business Units define organisational hierarchy and data access boundaries. Teams allow users to collaborate and share records. Security roles can be assigned to teams for shared access.",
+      "hint": "Structure your organisation and control who sees what.",
+      "tags": ["Security", "Organisation"]
+    },
+    {
+      "id": "mb910-026",
+      "term": "Business Process Flows (BPFs)",
+      "definition": "Guided, stage-based workflows that help users follow consistent processes, such as sales qualification or case resolution. BPFs appear at the top of forms and can enforce required steps.",
+      "hint": "Visual step-by-step guidance for business processes.",
+      "tags": ["Process", "CRM"]
+    },
+    {
+      "id": "mb910-027",
+      "term": "Power Automate in Dynamics 365",
+      "definition": "Power Automate enables workflow automation across Dynamics 365 and external systems. Common uses: send notifications, update records, sync data, and automate approvals.",
+      "hint": "Automate CRM tasks and connect Dynamics to other apps.",
+      "tags": ["Automation", "Integration"]
+    },
+    {
+      "id": "mb910-028",
+      "term": "Power BI Embedded Dashboards",
+      "definition": "Dynamics 365 apps can embed Power BI dashboards directly into forms and workspaces, giving users interactive analytics without leaving the app.",
+      "hint": "Analytics dashboards built into Dynamics screens.",
+      "tags": ["Analytics", "Integration"]
+    },
+    {
+      "id": "mb910-029",
+      "term": "Dynamics 365 Licensing Basics",
+      "definition": "Dynamics 365 uses per-app and per-user licensing. Users can license individual apps (Sales, Customer Service, Field Service) or purchase bundles like Customer Engagement Plan. Some features require add-ons (Omnichannel, RSO, Sales Insights).",
+      "hint": "License per app or bundle — some features need add-ons.",
+      "tags": ["Licensing", "Fundamentals"]
+    },
+    {
+      "id": "mb910-030",
+      "term": "Customer Self-Service Portals",
+      "definition": "Portals built on Power Pages allow customers to submit cases, view knowledge articles, track orders, and update their profile. Integrated with Dataverse for real-time data access.",
+      "hint": "A customer-facing website connected to your CRM data.",
+      "tags": ["Customer Service", "Portals"]
+    },
+    {
+      "id": "mb910-031",
+      "term": "Case Lifecycle in Customer Service",
+      "definition": "A case typically moves through stages such as Identify, Research, Resolve, and Close. Business Process Flows guide agents through required steps, while SLAs track response and resolution times. Activities like emails, calls, and notes are linked to the case record.",
+      "hint": "The full journey of resolving a customer issue.",
+      "tags": ["Customer Service", "CRM"]
+    },
+    {
+      "id": "mb910-032",
+      "term": "Queues and Routing",
+      "definition": "Queues store work items (cases, activities) waiting to be processed. Routing rules automatically assign cases to queues based on criteria like product, priority, or customer tier. Omnichannel adds advanced routing with skills-based assignment.",
+      "hint": "Where incoming work waits to be picked up or auto-assigned.",
+      "tags": ["Customer Service", "Routing"]
+    },
+    {
+      "id": "mb910-033",
+      "term": "Unified Interface",
+      "definition": "The modern, responsive UI for Dynamics 365 apps. Provides consistent experiences across web, mobile, and tablets. Supports interactive dashboards, timeline controls, and embedded Power BI.",
+      "hint": "The modern UI used across all Dynamics 365 apps.",
+      "tags": ["Platform", "UI"]
+    },
+    {
+      "id": "mb910-034",
+      "term": "Interactive Dashboards",
+      "definition": "Role-based dashboards that combine charts, views, and queues into a single workspace. Agents and sellers can filter, drill down, and take action directly from dashboard tiles.",
+      "hint": "A live, interactive workspace for daily CRM tasks.",
+      "tags": ["Analytics", "CRM"]
+    },
+    {
+      "id": "mb910-035",
+      "term": "Timeline Control",
+      "definition": "A unified activity feed on records such as Accounts, Contacts, Cases, and Opportunities. Displays emails, calls, notes, tasks, and appointments in chronological order.",
+      "hint": "A full history of interactions on one screen.",
+      "tags": ["CRM", "Activities"]
+    },
+    {
+      "id": "mb910-036",
+      "term": "Email Templates and Signatures",
+      "definition": "Reusable templates allow agents and sellers to send consistent, branded messages. Templates can include dynamic fields (e.g., customer name, case number). Signatures ensure consistent communication standards.",
+      "hint": "Pre-built emails that save time and ensure consistency.",
+      "tags": ["Productivity", "CRM"]
+    },
+    {
+      "id": "mb910-037",
+      "term": "Customer Voice Surveys",
+      "definition": "A feedback solution integrated with Dynamics 365. Allows organisations to send surveys after interactions (e.g., case closure) and capture satisfaction metrics like CSAT and NPS. Responses can trigger workflows in Power Automate.",
+      "hint": "Collect customer feedback and link it to CRM records.",
+      "tags": ["Customer Service", "Feedback"]
+    },
+    {
+      "id": "mb910-038",
+      "term": "Field Service Mobile App",
+      "definition": "A mobile application technicians use to view work orders, update status, capture photos, record parts used, and obtain customer signatures. Works online and offline.",
+      "hint": "Technicians' on-site tool for completing work orders.",
+      "tags": ["Field Service", "Mobile"]
+    },
+    {
+      "id": "mb910-039",
+      "term": "Inventory and Asset Management",
+      "definition": "Field Service tracks inventory levels, warehouses, and parts used during service visits. Assets represent customer-owned equipment with service history, warranties, and installed products.",
+      "hint": "Track parts, equipment, and service history.",
+      "tags": ["Field Service", "Operations"]
+    },
+    {
+      "id": "mb910-040",
+      "term": "Marketing Forms and Landing Pages",
+      "definition": "Customer Insights – Journeys allows marketers to build forms for event registration, newsletter sign-ups, and lead capture. Submitted forms create or update Dataverse records.",
+      "hint": "Forms that feed leads and contacts directly into CRM.",
+      "tags": ["Marketing", "Lead Generation"]
+    },
+    {
+      "id": "mb910-041",
+      "term": "Event Management",
+      "definition": "A feature in Customer Insights – Journeys for planning webinars, in-person events, and conferences. Includes registration, sessions, speakers, venues, and attendance tracking.",
+      "hint": "Plan and manage events end-to-end inside Dynamics.",
+      "tags": ["Marketing", "Events"]
+    },
+    {
+      "id": "mb910-042",
+      "term": "Real-Time Analytics in Customer Insights",
+      "definition": "Provides dashboards for customer behaviour, journey performance, segment membership, and engagement metrics. Helps marketers optimise campaigns and personalise experiences.",
+      "hint": "Live analytics showing how customers engage.",
+      "tags": ["Analytics", "Marketing"]
+    },
+    {
+      "id": "mb910-043",
+      "term": "Model-Driven Apps",
+      "definition": "Apps built on Dataverse that automatically generate UI based on the data model. Dynamics 365 Sales, Service, and Field Service are all model-driven apps.",
+      "hint": "Apps where the data model defines the UI.",
+      "tags": ["Platform", "Power Platform"]
+    },
+    {
+      "id": "mb910-044",
+      "term": "Canvas Apps",
+      "definition": "Custom apps built with Power Apps using a drag-and-drop interface. Ideal for simple, task-focused apps that connect to Dataverse or external data sources.",
+      "hint": "Pixel-perfect apps you design from a blank canvas.",
+      "tags": ["Power Platform", "Apps"]
+    },
+    {
+      "id": "mb910-045",
+      "term": "Power Pages (Portals)",
+      "definition": "A low-code platform for building external-facing websites connected to Dataverse. Used for customer self-service, partner portals, and community sites.",
+      "hint": "Build websites that read and write CRM data.",
+      "tags": ["Portals", "Power Platform"]
+    },
+    {
+      "id": "mb910-046",
+      "term": "Copilot Studio",
+      "definition": "A tool for building custom conversational bots that integrate with Dynamics 365 and Dataverse. Supports natural language understanding, workflows, and data retrieval.",
+      "hint": "Build your own AI chatbot connected to CRM data.",
+      "tags": ["AI", "Power Platform"]
+    },
+    {
+      "id": "mb910-047",
+      "term": "Business Rules",
+      "definition": "Logic applied at the Dataverse level to enforce validation, set field values, show/hide fields, or lock fields — without writing code. Applies across all apps using the table.",
+      "hint": "No-code rules that enforce data logic.",
+      "tags": ["Dataverse", "Logic"]
+    },
+    {
+      "id": "mb910-048",
+      "term": "Plug-ins",
+      "definition": "Custom .NET code executed on Dataverse events (create, update, delete). Used for advanced business logic not possible with business rules or Power Automate.",
+      "hint": "Custom code that runs when CRM data changes.",
+      "tags": ["Dataverse", "Development"]
+    },
+    {
+      "id": "mb910-049",
+      "term": "Solution Management",
+      "definition": "Solutions package customisations such as tables, forms, views, workflows, and plug-ins. Used to move configurations between environments (dev → test → prod).",
+      "hint": "The packaging system for CRM customisations.",
+      "tags": ["Platform", "ALM"]
+    },
+    {
+      "id": "mb910-050",
+      "term": "Environment Types",
+      "definition": "Power Platform environments include Production, Sandbox, Developer, and Trial. Dynamics 365 apps are installed into environments, and each environment has its own Dataverse database.",
+      "hint": "Separate spaces for dev, test, and production CRM data.",
+      "tags": ["Platform", "Environments"]
     }
   ]
 }

@@ -3,82 +3,130 @@
     {
       "id": "cloud-computing-fundamentals",
       "name": "Cloud Computing Fundamentals",
-      "description": "45 essential cloud computing terms every IT professional should know — service models, networking, DevOps, security, and cost.",
-      "file": "cloud-computing-fundamentals.json",
+      "description": "Essential cloud computing terms every IT professional should know — service models, networking, DevOps, security, and cost.",
+      "file": "cc.json",
       "cardCount": 45,
       "tags": ["Cloud", "Fundamentals", "DevOps"]
     },
     {
-      "id": "aws-saa",
-      "name": "AWS Solutions Architect Associate",
-      "description": "10 key AWS services and concepts that appear on the SAA-C03 exam — compute, storage, networking, and architecture.",
-      "file": "aws-saa.json",
-      "cardCount": 10,
-      "tags": ["AWS", "Certification", "Architecture"]
+      "id": "pm",
+      "name": "Project Management Fundamentals",
+      "description": "Key project management concepts and terminology — methodologies, tools, roles, and best practices for successful project delivery.",
+      "file": "pm.json",
+      "cardCount": 200,
+      "tags": ["Project Management", "Fundamentals"]
+    },
+    {
+      "id": "ba",
+      "name": "Business Analysis Fundamentals",
+      "description": "Key business analysis concepts and terminology — requirements gathering, stakeholder management, process modeling, and solution assessment.",
+      "file": "ba.json",
+      "cardCount": 300,
+      "tags": ["Business Analysis", "Fundamentals"]
+    },
+    {
+      "id": "se",
+      "name": "Software Engineering Fundamentals",
+      "description": "Core software engineering concepts and terminology — design patterns, testing, version control, architecture, and development methodologies.",
+      "file": "se.json",
+      "cardCount": 200,
+      "tags": ["Software Engineering", "Fundamentals"]
     },
     {
       "id": "az-900",
       "name": "Azure Fundamentals (AZ-900)",
-      "description": "10 foundational Microsoft Azure concepts covered in the AZ-900 certification — cloud services, identity, networking, and pricing.",
+      "description": "Foundational Microsoft Azure concepts covered in the AZ-900 certification — cloud services, identity, networking, and pricing.",
       "file": "az-900.json",
-      "cardCount": 10,
+      "cardCount": 50,
       "tags": ["Azure", "Certification", "Fundamentals"]
     },
     {
       "id": "ai-900",
       "name": "Azure AI Fundamentals (AI-900)",
-      "description": "10 foundational Azure AI and machine learning concepts for the AI-900 certification — ML types, Cognitive Services, and Responsible AI.",
+      "description": "Foundational Azure AI and machine learning concepts for the AI-900 certification — ML types, Cognitive Services, and Responsible AI.",
       "file": "ai-900.json",
-      "cardCount": 10,
+      "cardCount": 50,
       "tags": ["Azure", "AI", "Certification"]
     },
     {
       "id": "dp-900",
       "name": "Azure Data Fundamentals (DP-900)",
-      "description": "10 foundational Azure data and analytics concepts for the DP-900 certification — relational, NoSQL, ETL, streaming, and Power BI.",
+      "description": "Foundational Azure data and analytics concepts for the DP-900 certification — relational, NoSQL, ETL, streaming, and Power BI.",
       "file": "dp-900.json",
-      "cardCount": 10,
+      "cardCount": 50,
       "tags": ["Azure", "Data", "Certification"]
     },
     {
       "id": "ms-900",
       "name": "Microsoft 365 Fundamentals (MS-900)",
-      "description": "10 foundational Microsoft 365 concepts for the MS-900 certification — Teams, SharePoint, Intune, Defender, and licensing.",
+      "description": "Foundational Microsoft 365 concepts for the MS-900 certification — Teams, SharePoint, Intune, Defender, and licensing.",
       "file": "ms-900.json",
-      "cardCount": 10,
+      "cardCount": 50,
       "tags": ["Microsoft 365", "Certification", "Fundamentals"]
     },
     {
       "id": "sc-900",
       "name": "Security, Compliance & Identity (SC-900)",
-      "description": "10 foundational Microsoft security, compliance, and identity concepts for the SC-900 certification — Zero Trust, Sentinel, Purview, and MFA.",
+      "description": "Foundational Microsoft security, compliance, and identity concepts for the SC-900 certification — Entra, Sentinel, Purview, and Intune.",
       "file": "sc-900.json",
-      "cardCount": 10,
-      "tags": ["Security", "Certification", "Microsoft"]
+      "cardCount": 50,
+      "tags": ["Security", "Certification", "Compliance", "Identity"]
     },
     {
       "id": "pl-900",
       "name": "Power Platform Fundamentals (PL-900)",
-      "description": "10 foundational Microsoft Power Platform concepts for the PL-900 certification — Power Apps, Power Automate, Power BI, and Dataverse.",
+      "description": "Foundational Microsoft Power Platform concepts for the PL-900 certification — Power Apps, Power Automate, Power BI, and Dataverse.",
       "file": "pl-900.json",
-      "cardCount": 10,
+      "cardCount": 50,
       "tags": ["Power Platform", "Certification", "Low-Code"]
     },
     {
       "id": "mb-910",
       "name": "Dynamics 365 Fundamentals CRM (MB-910)",
-      "description": "10 foundational Dynamics 365 customer engagement and CRM concepts for the MB-910 certification — Sales, Service, Field Service, and Marketing.",
+      "description": "Foundational Dynamics 365 customer engagement and CRM concepts for the MB-910 certification — Sales, Service, Field Service, and Marketing.",
       "file": "mb-910.json",
-      "cardCount": 10,
+      "cardCount": 50,
       "tags": ["Dynamics 365", "CRM", "Certification"]
     },
     {
       "id": "mb-920",
       "name": "Dynamics 365 Fundamentals ERP (MB-920)",
-      "description": "10 foundational Dynamics 365 finance and operations ERP concepts for the MB-920 certification — Finance, Supply Chain, Commerce, and HR.",
+      "description": "Foundational Dynamics 365 finance and operations ERP concepts for the MB-920 certification — Finance, Supply Chain, Commerce, and HR.",
       "file": "mb-920.json",
-      "cardCount": 10,
+      "cardCount": 50,
       "tags": ["Dynamics 365", "ERP", "Certification"]
+    },
+    {
+      "id": "ab-900",
+      "name": "Microsoft 365 Copilot & Agent Administration Fundamentals (AB-900)",
+      "description": "Foundational concepts for managing Microsoft 365 Copilot and AI agents — deployment, security, governance, compliance, and responsible AI.",
+      "file": "ab-900.json",
+      "cardCount": 50,
+      "tags": ["Microsoft 365", "AI", "Copilot", "Fundamentals"]
+    },
+    {
+      "id": "ab-730",
+      "name": "Microsoft AI Business Professional (AB-730)",
+      "description": "Business-focused AI concepts — identifying use cases, mapping workflows, and applying Microsoft Copilot to improve productivity and decision-making.",
+      "file": "ab-730.json",
+      "cardCount": 50,
+      "tags": ["AI", "Business", "Copilot", "Certification"]
+    },
+    {
+      "id": "ab-731",
+      "name": "Microsoft AI Transformation Leader (AB-731)",
+      "description": "Strategic AI concepts — leading organizational AI adoption, aligning business goals, governance, and driving transformation with Microsoft Copilot and Azure AI.",
+      "file": "ab-731.json",
+      "cardCount": 50,
+      "tags": ["AI", "Leadership", "Strategy", "Certification"]
+    },
+    {
+      "id": "gh-900",
+      "name": "GitHub Copilot Fundamentals (GH-900)",
+      "description": "Foundational GitHub Copilot concepts for the GH-900 certification — code completion, chat, and integration with development workflows.",
+      "file": "gh-900.json",
+      "cardCount": 50,
+      "tags": ["GitHub", "Copilot", "Certification", "Development"]
     }
   ]
 }

@@ -1,0 +1,2110 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Business Analysis Fundamentals (BABOK v3-aligned)",
+    "description": "Core business analysis concepts aligned with IIBA BABOK v3 — requirements, elicitation, modeling, strategy, stakeholders, and solution evaluation.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "baf-001",
+      "term": "Business Analysis",
+      "definition": "The practice of enabling change in an enterprise by defining needs and recommending solutions that deliver value.",
+      "hint": "Identify needs → recommend solutions.",
+      "tags": ["Fundamentals"]
+    },
+    {
+      "id": "baf-002",
+      "term": "BABOK Knowledge Areas",
+      "definition": "Six core areas: Business Analysis Planning & Monitoring, Elicitation & Collaboration, Requirements Life Cycle Management, Strategy Analysis, Requirements Analysis & Design Definition, Solution Evaluation.",
+      "hint": "The 6 pillars of BA work.",
+      "tags": ["BABOK"]
+    },
+    {
+      "id": "baf-003",
+      "term": "Business Analysis Planning & Monitoring",
+      "definition": "Defines how BA work will be performed, including stakeholders, deliverables, governance, and approach.",
+      "hint": "Plan the BA work.",
+      "tags": ["BABOK"]
+    },
+    {
+      "id": "baf-004",
+      "term": "Elicitation & Collaboration",
+      "definition": "Activities to draw out information from stakeholders and confirm understanding.",
+      "hint": "Get information from people.",
+      "tags": ["BABOK"]
+    },
+    {
+      "id": "baf-005",
+      "term": "Requirements Life Cycle Management",
+      "definition": "Manages requirements from creation to retirement, ensuring alignment and traceability.",
+      "hint": "Track requirements end-to-end.",
+      "tags": ["BABOK"]
+    },
+    {
+      "id": "baf-006",
+      "term": "Strategy Analysis",
+      "definition": "Defines business needs, assesses current state, and recommends future-state solutions.",
+      "hint": "Understand the problem + define direction.",
+      "tags": ["BABOK"]
+    },
+    {
+      "id": "baf-007",
+      "term": "Requirements Analysis & Design Definition",
+      "definition": "Organizes, models, verifies, and validates requirements and designs.",
+      "hint": "Refine and structure requirements.",
+      "tags": ["BABOK"]
+    },
+    {
+      "id": "baf-008",
+      "term": "Solution Evaluation",
+      "definition": "Assesses solution performance and identifies improvements.",
+      "hint": "Did the solution deliver value?",
+      "tags": ["BABOK"]
+    },
+    {
+      "id": "baf-009",
+      "term": "Stakeholder",
+      "definition": "Anyone affected by the change or solution, including customers, users, sponsors, and SMEs.",
+      "hint": "People impacted by the solution.",
+      "tags": ["Stakeholders"]
+    },
+    {
+      "id": "baf-010",
+      "term": "Stakeholder Analysis",
+      "definition": "Identifying stakeholders, their influence, needs, and communication preferences.",
+      "hint": "Know who matters and why.",
+      "tags": ["Stakeholders"]
+    },
+    {
+      "id": "baf-011",
+      "term": "Elicitation Techniques",
+      "definition": "Common techniques include interviews, workshops, observation, surveys, prototyping, and document analysis.",
+      "hint": "Ways to gather information.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-012",
+      "term": "Requirements",
+      "definition": "Usable representations of a need, including business, stakeholder, solution, and transition requirements.",
+      "hint": "Statements of need.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-013",
+      "term": "Business Requirements",
+      "definition": "High-level goals and outcomes the organization wants to achieve.",
+      "hint": "The 'why' behind the project.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-014",
+      "term": "Stakeholder Requirements",
+      "definition": "Needs of stakeholders that must be met to achieve business requirements.",
+      "hint": "What stakeholders need.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-015",
+      "term": "Solution Requirements",
+      "definition": "Capabilities and qualities the solution must have — functional and nonfunctional.",
+      "hint": "What the solution must do.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-016",
+      "term": "Transition Requirements",
+      "definition": "Capabilities needed to move from current state to future state.",
+      "hint": "Requirements for changeover.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-017",
+      "term": "Functional Requirements",
+      "definition": "Describe behaviors, features, and functions of the solution.",
+      "hint": "What the system does.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-018",
+      "term": "Nonfunctional Requirements",
+      "definition": "Describe solution qualities such as performance, security, usability, and reliability.",
+      "hint": "How the system behaves.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-019",
+      "term": "Requirements Traceability",
+      "definition": "Ensures each requirement is linked to business objectives, stakeholders, and solution components.",
+      "hint": "Connect requirements to purpose.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-020",
+      "term": "Requirements Prioritization",
+      "definition": "Ranking requirements using methods like MoSCoW, Kano, or value-based scoring.",
+      "hint": "Decide what matters most.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-021",
+      "term": "Use Case",
+      "definition": "A description of how a user interacts with a system to achieve a goal.",
+      "hint": "User + system interaction.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-022",
+      "term": "User Story",
+      "definition": "A short requirement format used in agile: 'As a user, I want… so that…'.",
+      "hint": "Agile requirement format.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-023",
+      "term": "Process Modeling",
+      "definition": "Visual representation of workflows using BPMN or flowcharts.",
+      "hint": "Diagram the process.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-024",
+      "term": "Data Modeling",
+      "definition": "Defines data structures, relationships, and rules using ERDs or data dictionaries.",
+      "hint": "Model the data.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-025",
+      "term": "Prototyping",
+      "definition": "Creating early visual representations of a solution to gather feedback.",
+      "hint": "Early mockups.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-026",
+      "term": "Root Cause Analysis",
+      "definition": "Identifying the underlying cause of a problem using tools like the 5 Whys or fishbone diagrams.",
+      "hint": "Find the real problem.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-027",
+      "term": "SWOT Analysis",
+      "definition": "Evaluates strengths, weaknesses, opportunities, and threats.",
+      "hint": "Assess internal + external factors.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-028",
+      "term": "Business Case",
+      "definition": "A justification for a proposed initiative, outlining benefits, costs, risks, and alternatives.",
+      "hint": "Why the project should happen.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-029",
+      "term": "Current State Analysis",
+      "definition": "Understanding existing processes, capabilities, and problems.",
+      "hint": "Where we are now.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-030",
+      "term": "Future State Analysis",
+      "definition": "Defining the desired outcomes, capabilities, and conditions after change.",
+      "hint": "Where we want to be.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-031",
+      "term": "Gap Analysis",
+      "definition": "Identifying differences between current and future states.",
+      "hint": "What's missing.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-032",
+      "term": "Solution Scope",
+      "definition": "Defines the boundaries of the solution and what will be delivered.",
+      "hint": "What the solution includes.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-033",
+      "term": "Acceptance Criteria",
+      "definition": "Conditions that must be met for a requirement or deliverable to be accepted.",
+      "hint": "Definition of done.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-034",
+      "term": "Verification",
+      "definition": "Ensuring requirements are defined correctly and meet quality standards.",
+      "hint": "Did we write it right?",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-035",
+      "term": "Validation",
+      "definition": "Ensuring requirements support business goals and stakeholder needs.",
+      "hint": "Did we write the right thing?",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-036",
+      "term": "Solution Performance Measures",
+      "definition": "Metrics used to evaluate whether a solution delivers expected value.",
+      "hint": "How we measure success.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-037",
+      "term": "KPIs (Key Performance Indicators)",
+      "definition": "Quantifiable metrics used to evaluate performance against objectives.",
+      "hint": "Measure what matters.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-038",
+      "term": "Nonfunctional Performance Metrics",
+      "definition": "Measures such as response time, uptime, scalability, and usability.",
+      "hint": "Quality attributes.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-039",
+      "term": "Change Strategy",
+      "definition": "A plan describing how the organization will transition from current to future state.",
+      "hint": "How we move forward.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-040",
+      "term": "Transition Planning",
+      "definition": "Preparing the organization for solution deployment, including training and readiness.",
+      "hint": "Prepare for rollout.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-041",
+      "term": "Business Rules",
+      "definition": "Constraints or conditions that govern business behavior.",
+      "hint": "Rules the business must follow.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-042",
+      "term": "Glossary",
+      "definition": "A list of key terms and definitions to ensure shared understanding.",
+      "hint": "Define important terms.",
+      "tags": ["Documentation"]
+    },
+    {
+      "id": "baf-043",
+      "term": "Personas",
+      "definition": "Fictional representations of user types to guide design and requirements.",
+      "hint": "User archetypes.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-044",
+      "term": "Story Mapping",
+      "definition": "A visual technique for organizing user stories into workflows.",
+      "hint": "Map user journeys.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-045",
+      "term": "Backlog Refinement",
+      "definition": "Ongoing process of reviewing, clarifying, and prioritizing backlog items.",
+      "hint": "Keep backlog clean.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-046",
+      "term": "Minimum Viable Product (MVP)",
+      "definition": "A version of a product with just enough features to deliver value and gather feedback.",
+      "hint": "Smallest usable version.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-047",
+      "term": "Value Stream",
+      "definition": "The sequence of activities that deliver value to a customer.",
+      "hint": "Flow of value.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-048",
+      "term": "Enterprise Analysis",
+      "definition": "Understanding organizational goals, capabilities, and constraints to identify opportunities for improvement.",
+      "hint": "Analyze the whole organization.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-049",
+      "term": "Solution Recommendation",
+      "definition": "Selecting the best solution option based on feasibility, value, and constraints.",
+      "hint": "Choose the best option.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-050",
+      "term": "BA Competencies",
+      "definition": "Key skills including analytical thinking, communication, problem-solving, and business knowledge.",
+      "hint": "Skills every BA needs.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-051",
+      "term": "Business Need",
+      "definition": "A problem or opportunity that motivates the initiation of business analysis work.",
+      "hint": "Why the change is needed.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-052",
+      "term": "Problem Statement",
+      "definition": "A clear description of the issue to be solved, including impact and affected stakeholders.",
+      "hint": "Define the problem clearly.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-053",
+      "term": "Opportunity Analysis",
+      "definition": "Evaluating potential improvements or innovations that could deliver value.",
+      "hint": "Identify potential benefits.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-054",
+      "term": "Business Architecture",
+      "definition": "A blueprint of the enterprise that aligns strategy, processes, capabilities, and information.",
+      "hint": "High-level view of the business.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-055",
+      "term": "Capability Map",
+      "definition": "A visual representation of what the organization does, independent of how it is done.",
+      "hint": "What the business is capable of.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-056",
+      "term": "Context Diagram",
+      "definition": "Shows the system boundary and interactions with external entities.",
+      "hint": "System + external actors.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-057",
+      "term": "State Model",
+      "definition": "Describes how an entity changes state in response to events.",
+      "hint": "How things change over time.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-058",
+      "term": "Decision Modeling",
+      "definition": "Defines business rules and logic using decision tables or decision trees.",
+      "hint": "Model how decisions are made.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-059",
+      "term": "Interface Analysis",
+      "definition": "Identifies interactions between systems, users, and external components.",
+      "hint": "How systems connect.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-060",
+      "term": "Document Analysis",
+      "definition": "Reviewing existing documentation to gather information about processes or systems.",
+      "hint": "Learn from existing documents.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-061",
+      "term": "Observation",
+      "definition": "Watching users perform tasks to understand workflows and challenges.",
+      "hint": "Shadow users.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-062",
+      "term": "Workshop",
+      "definition": "A collaborative session with stakeholders to gather requirements or solve problems.",
+      "hint": "Group elicitation.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-063",
+      "term": "Brainstorming",
+      "definition": "A technique for generating ideas in a group setting.",
+      "hint": "Generate lots of ideas.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-064",
+      "term": "Mind Mapping",
+      "definition": "A visual technique for organizing ideas around a central concept.",
+      "hint": "Visual idea clustering.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-065",
+      "term": "Prioritization Matrix",
+      "definition": "A tool for ranking requirements based on criteria such as value, cost, and risk.",
+      "hint": "Score and rank items.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-066",
+      "term": "Business Model Canvas",
+      "definition": "A strategic template describing value proposition, customers, channels, and revenue streams.",
+      "hint": "One-page business model.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-067",
+      "term": "Value Proposition",
+      "definition": "The unique value a solution delivers to customers or stakeholders.",
+      "hint": "Why the solution matters.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-068",
+      "term": "Solution Option Analysis",
+      "definition": "Comparing alternative solutions based on feasibility, cost, and value.",
+      "hint": "Choose the best solution.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-069",
+      "term": "Feasibility Assessment",
+      "definition": "Evaluates technical, operational, and financial viability of a solution.",
+      "hint": "Can we do it?",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-070",
+      "term": "Cost-Benefit Analysis",
+      "definition": "Compares expected benefits with estimated costs to justify investment.",
+      "hint": "Is it worth the cost?",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-071",
+      "term": "Risk Analysis",
+      "definition": "Identifying and evaluating risks that may impact solution success.",
+      "hint": "What could go wrong?",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-072",
+      "term": "Assumption Analysis",
+      "definition": "Evaluating assumptions to determine their validity and impact.",
+      "hint": "Check what we assume.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-073",
+      "term": "Business Requirements Document (BRD)",
+      "definition": "A formal document outlining business needs and high-level requirements.",
+      "hint": "High-level requirements doc.",
+      "tags": ["Documentation"]
+    },
+    {
+      "id": "baf-074",
+      "term": "Functional Specification Document (FSD)",
+      "definition": "Describes how the solution will meet functional requirements.",
+      "hint": "Detailed system behavior.",
+      "tags": ["Documentation"]
+    },
+    {
+      "id": "baf-075",
+      "term": "Nonfunctional Specification",
+      "definition": "Documents performance, security, usability, and other quality attributes.",
+      "hint": "Quality requirements doc.",
+      "tags": ["Documentation"]
+    },
+    {
+      "id": "baf-076",
+      "term": "Requirements Package",
+      "definition": "A structured set of requirements tailored for a specific audience or purpose.",
+      "hint": "Bundle requirements for review.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-077",
+      "term": "Requirements Review",
+      "definition": "A formal evaluation of requirements for clarity, completeness, and feasibility.",
+      "hint": "Check requirement quality.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-078",
+      "term": "Traceability Matrix",
+      "definition": "A table linking requirements to objectives, designs, tests, and stakeholders.",
+      "hint": "Track requirement relationships.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-079",
+      "term": "Solution Performance Gap",
+      "definition": "The difference between expected and actual solution performance.",
+      "hint": "Where the solution falls short.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-080",
+      "term": "Usability Evaluation",
+      "definition": "Assessing how easy and intuitive a solution is for end users.",
+      "hint": "Is it user-friendly?",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-081",
+      "term": "Pilot Testing",
+      "definition": "Deploying a solution to a small group to validate performance before full rollout.",
+      "hint": "Test with a small group.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-082",
+      "term": "A/B Testing",
+      "definition": "Comparing two solution variations to determine which performs better.",
+      "hint": "Test version A vs B.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-083",
+      "term": "Enterprise Constraints",
+      "definition": "Limitations such as budget, technology, culture, or regulations.",
+      "hint": "Boundaries the business must follow.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-084",
+      "term": "Business Process Reengineering",
+      "definition": "Radical redesign of processes to achieve major performance improvements.",
+      "hint": "Reinvent the process.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-085",
+      "term": "Incremental Improvement",
+      "definition": "Small, continuous enhancements to existing processes.",
+      "hint": "Small steps forward.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-086",
+      "term": "Benchmarking",
+      "definition": "Comparing performance against industry standards or competitors.",
+      "hint": "How do we compare?",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-087",
+      "term": "Customer Journey Mapping",
+      "definition": "Visualizing the customer's experience across touchpoints.",
+      "hint": "Map the customer experience.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-088",
+      "term": "Service Blueprint",
+      "definition": "A diagram showing interactions between customers, frontstage, and backstage processes.",
+      "hint": "Map service delivery.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-089",
+      "term": "Business Event",
+      "definition": "A trigger that initiates a business process or requirement.",
+      "hint": "What starts the process.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-090",
+      "term": "Acceptance Testing",
+      "definition": "Validating that the solution meets business needs and acceptance criteria.",
+      "hint": "Final validation.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-091",
+      "term": "Transition Readiness Assessment",
+      "definition": "Evaluating whether the organization is prepared for solution deployment.",
+      "hint": "Are we ready to go live?",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-092",
+      "term": "Change Impact Analysis",
+      "definition": "Assessing how changes affect processes, systems, and stakeholders.",
+      "hint": "Who and what will be affected?",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-093",
+      "term": "Organizational Readiness",
+      "definition": "Determining whether people, processes, and technology can support the change.",
+      "hint": "Is the organization prepared?",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-094",
+      "term": "Training Needs Analysis",
+      "definition": "Identifying skills gaps and training required for solution adoption.",
+      "hint": "What training is needed?",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-095",
+      "term": "Business Analyst Role",
+      "definition": "Acts as a liaison between stakeholders and solution teams to ensure value delivery.",
+      "hint": "Bridge between business and IT.",
+      "tags": ["Fundamentals"]
+    },
+    {
+      "id": "baf-096",
+      "term": "Analytical Thinking",
+      "definition": "Ability to break down complex problems and evaluate information objectively.",
+      "hint": "Think critically.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-097",
+      "term": "Systems Thinking",
+      "definition": "Understanding how components interact within a larger environment.",
+      "hint": "See the big picture.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-098",
+      "term": "Facilitation",
+      "definition": "Guiding discussions to ensure productive outcomes and stakeholder alignment.",
+      "hint": "Lead effective meetings.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-099",
+      "term": "Negotiation",
+      "definition": "Reaching agreement among stakeholders with differing priorities.",
+      "hint": "Find common ground.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-100",
+      "term": "Business Acumen",
+      "definition": "Understanding how organizations operate, generate value, and make decisions.",
+      "hint": "Know how the business works.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-101",
+      "term": "Business Outcome",
+      "definition": "A measurable result that the organization expects from a change initiative.",
+      "hint": "What success looks like.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-102",
+      "term": "Key Stakeholder Groups",
+      "definition": "Common groups include customers, end users, sponsors, SMEs, regulators, and suppliers.",
+      "hint": "Who is involved or impacted.",
+      "tags": ["Stakeholders"]
+    },
+    {
+      "id": "baf-103",
+      "term": "Stakeholder Engagement Plan",
+      "definition": "Defines how and when stakeholders will be involved throughout the BA lifecycle.",
+      "hint": "Plan for stakeholder involvement.",
+      "tags": ["Stakeholders"]
+    },
+    {
+      "id": "baf-104",
+      "term": "Elicitation Preparation",
+      "definition": "Identifying objectives, selecting techniques, and scheduling sessions before elicitation begins.",
+      "hint": "Prepare before gathering info.",
+      "tags": ["Elicitation"]
+    },
+    {
+      "id": "baf-105",
+      "term": "Confirm Elicitation Results",
+      "definition": "Validating that information gathered is accurate, complete, and understood.",
+      "hint": "Verify what you heard.",
+      "tags": ["Elicitation"]
+    },
+    {
+      "id": "baf-106",
+      "term": "Collaborative Games",
+      "definition": "Interactive elicitation techniques such as card sorting or product box.",
+      "hint": "Fun ways to gather insights.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-107",
+      "term": "Storyboarding",
+      "definition": "A visual technique showing the sequence of user interactions with a system.",
+      "hint": "Visual user journey.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-108",
+      "term": "Sequence Diagram",
+      "definition": "Shows interactions between system components over time.",
+      "hint": "Timeline of interactions.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-109",
+      "term": "Class Diagram",
+      "definition": "Represents system objects, attributes, and relationships.",
+      "hint": "Model system structure.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-110",
+      "term": "Data Dictionary",
+      "definition": "A repository of data elements, definitions, and formats.",
+      "hint": "Define all data elements.",
+      "tags": ["Documentation"]
+    },
+    {
+      "id": "baf-111",
+      "term": "Glossary Management",
+      "definition": "Ensuring consistent terminology across stakeholders and documents.",
+      "hint": "Keep terms consistent.",
+      "tags": ["Documentation"]
+    },
+    {
+      "id": "baf-112",
+      "term": "Business Rule Analysis",
+      "definition": "Identifying and defining rules that govern business behavior.",
+      "hint": "Document business constraints.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-113",
+      "term": "Nonfunctional Categories",
+      "definition": "Common categories include performance, security, usability, reliability, and maintainability.",
+      "hint": "Quality attributes.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-114",
+      "term": "Requirements Attributes",
+      "definition": "Metadata such as priority, status, owner, and complexity.",
+      "hint": "Extra info about requirements.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-115",
+      "term": "Requirements Governance",
+      "definition": "Defines how requirements are approved, managed, and communicated.",
+      "hint": "Rules for managing requirements.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "baf-116",
+      "term": "Change Control Process",
+      "definition": "A structured method for evaluating and approving requirement changes.",
+      "hint": "Manage requirement changes.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "baf-117",
+      "term": "Impact Assessment",
+      "definition": "Evaluating how a proposed change affects scope, stakeholders, and solution components.",
+      "hint": "What the change affects.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "baf-118",
+      "term": "Solution Scope Creep",
+      "definition": "Uncontrolled expansion of solution features without approval.",
+      "hint": "Unplanned feature growth.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "baf-119",
+      "term": "Business Value Assessment",
+      "definition": "Evaluating the expected value delivered by a solution option.",
+      "hint": "How much value it brings.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-120",
+      "term": "Value Metrics",
+      "definition": "Measures such as ROI, customer satisfaction, cycle time, or cost reduction.",
+      "hint": "How value is measured.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-121",
+      "term": "Solution Risk",
+      "definition": "Potential issues that may reduce solution performance or value.",
+      "hint": "Risks to solution success.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-122",
+      "term": "Solution Constraints",
+      "definition": "Limitations such as technology, budget, or regulatory requirements.",
+      "hint": "Boundaries for the solution.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-123",
+      "term": "Solution Acceptance Criteria",
+      "definition": "Conditions that must be met for the solution to be accepted by stakeholders.",
+      "hint": "When the solution is acceptable.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-124",
+      "term": "Solution Validation",
+      "definition": "Ensuring the solution meets business needs and delivers expected value.",
+      "hint": "Does it solve the problem?",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-125",
+      "term": "Solution Monitoring",
+      "definition": "Tracking solution performance after deployment.",
+      "hint": "Monitor after go-live.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-126",
+      "term": "Agile BA Role",
+      "definition": "Supports the team by refining backlog items, clarifying requirements, and ensuring value delivery.",
+      "hint": "BA in agile teams.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-127",
+      "term": "Agile Backlog",
+      "definition": "A prioritized list of work items representing requirements and enhancements.",
+      "hint": "Agile to-do list.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-128",
+      "term": "Epic",
+      "definition": "A large body of work that can be broken down into multiple user stories.",
+      "hint": "Big user story.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-129",
+      "term": "Feature",
+      "definition": "A service or capability that delivers value to users.",
+      "hint": "High-level capability.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-130",
+      "term": "Agile Acceptance Criteria",
+      "definition": "Conditions that define when a user story is complete.",
+      "hint": "Done for user stories.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-131",
+      "term": "Agile Estimation",
+      "definition": "Relative sizing techniques such as story points or t-shirt sizing.",
+      "hint": "Estimate effort in agile.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-132",
+      "term": "Agile Roadmap",
+      "definition": "A high-level timeline showing planned releases and features.",
+      "hint": "Long-term agile plan.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-133",
+      "term": "Agile Retrospective Analysis",
+      "definition": "Identifying improvements after each iteration.",
+      "hint": "Improve continuously.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-134",
+      "term": "Enterprise Capability Assessment",
+      "definition": "Evaluates organizational strengths and weaknesses related to change.",
+      "hint": "Assess business capabilities.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-135",
+      "term": "Business Process Analysis",
+      "definition": "Examining workflows to identify inefficiencies and improvement opportunities.",
+      "hint": "Analyze how work is done.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-136",
+      "term": "Process Decomposition",
+      "definition": "Breaking down processes into smaller, manageable components.",
+      "hint": "Break processes into steps.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-137",
+      "term": "Value Stream Mapping",
+      "definition": "Visualizing the flow of value through a process to identify waste.",
+      "hint": "Map value flow.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-138",
+      "term": "Customer Needs Analysis",
+      "definition": "Identifying what customers truly need versus what they request.",
+      "hint": "Understand real needs.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-139",
+      "term": "Market Analysis",
+      "definition": "Evaluating market trends, competitors, and customer segments.",
+      "hint": "Understand the market.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-140",
+      "term": "Regulatory Analysis",
+      "definition": "Identifying laws and regulations that impact the solution.",
+      "hint": "Legal requirements.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-141",
+      "term": "Solution Constraints Analysis",
+      "definition": "Evaluating limitations such as budget, technology, or resources.",
+      "hint": "Identify solution limits.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-142",
+      "term": "Transition Risk",
+      "definition": "Risks associated with moving from current state to future state.",
+      "hint": "Risks during changeover.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-143",
+      "term": "Organizational Change Management",
+      "definition": "Preparing people and processes for adopting new solutions.",
+      "hint": "Help people adapt.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-144",
+      "term": "Training Plan",
+      "definition": "Defines how users will be trained to adopt the new solution.",
+      "hint": "Plan for user training.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-145",
+      "term": "Communication Plan",
+      "definition": "Defines how information will be shared with stakeholders throughout the project.",
+      "hint": "Plan for communication.",
+      "tags": ["Stakeholders"]
+    },
+    {
+      "id": "baf-146",
+      "term": "Facilitation Techniques",
+      "definition": "Methods such as round-robin, parking lot, and silent brainstorming.",
+      "hint": "Tools for effective meetings.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-147",
+      "term": "Conflict Resolution",
+      "definition": "Techniques for resolving stakeholder disagreements, such as compromise or collaboration.",
+      "hint": "Resolve stakeholder conflicts.",
+      "tags": ["Stakeholders"]
+    },
+    {
+      "id": "baf-148",
+      "term": "Influencing Skills",
+      "definition": "Ability to persuade stakeholders without formal authority.",
+      "hint": "Guide decisions without power.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-149",
+      "term": "Active Listening",
+      "definition": "Fully focusing on the speaker to understand their message and intent.",
+      "hint": "Listen to understand.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-150",
+      "term": "Professional Ethics",
+      "definition": "Acting with integrity, transparency, and respect in all BA activities.",
+      "hint": "Do the right thing.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-151",
+      "term": "Enterprise Goals",
+      "definition": "High-level objectives that guide strategic decision-making and influence solution direction.",
+      "hint": "What the organization aims to achieve.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-152",
+      "term": "Business Drivers",
+      "definition": "Forces that motivate organizational change, such as competition, regulation, or technology shifts.",
+      "hint": "What pushes the business to change.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-153",
+      "term": "Key Performance Questions (KPQs)",
+      "definition": "Questions that help determine what performance metrics are needed.",
+      "hint": "Questions that guide measurement.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-154",
+      "term": "SMART Requirements",
+      "definition": "Requirements that are Specific, Measurable, Achievable, Relevant, and Time-bound.",
+      "hint": "Make requirements clear and testable.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-155",
+      "term": "Elicitation Triggers",
+      "definition": "Events that prompt the need for elicitation, such as new regulations or system failures.",
+      "hint": "What starts elicitation.",
+      "tags": ["Elicitation"]
+    },
+    {
+      "id": "baf-156",
+      "term": "Shadowing",
+      "definition": "Observing users in their natural work environment to understand tasks and challenges.",
+      "hint": "Watch users work.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-157",
+      "term": "Reverse Engineering",
+      "definition": "Analyzing an existing system to understand its components and behavior.",
+      "hint": "Understand the system by taking it apart.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-158",
+      "term": "Gap Prioritization",
+      "definition": "Ranking gaps based on impact, urgency, and feasibility.",
+      "hint": "Which gaps matter most.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-159",
+      "term": "Business Capability Gap",
+      "definition": "A missing or weak capability that prevents achieving business goals.",
+      "hint": "What the business cannot do yet.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-160",
+      "term": "Enterprise Constraints",
+      "definition": "Limitations such as budget, culture, technology, or regulations that affect solution options.",
+      "hint": "Boundaries the business must work within.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-161",
+      "term": "Solution Context",
+      "definition": "The environment in which the solution operates, including systems, users, and constraints.",
+      "hint": "Where the solution lives.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-162",
+      "term": "Business Domain",
+      "definition": "The area of the organization affected by the solution, including processes and stakeholders.",
+      "hint": "The part of the business involved.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-163",
+      "term": "Business Logic",
+      "definition": "Rules and calculations that determine how a system behaves.",
+      "hint": "How the system makes decisions.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-164",
+      "term": "Decision Table",
+      "definition": "A structured representation of business rules using conditions and outcomes.",
+      "hint": "Rules in table form.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-165",
+      "term": "Decision Tree",
+      "definition": "A branching diagram that models decisions and their possible consequences.",
+      "hint": "Visual decision logic.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-166",
+      "term": "Scenario Analysis",
+      "definition": "Exploring different possible future states to understand impacts and risks.",
+      "hint": "What-if analysis.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-167",
+      "term": "Business Event Modeling",
+      "definition": "Identifying events that trigger business processes or system actions.",
+      "hint": "What starts the process.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-168",
+      "term": "Process Bottleneck",
+      "definition": "A point in a process where flow is restricted, causing delays.",
+      "hint": "Where work gets stuck.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-169",
+      "term": "Swimlane Diagram",
+      "definition": "A process diagram that shows responsibilities across roles or departments.",
+      "hint": "Process + who does what.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-170",
+      "term": "Contextual Inquiry",
+      "definition": "A combination of interviewing and observation performed in the user's environment.",
+      "hint": "Interview + observe.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-171",
+      "term": "Heuristic Evaluation",
+      "definition": "Assessing usability based on established design principles.",
+      "hint": "Evaluate usability quickly.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-172",
+      "term": "Cultural Assessment",
+      "definition": "Understanding organizational culture to determine readiness for change.",
+      "hint": "How culture affects change.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-173",
+      "term": "Stakeholder Influence Map",
+      "definition": "Visualizing stakeholder power, interest, and relationships.",
+      "hint": "Who influences what.",
+      "tags": ["Stakeholders"]
+    },
+    {
+      "id": "baf-174",
+      "term": "Stakeholder Persona",
+      "definition": "A fictional profile representing a stakeholder type to guide analysis.",
+      "hint": "Stakeholder archetype.",
+      "tags": ["Stakeholders"]
+    },
+    {
+      "id": "baf-175",
+      "term": "Requirements Conflict",
+      "definition": "When stakeholders have competing or incompatible requirements.",
+      "hint": "Requirements that clash.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-176",
+      "term": "Requirements Ambiguity",
+      "definition": "A requirement that can be interpreted in multiple ways.",
+      "hint": "Unclear requirement.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-177",
+      "term": "Requirements Decomposition",
+      "definition": "Breaking high-level requirements into smaller, more detailed ones.",
+      "hint": "Break requirements down.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-178",
+      "term": "Requirements Verification Checklist",
+      "definition": "A list of criteria to ensure requirement quality.",
+      "hint": "Check requirement quality.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-179",
+      "term": "Requirements Validation Techniques",
+      "definition": "Includes walkthroughs, prototyping, and acceptance testing.",
+      "hint": "Ensure requirements meet needs.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-180",
+      "term": "Solution Hypothesis",
+      "definition": "An assumption about how a proposed solution will deliver value.",
+      "hint": "What we think will work.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-181",
+      "term": "Experimentation",
+      "definition": "Testing solution ideas quickly through prototypes or pilots.",
+      "hint": "Test ideas fast.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-182",
+      "term": "Value Leakage",
+      "definition": "Loss of expected value due to poor adoption, defects, or misalignment.",
+      "hint": "Where value is lost.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-183",
+      "term": "Benefits Realization",
+      "definition": "Ensuring expected benefits are achieved after solution deployment.",
+      "hint": "Did we get the value?",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-184",
+      "term": "Business Readiness",
+      "definition": "The degree to which the organization is prepared for the new solution.",
+      "hint": "Are we ready for change?",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-185",
+      "term": "Change Saturation",
+      "definition": "The point at which an organization cannot absorb additional change.",
+      "hint": "Too much change at once.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-186",
+      "term": "Change Resistance",
+      "definition": "Stakeholder reluctance to adopt new processes or solutions.",
+      "hint": "Pushback to change.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-187",
+      "term": "Communication Barriers",
+      "definition": "Obstacles such as jargon, assumptions, or cultural differences that hinder understanding.",
+      "hint": "What blocks communication.",
+      "tags": ["Communication"]
+    },
+    {
+      "id": "baf-188",
+      "term": "Active Questioning",
+      "definition": "Using open-ended and probing questions to uncover deeper insights.",
+      "hint": "Ask to understand more.",
+      "tags": ["Communication"]
+    },
+    {
+      "id": "baf-189",
+      "term": "Facilitated Decision-Making",
+      "definition": "Helping stakeholders reach consensus using structured techniques.",
+      "hint": "Guide group decisions.",
+      "tags": ["Facilitation"]
+    },
+    {
+      "id": "baf-190",
+      "term": "Conflict De-escalation",
+      "definition": "Reducing tension through empathy, reframing, and neutral language.",
+      "hint": "Calm heated discussions.",
+      "tags": ["Facilitation"]
+    },
+    {
+      "id": "baf-191",
+      "term": "Negotiation BATNA",
+      "definition": "Best Alternative To a Negotiated Agreement — fallback option if negotiation fails.",
+      "hint": "Your backup plan.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-192",
+      "term": "Emotional Intelligence",
+      "definition": "Recognizing and managing emotions to improve stakeholder relationships.",
+      "hint": "Understand emotions.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-193",
+      "term": "Analytical Modeling",
+      "definition": "Using quantitative techniques to evaluate options or performance.",
+      "hint": "Use numbers to analyze.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-194",
+      "term": "Concept Modeling",
+      "definition": "Representing key concepts and relationships within a business domain.",
+      "hint": "Model business concepts.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-195",
+      "term": "Business Scenario",
+      "definition": "A narrative describing how users interact with a solution in a real-world context.",
+      "hint": "Story of how the solution is used.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-196",
+      "term": "Solution Roadmap",
+      "definition": "A timeline showing planned releases, capabilities, and dependencies.",
+      "hint": "Long-term solution plan.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-197",
+      "term": "Enterprise Risk",
+      "definition": "Risks that affect the organization's ability to achieve strategic goals.",
+      "hint": "Risks at the enterprise level.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-198",
+      "term": "Business KPI Alignment",
+      "definition": "Ensuring solution metrics support organizational KPIs.",
+      "hint": "Align solution metrics to business goals.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-199",
+      "term": "Solution Scalability",
+      "definition": "The ability of a solution to handle increased demand or growth.",
+      "hint": "Can it grow with the business?",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-200",
+      "term": "Value Optimization",
+      "definition": "Maximizing the benefits delivered by a solution while minimizing waste.",
+      "hint": "Deliver the most value possible.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-201",
+      "term": "Enterprise Value",
+      "definition": "The measurable benefit an organization gains from a solution, including financial and non-financial outcomes.",
+      "hint": "What the organization gains.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-202",
+      "term": "Strategic Alignment",
+      "definition": "Ensuring proposed solutions support organizational goals and direction.",
+      "hint": "Does the solution support strategy?",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-203",
+      "term": "Environmental Scan",
+      "definition": "Analyzing external factors such as market trends, competitors, and regulations.",
+      "hint": "Understand the external environment.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-204",
+      "term": "Internal Capability Assessment",
+      "definition": "Evaluating the organization's strengths, weaknesses, and resources.",
+      "hint": "Assess what the business can do.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-205",
+      "term": "Business Motivation Model",
+      "definition": "A framework that links goals, objectives, strategies, and tactics.",
+      "hint": "Connect goals to actions.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-206",
+      "term": "Balanced Scorecard",
+      "definition": "A strategic tool measuring performance across financial, customer, process, and learning perspectives.",
+      "hint": "Holistic performance measurement.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-207",
+      "term": "Enterprise Roadmap",
+      "definition": "A long-term plan showing major initiatives, dependencies, and timelines.",
+      "hint": "High-level organizational plan.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-208",
+      "term": "Business Scenario Modeling",
+      "definition": "Creating narratives that illustrate how users interact with a future solution.",
+      "hint": "Story-based modeling.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-209",
+      "term": "Event Storming",
+      "definition": "A collaborative modeling technique to identify domain events and workflows.",
+      "hint": "Map events in a domain.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-210",
+      "term": "Domain Modeling",
+      "definition": "Representing key business concepts and their relationships.",
+      "hint": "Model the business domain.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-211",
+      "term": "Contextual Modeling",
+      "definition": "Understanding how a solution fits within its environment and interacts with external systems.",
+      "hint": "Model the solution's surroundings.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-212",
+      "term": "Process Simulation",
+      "definition": "Testing process models using scenarios to predict performance.",
+      "hint": "Simulate process behavior.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-213",
+      "term": "Data Flow Diagram (DFD)",
+      "definition": "Shows how data moves through a system, including inputs, outputs, and storage.",
+      "hint": "Model data movement.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-214",
+      "term": "CRUD Matrix",
+      "definition": "Maps which processes Create, Read, Update, or Delete data entities.",
+      "hint": "Track data operations.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-215",
+      "term": "Requirements Dependency",
+      "definition": "A relationship where one requirement relies on another.",
+      "hint": "Requirements that rely on each other.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-216",
+      "term": "Requirements Stability",
+      "definition": "The likelihood that a requirement will remain unchanged.",
+      "hint": "How stable a requirement is.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-217",
+      "term": "Requirements Volatility",
+      "definition": "The frequency and extent of requirement changes.",
+      "hint": "How often requirements change.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-218",
+      "term": "Requirements Reuse",
+      "definition": "Leveraging existing requirements for new projects or solutions.",
+      "hint": "Reuse what already exists.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-219",
+      "term": "Requirements Repository",
+      "definition": "A centralized location for storing and managing requirements.",
+      "hint": "Where requirements live.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-220",
+      "term": "Requirements Baseline",
+      "definition": "The approved version of requirements used for development and change control.",
+      "hint": "Official requirement set.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "baf-221",
+      "term": "Decision Criteria",
+      "definition": "Factors used to evaluate solution options, such as cost, value, and risk.",
+      "hint": "How decisions are made.",
+      "tags": ["Decision Making"]
+    },
+    {
+      "id": "baf-222",
+      "term": "Weighted Scoring Model",
+      "definition": "A technique that assigns weights to criteria and scores options.",
+      "hint": "Score options objectively.",
+      "tags": ["Decision Making"]
+    },
+    {
+      "id": "baf-223",
+      "term": "Cost of Delay",
+      "definition": "The economic impact of delaying a feature or solution.",
+      "hint": "Value lost by waiting.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-224",
+      "term": "Opportunity Cost",
+      "definition": "The value of the best alternative not chosen.",
+      "hint": "What you give up.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-225",
+      "term": "Innovation Analysis",
+      "definition": "Identifying creative opportunities for new products or improvements.",
+      "hint": "Find innovative ideas.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-226",
+      "term": "Design Thinking",
+      "definition": "A human-centered approach to problem-solving emphasizing empathy and experimentation.",
+      "hint": "Solve problems creatively.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-227",
+      "term": "Empathy Mapping",
+      "definition": "Understanding user emotions, thoughts, and behaviors.",
+      "hint": "See through the user's eyes.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-228",
+      "term": "Journey Analytics",
+      "definition": "Using data to analyze customer interactions across touchpoints.",
+      "hint": "Measure customer journeys.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-229",
+      "term": "Service Level Agreement (SLA)",
+      "definition": "A formal agreement defining service performance expectations.",
+      "hint": "Performance commitments.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-230",
+      "term": "Solution Defect Analysis",
+      "definition": "Identifying and categorizing defects to improve solution quality.",
+      "hint": "Analyze solution issues.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-231",
+      "term": "Solution Adoption Metrics",
+      "definition": "Measures such as usage rates, satisfaction, and training completion.",
+      "hint": "How well users adopt the solution.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-232",
+      "term": "Organizational Maturity",
+      "definition": "The level of sophistication in processes, culture, and capabilities.",
+      "hint": "How mature the organization is.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-233",
+      "term": "Change Readiness Indicators",
+      "definition": "Signs that the organization is prepared for change, such as leadership support and resource availability.",
+      "hint": "Signs of readiness.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-234",
+      "term": "Change Reinforcement",
+      "definition": "Activities that sustain new behaviors after implementation.",
+      "hint": "Keep the change going.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-235",
+      "term": "Training Effectiveness Evaluation",
+      "definition": "Assessing whether training improved user capability and adoption.",
+      "hint": "Did training work?",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-236",
+      "term": "Stakeholder Satisfaction",
+      "definition": "A measure of how well stakeholder expectations are met.",
+      "hint": "Are stakeholders happy?",
+      "tags": ["Stakeholders"]
+    },
+    {
+      "id": "baf-237",
+      "term": "Stakeholder Engagement Level",
+      "definition": "The degree to which stakeholders participate and support the initiative.",
+      "hint": "How involved stakeholders are.",
+      "tags": ["Stakeholders"]
+    },
+    {
+      "id": "baf-238",
+      "term": "Facilitation Agenda",
+      "definition": "A structured plan outlining topics, timing, and activities for a workshop.",
+      "hint": "Plan for a workshop.",
+      "tags": ["Facilitation"]
+    },
+    {
+      "id": "baf-239",
+      "term": "Facilitation Neutrality",
+      "definition": "Remaining unbiased while guiding discussions.",
+      "hint": "Stay neutral.",
+      "tags": ["Facilitation"]
+    },
+    {
+      "id": "baf-240",
+      "term": "Group Dynamics",
+      "definition": "The interactions and behaviors within a group that affect collaboration.",
+      "hint": "How groups behave.",
+      "tags": ["Facilitation"]
+    },
+    {
+      "id": "baf-241",
+      "term": "Communication Tone",
+      "definition": "The emotional quality of communication, such as formal, friendly, or assertive.",
+      "hint": "How the message feels.",
+      "tags": ["Communication"]
+    },
+    {
+      "id": "baf-242",
+      "term": "Communication Medium Selection",
+      "definition": "Choosing the most effective channel for a message, such as email, meeting, or chat.",
+      "hint": "Pick the right channel.",
+      "tags": ["Communication"]
+    },
+    {
+      "id": "baf-243",
+      "term": "Cognitive Bias Awareness",
+      "definition": "Recognizing biases that affect decision-making, such as anchoring or confirmation bias.",
+      "hint": "Avoid biased decisions.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-244",
+      "term": "Critical Thinking",
+      "definition": "Evaluating information objectively to form reasoned judgments.",
+      "hint": "Think logically.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-245",
+      "term": "Creative Problem-Solving",
+      "definition": "Using innovative thinking to generate new solutions.",
+      "hint": "Think outside the box.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-246",
+      "term": "Timeboxing",
+      "definition": "Limiting the time spent on an activity to improve focus and efficiency.",
+      "hint": "Set a time limit.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-247",
+      "term": "Agile Value Delivery",
+      "definition": "Delivering value incrementally through frequent releases.",
+      "hint": "Deliver value early and often.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-248",
+      "term": "Agile Definition of Ready",
+      "definition": "Criteria that a backlog item must meet before being accepted into a sprint.",
+      "hint": "Ready to start.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-249",
+      "term": "Agile Definition of Done",
+      "definition": "A shared understanding of what it means for work to be complete.",
+      "hint": "Done means done.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-250",
+      "term": "Value-Based Prioritization",
+      "definition": "Ranking work items based on expected value, cost, and risk.",
+      "hint": "Prioritize by value.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-251",
+      "term": "Enterprise Vision",
+      "definition": "A long-term aspirational description of what the organization aims to become.",
+      "hint": "Future direction of the enterprise.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-252",
+      "term": "Enterprise Mission",
+      "definition": "Defines the organization's purpose and core reason for existence.",
+      "hint": "Why the organization exists.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-253",
+      "term": "Strategic Themes",
+      "definition": "High-level focus areas that guide organizational initiatives.",
+      "hint": "Major areas of strategic focus.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-254",
+      "term": "Business Outcome Hypothesis",
+      "definition": "A prediction of how a proposed solution will impact business outcomes.",
+      "hint": "Expected impact of a solution.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-255",
+      "term": "Enterprise Risk Appetite",
+      "definition": "The level of risk an organization is willing to accept.",
+      "hint": "How much risk the business tolerates.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-256",
+      "term": "Enterprise SWOT",
+      "definition": "A strategic analysis of strengths, weaknesses, opportunities, and threats.",
+      "hint": "High-level SWOT.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-257",
+      "term": "Business Ecosystem",
+      "definition": "The network of partners, competitors, regulators, and stakeholders influencing the organization.",
+      "hint": "The environment the business operates in.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-258",
+      "term": "Value Chain Analysis",
+      "definition": "Examining primary and support activities that create value.",
+      "hint": "How value is created.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-259",
+      "term": "Business Capability Maturity",
+      "definition": "A measure of how well a capability performs relative to best practices.",
+      "hint": "How mature a capability is.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-260",
+      "term": "Enterprise Architecture Alignment",
+      "definition": "Ensuring solutions fit within the organization's architecture standards.",
+      "hint": "Fit solution into enterprise architecture.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "baf-261",
+      "term": "Process Maturity Model",
+      "definition": "A framework for assessing the maturity of business processes.",
+      "hint": "How mature a process is.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-262",
+      "term": "Process Heat Map",
+      "definition": "A visual tool highlighting process performance, risks, or issues.",
+      "hint": "Visualize process health.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-263",
+      "term": "Event-Driven Process Chain",
+      "definition": "A modeling technique showing events, functions, and logical relationships.",
+      "hint": "Event-based process modeling.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-264",
+      "term": "System Context Boundary",
+      "definition": "Defines what is inside and outside the system being analyzed.",
+      "hint": "What the system includes.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-265",
+      "term": "Information Architecture",
+      "definition": "The structure and organization of information within a system.",
+      "hint": "How information is organized.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-266",
+      "term": "Data Lineage",
+      "definition": "Tracking data origins, transformations, and destinations.",
+      "hint": "Where data comes from and goes.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-267",
+      "term": "Requirements Elicitation Traps",
+      "definition": "Common pitfalls such as leading questions or assuming stakeholder knowledge.",
+      "hint": "Mistakes to avoid in elicitation.",
+      "tags": ["Elicitation"]
+    },
+    {
+      "id": "baf-268",
+      "term": "Silent Brainstorming",
+      "definition": "A technique where participants generate ideas individually before sharing.",
+      "hint": "Brainstorm quietly first.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-269",
+      "term": "Round-Robin Elicitation",
+      "definition": "Each participant contributes ideas in turn to ensure equal participation.",
+      "hint": "Everyone gets a turn.",
+      "tags": ["Techniques"]
+    },
+    {
+      "id": "baf-270",
+      "term": "Requirements Ambiguity Check",
+      "definition": "Reviewing requirements for unclear or subjective language.",
+      "hint": "Remove vague wording.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-271",
+      "term": "Requirements Completeness Check",
+      "definition": "Ensuring requirements include all necessary details and conditions.",
+      "hint": "Check if anything is missing.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-272",
+      "term": "Requirements Consistency Check",
+      "definition": "Ensuring requirements do not conflict with each other.",
+      "hint": "Check for contradictions.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-273",
+      "term": "Requirements Feasibility Check",
+      "definition": "Evaluating whether requirements can realistically be implemented.",
+      "hint": "Can we actually do this?",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-274",
+      "term": "Requirements Testability",
+      "definition": "Determining whether a requirement can be verified through testing.",
+      "hint": "Can we prove it works?",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-275",
+      "term": "Requirements Negotiation",
+      "definition": "Resolving conflicts and reaching agreement on requirement priorities.",
+      "hint": "Agree on what matters.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "baf-276",
+      "term": "Requirements Sign-Off",
+      "definition": "Formal approval of requirements by stakeholders.",
+      "hint": "Official approval.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "baf-277",
+      "term": "Solution Performance Baseline",
+      "definition": "The initial performance metrics used to compare future results.",
+      "hint": "Starting point for measurement.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-278",
+      "term": "Solution Performance Trend",
+      "definition": "Changes in performance metrics over time.",
+      "hint": "How performance changes.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-279",
+      "term": "Solution Performance Threshold",
+      "definition": "The minimum acceptable level of performance.",
+      "hint": "Performance floor.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-280",
+      "term": "Solution Performance Gap Analysis",
+      "definition": "Comparing actual performance to expected results to identify gaps.",
+      "hint": "Where performance falls short.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-281",
+      "term": "Solution Scalability Assessment",
+      "definition": "Evaluating whether the solution can handle increased demand.",
+      "hint": "Can it scale?",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-282",
+      "term": "Solution Maintainability",
+      "definition": "How easily a solution can be updated or repaired.",
+      "hint": "Ease of maintenance.",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-283",
+      "term": "Solution Sustainability",
+      "definition": "The long-term viability of a solution in terms of cost, support, and adaptability.",
+      "hint": "Will it last?",
+      "tags": ["Solution Evaluation"]
+    },
+    {
+      "id": "baf-284",
+      "term": "Agile Product Vision",
+      "definition": "A high-level description of the product's purpose and value.",
+      "hint": "Why the product exists.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-285",
+      "term": "Agile Product Goal",
+      "definition": "A long-term objective for the product that guides backlog prioritization.",
+      "hint": "Long-term product target.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-286",
+      "term": "Agile Release Plan",
+      "definition": "A roadmap showing planned releases and major features.",
+      "hint": "Plan for releases.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-287",
+      "term": "Agile Value Stream",
+      "definition": "The flow of value from idea to delivery in an agile environment.",
+      "hint": "How value flows in agile.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-288",
+      "term": "Agile Product Metrics",
+      "definition": "Measures such as cycle time, lead time, and throughput.",
+      "hint": "Metrics for agile teams.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-289",
+      "term": "Agile Technical Debt",
+      "definition": "The cost of rework caused by choosing quick solutions instead of long-term ones.",
+      "hint": "Shortcuts that cost later.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-290",
+      "term": "Agile Spike",
+      "definition": "A timeboxed research activity to reduce uncertainty.",
+      "hint": "Research task.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-291",
+      "term": "Agile Story Splitting",
+      "definition": "Breaking large user stories into smaller, deliverable pieces.",
+      "hint": "Split big stories.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-292",
+      "term": "Agile Acceptance Testing",
+      "definition": "Validating that a story meets acceptance criteria.",
+      "hint": "Test user stories.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "baf-293",
+      "term": "Facilitation Ground Rules",
+      "definition": "Agreements that guide behavior during workshops.",
+      "hint": "Rules for effective meetings.",
+      "tags": ["Facilitation"]
+    },
+    {
+      "id": "baf-294",
+      "term": "Facilitation Parking Lot",
+      "definition": "A technique for capturing off-topic items without derailing discussion.",
+      "hint": "Hold off-topic ideas.",
+      "tags": ["Facilitation"]
+    },
+    {
+      "id": "baf-295",
+      "term": "Facilitation Time Management",
+      "definition": "Ensuring discussions stay within allocated time.",
+      "hint": "Keep the meeting on track.",
+      "tags": ["Facilitation"]
+    },
+    {
+      "id": "baf-296",
+      "term": "Communication Framing",
+      "definition": "Presenting information in a way that influences understanding and perception.",
+      "hint": "How you frame the message.",
+      "tags": ["Communication"]
+    },
+    {
+      "id": "baf-297",
+      "term": "Communication Noise",
+      "definition": "Anything that interferes with message clarity, such as jargon or assumptions.",
+      "hint": "What disrupts communication.",
+      "tags": ["Communication"]
+    },
+    {
+      "id": "baf-298",
+      "term": "Cognitive Load",
+      "definition": "The mental effort required to process information.",
+      "hint": "How hard it is to understand.",
+      "tags": ["Competencies"]
+    },
+    {
+      "id": "baf-299",
+      "term": "Systems Modeling",
+      "definition": "Representing system components, interactions, and boundaries.",
+      "hint": "Model the system.",
+      "tags": ["Modeling"]
+    },
+    {
+      "id": "baf-300",
+      "term": "Value Realization Roadmap",
+      "definition": "A plan showing when and how expected value will be delivered and measured.",
+      "hint": "Plan for delivering value.",
+      "tags": ["Strategy"]
+    }
+  ]
+}

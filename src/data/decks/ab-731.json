@@ -1,0 +1,360 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Microsoft AI Transformation Leader (AB-731)",
+    "description": "Strategic AI concepts — leading organizational AI adoption, governance, operating models, and driving business transformation with AI and Copilot.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "ab731-001",
+      "term": "AI Transformation",
+      "definition": "The process of integrating AI across an organization to fundamentally improve operations, decision-making, and business outcomes.",
+      "hint": "AI changes how the whole business operates.",
+      "tags": ["Strategy", "AI"]
+    },
+    {
+      "id": "ab731-002",
+      "term": "AI Strategy",
+      "definition": "A long-term plan that aligns AI initiatives with business goals, ensuring sustainable value and competitive advantage.",
+      "hint": "The roadmap for AI success.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "ab731-003",
+      "term": "Business Alignment",
+      "definition": "Ensuring AI initiatives directly support organizational objectives and priorities.",
+      "hint": "AI must support business goals.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "ab731-004",
+      "term": "AI Maturity Model",
+      "definition": "A framework used to assess an organization's current AI capabilities and readiness for transformation.",
+      "hint": "How advanced is your AI journey?",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "ab731-005",
+      "term": "Operating Model",
+      "definition": "The structure and processes used to deliver AI capabilities across the organization.",
+      "hint": "How AI is organized and run.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "ab731-006",
+      "term": "Center of Excellence (CoE)",
+      "definition": "A centralized team that provides governance, best practices, and expertise for AI initiatives.",
+      "hint": "Central AI expert team.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "ab731-007",
+      "term": "Decentralized Model",
+      "definition": "An approach where individual business units manage their own AI initiatives.",
+      "hint": "Each team runs its own AI.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "ab731-008",
+      "term": "Hybrid Model",
+      "definition": "A combination of centralized governance and decentralized execution for AI initiatives.",
+      "hint": "Central control, distributed execution.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "ab731-009",
+      "term": "AI Governance",
+      "definition": "Policies and processes that ensure AI systems are used responsibly, securely, and in compliance with regulations.",
+      "hint": "Rules for using AI safely.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "ab731-010",
+      "term": "Responsible AI",
+      "definition": "Ensuring AI systems are ethical, fair, transparent, and accountable.",
+      "hint": "Ethical AI use.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab731-011",
+      "term": "Risk Management",
+      "definition": "Identifying and mitigating risks associated with AI deployment, including bias and data privacy issues.",
+      "hint": "Control AI risks.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "ab731-012",
+      "term": "Regulatory Compliance",
+      "definition": "Ensuring AI systems meet legal and industry-specific requirements.",
+      "hint": "Follow laws and regulations.",
+      "tags": ["Compliance"]
+    },
+    {
+      "id": "ab731-013",
+      "term": "Data Governance",
+      "definition": "Managing data quality, availability, and security across AI systems.",
+      "hint": "Control and protect data.",
+      "tags": ["Data"]
+    },
+    {
+      "id": "ab731-014",
+      "term": "Data Strategy",
+      "definition": "A plan for managing and leveraging data as a key asset for AI initiatives.",
+      "hint": "Data fuels AI.",
+      "tags": ["Data"]
+    },
+    {
+      "id": "ab731-015",
+      "term": "Data Quality",
+      "definition": "Ensuring data used for AI is accurate, complete, and reliable.",
+      "hint": "Bad data = bad AI.",
+      "tags": ["Data"]
+    },
+    {
+      "id": "ab731-016",
+      "term": "Change Management",
+      "definition": "Managing organizational changes to successfully adopt AI technologies.",
+      "hint": "Helping people adapt to AI.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab731-017",
+      "term": "Stakeholder Engagement",
+      "definition": "Involving key stakeholders in AI planning and execution.",
+      "hint": "Get buy-in from leadership.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "ab731-018",
+      "term": "Adoption Framework",
+      "definition": "A structured approach to implementing AI across an organization.",
+      "hint": "Plan for rolling out AI.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab731-019",
+      "term": "AI Use Case Portfolio",
+      "definition": "A collection of prioritized AI use cases aligned with business goals.",
+      "hint": "List of AI opportunities.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "ab731-020",
+      "term": "Value Realization",
+      "definition": "Measuring the actual business benefits achieved from AI initiatives.",
+      "hint": "Prove AI value.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab731-021",
+      "term": "Key Performance Indicators (KPIs)",
+      "definition": "Metrics used to evaluate the success of AI initiatives.",
+      "hint": "Measure success.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab731-022",
+      "term": "Return on Investment (ROI)",
+      "definition": "A financial metric that evaluates the profitability of AI initiatives.",
+      "hint": "Is AI worth the cost?",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab731-023",
+      "term": "Scalability",
+      "definition": "The ability of AI systems to grow and handle increasing workloads.",
+      "hint": "Can AI scale?",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "ab731-024",
+      "term": "Enterprise Integration",
+      "definition": "Connecting AI solutions with existing business systems.",
+      "hint": "AI works with your systems.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "ab731-025",
+      "term": "AI Operating Costs",
+      "definition": "The ongoing expenses associated with running AI systems.",
+      "hint": "Cost to run AI.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab731-026",
+      "term": "Innovation Strategy",
+      "definition": "Using AI to drive new products, services, and business models.",
+      "hint": "AI drives innovation.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "ab731-027",
+      "term": "Competitive Advantage",
+      "definition": "Using AI to outperform competitors.",
+      "hint": "AI as a differentiator.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab731-028",
+      "term": "Copilot Adoption",
+      "definition": "Implementing Microsoft Copilot across an organization to enhance productivity.",
+      "hint": "Roll out Copilot.",
+      "tags": ["Copilot"]
+    },
+    {
+      "id": "ab731-029",
+      "term": "AI Culture",
+      "definition": "An organizational mindset that embraces AI-driven innovation.",
+      "hint": "People mindset toward AI.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab731-030",
+      "term": "Upskilling",
+      "definition": "Training employees to work effectively with AI tools.",
+      "hint": "Teach AI skills.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab731-031",
+      "term": "Reskilling",
+      "definition": "Training employees for new roles in an AI-driven environment.",
+      "hint": "Prepare for new jobs.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab731-032",
+      "term": "AI Ethics",
+      "definition": "Principles guiding the responsible use of AI.",
+      "hint": "Right vs wrong in AI.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab731-033",
+      "term": "Bias in AI",
+      "definition": "Unfair outcomes caused by skewed data or algorithms.",
+      "hint": "AI discrimination risk.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab731-034",
+      "term": "Transparency",
+      "definition": "Understanding how AI decisions are made.",
+      "hint": "Explainable AI.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab731-035",
+      "term": "Accountability",
+      "definition": "Ensuring responsibility for AI decisions lies with humans.",
+      "hint": "Humans are accountable.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab731-036",
+      "term": "Security and Privacy",
+      "definition": "Protecting sensitive data in AI systems.",
+      "hint": "Keep data safe.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab731-037",
+      "term": "Data Residency",
+      "definition": "The geographic location where data is stored.",
+      "hint": "Where data lives.",
+      "tags": ["Compliance"]
+    },
+    {
+      "id": "ab731-038",
+      "term": "AI Risk Categories",
+      "definition": "Different types of risks including operational, ethical, and compliance risks.",
+      "hint": "Types of AI risks.",
+      "tags": ["Governance"]
+    },
+    {
+      "id": "ab731-039",
+      "term": "Portfolio Management",
+      "definition": "Managing multiple AI initiatives to maximize value.",
+      "hint": "Manage AI projects together.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "ab731-040",
+      "term": "Roadmap Planning",
+      "definition": "Defining a timeline for AI adoption and scaling.",
+      "hint": "Plan AI journey.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "ab731-041",
+      "term": "Pilot Programs",
+      "definition": "Testing AI solutions before full deployment.",
+      "hint": "Start small.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab731-042",
+      "term": "Scaling AI",
+      "definition": "Expanding AI solutions across the organization.",
+      "hint": "Grow AI usage.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "ab731-043",
+      "term": "Feedback Loops",
+      "definition": "Using feedback to improve AI systems continuously.",
+      "hint": "Improve over time.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab731-044",
+      "term": "Business Transformation",
+      "definition": "Using AI to fundamentally change how a business operates.",
+      "hint": "AI reshapes business.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "ab731-045",
+      "term": "Customer Experience (CX)",
+      "definition": "Improving customer interactions using AI-driven personalization.",
+      "hint": "Better customer interactions.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab731-046",
+      "term": "Decision Intelligence",
+      "definition": "Combining AI and data to improve decision-making processes.",
+      "hint": "Smarter decisions with AI.",
+      "tags": ["AI"]
+    },
+    {
+      "id": "ab731-047",
+      "term": "Automation vs Augmentation",
+      "definition": "Automation replaces human tasks, while augmentation enhances human capabilities.",
+      "hint": "Replace vs assist.",
+      "tags": ["AI"]
+    },
+    {
+      "id": "ab731-048",
+      "term": "Cross-Functional Collaboration",
+      "definition": "Collaboration between business, IT, and data teams for AI success.",
+      "hint": "Teams must work together.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "ab731-049",
+      "term": "Leadership in AI",
+      "definition": "Driving vision, strategy, and culture for AI adoption.",
+      "hint": "Leaders drive AI change.",
+      "tags": ["Strategy"]
+    },
+    {
+      "id": "ab731-050",
+      "term": "Sustainable AI",
+      "definition": "Ensuring long-term viability and ethical impact of AI initiatives.",
+      "hint": "AI that lasts responsibly.",
+      "tags": ["Responsible AI"]
+    }
+  ]
+}

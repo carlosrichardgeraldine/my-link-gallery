@@ -6,13 +6,11 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
-  Download,
   GraduationCap,
   RefreshCw,
   Search,
   Shuffle,
   Tag,
-  Upload,
   X,
 } from "lucide-react";
 import MonochromePlusBackground from "@/components/MonochromePlusBackground";
@@ -20,11 +18,8 @@ import ThemeToggle from "@/components/ThemeToggle";
 import {
   flashcardSetsCatalog,
   deckRegistry,
-  exportDeck,
-  parseDeckJson,
   type Flashcard,
   type FlashcardDeck,
-  type FlashcardSetEntry,
 } from "@/data/flashcards";
 import { toast } from "sonner";
 
@@ -118,10 +113,8 @@ const DESKTOP_PAGE_SIZE = 9;
 
 function DeckPicker({
   onSelect,
-  onImport,
 }: {
   onSelect: (id: string) => void;
-  onImport: () => void;
 }) {
   const [search, setSearch] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -320,13 +313,13 @@ function DeckPicker({
                           </span>
                         ))}
                       </div>
-                      {/* <button
+                      <button
                         type="button"
                         onClick={() => onSelect(entry.id)}
                         className="w-full rounded-xl border border-foreground bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
                       >
                         Start studying →
-                      </button> */}
+                      </button>
                     </div>
                   )}
                 </div>
@@ -365,18 +358,6 @@ function DeckPicker({
             </button>
           </div>
         )}
-
-        {/* Import — always visible on mobile */}
-        <button
-          type="button"
-          onClick={onImport}
-          className="mt-3 flex w-full items-center justify-between gap-3 rounded-2xl border border-dashed border-border bg-card/50 px-4 py-3 text-left transition-colors hover:bg-card"
-        >
-          <span className="text-sm font-semibold text-foreground">
-            Import Custom Deck
-          </span>
-          <Upload className="h-4 w-4 shrink-0 text-muted-foreground" />
-        </button>
       </div>
 
       {/* ── Desktop layout (hidden below sm) ──────────────────────────── */}
@@ -416,34 +397,11 @@ function DeckPicker({
                     </span>
                   ))}
                 </div>
-                <div className="mt-auto pt-2 text-xs font-medium text-foreground/60 transition-colors group-hover:text-foreground">
+                {/* <div className="mt-auto pt-2 text-xs font-medium text-foreground/60 transition-colors group-hover:text-foreground">
                   Start studying →
-                </div>
+                </div> */}
               </button>
             ))}
-
-            {/* Import card on last page */}
-            {desktopPage === desktopPageCount - 1 && (
-              <button
-                type="button"
-                onClick={onImport}
-                className="group flex flex-col items-start gap-3 rounded-2xl border border-dashed border-border bg-card/50 p-5 text-left shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/30 hover:bg-card hover:shadow-md"
-              >
-                <div className="flex w-full items-start justify-between gap-2">
-                  <h3 className="text-base font-semibold text-foreground leading-snug">
-                    Import Custom Deck
-                  </h3>
-                  <Upload className="h-4 w-4 shrink-0 text-muted-foreground" />
-                </div>
-                <p className="text-xs leading-relaxed text-muted-foreground">
-                  Load your own flashcard deck from a JSON file exported from
-                  this app.
-                </p>
-                <div className="mt-auto pt-2 text-xs font-medium text-foreground/60 transition-colors group-hover:text-foreground">
-                  Browse file →
-                </div>
-              </button>
-            )}
           </div>
         )}
 
@@ -487,8 +445,6 @@ export default function FlashcardPage() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [cardSearch, setCardSearch] = useState("");
   const [isShuffled, setIsShuffled] = useState(false);
-
-  const importInputRef = useRef<HTMLInputElement>(null);
 
   /* Load deck when a set is selected */
   useEffect(() => {
@@ -569,40 +525,6 @@ export default function FlashcardPage() {
     setCardSearch("");
   };
 
-  const handleExport = () => {
-    if (!deck) return;
-    exportDeck(deck);
-    toast.success("Deck exported as JSON");
-  };
-
-  const handleImportClick = () => importInputRef.current?.click();
-
-  const handleImportFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      const raw = ev.target?.result as string;
-      const parsed = parseDeckJson(raw);
-      if (!parsed) {
-        toast.error("Invalid flashcard JSON file");
-        return;
-      }
-      setDeck(parsed);
-      setSelectedSetId("__custom__");
-      setSelectedTags([]);
-      setCardSearch("");
-      setIsShuffled(false);
-      setIndex(0);
-      setFlipped(false);
-      toast.success(
-        `Imported "${parsed.meta.name}" — ${parsed.cards.length} cards`,
-      );
-    };
-    reader.readAsText(file);
-    e.target.value = "";
-  };
-
   const handleBackToPicker = () => {
     setSelectedSetId(null);
     setDeck(null);
@@ -659,47 +581,15 @@ export default function FlashcardPage() {
               )}
             </div>
             <div className="flex items-center gap-3">
-              {isStudying && (
-                <>
-                  <button
-                    type="button"
-                    onClick={handleImportClick}
-                    title="Import deck from JSON"
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-2.5 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted"
-                  >
-                    <Upload className="h-3.5 w-3.5" />
-                    <span className="hidden sm:inline">Import</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleExport}
-                    title="Export deck as JSON"
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-2.5 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted"
-                  >
-                    <Download className="h-3.5 w-3.5" />
-                    <span className="hidden sm:inline">Export</span>
-                  </button>
-                </>
-              )}
               <ThemeToggle />
             </div>
           </div>
         </header>
 
-        <input
-          ref={importInputRef}
-          type="file"
-          accept=".json,application/json"
-          className="hidden"
-          onChange={handleImportFile}
-          aria-label="Import flashcard deck JSON file"
-        />
-
         {/* Picker or Study view */}
         {!isStudying ? (
           <DeckPicker
             onSelect={setSelectedSetId}
-            onImport={handleImportClick}
           />
         ) : (
           <div className="container mx-auto px-4 pt-4 pb-28 md:py-6">
@@ -849,9 +739,6 @@ export default function FlashcardPage() {
                         / {queue.length}
                       </span>
                     </span>
-                    <p className="text-[10px] text-muted-foreground">
-                      ← → to navigate · Space to flip
-                    </p>
                   </div>
 
                   <button

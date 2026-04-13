@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0",
     "name": "Microsoft Dynamics 365 Fundamentals ERP (MB-920)",
-    "description": "10 foundational Dynamics 365 finance and operations ERP concepts for the MB-920 certification exam.",
+    "description": "Foundational Dynamics 365 finance and operations ERP concepts for the MB-920 certification exam.",
     "createdAt": "2026-04-13"
   },
   "cards": [
@@ -75,6 +75,286 @@
       "definition": "Microsoft Dynamics Lifecycle Services (LCS) is the project management and collaboration portal for implementing and managing Dynamics 365 Finance and Operations apps. It hosts: environment provisioning (sandbox and production), code deployment pipelines, issue tracking (BPM), and diagnostic tools. Production environments are hosted on Microsoft-managed Azure infrastructure with defined service levels and maintenance windows.",
       "hint": "The control panel IT teams use to deploy, manage, and monitor Finance and Operations environments.",
       "tags": ["Platform", "Administration"]
+    },
+    {
+      "id": "mb920-011",
+      "term": "Chart of Accounts (COA)",
+      "definition": "A structured list of financial accounts used to classify transactions in Dynamics 365 Finance. Includes main accounts, account structures, and financial dimensions. COA drives financial reporting, budgeting, and analytics across legal entities.",
+      "hint": "The backbone of financial classification and reporting.",
+      "tags": ["Finance", "ERP"]
+    },
+    {
+      "id": "mb920-012",
+      "term": "Financial Dimensions",
+      "definition": "Custom attributes (e.g., department, cost center, project) used to track financial transactions at a granular level. Dimensions enhance reporting without creating excessive accounts in the chart of accounts.",
+      "hint": "Extra tags that make financial reporting more detailed.",
+      "tags": ["Finance", "Data Model"]
+    },
+    {
+      "id": "mb920-013",
+      "term": "Budgeting and Budget Control",
+      "definition": "Dynamics 365 Finance supports budget planning, budget register entries, and budget control rules. Budget control prevents overspending by validating transactions against available budget.",
+      "hint": "Plan budgets and prevent spending beyond limits.",
+      "tags": ["Finance", "Budgeting"]
+    },
+    {
+      "id": "mb920-014",
+      "term": "Accounts Payable (AP) Workflow",
+      "definition": "AP manages vendor invoices, approvals, and payments. Features include invoice matching (3-way match), vendor terms, payment proposals, and settlement. Integrates with procurement for purchase order invoicing.",
+      "hint": "Track and pay vendor invoices with approval workflows.",
+      "tags": ["Finance", "Procurement"]
+    },
+    {
+      "id": "mb920-015",
+      "term": "Accounts Receivable (AR) Collections",
+      "definition": "AR manages customer invoicing, credit limits, and collections. Includes aging reports, automated reminders, and credit and collections workspaces to track overdue balances.",
+      "hint": "Manage customer invoices, credit, and overdue payments.",
+      "tags": ["Finance", "Sales"]
+    },
+    {
+      "id": "mb920-016",
+      "term": "Procure-to-Pay (P2P) Process",
+      "definition": "The end-to-end procurement cycle: requisition → purchase order → product receipt → vendor invoice → payment. Dynamics 365 SCM automates approvals, vendor collaboration, and invoice matching.",
+      "hint": "Buy goods from vendors and pay them — the full cycle.",
+      "tags": ["Supply Chain", "Procurement"]
+    },
+    {
+      "id": "mb920-017",
+      "term": "Order-to-Cash (O2C) Process",
+      "definition": "The sales fulfillment cycle: sales order creation → picking → packing → shipping → invoicing → payment collection. Dynamics 365 SCM and Finance work together to manage the full process.",
+      "hint": "Sell goods to customers and collect payment.",
+      "tags": ["Supply Chain", "Sales"]
+    },
+    {
+      "id": "mb920-018",
+      "term": "Inventory Valuation Methods",
+      "definition": "Dynamics 365 supports FIFO, LIFO, Weighted Average, Standard Cost, and Moving Average. Valuation affects cost of goods sold (COGS) and financial reporting.",
+      "hint": "How inventory cost is calculated for accounting.",
+      "tags": ["Supply Chain", "Finance"]
+    },
+    {
+      "id": "mb920-019",
+      "term": "Warehouse Management System (WMS)",
+      "definition": "Advanced warehouse capabilities including wave picking, cluster picking, mobile device workflows, location directives, and work templates. Supports complex warehouse operations.",
+      "hint": "Advanced tools for running large or complex warehouses.",
+      "tags": ["Supply Chain", "Warehousing"]
+    },
+    {
+      "id": "mb920-020",
+      "term": "Bill of Materials (BOM)",
+      "definition": "A structured list of components required to manufacture a product. Used in Production Control for planning, costing, and execution. BOM versions support engineering changes.",
+      "hint": "The recipe for manufacturing a product.",
+      "tags": ["Manufacturing", "Supply Chain"]
+    },
+    {
+      "id": "mb920-021",
+      "term": "Routing and Production Operations",
+      "definition": "Routings define the sequence of operations needed to produce a product, including work centers, run times, and resource requirements. Used for scheduling and costing.",
+      "hint": "The step-by-step process for manufacturing.",
+      "tags": ["Manufacturing", "ERP"]
+    },
+    {
+      "id": "mb920-022",
+      "term": "Master Planning (MRP)",
+      "definition": "Material Requirements Planning calculates supply needs based on demand, inventory levels, and lead times. Generates planned purchase, transfer, and production orders.",
+      "hint": "Plan what to buy, make, or move to meet demand.",
+      "tags": ["Supply Chain", "Planning"]
+    },
+    {
+      "id": "mb920-023",
+      "term": "Demand Forecasting",
+      "definition": "Uses historical data and statistical models to predict future demand. Helps organisations plan production, purchasing, and inventory levels.",
+      "hint": "Predict future demand to plan supply.",
+      "tags": ["Supply Chain", "Analytics"]
+    },
+    {
+      "id": "mb920-024",
+      "term": "Retail POS (Point of Sale)",
+      "definition": "Dynamics 365 Commerce provides Cloud POS and Modern POS for in-store transactions. Supports sales, returns, inventory lookup, customer orders, and loyalty programs.",
+      "hint": "The in-store checkout system for retail operations.",
+      "tags": ["Commerce", "Retail"]
+    },
+    {
+      "id": "mb920-025",
+      "term": "E-Commerce Storefront",
+      "definition": "Commerce includes a built-in e-commerce engine for product catalogs, shopping carts, checkout, and customer accounts. Integrates with inventory, pricing, and order fulfillment.",
+      "hint": "Online store integrated with ERP data.",
+      "tags": ["Commerce", "E-Commerce"]
+    },
+    {
+      "id": "mb920-026",
+      "term": "Human Resources Leave and Absence",
+      "definition": "HR manages leave plans, accruals, approvals, and employee self-service. Supports multiple leave types (vacation, sick, parental) and integrates with payroll systems.",
+      "hint": "Track employee time off and approvals.",
+      "tags": ["HR", "ERP"]
+    },
+    {
+      "id": "mb920-027",
+      "term": "Compensation and Benefits",
+      "definition": "HR manages fixed and variable compensation plans, pay grades, benefits enrollment, and eligibility rules. Supports annual merit cycles and benefit open enrollment.",
+      "hint": "Manage employee pay structures and benefits.",
+      "tags": ["HR", "Compensation"]
+    },
+    {
+      "id": "mb920-028",
+      "term": "Project Accounting",
+      "definition": "Tracks project costs, revenue, budgets, and profitability. Supports time and expense entry, cost allocations, and revenue recognition based on milestones or progress.",
+      "hint": "Financial tracking for project-based work.",
+      "tags": ["Project Operations", "Finance"]
+    },
+    {
+      "id": "mb920-029",
+      "term": "Cost Management",
+      "definition": "Tracks and analyzes costs across manufacturing, inventory, and projects. Supports standard cost, actual cost, and variance analysis. Helps organisations understand profitability.",
+      "hint": "Monitor and analyze operational costs.",
+      "tags": ["Finance", "Manufacturing"]
+    },
+    {
+      "id": "mb920-030",
+      "term": "Electronic Reporting (ER)",
+      "definition": "A configurable framework for creating electronic documents such as invoices, tax reports, and regulatory filings. Supports country-specific formats and localization.",
+      "hint": "Build and customize regulatory and financial reports.",
+      "tags": ["Finance", "Compliance"]
+    },
+    {
+      "id": "mb920-031",
+      "term": "Vendor Collaboration",
+      "definition": "A portal that allows vendors to view purchase orders, confirm deliveries, submit invoices, and update contact information. Improves communication and reduces manual data entry in procurement processes.",
+      "hint": "A self-service portal for vendors to manage POs and invoices.",
+      "tags": ["Supply Chain", "Procurement"]
+    },
+    {
+      "id": "mb920-032",
+      "term": "Product Information Management (PIM)",
+      "definition": "Centralized management of product definitions, attributes, variants, units of measure, and product lifecycle states. Ensures consistent product data across Finance, Supply Chain, and Commerce.",
+      "hint": "The single source of truth for product data.",
+      "tags": ["Supply Chain", "Commerce"]
+    },
+    {
+      "id": "mb920-033",
+      "term": "Product Variants",
+      "definition": "Products with multiple configurations such as size, color, or style. Variants share a base product but differ in attributes. Common in retail, apparel, and manufacturing.",
+      "hint": "Different versions of the same product (e.g., size/color).",
+      "tags": ["Commerce", "Supply Chain"]
+    },
+    {
+      "id": "mb920-034",
+      "term": "Replenishment and Safety Stock",
+      "definition": "Replenishment policies determine when to reorder inventory. Safety stock ensures minimum inventory levels to prevent stockouts. Dynamics 365 calculates reorder points based on demand and lead times.",
+      "hint": "Rules that keep inventory from running out.",
+      "tags": ["Supply Chain", "Planning"]
+    },
+    {
+      "id": "mb920-035",
+      "term": "Vendor Managed Inventory (VMI)",
+      "definition": "A process where vendors monitor inventory levels and replenish stock automatically. Dynamics 365 supports VMI scenarios through collaboration and forecasting tools.",
+      "hint": "Vendors restock your inventory for you.",
+      "tags": ["Supply Chain", "Procurement"]
+    },
+    {
+      "id": "mb920-036",
+      "term": "Quality Management",
+      "definition": "Ensures product quality through quality orders, tests, sampling, and nonconformance tracking. Integrated with procurement, production, and warehousing.",
+      "hint": "Test and track product quality across the supply chain.",
+      "tags": ["Supply Chain", "Quality"]
+    },
+    {
+      "id": "mb920-037",
+      "term": "Nonconformance Management",
+      "definition": "Tracks product defects, deviations, and corrective actions. Helps organizations identify root causes and improve quality processes.",
+      "hint": "Log and resolve product defects and issues.",
+      "tags": ["Quality", "Manufacturing"]
+    },
+    {
+      "id": "mb920-038",
+      "term": "Asset Management",
+      "definition": "Manages maintenance of company assets such as machinery, vehicles, and equipment. Supports preventive, corrective, and predictive maintenance.",
+      "hint": "Track and maintain equipment to reduce downtime.",
+      "tags": ["Manufacturing", "Operations"]
+    },
+    {
+      "id": "mb920-039",
+      "term": "Production Order Lifecycle",
+      "definition": "Production orders move through stages: Created → Estimated → Scheduled → Released → Started → Reported as Finished → Ended. Each stage updates inventory and cost records.",
+      "hint": "The full lifecycle of manufacturing a product.",
+      "tags": ["Manufacturing", "ERP"]
+    },
+    {
+      "id": "mb920-040",
+      "term": "Kanban and Lean Manufacturing",
+      "definition": "Supports lean production using Kanban cards, pull-based replenishment, and work cells. Reduces waste and improves flow in manufacturing operations.",
+      "hint": "Lean manufacturing tools built into Dynamics.",
+      "tags": ["Manufacturing", "Lean"]
+    },
+    {
+      "id": "mb920-041",
+      "term": "Transportation Management",
+      "definition": "Manages freight, shipping carriers, transportation routes, and load planning. Helps optimize logistics and reduce transportation costs.",
+      "hint": "Plan and optimize how goods are shipped.",
+      "tags": ["Supply Chain", "Logistics"]
+    },
+    {
+      "id": "mb920-042",
+      "term": "Vendor Scorecards",
+      "definition": "Evaluates vendor performance based on metrics like delivery time, quality, and pricing. Helps procurement teams make data-driven decisions.",
+      "hint": "Measure how well vendors perform.",
+      "tags": ["Procurement", "Analytics"]
+    },
+    {
+      "id": "mb920-043",
+      "term": "Customer and Vendor Master Data",
+      "definition": "Stores key information such as addresses, payment terms, tax details, and credit limits. Shared across Finance, Supply Chain, and Commerce.",
+      "hint": "Core data about customers and vendors used across ERP.",
+      "tags": ["Finance", "Data Model"]
+    },
+    {
+      "id": "mb920-044",
+      "term": "Credit and Risk Management",
+      "definition": "Manages customer credit limits, risk scores, and credit holds. Helps reduce financial risk by preventing orders from customers with overdue balances.",
+      "hint": "Control customer credit exposure.",
+      "tags": ["Finance", "Risk"]
+    },
+    {
+      "id": "mb920-045",
+      "term": "Cash and Bank Management",
+      "definition": "Tracks bank accounts, deposits, checks, and cash forecasting. Supports bank reconciliation and electronic payments.",
+      "hint": "Manage bank accounts and cash flow.",
+      "tags": ["Finance", "ERP"]
+    },
+    {
+      "id": "mb920-046",
+      "term": "Fixed Assets",
+      "definition": "Manages acquisition, depreciation, revaluation, and disposal of long-term assets. Integrates with General Ledger for automated postings.",
+      "hint": "Track company-owned assets and depreciation.",
+      "tags": ["Finance", "Assets"]
+    },
+    {
+      "id": "mb920-047",
+      "term": "Regulatory Compliance and Localization",
+      "definition": "Dynamics 365 includes country-specific regulatory features such as tax rules, electronic invoicing, and statutory reporting. Localization packages ensure compliance in global deployments.",
+      "hint": "Built-in features for country-specific tax and reporting laws.",
+      "tags": ["Compliance", "Finance"]
+    },
+    {
+      "id": "mb920-048",
+      "term": "Electronic Invoicing (e-Invoicing)",
+      "definition": "Supports automated creation, submission, and receipt of electronic invoices in formats required by government authorities. Reduces manual processing and ensures compliance.",
+      "hint": "Send and receive invoices electronically for compliance.",
+      "tags": ["Finance", "Compliance"]
+    },
+    {
+      "id": "mb920-049",
+      "term": "Power Platform Integration with ERP",
+      "definition": "Finance and Operations apps integrate with Power Apps, Power Automate, and Power BI for custom apps, workflows, and analytics. Dual-Write and virtual tables enable real-time data access.",
+      "hint": "Extend ERP with low-code apps, workflows, and dashboards.",
+      "tags": ["Platform", "Integration"]
+    },
+    {
+      "id": "mb920-050",
+      "term": "Business Events",
+      "definition": "Finance and Operations apps can publish business events (e.g., invoice posted, PO confirmed) to trigger external workflows in Power Automate or Azure services.",
+      "hint": "ERP events that trigger workflows in other systems.",
+      "tags": ["Integration", "Automation"]
     }
   ]
 }

@@ -1,0 +1,1410 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Software Engineering Fundamentals",
+    "description": "Core concepts in software engineering — SDLC, architecture, design, testing, DevOps, security, and programming fundamentals.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "sef-001",
+      "term": "Software Engineering",
+      "definition": "A disciplined approach to designing, building, testing, and maintaining software systems.",
+      "hint": "Engineering applied to software.",
+      "tags": ["Fundamentals"]
+    },
+    {
+      "id": "sef-002",
+      "term": "Software Development Life Cycle (SDLC)",
+      "definition": "A structured process for planning, creating, testing, and deploying software.",
+      "hint": "Phases of building software.",
+      "tags": ["SDLC"]
+    },
+    {
+      "id": "sef-003",
+      "term": "Requirements Engineering",
+      "definition": "The process of gathering, analyzing, documenting, and validating software requirements.",
+      "hint": "Define what the system must do.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "sef-004",
+      "term": "Functional Requirements",
+      "definition": "Describe what the system should do — features, behaviors, and interactions.",
+      "hint": "System functionality.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "sef-005",
+      "term": "Nonfunctional Requirements",
+      "definition": "Describe system qualities such as performance, security, usability, and reliability.",
+      "hint": "Quality attributes.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "sef-006",
+      "term": "Use Case",
+      "definition": "A description of how a user interacts with a system to achieve a goal.",
+      "hint": "User + system interaction.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "sef-007",
+      "term": "User Story",
+      "definition": "A short requirement format used in agile: 'As a user, I want… so that…'.",
+      "hint": "Agile requirement.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "sef-008",
+      "term": "System Architecture",
+      "definition": "The high-level structure of a software system, including components and their interactions.",
+      "hint": "Blueprint of the system.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-009",
+      "term": "Monolithic Architecture",
+      "definition": "A single, unified codebase where all components are tightly coupled.",
+      "hint": "One big application.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-010",
+      "term": "Microservices Architecture",
+      "definition": "An approach where a system is built as a collection of small, independent services.",
+      "hint": "Small services working together.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-011",
+      "term": "API (Application Programming Interface)",
+      "definition": "A set of rules that allows software components to communicate.",
+      "hint": "How systems talk.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-012",
+      "term": "REST API",
+      "definition": "An API style using HTTP methods and resource-based URLs.",
+      "hint": "Web-friendly API style.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-013",
+      "term": "Design Patterns",
+      "definition": "Reusable solutions to common software design problems.",
+      "hint": "Proven design solutions.",
+      "tags": ["Design"]
+    },
+    {
+      "id": "sef-014",
+      "term": "SOLID Principles",
+      "definition": "Five design principles for writing maintainable and scalable object-oriented code.",
+      "hint": "Guidelines for clean code.",
+      "tags": ["Design"]
+    },
+    {
+      "id": "sef-015",
+      "term": "Encapsulation",
+      "definition": "Bundling data and methods together while restricting direct access.",
+      "hint": "Hide internal details.",
+      "tags": ["OOP"]
+    },
+    {
+      "id": "sef-016",
+      "term": "Inheritance",
+      "definition": "A mechanism where one class derives properties from another.",
+      "hint": "Reuse parent class behavior.",
+      "tags": ["OOP"]
+    },
+    {
+      "id": "sef-017",
+      "term": "Polymorphism",
+      "definition": "The ability of different objects to respond to the same method call in different ways.",
+      "hint": "Same call, different behavior.",
+      "tags": ["OOP"]
+    },
+    {
+      "id": "sef-018",
+      "term": "Abstraction",
+      "definition": "Hiding complexity by exposing only essential features.",
+      "hint": "Simplify the interface.",
+      "tags": ["OOP"]
+    },
+    {
+      "id": "sef-019",
+      "term": "Algorithm",
+      "definition": "A step-by-step procedure for solving a problem.",
+      "hint": "Recipe for computation.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-020",
+      "term": "Data Structure",
+      "definition": "A way of organizing and storing data for efficient access and modification.",
+      "hint": "How data is organized.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-021",
+      "term": "Big-O Notation",
+      "definition": "A mathematical notation describing algorithm performance and scalability.",
+      "hint": "Measure algorithm efficiency.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-022",
+      "term": "Unit Testing",
+      "definition": "Testing individual components or functions in isolation.",
+      "hint": "Test small pieces.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-023",
+      "term": "Integration Testing",
+      "definition": "Testing how components work together.",
+      "hint": "Test interactions.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-024",
+      "term": "System Testing",
+      "definition": "Testing the complete system to ensure it meets requirements.",
+      "hint": "Test the whole application.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-025",
+      "term": "Acceptance Testing",
+      "definition": "Validating that the system meets business needs and is ready for release.",
+      "hint": "Final validation.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-026",
+      "term": "Test Automation",
+      "definition": "Using tools to automatically execute tests and verify results.",
+      "hint": "Automate testing.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-027",
+      "term": "Continuous Integration (CI)",
+      "definition": "A practice where developers frequently merge code into a shared repository with automated builds and tests.",
+      "hint": "Merge often, test often.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-028",
+      "term": "Continuous Delivery (CD)",
+      "definition": "Automatically preparing code for deployment to production.",
+      "hint": "Always ready to release.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-029",
+      "term": "Continuous Deployment",
+      "definition": "Automatically deploying every passing build to production.",
+      "hint": "Every change goes live.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-030",
+      "term": "Version Control",
+      "definition": "A system for tracking changes to code over time.",
+      "hint": "Track code history.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-031",
+      "term": "Git",
+      "definition": "A distributed version control system used to track code changes.",
+      "hint": "Most popular VCS.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-032",
+      "term": "Branching",
+      "definition": "Creating a separate line of development to work on features or fixes.",
+      "hint": "Work safely in parallel.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-033",
+      "term": "Pull Request",
+      "definition": "A request to merge code changes into another branch, often with review.",
+      "hint": "Propose code changes.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-034",
+      "term": "Code Review",
+      "definition": "A process where peers examine code for quality, correctness, and maintainability.",
+      "hint": "Check each other's code.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "sef-035",
+      "term": "Refactoring",
+      "definition": "Improving code structure without changing its behavior.",
+      "hint": "Clean up code.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "sef-036",
+      "term": "Technical Debt",
+      "definition": "The cost of rework caused by choosing quick solutions instead of long-term ones.",
+      "hint": "Shortcuts that cost later.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "sef-037",
+      "term": "Software Reliability",
+      "definition": "The probability that software will operate without failure for a given time.",
+      "hint": "How dependable the software is.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "sef-038",
+      "term": "Scalability",
+      "definition": "The ability of a system to handle increased load without performance degradation.",
+      "hint": "Can it grow?",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-039",
+      "term": "Performance Optimization",
+      "definition": "Improving system speed, responsiveness, and resource usage.",
+      "hint": "Make it faster.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "sef-040",
+      "term": "Concurrency",
+      "definition": "Executing multiple tasks at the same time within a program.",
+      "hint": "Parallel execution.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-041",
+      "term": "Thread",
+      "definition": "A lightweight unit of execution within a process.",
+      "hint": "Smallest execution unit.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-042",
+      "term": "Race Condition",
+      "definition": "A concurrency issue where the outcome depends on the timing of events.",
+      "hint": "Timing bug.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-043",
+      "term": "Deadlock",
+      "definition": "A situation where two or more processes wait indefinitely for each other.",
+      "hint": "Mutual waiting.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-044",
+      "term": "Software Security",
+      "definition": "Practices that protect software from vulnerabilities and attacks.",
+      "hint": "Keep software safe.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-045",
+      "term": "Authentication",
+      "definition": "Verifying the identity of a user or system.",
+      "hint": "Who are you?",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-046",
+      "term": "Authorization",
+      "definition": "Determining what actions an authenticated user is allowed to perform.",
+      "hint": "What can you do?",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-047",
+      "term": "Encryption",
+      "definition": "Transforming data into a secure format to prevent unauthorized access.",
+      "hint": "Protect data.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-048",
+      "term": "Agile Methodology",
+      "definition": "An iterative approach to software development emphasizing collaboration and adaptability.",
+      "hint": "Iterate and adapt.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "sef-049",
+      "term": "Scrum",
+      "definition": "An agile framework using sprints, roles, and ceremonies to deliver value incrementally.",
+      "hint": "Popular agile framework.",
+      "tags": ["Agile"]
+    },
+    {
+      "id": "sef-050",
+      "term": "Systems Thinking",
+      "definition": "Understanding how components interact within a larger system.",
+      "hint": "See the whole system.",
+      "tags": ["Fundamentals"]
+    },
+    {
+      "id": "sef-051",
+      "term": "Software Requirements Specification (SRS)",
+      "definition": "A detailed document describing functional and nonfunctional requirements for a system.",
+      "hint": "Formal requirements document.",
+      "tags": ["Requirements"]
+    },
+    {
+      "id": "sef-052",
+      "term": "Architectural Style",
+      "definition": "A set of principles that shape the structure and behavior of a software system.",
+      "hint": "High-level design approach.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-053",
+      "term": "Layered Architecture",
+      "definition": "An architecture where components are organized into layers with defined responsibilities.",
+      "hint": "Presentation → business → data.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-054",
+      "term": "Event-Driven Architecture",
+      "definition": "A system design where components communicate through events.",
+      "hint": "React to events.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-055",
+      "term": "Domain-Driven Design (DDD)",
+      "definition": "A design approach that models software based on the business domain.",
+      "hint": "Model the domain.",
+      "tags": ["Design"]
+    },
+    {
+      "id": "sef-056",
+      "term": "Repository Pattern",
+      "definition": "A design pattern that abstracts data access logic from business logic.",
+      "hint": "Separate data access.",
+      "tags": ["Design"]
+    },
+    {
+      "id": "sef-057",
+      "term": "Dependency Injection",
+      "definition": "A technique where dependencies are provided rather than created inside components.",
+      "hint": "Pass dependencies in.",
+      "tags": ["Design"]
+    },
+    {
+      "id": "sef-058",
+      "term": "Immutability",
+      "definition": "A property where data cannot be modified after creation.",
+      "hint": "Data that never changes.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-059",
+      "term": "Functional Programming",
+      "definition": "A paradigm that treats computation as evaluation of pure functions without side effects.",
+      "hint": "Functions + immutability.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-060",
+      "term": "Object-Oriented Programming (OOP)",
+      "definition": "A paradigm based on objects, classes, and encapsulation.",
+      "hint": "Code organized around objects.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-061",
+      "term": "Procedural Programming",
+      "definition": "A paradigm based on procedures or routines that operate on data.",
+      "hint": "Step-by-step instructions.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-062",
+      "term": "Relational Database",
+      "definition": "A database that organizes data into tables with rows and columns.",
+      "hint": "Tables + SQL.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-063",
+      "term": "SQL (Structured Query Language)",
+      "definition": "A language used to query and manipulate relational databases.",
+      "hint": "Query relational data.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-064",
+      "term": "NoSQL Database",
+      "definition": "A non-relational database optimized for scalability and flexible schemas.",
+      "hint": "Document, key-value, graph.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-065",
+      "term": "ACID Properties",
+      "definition": "Atomicity, Consistency, Isolation, Durability — guarantees for reliable transactions.",
+      "hint": "Transaction reliability.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-066",
+      "term": "CAP Theorem",
+      "definition": "States that distributed systems can only guarantee two of Consistency, Availability, and Partition Tolerance.",
+      "hint": "Pick 2 of 3.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-067",
+      "term": "Load Balancing",
+      "definition": "Distributing traffic across multiple servers to improve performance and reliability.",
+      "hint": "Spread the load.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-068",
+      "term": "Caching",
+      "definition": "Storing frequently accessed data in a fast storage layer to improve performance.",
+      "hint": "Speed up data access.",
+      "tags": ["Performance"]
+    },
+    {
+      "id": "sef-069",
+      "term": "Message Queue",
+      "definition": "A communication mechanism that enables asynchronous processing.",
+      "hint": "Asynchronous messaging.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-070",
+      "term": "Containerization",
+      "definition": "Packaging applications and dependencies into isolated units.",
+      "hint": "Lightweight app packaging.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-071",
+      "term": "Docker",
+      "definition": "A platform for building and running containerized applications.",
+      "hint": "Most popular container tool.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-072",
+      "term": "Kubernetes",
+      "definition": "A system for automating deployment, scaling, and management of containerized applications.",
+      "hint": "Container orchestration.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-073",
+      "term": "Infrastructure as Code (IaC)",
+      "definition": "Managing infrastructure through machine-readable configuration files.",
+      "hint": "Automate infrastructure.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-074",
+      "term": "Cloud Computing",
+      "definition": "Delivering computing services over the internet on demand.",
+      "hint": "On-demand computing.",
+      "tags": ["Cloud"]
+    },
+    {
+      "id": "sef-075",
+      "term": "IaaS (Infrastructure as a Service)",
+      "definition": "Cloud model providing virtualized computing resources.",
+      "hint": "Virtual machines in the cloud.",
+      "tags": ["Cloud"]
+    },
+    {
+      "id": "sef-076",
+      "term": "PaaS (Platform as a Service)",
+      "definition": "Cloud model providing platforms for building and deploying applications.",
+      "hint": "Cloud app platform.",
+      "tags": ["Cloud"]
+    },
+    {
+      "id": "sef-077",
+      "term": "SaaS (Software as a Service)",
+      "definition": "Cloud model delivering software applications over the internet.",
+      "hint": "Software delivered online.",
+      "tags": ["Cloud"]
+    },
+    {
+      "id": "sef-078",
+      "term": "API Gateway",
+      "definition": "A service that manages API traffic, routing, authentication, and rate limiting.",
+      "hint": "Front door for APIs.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-079",
+      "term": "Reverse Proxy",
+      "definition": "A server that forwards client requests to backend servers.",
+      "hint": "Middleman server.",
+      "tags": ["Networking"]
+    },
+    {
+      "id": "sef-080",
+      "term": "HTTP",
+      "definition": "A protocol for transferring data over the web.",
+      "hint": "Web communication protocol.",
+      "tags": ["Networking"]
+    },
+    {
+      "id": "sef-081",
+      "term": "HTTPS",
+      "definition": "A secure version of HTTP using encryption.",
+      "hint": "Secure web communication.",
+      "tags": ["Networking"]
+    },
+    {
+      "id": "sef-082",
+      "term": "Latency",
+      "definition": "The time it takes for data to travel from source to destination.",
+      "hint": "Delay in communication.",
+      "tags": ["Performance"]
+    },
+    {
+      "id": "sef-083",
+      "term": "Throughput",
+      "definition": "The amount of data processed in a given time.",
+      "hint": "How much data flows.",
+      "tags": ["Performance"]
+    },
+    {
+      "id": "sef-084",
+      "term": "Load Testing",
+      "definition": "Testing how a system performs under expected user load.",
+      "hint": "Test normal load.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-085",
+      "term": "Stress Testing",
+      "definition": "Testing system behavior under extreme load.",
+      "hint": "Push system to the limit.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-086",
+      "term": "Penetration Testing",
+      "definition": "Simulating attacks to identify security vulnerabilities.",
+      "hint": "Ethical hacking.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-087",
+      "term": "SQL Injection",
+      "definition": "A security attack where malicious SQL is inserted into queries.",
+      "hint": "Database attack.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-088",
+      "term": "Cross-Site Scripting (XSS)",
+      "definition": "An attack where malicious scripts are injected into web pages.",
+      "hint": "Browser-based attack.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-089",
+      "term": "Zero-Day Vulnerability",
+      "definition": "A security flaw unknown to the vendor and actively exploited.",
+      "hint": "Unknown security hole.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-090",
+      "term": "Logging",
+      "definition": "Recording system events for debugging, monitoring, and auditing.",
+      "hint": "Track system events.",
+      "tags": ["Operations"]
+    },
+    {
+      "id": "sef-091",
+      "term": "Monitoring",
+      "definition": "Tracking system health and performance in real time.",
+      "hint": "Watch system behavior.",
+      "tags": ["Operations"]
+    },
+    {
+      "id": "sef-092",
+      "term": "Observability",
+      "definition": "Understanding system behavior through logs, metrics, and traces.",
+      "hint": "See inside the system.",
+      "tags": ["Operations"]
+    },
+    {
+      "id": "sef-093",
+      "term": "Incident Response",
+      "definition": "The process of detecting, analyzing, and resolving system issues.",
+      "hint": "Handle outages.",
+      "tags": ["Operations"]
+    },
+    {
+      "id": "sef-094",
+      "term": "Root Cause Analysis",
+      "definition": "Identifying the underlying cause of a system failure.",
+      "hint": "Find the real issue.",
+      "tags": ["Operations"]
+    },
+    {
+      "id": "sef-095",
+      "term": "Rollback",
+      "definition": "Reverting a system to a previous stable state after a failed deployment.",
+      "hint": "Undo a bad release.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-096",
+      "term": "Feature Flag",
+      "definition": "A technique for enabling or disabling features without deploying new code.",
+      "hint": "Toggle features on/off.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-097",
+      "term": "Blue-Green Deployment",
+      "definition": "A release strategy using two identical environments to minimize downtime.",
+      "hint": "Switch between blue and green.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-098",
+      "term": "Canary Deployment",
+      "definition": "Releasing changes to a small subset of users before full rollout.",
+      "hint": "Test with a small group first.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-099",
+      "term": "Software Maintainability",
+      "definition": "How easily software can be modified, extended, or fixed.",
+      "hint": "Ease of updating code.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "sef-100",
+      "term": "Software Reusability",
+      "definition": "The ability to use existing components in new contexts.",
+      "hint": "Reuse code effectively.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "sef-101",
+      "term": "Eventual Consistency",
+      "definition": "A consistency model where data becomes consistent across nodes over time.",
+      "hint": "Consistency later, not instantly.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-102",
+      "term": "Strong Consistency",
+      "definition": "A model where all clients see the same data immediately after a write.",
+      "hint": "Everyone sees updates instantly.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-103",
+      "term": "Horizontal Scaling",
+      "definition": "Adding more machines to increase capacity.",
+      "hint": "Scale out.",
+      "tags": ["Performance"]
+    },
+    {
+      "id": "sef-104",
+      "term": "Vertical Scaling",
+      "definition": "Increasing the resources of a single machine.",
+      "hint": "Scale up.",
+      "tags": ["Performance"]
+    },
+    {
+      "id": "sef-105",
+      "term": "Sharding",
+      "definition": "Splitting data across multiple databases to improve performance and scalability.",
+      "hint": "Divide data into shards.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-106",
+      "term": "Replication",
+      "definition": "Copying data across multiple servers for availability and fault tolerance.",
+      "hint": "Duplicate data for safety.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-107",
+      "term": "Indexing",
+      "definition": "Creating data structures to speed up database queries.",
+      "hint": "Faster lookups.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-108",
+      "term": "ORM (Object-Relational Mapping)",
+      "definition": "A technique that maps database tables to programming objects.",
+      "hint": "Objects ↔ tables.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-109",
+      "term": "Graph Database",
+      "definition": "A database optimized for relationships using nodes and edges.",
+      "hint": "Data as graphs.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-110",
+      "term": "Event Sourcing",
+      "definition": "Storing system state as a sequence of events rather than snapshots.",
+      "hint": "State = events.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-111",
+      "term": "CQRS",
+      "definition": "Separating read and write models to improve scalability and performance.",
+      "hint": "Command-query separation.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-112",
+      "term": "API Rate Limiting",
+      "definition": "Restricting the number of API calls a client can make.",
+      "hint": "Prevent overload.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-113",
+      "term": "Circuit Breaker Pattern",
+      "definition": "A pattern that stops calls to a failing service to prevent cascading failures.",
+      "hint": "Stop calling broken services.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-114",
+      "term": "Bulkhead Pattern",
+      "definition": "Isolating components so failures don’t spread.",
+      "hint": "Contain failures.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-115",
+      "term": "Idempotency",
+      "definition": "An operation that produces the same result no matter how many times it is repeated.",
+      "hint": "Safe to retry.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-116",
+      "term": "API Versioning",
+      "definition": "Managing changes to APIs without breaking existing clients.",
+      "hint": "Support old + new APIs.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-117",
+      "term": "Static Typing",
+      "definition": "Type checking performed at compile time.",
+      "hint": "Types checked early.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-118",
+      "term": "Dynamic Typing",
+      "definition": "Type checking performed at runtime.",
+      "hint": "Types checked late.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-119",
+      "term": "Garbage Collection",
+      "definition": "Automatic memory management that frees unused objects.",
+      "hint": "Automatic memory cleanup.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-120",
+      "term": "Memory Leak",
+      "definition": "When memory is not released properly, causing increased usage over time.",
+      "hint": "Forgotten memory.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-121",
+      "term": "Stack vs Heap",
+      "definition": "Stack stores function frames; heap stores dynamically allocated memory.",
+      "hint": "Short-term vs long-term memory.",
+      "tags": ["Programming"]
+    },
+    {
+      "id": "sef-122",
+      "term": "Static Analysis",
+      "definition": "Analyzing code without executing it to find issues.",
+      "hint": "Check code before running.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "sef-123",
+      "term": "Dynamic Analysis",
+      "definition": "Analyzing code while it is running.",
+      "hint": "Check code during execution.",
+      "tags": ["Quality"]
+    },
+    {
+      "id": "sef-124",
+      "term": "Mutation Testing",
+      "definition": "Evaluating test quality by introducing small code changes and checking if tests catch them.",
+      "hint": "Test the tests.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-125",
+      "term": "Test Coverage",
+      "definition": "A measure of how much code is executed by tests.",
+      "hint": "How much code is tested.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-126",
+      "term": "Mocking",
+      "definition": "Simulating components to isolate tests.",
+      "hint": "Fake dependencies.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-127",
+      "term": "Stubbing",
+      "definition": "Providing predefined responses for function calls during tests.",
+      "hint": "Fake responses.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-128",
+      "term": "Chaos Engineering",
+      "definition": "Intentionally injecting failures to test system resilience.",
+      "hint": "Break things on purpose.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-129",
+      "term": "SRE (Site Reliability Engineering)",
+      "definition": "A discipline combining software engineering and operations to ensure reliability.",
+      "hint": "Engineering for reliability.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-130",
+      "term": "SLI (Service Level Indicator)",
+      "definition": "A metric that measures service performance.",
+      "hint": "What we measure.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-131",
+      "term": "SLO (Service Level Objective)",
+      "definition": "A target value for an SLI.",
+      "hint": "Performance target.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-132",
+      "term": "SLA (Service Level Agreement)",
+      "definition": "A contractual commitment to meet specific performance levels.",
+      "hint": "Performance promise.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-133",
+      "term": "Error Budget",
+      "definition": "The acceptable amount of failure allowed before slowing releases.",
+      "hint": "How much failure is allowed.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-134",
+      "term": "API Throttling",
+      "definition": "Limiting API usage to prevent overload.",
+      "hint": "Slow down heavy users.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-135",
+      "term": "OAuth",
+      "definition": "An authorization framework that allows secure delegated access.",
+      "hint": "Secure delegated access.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-136",
+      "term": "JWT (JSON Web Token)",
+      "definition": "A compact token format used for authentication and authorization.",
+      "hint": "Token-based auth.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-137",
+      "term": "Hashing",
+      "definition": "Transforming data into a fixed-size value that cannot be reversed.",
+      "hint": "One-way transformation.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-138",
+      "term": "Salting",
+      "definition": "Adding random data to passwords before hashing to prevent attacks.",
+      "hint": "Protect hashed passwords.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-139",
+      "term": "Rate Limiting",
+      "definition": "Restricting how often an action can be performed.",
+      "hint": "Prevent abuse.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-140",
+      "term": "API Idempotency Key",
+      "definition": "A unique key ensuring repeated requests are processed only once.",
+      "hint": "Prevent duplicate operations.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-141",
+      "term": "Distributed Locking",
+      "definition": "A mechanism to coordinate access to shared resources across nodes.",
+      "hint": "Lock across servers.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-142",
+      "term": "Leader Election",
+      "definition": "Selecting a single node to coordinate tasks in a distributed system.",
+      "hint": "Pick a leader node.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-143",
+      "term": "Service Discovery",
+      "definition": "Automatically locating services in a distributed environment.",
+      "hint": "Find services dynamically.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-144",
+      "term": "Health Check",
+      "definition": "A mechanism to verify if a service is functioning correctly.",
+      "hint": "Is the service healthy?",
+      "tags": ["Operations"]
+    },
+    {
+      "id": "sef-145",
+      "term": "Telemetry",
+      "definition": "Collecting metrics, logs, and traces from running systems.",
+      "hint": "System data collection.",
+      "tags": ["Operations"]
+    },
+    {
+      "id": "sef-146",
+      "term": "Blue/Green Testing",
+      "definition": "Testing new versions in parallel environments before switching traffic.",
+      "hint": "Test before switching.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-147",
+      "term": "Shadow Deployment",
+      "definition": "Sending a copy of production traffic to a new version without affecting users.",
+      "hint": "Test with real traffic.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-148",
+      "term": "Rollback Strategy",
+      "definition": "A plan for reverting to a previous version after a failed deployment.",
+      "hint": "Undo bad releases.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-149",
+      "term": "Software Observability Pillars",
+      "definition": "Logs, metrics, and traces — the three core observability signals.",
+      "hint": "The three pillars.",
+      "tags": ["Operations"]
+    },
+    {
+      "id": "sef-150",
+      "term": "Postmortem Analysis",
+      "definition": "A structured review after an incident to identify causes and improvements.",
+      "hint": "Learn from failures.",
+      "tags": ["Operations"]
+    },
+    {
+      "id": "sef-151",
+      "term": "Distributed Tracing",
+      "definition": "Tracking requests as they flow through multiple services in a distributed system.",
+      "hint": "Trace requests across services.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-152",
+      "term": "Service Mesh",
+      "definition": "A dedicated infrastructure layer for managing service-to-service communication.",
+      "hint": "Network layer for microservices.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-153",
+      "term": "Sidecar Pattern",
+      "definition": "Deploying helper components alongside application containers.",
+      "hint": "Attach helper container.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-154",
+      "term": "API Contract",
+      "definition": "A formal agreement defining API behavior, inputs, and outputs.",
+      "hint": "Rules for API usage.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-155",
+      "term": "Schema Migration",
+      "definition": "Updating database structure while preserving data integrity.",
+      "hint": "Change database schema safely.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-156",
+      "term": "Data Warehouse",
+      "definition": "A centralized repository optimized for analytics and reporting.",
+      "hint": "Analytics-focused database.",
+      "tags": ["Data"]
+    },
+    {
+      "id": "sef-157",
+      "term": "ETL (Extract, Transform, Load)",
+      "definition": "A process for moving and transforming data into a warehouse.",
+      "hint": "Move and clean data.",
+      "tags": ["Data"]
+    },
+    {
+      "id": "sef-158",
+      "term": "ELT (Extract, Load, Transform)",
+      "definition": "Loading raw data first, then transforming it inside the warehouse.",
+      "hint": "Transform after loading.",
+      "tags": ["Data"]
+    },
+    {
+      "id": "sef-159",
+      "term": "Data Lake",
+      "definition": "A storage system for raw, unstructured, and structured data.",
+      "hint": "Store everything as-is.",
+      "tags": ["Data"]
+    },
+    {
+      "id": "sef-160",
+      "term": "Data Pipeline",
+      "definition": "A series of steps that move and process data automatically.",
+      "hint": "Automated data flow.",
+      "tags": ["Data"]
+    },
+    {
+      "id": "sef-161",
+      "term": "Event Bus",
+      "definition": "A communication system for publishing and subscribing to events.",
+      "hint": "Broadcast events.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-162",
+      "term": "WebSocket",
+      "definition": "A protocol enabling real-time, bidirectional communication.",
+      "hint": "Real-time connection.",
+      "tags": ["Networking"]
+    },
+    {
+      "id": "sef-163",
+      "term": "gRPC",
+      "definition": "A high-performance RPC framework using Protocol Buffers.",
+      "hint": "Fast service-to-service calls.",
+      "tags": ["Networking"]
+    },
+    {
+      "id": "sef-164",
+      "term": "Protocol Buffers",
+      "definition": "A language-neutral format for serializing structured data.",
+      "hint": "Efficient data serialization.",
+      "tags": ["Networking"]
+    },
+    {
+      "id": "sef-165",
+      "term": "Idempotent API",
+      "definition": "An API that produces the same result no matter how many times it is called.",
+      "hint": "Safe to retry.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-166",
+      "term": "Event Replay",
+      "definition": "Reprocessing stored events to rebuild system state.",
+      "hint": "Rebuild state from events.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-167",
+      "term": "Immutable Infrastructure",
+      "definition": "Servers are replaced rather than modified after deployment.",
+      "hint": "Never change servers in place.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-168",
+      "term": "Serverless Computing",
+      "definition": "Running code without managing servers, billed per execution.",
+      "hint": "Functions in the cloud.",
+      "tags": ["Cloud"]
+    },
+    {
+      "id": "sef-169",
+      "term": "Function-as-a-Service (FaaS)",
+      "definition": "A cloud model where functions run on demand.",
+      "hint": "Execute code on trigger.",
+      "tags": ["Cloud"]
+    },
+    {
+      "id": "sef-170",
+      "term": "Edge Computing",
+      "definition": "Processing data closer to where it is generated to reduce latency.",
+      "hint": "Compute near the source.",
+      "tags": ["Cloud"]
+    },
+    {
+      "id": "sef-171",
+      "term": "Content Delivery Network (CDN)",
+      "definition": "A distributed network that caches content closer to users.",
+      "hint": "Faster content delivery.",
+      "tags": ["Networking"]
+    },
+    {
+      "id": "sef-172",
+      "term": "API Mocking",
+      "definition": "Simulating API responses for testing or development.",
+      "hint": "Fake API responses.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-173",
+      "term": "Contract Testing",
+      "definition": "Ensuring services follow agreed API contracts.",
+      "hint": "Verify API agreements.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-174",
+      "term": "Smoke Testing",
+      "definition": "A quick test to verify basic system functionality.",
+      "hint": "Basic health check.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-175",
+      "term": "Regression Testing",
+      "definition": "Testing to ensure new changes don’t break existing functionality.",
+      "hint": "Check for new bugs.",
+      "tags": ["Testing"]
+    },
+    {
+      "id": "sef-176",
+      "term": "A/B Deployment",
+      "definition": "Deploying two versions to compare performance or behavior.",
+      "hint": "Version A vs B.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-177",
+      "term": "Infrastructure Drift",
+      "definition": "When deployed infrastructure deviates from its IaC configuration.",
+      "hint": "Config mismatch.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "sef-178",
+      "term": "Distributed Cache",
+      "definition": "A cache shared across multiple servers.",
+      "hint": "Shared fast storage.",
+      "tags": ["Performance"]
+    },
+    {
+      "id": "sef-179",
+      "term": "Hot Path Optimization",
+      "definition": "Improving performance in the most frequently executed code paths.",
+      "hint": "Optimize what runs most.",
+      "tags": ["Performance"]
+    },
+    {
+      "id": "sef-180",
+      "term": "Cold Start",
+      "definition": "The delay when initializing a function or service for the first time.",
+      "hint": "Startup delay.",
+      "tags": ["Cloud"]
+    },
+    {
+      "id": "sef-181",
+      "term": "API Pagination",
+      "definition": "Splitting large datasets into smaller chunks for API responses.",
+      "hint": "Return data in pages.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "sef-182",
+      "term": "Soft Delete",
+      "definition": "Marking data as deleted without removing it from storage.",
+      "hint": "Hide instead of delete.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-183",
+      "term": "Hard Delete",
+      "definition": "Permanently removing data from storage.",
+      "hint": "Delete forever.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-184",
+      "term": "Data Partitioning",
+      "definition": "Splitting data into segments to improve performance and manageability.",
+      "hint": "Divide data logically.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-185",
+      "term": "Bloom Filter",
+      "definition": "A probabilistic data structure for fast membership checks.",
+      "hint": "Fast 'maybe/no' lookup.",
+      "tags": ["Data"]
+    },
+    {
+      "id": "sef-186",
+      "term": "Rate Limiting Algorithm",
+      "definition": "Techniques like token bucket or leaky bucket to control request rates.",
+      "hint": "Control request flow.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-187",
+      "term": "Replay Attack",
+      "definition": "An attack where valid data is maliciously repeated or delayed.",
+      "hint": "Reusing valid requests.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-188",
+      "term": "Man-in-the-Middle Attack",
+      "definition": "An attacker intercepts communication between two parties.",
+      "hint": "Intercepted communication.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-189",
+      "term": "Security Hardening",
+      "definition": "Strengthening systems by reducing vulnerabilities and attack surfaces.",
+      "hint": "Make systems tougher.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "sef-190",
+      "term": "Static Site Generation (SSG)",
+      "definition": "Pre-rendering pages at build time for fast delivery.",
+      "hint": "Build pages ahead of time.",
+      "tags": ["Web"]
+    },
+    {
+      "id": "sef-191",
+      "term": "Server-Side Rendering (SSR)",
+      "definition": "Rendering pages on the server for each request.",
+      "hint": "Render on server.",
+      "tags": ["Web"]
+    },
+    {
+      "id": "sef-192",
+      "term": "Client-Side Rendering (CSR)",
+      "definition": "Rendering pages in the browser using JavaScript.",
+      "hint": "Render in browser.",
+      "tags": ["Web"]
+    },
+    {
+      "id": "sef-193",
+      "term": "Progressive Web App (PWA)",
+      "definition": "A web app with offline support, caching, and native-like features.",
+      "hint": "Web app with native features.",
+      "tags": ["Web"]
+    },
+    {
+      "id": "sef-194",
+      "term": "API Observability",
+      "definition": "Monitoring API performance, errors, and usage patterns.",
+      "hint": "Visibility into API behavior.",
+      "tags": ["Operations"]
+    },
+    {
+      "id": "sef-195",
+      "term": "Synthetic Monitoring",
+      "definition": "Simulating user interactions to test system availability.",
+      "hint": "Simulated user tests.",
+      "tags": ["Operations"]
+    },
+    {
+      "id": "sef-196",
+      "term": "Distributed Consensus",
+      "definition": "Agreement among distributed nodes on a single value or state.",
+      "hint": "Nodes agreeing on state.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-197",
+      "term": "Raft Algorithm",
+      "definition": "A consensus algorithm used for leader election and log replication.",
+      "hint": "Simpler alternative to Paxos.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-198",
+      "term": "Paxos Algorithm",
+      "definition": "A consensus algorithm ensuring agreement in distributed systems.",
+      "hint": "Classic consensus algorithm.",
+      "tags": ["Distributed Systems"]
+    },
+    {
+      "id": "sef-199",
+      "term": "Distributed Transaction",
+      "definition": "A transaction spanning multiple systems or databases.",
+      "hint": "Multi-system transaction.",
+      "tags": ["Database"]
+    },
+    {
+      "id": "sef-200",
+      "term": "Saga Pattern",
+      "definition": "A sequence of local transactions with compensating actions for distributed workflows.",
+      "hint": "Distributed transaction alternative.",
+      "tags": ["Architecture"]
+    }
+  ]
+}

@@ -1,0 +1,360 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "GitHub Foundations (GH-900)",
+    "description": "Core GitHub concepts for the GH-900 certification — repositories, branches, pull requests, issues, Actions, security, and collaboration.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "gh900-001",
+      "term": "GitHub",
+      "definition": "A cloud-based platform for version control, collaboration, and DevOps workflows built around Git.",
+      "hint": "The home for modern software development.",
+      "tags": ["GitHub", "Fundamentals"]
+    },
+    {
+      "id": "gh900-002",
+      "term": "Git",
+      "definition": "A distributed version control system that tracks changes in source code and enables collaboration.",
+      "hint": "The engine behind GitHub.",
+      "tags": ["Git"]
+    },
+    {
+      "id": "gh900-003",
+      "term": "Repository (Repo)",
+      "definition": "A storage location for code, documentation, and project files. Can be public or private.",
+      "hint": "Where your project lives.",
+      "tags": ["GitHub"]
+    },
+    {
+      "id": "gh900-004",
+      "term": "Branch",
+      "definition": "A parallel version of the codebase used to develop features or fixes without affecting the main branch.",
+      "hint": "Work safely without breaking main.",
+      "tags": ["Git"]
+    },
+    {
+      "id": "gh900-005",
+      "term": "Commit",
+      "definition": "A snapshot of changes in a repository, including a message describing what changed.",
+      "hint": "A saved change.",
+      "tags": ["Git"]
+    },
+    {
+      "id": "gh900-006",
+      "term": "Pull Request (PR)",
+      "definition": "A request to merge changes from one branch into another. Supports code review, comments, and approvals.",
+      "hint": "Propose and review changes.",
+      "tags": ["GitHub"]
+    },
+    {
+      "id": "gh900-007",
+      "term": "Merge",
+      "definition": "Combining changes from one branch into another, usually via a pull request.",
+      "hint": "Bring branches together.",
+      "tags": ["Git"]
+    },
+    {
+      "id": "gh900-008",
+      "term": "Fork",
+      "definition": "A personal copy of someone else's repository used to propose changes or build independently.",
+      "hint": "Your own copy of a repo.",
+      "tags": ["GitHub"]
+    },
+    {
+      "id": "gh900-009",
+      "term": "Clone",
+      "definition": "A local copy of a GitHub repository created on your machine.",
+      "hint": "Download the repo to your computer.",
+      "tags": ["Git"]
+    },
+    {
+      "id": "gh900-010",
+      "term": "Issues",
+      "definition": "Track bugs, tasks, enhancements, and discussions. Can be assigned, labeled, and linked to PRs.",
+      "hint": "To-do list for your project.",
+      "tags": ["GitHub"]
+    },
+    {
+      "id": "gh900-011",
+      "term": "Labels",
+      "definition": "Tags applied to issues and PRs to categorize and prioritize work.",
+      "hint": "Organize your issues.",
+      "tags": ["GitHub"]
+    },
+    {
+      "id": "gh900-012",
+      "term": "Milestones",
+      "definition": "Group issues and PRs toward a specific goal or release.",
+      "hint": "Track progress toward a release.",
+      "tags": ["GitHub"]
+    },
+    {
+      "id": "gh900-013",
+      "term": "Projects",
+      "definition": "Kanban-style boards for planning and tracking work across repos.",
+      "hint": "Visual project management.",
+      "tags": ["GitHub"]
+    },
+    {
+      "id": "gh900-014",
+      "term": "README",
+      "definition": "A markdown file that introduces and documents a project. Usually the first file users see.",
+      "hint": "Your project's front page.",
+      "tags": ["Documentation"]
+    },
+    {
+      "id": "gh900-015",
+      "term": "Markdown",
+      "definition": "A lightweight markup language used for formatting text in GitHub files like README.md.",
+      "hint": "Simple formatting for docs.",
+      "tags": ["Documentation"]
+    },
+    {
+      "id": "gh900-016",
+      "term": "Actions",
+      "definition": "GitHub's CI/CD automation platform used to build, test, and deploy code.",
+      "hint": "Automate your workflows.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "gh900-017",
+      "term": "Workflow",
+      "definition": "A YAML-defined automation process triggered by events such as pushes, PRs, or schedules.",
+      "hint": "Automated pipeline.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "gh900-018",
+      "term": "Runner",
+      "definition": "A machine that executes GitHub Actions workflows. GitHub-hosted or self-hosted.",
+      "hint": "Where workflows run.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "gh900-019",
+      "term": "Secrets",
+      "definition": "Encrypted values (API keys, tokens) used securely in workflows.",
+      "hint": "Store sensitive values safely.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "gh900-020",
+      "term": "GitHub Packages",
+      "definition": "A package registry for storing and sharing container images, npm packages, NuGet, and more.",
+      "hint": "Host your packages.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "gh900-021",
+      "term": "GitHub Codespaces",
+      "definition": "A cloud-based development environment with VS Code running in the browser.",
+      "hint": "Cloud dev environment.",
+      "tags": ["Developer Tools"]
+    },
+    {
+      "id": "gh900-022",
+      "term": "GitHub Copilot",
+      "definition": "An AI coding assistant that suggests code, generates functions, and accelerates development.",
+      "hint": "AI pair programmer.",
+      "tags": ["AI", "Copilot"]
+    },
+    {
+      "id": "gh900-023",
+      "term": "Security Alerts",
+      "definition": "Notifications about vulnerabilities in dependencies or code.",
+      "hint": "Warnings about security risks.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "gh900-024",
+      "term": "Dependabot",
+      "definition": "A GitHub tool that automatically updates dependencies and alerts you to vulnerabilities.",
+      "hint": "Automated dependency updates.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "gh900-025",
+      "term": "Code Scanning",
+      "definition": "Analyzes code for security vulnerabilities using tools like CodeQL.",
+      "hint": "Find security issues in code.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "gh900-026",
+      "term": "Secret Scanning",
+      "definition": "Detects accidentally committed secrets like API keys.",
+      "hint": "Find leaked secrets.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "gh900-027",
+      "term": "Branch Protection Rules",
+      "definition": "Policies that enforce requirements like PR reviews, status checks, and no-force-push.",
+      "hint": "Protect your main branch.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "gh900-028",
+      "term": "GitHub Organizations",
+      "definition": "A shared account for managing multiple repositories, teams, and permissions.",
+      "hint": "Manage teams and repos.",
+      "tags": ["Administration"]
+    },
+    {
+      "id": "gh900-029",
+      "term": "Teams",
+      "definition": "Groups of users within an organization used to manage permissions and collaboration.",
+      "hint": "Organize people.",
+      "tags": ["Administration"]
+    },
+    {
+      "id": "gh900-030",
+      "term": "Permissions",
+      "definition": "Access levels such as read, write, and admin applied to repos and orgs.",
+      "hint": "Who can do what.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "gh900-031",
+      "term": "GitHub Pages",
+      "definition": "A static site hosting service for documentation or project websites.",
+      "hint": "Host a website from your repo.",
+      "tags": ["Web"]
+    },
+    {
+      "id": "gh900-032",
+      "term": "Pull Request Review",
+      "definition": "The process of reviewing code changes, leaving comments, and approving or requesting changes.",
+      "hint": "Check code before merging.",
+      "tags": ["Collaboration"]
+    },
+    {
+      "id": "gh900-033",
+      "term": "Merge Conflict",
+      "definition": "A situation where Git cannot automatically merge changes because the same lines were modified differently.",
+      "hint": "Conflicting edits.",
+      "tags": ["Git"]
+    },
+    {
+      "id": "gh900-034",
+      "term": "GitHub Discussions",
+      "definition": "A forum-like space for community conversations, Q&A, and long-form collaboration.",
+      "hint": "Community conversations.",
+      "tags": ["Collaboration"]
+    },
+    {
+      "id": "gh900-035",
+      "term": "Templates",
+      "definition": "Predefined issue or PR templates that standardize contributions.",
+      "hint": "Consistent issue formatting.",
+      "tags": ["Collaboration"]
+    },
+    {
+      "id": "gh900-036",
+      "term": "Actions Marketplace",
+      "definition": "A catalog of reusable GitHub Actions created by the community and vendors.",
+      "hint": "Find ready-made automation steps.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "gh900-037",
+      "term": "YAML",
+      "definition": "A human-readable format used to define GitHub Actions workflows.",
+      "hint": "Workflow configuration language.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "gh900-038",
+      "term": "Open Source",
+      "definition": "Software whose source code is publicly available for use, modification, and contribution.",
+      "hint": "Public, collaborative software.",
+      "tags": ["Open Source"]
+    },
+    {
+      "id": "gh900-039",
+      "term": "LICENSE File",
+      "definition": "Specifies how others can use, modify, and distribute your code.",
+      "hint": "Legal permissions for your repo.",
+      "tags": ["Legal"]
+    },
+    {
+      "id": "gh900-040",
+      "term": "Contributor Guidelines",
+      "definition": "Documentation that explains how to contribute to a project.",
+      "hint": "Rules for contributors.",
+      "tags": ["Collaboration"]
+    },
+    {
+      "id": "gh900-041",
+      "term": "GitHub CLI",
+      "definition": "A command-line tool for interacting with GitHub directly from the terminal.",
+      "hint": "Use GitHub from the command line.",
+      "tags": ["Developer Tools"]
+    },
+    {
+      "id": "gh900-042",
+      "term": "Actions Runners Scale Set",
+      "definition": "Automatically scales self-hosted runners for large CI/CD workloads.",
+      "hint": "Auto-scale your runners.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "gh900-043",
+      "term": "Code Owners",
+      "definition": "Specify individuals or teams responsible for reviewing changes to specific files or directories.",
+      "hint": "Auto-request reviewers.",
+      "tags": ["Collaboration"]
+    },
+    {
+      "id": "gh900-044",
+      "term": "GitHub Insights",
+      "definition": "Analytics for repository activity, contributions, and project health.",
+      "hint": "Metrics for your repo.",
+      "tags": ["Analytics"]
+    },
+    {
+      "id": "gh900-045",
+      "term": "GitHub Advanced Security",
+      "definition": "Premium security features including code scanning, secret scanning, and dependency review.",
+      "hint": "Enterprise-grade security.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "gh900-046",
+      "term": "Dependency Graph",
+      "definition": "Shows all dependencies used in a repository and highlights vulnerabilities.",
+      "hint": "See what your project relies on.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "gh900-047",
+      "term": "Actions Artifacts",
+      "definition": "Files generated by workflows that can be stored and downloaded.",
+      "hint": "Save workflow outputs.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "gh900-048",
+      "term": "GitHub REST API",
+      "definition": "Allows programmatic access to GitHub resources such as repos, issues, and workflows.",
+      "hint": "Automate GitHub with APIs.",
+      "tags": ["Developer Tools"]
+    },
+    {
+      "id": "gh900-049",
+      "term": "GitHub GraphQL API",
+      "definition": "A flexible API for querying GitHub data with precise control over returned fields.",
+      "hint": "Query GitHub efficiently.",
+      "tags": ["Developer Tools"]
+    },
+    {
+      "id": "gh900-050",
+      "term": "DevOps",
+      "definition": "A set of practices that combine development and operations to deliver software faster and more reliably, supported by GitHub tools.",
+      "hint": "Build, test, deploy — continuously.",
+      "tags": ["DevOps"]
+    }
+  ]
+}

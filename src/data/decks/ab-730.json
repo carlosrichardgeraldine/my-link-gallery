@@ -1,0 +1,360 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Microsoft AI Business Professional (AB-730)",
+    "description": "Business-focused AI concepts — identifying use cases, applying Microsoft Copilot, improving workflows, and driving organizational productivity with AI.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "ab730-001",
+      "term": "Artificial Intelligence (AI)",
+      "definition": "Technology that enables machines to perform tasks that typically require human intelligence, such as reasoning, learning, and decision-making. In AB-730, the focus is on applying AI to solve business problems.",
+      "hint": "Machines doing human-like thinking tasks.",
+      "tags": ["AI", "Fundamentals"]
+    },
+    {
+      "id": "ab730-002",
+      "term": "Generative AI",
+      "definition": "A type of AI that creates new content such as text, images, or code based on patterns learned from data. Used in Copilot to generate emails, documents, and insights.",
+      "hint": "AI that creates content, not just analyzes it.",
+      "tags": ["AI", "Generative AI"]
+    },
+    {
+      "id": "ab730-003",
+      "term": "Microsoft 365 Copilot",
+      "definition": "An AI assistant integrated into Microsoft 365 apps that helps users draft content, analyze data, and automate tasks using natural language.",
+      "hint": "AI assistant inside Office apps.",
+      "tags": ["Copilot"]
+    },
+    {
+      "id": "ab730-004",
+      "term": "Business Use Case",
+      "definition": "A specific scenario where AI can be applied to solve a problem or improve a process, such as automating customer support or generating reports.",
+      "hint": "Where AI actually delivers value.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab730-005",
+      "term": "Use Case Prioritization",
+      "definition": "The process of selecting AI use cases based on business impact, feasibility, and return on investment.",
+      "hint": "Pick the most valuable AI opportunities first.",
+      "tags": ["Business", "Strategy"]
+    },
+    {
+      "id": "ab730-006",
+      "term": "Return on Investment (ROI)",
+      "definition": "A measure of the value gained from AI adoption compared to its cost, often evaluated through productivity gains and cost savings.",
+      "hint": "Is AI worth it?",
+      "tags": ["Business", "Value"]
+    },
+    {
+      "id": "ab730-007",
+      "term": "Productivity Gains",
+      "definition": "Efficiency improvements achieved by using AI tools to reduce manual effort and speed up workflows.",
+      "hint": "Doing more work in less time.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab730-008",
+      "term": "Workflow Automation",
+      "definition": "Using AI and tools like Power Automate to reduce manual tasks and streamline business processes.",
+      "hint": "Let AI handle repetitive tasks.",
+      "tags": ["Automation"]
+    },
+    {
+      "id": "ab730-009",
+      "term": "Copilot in Word",
+      "definition": "Helps generate, edit, and summarize documents, improving writing efficiency.",
+      "hint": "AI writing assistant.",
+      "tags": ["Copilot"]
+    },
+    {
+      "id": "ab730-010",
+      "term": "Copilot in Excel",
+      "definition": "Analyzes data, identifies trends, and generates insights without requiring complex formulas.",
+      "hint": "Ask questions about data.",
+      "tags": ["Copilot"]
+    },
+    {
+      "id": "ab730-011",
+      "term": "Copilot in Teams",
+      "definition": "Provides meeting summaries, highlights decisions, and tracks action items.",
+      "hint": "AI meeting assistant.",
+      "tags": ["Copilot"]
+    },
+    {
+      "id": "ab730-012",
+      "term": "Business Chat",
+      "definition": "A Copilot feature that aggregates data across Microsoft 365 to answer questions and assist with tasks.",
+      "hint": "Chat with your company data.",
+      "tags": ["Copilot"]
+    },
+    {
+      "id": "ab730-013",
+      "term": "Prompt Engineering",
+      "definition": "Crafting effective instructions to guide AI outputs toward desired results.",
+      "hint": "Better prompts = better results.",
+      "tags": ["AI"]
+    },
+    {
+      "id": "ab730-014",
+      "term": "Human-in-the-Loop",
+      "definition": "A model where humans review and validate AI outputs before taking action.",
+      "hint": "AI suggests, humans approve.",
+      "tags": ["AI"]
+    },
+    {
+      "id": "ab730-015",
+      "term": "AI Hallucination",
+      "definition": "When an AI system generates incorrect or fabricated information.",
+      "hint": "AI making things up.",
+      "tags": ["AI"]
+    },
+    {
+      "id": "ab730-016",
+      "term": "Responsible AI",
+      "definition": "The practice of designing AI systems that are ethical, fair, and trustworthy.",
+      "hint": "Ethical AI use.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab730-017",
+      "term": "Fairness",
+      "definition": "Ensuring AI systems do not produce biased or discriminatory outcomes.",
+      "hint": "No bias in AI decisions.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab730-018",
+      "term": "Transparency",
+      "definition": "Providing visibility into how AI systems make decisions.",
+      "hint": "Explainable AI.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab730-019",
+      "term": "Accountability",
+      "definition": "Ensuring humans remain responsible for AI outcomes.",
+      "hint": "Humans are responsible.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab730-020",
+      "term": "Change Management",
+      "definition": "A structured approach to transitioning individuals and teams to adopt AI tools effectively.",
+      "hint": "Helping people adapt to AI.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab730-021",
+      "term": "Adoption Strategy",
+      "definition": "A plan to ensure successful implementation and usage of AI across an organization.",
+      "hint": "Getting people to use AI.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab730-022",
+      "term": "Stakeholder Alignment",
+      "definition": "Ensuring all key stakeholders agree on AI goals and implementation plans.",
+      "hint": "Everyone on the same page.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab730-023",
+      "term": "Business Process Optimization",
+      "definition": "Improving workflows using AI to increase efficiency and reduce costs.",
+      "hint": "Better, faster processes.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab730-024",
+      "term": "Data-Driven Decision Making",
+      "definition": "Using data and AI insights to guide business decisions.",
+      "hint": "Decisions backed by data.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab730-025",
+      "term": "Low-Code/No-Code Tools",
+      "definition": "Platforms like Power Apps and Copilot Studio that allow building solutions without deep coding knowledge.",
+      "hint": "Build apps without coding.",
+      "tags": ["Tools"]
+    },
+    {
+      "id": "ab730-026",
+      "term": "Power Automate",
+      "definition": "A Microsoft tool for automating workflows and integrating systems.",
+      "hint": "Automation tool for business processes.",
+      "tags": ["Automation"]
+    },
+    {
+      "id": "ab730-027",
+      "term": "Power Apps",
+      "definition": "A platform for building custom business applications with minimal coding.",
+      "hint": "Create apps easily.",
+      "tags": ["Tools"]
+    },
+    {
+      "id": "ab730-028",
+      "term": "Copilot Studio",
+      "definition": "A platform for creating custom AI agents and copilots tailored to business needs.",
+      "hint": "Build custom AI assistants.",
+      "tags": ["Copilot"]
+    },
+    {
+      "id": "ab730-029",
+      "term": "AI Agents",
+      "definition": "AI systems that can perform tasks autonomously and interact with users or systems.",
+      "hint": "AI that takes action.",
+      "tags": ["AI"]
+    },
+    {
+      "id": "ab730-030",
+      "term": "Customer Experience (CX)",
+      "definition": "The overall experience a customer has with a company, often improved through AI automation and personalization.",
+      "hint": "How customers feel about your service.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab730-031",
+      "term": "Personalization",
+      "definition": "Using AI to tailor experiences and content to individual users.",
+      "hint": "Custom experiences for each user.",
+      "tags": ["AI"]
+    },
+    {
+      "id": "ab730-032",
+      "term": "Knowledge Management",
+      "definition": "Organizing and using company knowledge effectively, often enhanced with AI search and summarization.",
+      "hint": "Managing company knowledge.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab730-033",
+      "term": "Data Privacy",
+      "definition": "Protecting personal and sensitive data when using AI systems.",
+      "hint": "Keep data safe.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab730-034",
+      "term": "Compliance",
+      "definition": "Ensuring AI usage meets legal and regulatory requirements.",
+      "hint": "Follow the rules.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab730-035",
+      "term": "Data Governance",
+      "definition": "Managing data availability, usability, and security across an organization.",
+      "hint": "Control your data.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab730-036",
+      "term": "Security Boundaries",
+      "definition": "Ensuring AI systems respect existing access permissions and data restrictions.",
+      "hint": "No unauthorized access.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab730-037",
+      "term": "Scalability",
+      "definition": "The ability of AI solutions to grow and handle increased demand.",
+      "hint": "Can it grow with the business?",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "ab730-038",
+      "term": "Integration",
+      "definition": "Connecting AI tools with existing business systems and workflows.",
+      "hint": "Make AI work with your systems.",
+      "tags": ["Architecture"]
+    },
+    {
+      "id": "ab730-039",
+      "term": "Cost Management",
+      "definition": "Monitoring and controlling expenses associated with AI solutions.",
+      "hint": "Keep AI costs under control.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab730-040",
+      "term": "Value Realization",
+      "definition": "Ensuring AI investments deliver measurable business outcomes.",
+      "hint": "Turn AI into real results.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab730-041",
+      "term": "Training and Enablement",
+      "definition": "Educating users on how to effectively use AI tools.",
+      "hint": "Teach people to use AI.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab730-042",
+      "term": "Pilot Programs",
+      "definition": "Testing AI solutions with a small group before full deployment.",
+      "hint": "Test before full rollout.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab730-043",
+      "term": "Feedback Loop",
+      "definition": "Collecting user feedback to improve AI solutions over time.",
+      "hint": "Learn and improve continuously.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab730-044",
+      "term": "Risk Management",
+      "definition": "Identifying and mitigating risks associated with AI adoption.",
+      "hint": "Manage AI risks.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab730-045",
+      "term": "Ethical AI Use",
+      "definition": "Using AI in a way that aligns with moral values and societal norms.",
+      "hint": "Use AI responsibly.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab730-046",
+      "term": "Data Quality",
+      "definition": "The accuracy and reliability of data used in AI systems.",
+      "hint": "Better data = better AI.",
+      "tags": ["Data"]
+    },
+    {
+      "id": "ab730-047",
+      "term": "Decision Support Systems",
+      "definition": "AI tools that assist humans in making informed decisions.",
+      "hint": "AI helping decisions.",
+      "tags": ["AI"]
+    },
+    {
+      "id": "ab730-048",
+      "term": "Process Automation vs Augmentation",
+      "definition": "Automation replaces tasks with AI, while augmentation enhances human capabilities.",
+      "hint": "Replace vs assist.",
+      "tags": ["AI"]
+    },
+    {
+      "id": "ab730-049",
+      "term": "Innovation with AI",
+      "definition": "Using AI to create new products, services, or business models.",
+      "hint": "AI as a driver of innovation.",
+      "tags": ["Business"]
+    },
+    {
+      "id": "ab730-050",
+      "term": "AI Strategy",
+      "definition": "A long-term plan for adopting and scaling AI across an organization to achieve business goals.",
+      "hint": "The big picture for AI adoption.",
+      "tags": ["Strategy"]
+    }
+  ]
+}

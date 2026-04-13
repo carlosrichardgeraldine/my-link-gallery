@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0",
     "name": "Microsoft Power Platform Fundamentals (PL-900)",
-    "description": "10 foundational Microsoft Power Platform concepts for the PL-900 certification exam.",
+    "description": "Foundational Microsoft Power Platform concepts for the PL-900 certification exam.",
     "createdAt": "2026-04-13"
   },
   "cards": [
@@ -75,6 +75,286 @@
       "definition": "DLP policies in Power Platform control which connectors can be used together in a single flow or app, preventing sensitive business data from being shared with external services unintentionally. Connectors are classified as Business (internal, trusted) or Non-Business (external, consumer). A DLP policy can prevent a Business connector (e.g., SharePoint) from mixing with a Non-Business connector (e.g., Twitter).",
       "hint": "Rules that stop apps from accidentally sending SharePoint data to a personal Twitter account.",
       "tags": ["Security", "Administration"]
+    },
+    {
+      "id": "pl900-011",
+      "term": "Canvas Apps vs. Model-Driven Apps",
+      "definition": "Canvas Apps give full control over layout and design — ideal for task-focused mobile or tablet apps. Model-Driven Apps are data-first, automatically generating UI based on Dataverse tables, forms, and views. Model-Driven Apps support complex business logic, security roles, and dashboards.",
+      "hint": "Canvas = design-first. Model-Driven = data-first.",
+      "tags": ["Power Apps", "Low-Code"]
+    },
+    {
+      "id": "pl900-012",
+      "term": "Power Automate Cloud Flows",
+      "definition": "Cloud flows automate tasks across cloud services. Types: Automated (triggered by an event), Instant (triggered manually), and Scheduled (run on a timer). Common uses: notifications, approvals, data sync, and document processing.",
+      "hint": "Automate tasks across apps with event-based or scheduled flows.",
+      "tags": ["Power Automate", "Automation"]
+    },
+    {
+      "id": "pl900-013",
+      "term": "Power Automate Desktop (RPA)",
+      "definition": "Robotic Process Automation (RPA) automates legacy systems and desktop tasks by recording clicks, keystrokes, and UI interactions. Useful for systems without APIs. Runs attended (user present) or unattended (fully automated).",
+      "hint": "Automate old desktop apps that don't have connectors.",
+      "tags": ["Power Automate", "RPA"]
+    },
+    {
+      "id": "pl900-014",
+      "term": "Business Process Flows (BPFs)",
+      "definition": "Guide users through multi-step business processes such as sales qualification or case resolution. BPFs enforce consistency, required steps, and stage transitions. Used primarily in Model-Driven Apps.",
+      "hint": "Visual step-by-step guidance for business processes.",
+      "tags": ["Power Automate", "Process"]
+    },
+    {
+      "id": "pl900-015",
+      "term": "Power BI Data Sources",
+      "definition": "Power BI connects to hundreds of data sources: Excel, SQL Server, SharePoint, Dataverse, Azure Synapse, Salesforce, and more. Supports import mode (data loaded into Power BI) and DirectQuery (live queries to the source).",
+      "hint": "Connect Power BI to almost any data — cloud or on-prem.",
+      "tags": ["Power BI", "Analytics"]
+    },
+    {
+      "id": "pl900-016",
+      "term": "Power BI Dashboards vs. Reports",
+      "definition": "Reports are multi-page, interactive visuals created in Power BI Desktop. Dashboards are single-page, pin-board style views created in the Power BI Service by pinning visuals from reports. Dashboards can combine visuals from multiple reports.",
+      "hint": "Reports = multi-page. Dashboards = one-page summary.",
+      "tags": ["Power BI", "Analytics"]
+    },
+    {
+      "id": "pl900-017",
+      "term": "Dataverse Security Roles",
+      "definition": "Security roles control access to tables, rows, and columns. Permissions include Create, Read, Write, Delete, Append, and Share. Access levels include User, Business Unit, Parent-Child, and Organization.",
+      "hint": "Roles define what users can do with Dataverse data.",
+      "tags": ["Dataverse", "Security"]
+    },
+    {
+      "id": "pl900-018",
+      "term": "Dataverse Table Types",
+      "definition": "Dataverse includes Standard Tables (common business data), Custom Tables (user-defined), Activity Tables (emails, calls, tasks), and Virtual Tables (external data accessed in real time).",
+      "hint": "Standard, custom, activity, and virtual tables.",
+      "tags": ["Dataverse", "Data"]
+    },
+    {
+      "id": "pl900-019",
+      "term": "Environment Variables",
+      "definition": "Reusable configuration values (URLs, IDs, connection settings) used across apps and flows. Essential for ALM when moving solutions between Dev, Test, and Production environments.",
+      "hint": "Store settings once — reuse everywhere.",
+      "tags": ["Administration", "ALM"]
+    },
+    {
+      "id": "pl900-020",
+      "term": "Solutions in Power Platform",
+      "definition": "Solutions package apps, flows, tables, and components for deployment across environments. Managed solutions are locked for production; unmanaged solutions are editable for development.",
+      "hint": "The packaging system for moving apps between environments.",
+      "tags": ["Administration", "ALM"]
+    },
+    {
+      "id": "pl900-021",
+      "term": "AI Builder",
+      "definition": "A low-code AI service that adds intelligence to apps and flows. Prebuilt models include sentiment analysis, key phrase extraction, prediction, form processing, object detection, and receipt scanning. Custom models can be trained using your own data.",
+      "hint": "Add AI to apps without writing machine learning code.",
+      "tags": ["AI", "Power Platform"]
+    },
+    {
+      "id": "pl900-022",
+      "term": "Power Platform Licensing Basics",
+      "definition": "Licensing includes per-app plans (use specific apps), per-user plans (unlimited apps), and pay-as-you-go via Azure. Premium connectors, Dataverse, and RPA require higher-tier licenses.",
+      "hint": "Premium connectors and Dataverse need premium licenses.",
+      "tags": ["Licensing", "Fundamentals"]
+    },
+    {
+      "id": "pl900-023",
+      "term": "Power Platform Admin Center",
+      "definition": "The central portal for managing environments, DLP policies, analytics, capacity, and security roles. Admins can monitor app usage, flow runs, and Dataverse storage.",
+      "hint": "The control center for managing the entire Power Platform.",
+      "tags": ["Administration", "Management"]
+    },
+    {
+      "id": "pl900-024",
+      "term": "On-Premises Data Gateway",
+      "definition": "A gateway that allows Power Apps, Power Automate, and Power BI to securely access on-premises data sources like SQL Server, SharePoint Server, and file shares.",
+      "hint": "Secure bridge between cloud apps and on-prem data.",
+      "tags": ["Integration", "Connectors"]
+    },
+    {
+      "id": "pl900-025",
+      "term": "Power Fx",
+      "definition": "A low-code formula language used in Canvas Apps. Similar to Excel formulas, used for logic, calculations, and UI behavior. Example: `If(IsBlank(TextInput1.Text), \"Missing\", \"OK\")`.",
+      "hint": "Excel-style formulas for building app logic.",
+      "tags": ["Power Apps", "Low-Code"]
+    },
+    {
+      "id": "pl900-026",
+      "term": "Power BI Data Modeling",
+      "definition": "Data modeling includes relationships, measures (DAX), calculated columns, and star schema design. Good modeling improves performance and report clarity.",
+      "hint": "Clean models = faster, clearer Power BI reports.",
+      "tags": ["Power BI", "Analytics"]
+    },
+    {
+      "id": "pl900-027",
+      "term": "Power Automate Approvals",
+      "definition": "A built-in approval system for workflows. Supports sequential, parallel, and custom approval processes. Approvals can be completed in Teams, Outlook, or the Power Automate app.",
+      "hint": "Automate approval workflows across apps.",
+      "tags": ["Power Automate", "Process"]
+    },
+    {
+      "id": "pl900-028",
+      "term": "Power Pages Authentication",
+      "definition": "Power Pages supports anonymous access, local authentication, Azure AD B2C, Microsoft Entra ID, and external identity providers. Access is controlled through Dataverse table permissions.",
+      "hint": "Secure your website with multiple identity options.",
+      "tags": ["Power Pages", "Security"]
+    },
+    {
+      "id": "pl900-029",
+      "term": "Copilot in Power Apps",
+      "definition": "Copilot can generate app screens, Dataverse tables, and formulas from natural language prompts. Helps users build apps faster by suggesting UI elements and data structures.",
+      "hint": "Describe your app — Copilot builds it.",
+      "tags": ["AI", "Power Apps"]
+    },
+    {
+      "id": "pl900-030",
+      "term": "Power Platform Governance",
+      "definition": "Governance includes environment strategy, DLP policies, security roles, monitoring, and ALM. Ensures apps and flows are secure, compliant, and scalable across the organization.",
+      "hint": "Rules and structure that keep Power Platform safe and manageable.",
+      "tags": ["Administration", "Governance"]
+    },
+    {
+      "id": "pl900-031",
+      "term": "Canvas App Data Sources",
+      "definition": "Canvas Apps can connect to hundreds of data sources using connectors. Common sources include SharePoint, Excel, SQL Server, Dataverse, and OneDrive. Data is accessed through galleries, forms, and controls using Power Fx formulas.",
+      "hint": "Canvas Apps pull data from connectors like SharePoint or SQL.",
+      "tags": ["Power Apps", "Data"]
+    },
+    {
+      "id": "pl900-032",
+      "term": "Model-Driven App Components",
+      "definition": "Model-Driven Apps are built from Dataverse components: tables, forms, views, charts, dashboards, and business process flows. The UI is generated automatically based on the data model.",
+      "hint": "Tables + forms + views = a Model-Driven App.",
+      "tags": ["Power Apps", "Model-Driven"]
+    },
+    {
+      "id": "pl900-033",
+      "term": "Power Automate Triggers",
+      "definition": "Triggers start a flow. Types include event-based triggers (new email, new record), manual triggers (button press), and scheduled triggers (run every hour). Premium triggers require premium licensing.",
+      "hint": "Every flow starts with a trigger.",
+      "tags": ["Power Automate", "Automation"]
+    },
+    {
+      "id": "pl900-034",
+      "term": "Power Automate Actions",
+      "definition": "Actions are the steps a flow performs after a trigger. Examples: create a Dataverse record, send an email, update a SharePoint item, call an API, or start an approval.",
+      "hint": "Actions are the tasks your flow performs.",
+      "tags": ["Power Automate", "Automation"]
+    },
+    {
+      "id": "pl900-035",
+      "term": "Power BI Power Query",
+      "definition": "Power Query is the ETL engine used to clean, transform, and shape data before loading it into Power BI. Uses the M language. Common transformations include filtering, merging, grouping, and pivoting.",
+      "hint": "Clean and transform data before modeling.",
+      "tags": ["Power BI", "Data Preparation"]
+    },
+    {
+      "id": "pl900-036",
+      "term": "Power BI DAX",
+      "definition": "DAX (Data Analysis Expressions) is the formula language used to create measures and calculated columns in Power BI. Examples: SUM(), CALCULATE(), FILTER(). Enables advanced analytics and KPIs.",
+      "hint": "The formula language for Power BI calculations.",
+      "tags": ["Power BI", "Analytics"]
+    },
+    {
+      "id": "pl900-037",
+      "term": "Dataverse Business Rules",
+      "definition": "Business rules enforce logic at the data layer without code. They can set field values, show/hide fields, validate data, or lock fields. They apply across all apps using the table.",
+      "hint": "No-code rules that enforce data logic.",
+      "tags": ["Dataverse", "Logic"]
+    },
+    {
+      "id": "pl900-038",
+      "term": "Dataverse Calculated and Rollup Columns",
+      "definition": "Calculated columns compute values using formulas (e.g., Total = Price × Quantity). Rollup columns aggregate data from related records (e.g., total revenue from opportunities).",
+      "hint": "Auto-calculated fields based on formulas or related data.",
+      "tags": ["Dataverse", "Data"]
+    },
+    {
+      "id": "pl900-039",
+      "term": "Power Platform Center of Excellence (CoE)",
+      "definition": "A governance framework that helps organizations manage adoption, security, monitoring, and best practices. Often implemented using the CoE Starter Kit.",
+      "hint": "A structured approach to governing Power Platform at scale.",
+      "tags": ["Governance", "Administration"]
+    },
+    {
+      "id": "pl900-040",
+      "term": "AI Builder Form Processing",
+      "definition": "Extracts structured data from documents such as invoices, receipts, and forms. Trained using sample documents. Outputs fields that can be used in apps and flows.",
+      "hint": "AI that reads documents and extracts key fields.",
+      "tags": ["AI", "Automation"]
+    },
+    {
+      "id": "pl900-041",
+      "term": "AI Builder Prediction Models",
+      "definition": "Predicts outcomes based on historical data (e.g., whether a customer will renew). Requires labeled training data stored in Dataverse.",
+      "hint": "Train AI to predict yes/no or numeric outcomes.",
+      "tags": ["AI", "Analytics"]
+    },
+    {
+      "id": "pl900-042",
+      "term": "Power Pages Web Roles",
+      "definition": "Web roles control what authenticated users can see or do on a Power Pages site. Roles map to Dataverse table permissions for granular access control.",
+      "hint": "Permissions for external users on Power Pages.",
+      "tags": ["Power Pages", "Security"]
+    },
+    {
+      "id": "pl900-043",
+      "term": "Power Pages Liquid Templates",
+      "definition": "Liquid is a templating language used to display Dataverse data dynamically on Power Pages. Supports loops, conditions, and data queries.",
+      "hint": "Code-like templates for dynamic website content.",
+      "tags": ["Power Pages", "Development"]
+    },
+    {
+      "id": "pl900-044",
+      "term": "Power Automate AI-Powered Flows",
+      "definition": "Flows enhanced with AI Builder or Copilot to classify text, extract data, or generate content. Useful for document automation and customer service scenarios.",
+      "hint": "Automation boosted with AI insights.",
+      "tags": ["AI", "Automation"]
+    },
+    {
+      "id": "pl900-045",
+      "term": "Power Apps Component Framework (PCF)",
+      "definition": "Allows developers to build custom UI components for Model-Driven Apps and Canvas Apps. Components can replace standard controls with richer experiences.",
+      "hint": "Build custom controls for Power Apps.",
+      "tags": ["Power Apps", "Development"]
+    },
+    {
+      "id": "pl900-046",
+      "term": "Power BI Row-Level Security (RLS)",
+      "definition": "Restricts data visibility for users based on roles. Ensures users only see data they are authorized to view. Configured in Power BI Desktop and enforced in the Service.",
+      "hint": "Limit which rows of data each user can see.",
+      "tags": ["Power BI", "Security"]
+    },
+    {
+      "id": "pl900-047",
+      "term": "Power BI Sharing and Workspaces",
+      "definition": "Workspaces are collaboration areas for building and publishing reports. Sharing options include dashboards, apps, and secure sharing links. Pro licenses are required for sharing.",
+      "hint": "Where teams collaborate on BI content.",
+      "tags": ["Power BI", "Collaboration"]
+    },
+    {
+      "id": "pl900-048",
+      "term": "Power Automate Error Handling",
+      "definition": "Flows can use parallel branches, scopes, and run-after conditions to handle failures gracefully. Useful for retry logic, notifications, and fallback actions.",
+      "hint": "Make flows resilient with run-after and error logic.",
+      "tags": ["Power Automate", "Automation"]
+    },
+    {
+      "id": "pl900-049",
+      "term": "Power Platform Monitoring",
+      "definition": "Admins can monitor app usage, flow runs, Dataverse storage, and performance using the Admin Center, CoE dashboards, and Azure Monitor integration.",
+      "hint": "Track performance, usage, and capacity across the platform.",
+      "tags": ["Administration", "Monitoring"]
+    },
+    {
+      "id": "pl900-050",
+      "term": "Power Platform ALM with GitHub/Azure DevOps",
+      "definition": "Solutions can be exported, versioned, and deployed using pipelines in Azure DevOps or GitHub Actions. Supports automated testing, environment promotion, and CI/CD.",
+      "hint": "Automate app deployment with DevOps pipelines.",
+      "tags": ["ALM", "Administration"]
     }
   ]
 }

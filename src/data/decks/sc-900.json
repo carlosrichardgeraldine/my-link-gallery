@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0",
     "name": "Microsoft Security, Compliance & Identity (SC-900)",
-    "description": "10 foundational security, compliance, and identity concepts for the SC-900 certification exam.",
+    "description": "Foundational security, compliance, and identity concepts for the SC-900 certification exam.",
     "createdAt": "2026-04-13"
   },
   "cards": [
@@ -75,6 +75,286 @@
       "definition": "A modern security model built on three core principles: Verify explicitly (always authenticate and authorise using all available data points — identity, location, device, service, workload), Use least privilege access (limit user access with just-in-time and just-enough-access), and Assume breach (minimise blast radius; segment access; verify end-to-end encryption). Replaces the outdated \"trusted network perimeter\" model.",
       "hint": "Never trust, always verify — from every user, every device, every time.",
       "tags": ["Security", "Zero Trust"]
+    },
+    {
+      "id": "sc900-011",
+      "term": "Microsoft Entra ID (Azure AD)",
+      "definition": "Microsoft's cloud-based identity and access management service. Provides authentication, authorization, SSO, MFA, Conditional Access, identity governance, and lifecycle management. Every Microsoft 365 tenant uses Entra ID as its identity backbone.",
+      "hint": "The identity provider behind Microsoft 365 and Azure.",
+      "tags": ["Identity", "Fundamentals"]
+    },
+    {
+      "id": "sc900-012",
+      "term": "Single Sign-On (SSO)",
+      "definition": "Allows users to authenticate once and access multiple applications without re-entering credentials. Reduces password fatigue and improves security. Entra ID supports SSO for Microsoft 365, Azure, and thousands of SaaS apps.",
+      "hint": "Sign in once, access everything.",
+      "tags": ["Identity", "Security"]
+    },
+    {
+      "id": "sc900-013",
+      "term": "Passwordless Authentication",
+      "definition": "Authentication without passwords using methods such as Windows Hello for Business, Microsoft Authenticator app, and FIDO2 security keys. Reduces phishing and credential theft risks.",
+      "hint": "Log in without passwords — safer and easier.",
+      "tags": ["Identity", "Security"]
+    },
+    {
+      "id": "sc900-014",
+      "term": "Microsoft Defender for Cloud Apps",
+      "definition": "A Cloud Access Security Broker (CASB) that provides visibility into cloud app usage, detects risky behavior, enforces session controls, and protects data across SaaS apps. Integrates with Conditional Access.",
+      "hint": "CASB that monitors and controls cloud app usage.",
+      "tags": ["Security", "Cloud Apps"]
+    },
+    {
+      "id": "sc900-015",
+      "term": "Microsoft Defender for Identity",
+      "definition": "A security solution that monitors on-premises Active Directory for suspicious activities such as lateral movement, credential theft, and privilege escalation. Uses behavioral analytics to detect attacks.",
+      "hint": "Protects on-prem AD from identity-based attacks.",
+      "tags": ["Security", "Threat Protection"]
+    },
+    {
+      "id": "sc900-016",
+      "term": "Microsoft Defender for Endpoint",
+      "definition": "An endpoint protection platform providing antivirus, EDR, vulnerability management, attack surface reduction, and automated investigation. Protects Windows, macOS, Linux, iOS, and Android devices.",
+      "hint": "Advanced security for laptops, desktops, and mobile devices.",
+      "tags": ["Security", "Endpoint"]
+    },
+    {
+      "id": "sc900-017",
+      "term": "Microsoft Defender for Office 365",
+      "definition": "Protects email, SharePoint, OneDrive, and Teams from phishing, malware, and malicious links. Includes Safe Links, Safe Attachments, anti-phishing policies, and attack simulation training.",
+      "hint": "Email and collaboration protection.",
+      "tags": ["Security", "Email"]
+    },
+    {
+      "id": "sc900-018",
+      "term": "Security Defaults",
+      "definition": "Preconfigured security settings in Entra ID that enforce MFA, block legacy authentication, and enable basic protections. Designed for small organizations without complex security needs.",
+      "hint": "One-click baseline security for all tenants.",
+      "tags": ["Identity", "Security"]
+    },
+    {
+      "id": "sc900-019",
+      "term": "Identity Governance",
+      "definition": "Controls identity lifecycle, access reviews, entitlement management, and privileged access. Ensures users have the right access at the right time and removes unnecessary permissions.",
+      "hint": "Govern who has access and for how long.",
+      "tags": ["Identity", "Governance"]
+    },
+    {
+      "id": "sc900-020",
+      "term": "Entitlement Management",
+      "definition": "A feature in Entra ID that bundles resources (apps, groups, SharePoint sites) into access packages. Users request access, and approvals, expiration, and reviews are automated.",
+      "hint": "Self-service access with automated approvals.",
+      "tags": ["Identity", "Governance"]
+    },
+    {
+      "id": "sc900-021",
+      "term": "Access Reviews",
+      "definition": "Periodic reviews of user access to groups, apps, and roles. Ensures users retain only the access they need. Required for Zero Trust and compliance frameworks.",
+      "hint": "Regularly verify who should still have access.",
+      "tags": ["Identity", "Governance"]
+    },
+    {
+      "id": "sc900-022",
+      "term": "Microsoft Purview Data Loss Prevention (DLP)",
+      "definition": "Policies that detect and prevent sharing of sensitive information across email, SharePoint, OneDrive, and Teams. Can block, warn, or audit risky actions.",
+      "hint": "Stops sensitive data from leaking.",
+      "tags": ["Compliance", "Security"]
+    },
+    {
+      "id": "sc900-023",
+      "term": "Microsoft Purview Information Protection",
+      "definition": "Uses sensitivity labels to classify and protect documents and emails. Labels can apply encryption, watermarking, access restrictions, and auto-classification.",
+      "hint": "Classify and protect data with labels.",
+      "tags": ["Compliance", "Data Protection"]
+    },
+    {
+      "id": "sc900-024",
+      "term": "Microsoft Purview eDiscovery",
+      "definition": "Tools for legal teams to search, preserve, and export content across Microsoft 365. Supports legal hold, case management, and advanced search queries.",
+      "hint": "Search and preserve data for legal investigations.",
+      "tags": ["Compliance", "Legal"]
+    },
+    {
+      "id": "sc900-025",
+      "term": "Microsoft Purview Audit",
+      "definition": "Provides logs of user and admin activities across Microsoft 365. Advanced Audit (E5) includes longer retention and high-value events such as mail read events.",
+      "hint": "Track who did what and when.",
+      "tags": ["Compliance", "Monitoring"]
+    },
+    {
+      "id": "sc900-026",
+      "term": "Microsoft Secure Score",
+      "definition": "A measurement of an organization's security posture. Provides prioritized recommendations such as enabling MFA, blocking legacy authentication, and configuring DLP.",
+      "hint": "Your security grade with recommended improvements.",
+      "tags": ["Security", "Analytics"]
+    },
+    {
+      "id": "sc900-027",
+      "term": "Microsoft Compliance Score",
+      "definition": "A measurement of how well an organization meets regulatory requirements. Provides improvement actions mapped to standards like GDPR, ISO 27001, and HIPAA.",
+      "hint": "Your compliance grade with actionable steps.",
+      "tags": ["Compliance", "Analytics"]
+    },
+    {
+      "id": "sc900-028",
+      "term": "Shared Responsibility Model",
+      "definition": "Microsoft secures the cloud infrastructure; customers secure their data, identities, devices, and access policies. Responsibilities vary by service type (IaaS, PaaS, SaaS).",
+      "hint": "Microsoft secures the cloud; you secure your data.",
+      "tags": ["Security", "Cloud"]
+    },
+    {
+      "id": "sc900-029",
+      "term": "Defense Evasion Techniques",
+      "definition": "Attackers attempt to bypass security controls using methods like disabling antivirus, using legitimate tools (living-off-the-land), or exploiting misconfigurations. Defender XDR detects these behaviors.",
+      "hint": "How attackers try to hide from security tools.",
+      "tags": ["Security", "Threat Protection"]
+    },
+    {
+      "id": "sc900-030",
+      "term": "Insider Risk Management",
+      "definition": "Microsoft Purview detects risky user behavior such as data exfiltration, unusual file downloads, or policy violations. Helps organizations mitigate insider threats.",
+      "hint": "Detects risky behavior from users inside the organization.",
+      "tags": ["Compliance", "Security"]
+    },
+    {
+      "id": "sc900-031",
+      "term": "Microsoft Entra Verified ID",
+      "definition": "A decentralized identity solution that allows users to present verifiable credentials (e.g., employment status, certifications) without exposing unnecessary personal data. Organizations issue credentials, and users control when and where they are shared.",
+      "hint": "Digital credentials users fully control.",
+      "tags": ["Identity", "Security"]
+    },
+    {
+      "id": "sc900-032",
+      "term": "Microsoft Entra External ID",
+      "definition": "A solution for managing external users such as customers and partners. Supports authentication via social accounts, email OTP, or enterprise identity providers. Used for B2B and B2C scenarios.",
+      "hint": "Identity management for customers and partners.",
+      "tags": ["Identity", "External Access"]
+    },
+    {
+      "id": "sc900-033",
+      "term": "Identity Lifecycle Management",
+      "definition": "The process of provisioning, updating, and deprovisioning user accounts. Includes automated onboarding, role assignment, access reviews, and offboarding to reduce security risks.",
+      "hint": "Manage user accounts from joiner → mover → leaver.",
+      "tags": ["Identity", "Governance"]
+    },
+    {
+      "id": "sc900-034",
+      "term": "Microsoft Entra Domain Services",
+      "definition": "Provides managed domain services like LDAP, Kerberos, and NTLM authentication without deploying domain controllers. Useful for legacy apps that require traditional AD.",
+      "hint": "Domain services in the cloud without domain controllers.",
+      "tags": ["Identity", "Hybrid"]
+    },
+    {
+      "id": "sc900-035",
+      "term": "Microsoft Defender for Cloud",
+      "definition": "A cloud security posture management (CSPM) and workload protection platform for Azure, AWS, and GCP. Provides security recommendations, compliance assessments, and threat protection for cloud workloads.",
+      "hint": "Secure your cloud resources across Azure, AWS, and GCP.",
+      "tags": ["Security", "Cloud"]
+    },
+    {
+      "id": "sc900-036",
+      "term": "Secure Score for Devices",
+      "definition": "A measurement of endpoint security posture in Defender for Endpoint. Provides recommendations such as enabling attack surface reduction rules, updating OS versions, and improving antivirus settings.",
+      "hint": "A security grade for your devices.",
+      "tags": ["Security", "Endpoint"]
+    },
+    {
+      "id": "sc900-037",
+      "term": "Attack Surface Reduction (ASR)",
+      "definition": "A set of rules in Defender for Endpoint that block risky behaviors such as launching executables from email, running untrusted scripts, or abusing Office macros.",
+      "hint": "Reduce the ways attackers can enter your system.",
+      "tags": ["Security", "Threat Protection"]
+    },
+    {
+      "id": "sc900-038",
+      "term": "Microsoft Secure Score Categories",
+      "definition": "Secure Score recommendations are grouped into Identity, Device, Apps, Data, and Infrastructure. Each category provides prioritized actions to improve security posture.",
+      "hint": "Security improvements grouped by identity, devices, apps, data, and infrastructure.",
+      "tags": ["Security", "Analytics"]
+    },
+    {
+      "id": "sc900-039",
+      "term": "Microsoft Purview Insider Risk Management",
+      "definition": "Detects risky user behavior such as data exfiltration, unusual downloads, or policy violations. Uses machine learning to identify potential insider threats.",
+      "hint": "Detects risky actions from internal users.",
+      "tags": ["Compliance", "Security"]
+    },
+    {
+      "id": "sc900-040",
+      "term": "Microsoft Purview Communication Compliance",
+      "definition": "Monitors internal communications (email, Teams, Yammer) for policy violations such as harassment, sensitive data sharing, or regulatory breaches. Alerts reviewers for investigation.",
+      "hint": "Monitor communication channels for policy violations.",
+      "tags": ["Compliance", "Monitoring"]
+    },
+    {
+      "id": "sc900-041",
+      "term": "Microsoft Purview Records Management",
+      "definition": "Manages retention schedules, regulatory record declarations, and disposition reviews. Ensures content is kept or deleted according to legal requirements.",
+      "hint": "Retention and deletion rules for official records.",
+      "tags": ["Compliance", "Governance"]
+    },
+    {
+      "id": "sc900-042",
+      "term": "Microsoft Purview Data Map",
+      "definition": "Automatically scans and classifies data across cloud and on-premises systems. Builds a unified map of data assets for governance and compliance.",
+      "hint": "A searchable map of all your organization's data.",
+      "tags": ["Compliance", "Data Governance"]
+    },
+    {
+      "id": "sc900-043",
+      "term": "Microsoft Purview Sensitivity Labels",
+      "definition": "Labels classify and protect data with encryption, watermarking, and access restrictions. Labels travel with the data across devices and apps.",
+      "hint": "Classify and protect documents and emails.",
+      "tags": ["Compliance", "Data Protection"]
+    },
+    {
+      "id": "sc900-044",
+      "term": "Microsoft Purview Data Lifecycle Management",
+      "definition": "Automates retention and deletion of data based on policies. Helps organizations meet regulatory and business requirements for data lifecycle.",
+      "hint": "Automate how long data is kept or deleted.",
+      "tags": ["Compliance", "Governance"]
+    },
+    {
+      "id": "sc900-045",
+      "term": "Microsoft Defender Threat Intelligence",
+      "definition": "Provides real-time global threat intelligence from Microsoft's security research teams. Helps analysts understand attacker tools, infrastructure, and techniques.",
+      "hint": "Threat intelligence to understand attacker behavior.",
+      "tags": ["Security", "Threat Intelligence"]
+    },
+    {
+      "id": "sc900-046",
+      "term": "Microsoft Sentinel Playbooks",
+      "definition": "Automated workflows built using Logic Apps that respond to security incidents. Examples: block an IP, disable a user, notify SOC teams.",
+      "hint": "Automated incident response workflows.",
+      "tags": ["Security", "Automation"]
+    },
+    {
+      "id": "sc900-047",
+      "term": "Microsoft Sentinel Analytics Rules",
+      "definition": "Rules that detect threats by analyzing log data. Includes scheduled rules, machine learning rules, and Microsoft-provided templates.",
+      "hint": "Rules that detect suspicious activity in logs.",
+      "tags": ["Security", "SIEM"]
+    },
+    {
+      "id": "sc900-048",
+      "term": "Microsoft Sentinel Workbooks",
+      "definition": "Interactive dashboards for visualizing security data. Used for investigations, monitoring, and reporting.",
+      "hint": "Custom dashboards for security insights.",
+      "tags": ["Security", "Analytics"]
+    },
+    {
+      "id": "sc900-049",
+      "term": "Microsoft Sentinel Hunting Queries",
+      "definition": "KQL-based queries used to proactively search for threats across log data. Helps analysts identify anomalies and attacker behavior.",
+      "hint": "Proactive threat hunting using KQL.",
+      "tags": ["Security", "Threat Hunting"]
+    },
+    {
+      "id": "sc900-050",
+      "term": "Microsoft Cloud Security Benchmark",
+      "definition": "A set of best practices and security controls for securing cloud workloads. Integrated into Defender for Cloud to assess compliance.",
+      "hint": "Microsoft's recommended security baseline for cloud workloads.",
+      "tags": ["Security", "Cloud"]
     }
   ]
 }

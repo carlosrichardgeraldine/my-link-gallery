@@ -1,0 +1,360 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Microsoft 365 Copilot & Agent Administration Fundamentals (AB-900)",
+    "description": "Foundational concepts for managing Microsoft 365 Copilot and AI agents — deployment, security, governance, compliance, and responsible AI.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "ab900-001",
+      "term": "Microsoft 365 Copilot",
+      "definition": "An AI-powered assistant integrated into Microsoft 365 apps that uses large language models combined with Microsoft Graph data to generate content, summarize information, and assist with tasks while respecting organizational security boundaries.",
+      "hint": "AI assistant inside Office apps using your company data.",
+      "tags": ["Copilot", "Fundamentals"]
+    },
+    {
+      "id": "ab900-002",
+      "term": "Microsoft Graph",
+      "definition": "A unified API that provides access to organizational data such as emails, files, meetings, and relationships. Copilot uses it to ground responses in real business context.",
+      "hint": "The data source behind Copilot's intelligence.",
+      "tags": ["Data", "Copilot"]
+    },
+    {
+      "id": "ab900-003",
+      "term": "Grounding",
+      "definition": "The process of enriching AI responses with enterprise data from Microsoft Graph to improve accuracy and relevance.",
+      "hint": "Making AI responses based on real company data.",
+      "tags": ["AI Concepts", "Copilot"]
+    },
+    {
+      "id": "ab900-004",
+      "term": "Large Language Model (LLM)",
+      "definition": "A deep learning model trained on vast text data to understand and generate human-like language, forming the foundation of Copilot capabilities.",
+      "hint": "The brain behind Copilot.",
+      "tags": ["AI Concepts"]
+    },
+    {
+      "id": "ab900-005",
+      "term": "Copilot in Word",
+      "definition": "Generates, edits, summarizes, and rewrites documents based on prompts and existing content.",
+      "hint": "AI writing assistant.",
+      "tags": ["Copilot", "Productivity"]
+    },
+    {
+      "id": "ab900-006",
+      "term": "Copilot in Excel",
+      "definition": "Analyzes data, generates formulas, creates visualizations, and explains insights in natural language.",
+      "hint": "Ask Excel questions instead of writing formulas.",
+      "tags": ["Copilot", "Productivity"]
+    },
+    {
+      "id": "ab900-007",
+      "term": "Copilot in PowerPoint",
+      "definition": "Creates presentations from prompts or documents, including slides, speaker notes, and design suggestions.",
+      "hint": "Turn ideas into slides instantly.",
+      "tags": ["Copilot", "Productivity"]
+    },
+    {
+      "id": "ab900-008",
+      "term": "Copilot in Outlook",
+      "definition": "Drafts emails, summarizes threads, and suggests responses to improve communication.",
+      "hint": "AI email assistant.",
+      "tags": ["Copilot", "Productivity"]
+    },
+    {
+      "id": "ab900-009",
+      "term": "Copilot in Teams",
+      "definition": "Provides meeting summaries, transcripts, action items, and real-time assistance.",
+      "hint": "AI meeting recap tool.",
+      "tags": ["Copilot", "Collaboration"]
+    },
+    {
+      "id": "ab900-010",
+      "term": "Business Chat",
+      "definition": "A Copilot experience that works across apps using Microsoft Graph to answer questions and perform tasks across organizational data.",
+      "hint": "Chat with your entire company's data.",
+      "tags": ["Copilot", "Productivity"]
+    },
+    {
+      "id": "ab900-011",
+      "term": "Copilot Studio",
+      "definition": "A low-code platform for building and customizing copilots and AI agents with workflows, connectors, and automation.",
+      "hint": "Build your own AI assistant.",
+      "tags": ["Copilot", "Development"]
+    },
+    {
+      "id": "ab900-012",
+      "term": "AI Agents",
+      "definition": "Autonomous or semi-autonomous systems that perform tasks, automate workflows, and interact with users using AI.",
+      "hint": "AI that can take action.",
+      "tags": ["Agents"]
+    },
+    {
+      "id": "ab900-013",
+      "term": "Agent Flows",
+      "definition": "Defined logic and workflows that determine how an AI agent processes inputs and performs actions.",
+      "hint": "The brain logic of an agent.",
+      "tags": ["Agents", "Automation"]
+    },
+    {
+      "id": "ab900-014",
+      "term": "Triggers",
+      "definition": "Events that start an agent workflow, such as user input or system changes.",
+      "hint": "What starts the automation.",
+      "tags": ["Automation"]
+    },
+    {
+      "id": "ab900-015",
+      "term": "Actions",
+      "definition": "Tasks performed by agents, such as sending emails, retrieving data, or updating systems.",
+      "hint": "What the agent actually does.",
+      "tags": ["Automation"]
+    },
+    {
+      "id": "ab900-016",
+      "term": "Connectors",
+      "definition": "Prebuilt integrations that allow Copilot and agents to interact with Microsoft and third-party services.",
+      "hint": "Bridges to other systems.",
+      "tags": ["Integration"]
+    },
+    {
+      "id": "ab900-017",
+      "term": "Dataverse",
+      "definition": "A secure data platform for storing structured data used by Power Platform and agents.",
+      "hint": "Backend database for apps and agents.",
+      "tags": ["Data"]
+    },
+    {
+      "id": "ab900-018",
+      "term": "Prompt Engineering",
+      "definition": "Designing effective prompts to guide AI outputs toward accurate and useful results.",
+      "hint": "Better prompts = better results.",
+      "tags": ["AI"]
+    },
+    {
+      "id": "ab900-019",
+      "term": "System Prompts",
+      "definition": "Predefined instructions that control how an AI model behaves and responds.",
+      "hint": "Rules behind AI responses.",
+      "tags": ["AI"]
+    },
+    {
+      "id": "ab900-020",
+      "term": "Responsible AI",
+      "definition": "Principles ensuring AI is fair, reliable, secure, inclusive, transparent, and accountable.",
+      "hint": "Ethical AI guidelines.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab900-021",
+      "term": "Fairness",
+      "definition": "Ensuring AI systems do not produce biased or discriminatory outcomes.",
+      "hint": "No unfair bias.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab900-022",
+      "term": "Transparency",
+      "definition": "Providing clarity on how AI systems make decisions.",
+      "hint": "Explainable AI.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab900-023",
+      "term": "Accountability",
+      "definition": "Ensuring humans remain responsible for AI decisions and outcomes.",
+      "hint": "Humans are still responsible.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab900-024",
+      "term": "Security Boundary",
+      "definition": "Copilot respects existing Microsoft 365 permissions and does not expose unauthorized data.",
+      "hint": "No access beyond your permissions.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab900-025",
+      "term": "Data Loss Prevention (DLP)",
+      "definition": "Policies that prevent sensitive data from being shared outside the organization.",
+      "hint": "Stops data leaks.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab900-026",
+      "term": "Sensitivity Labels",
+      "definition": "Classifications that protect data with encryption and access controls.",
+      "hint": "Label data as confidential or public.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab900-027",
+      "term": "Microsoft Purview",
+      "definition": "A suite of tools for data governance, compliance, and risk management across Microsoft services.",
+      "hint": "Compliance and governance hub.",
+      "tags": ["Compliance"]
+    },
+    {
+      "id": "ab900-028",
+      "term": "eDiscovery",
+      "definition": "A process for identifying and retrieving electronic data for legal investigations.",
+      "hint": "Find data for legal cases.",
+      "tags": ["Compliance"]
+    },
+    {
+      "id": "ab900-029",
+      "term": "Audit Logs",
+      "definition": "Records of user and system activities used for monitoring and compliance.",
+      "hint": "Track what happened.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab900-030",
+      "term": "Zero Trust",
+      "definition": "A security model that requires verification for every access request.",
+      "hint": "Never trust, always verify.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab900-031",
+      "term": "Role-Based Access Control (RBAC)",
+      "definition": "Access control based on user roles and responsibilities.",
+      "hint": "Permissions by job role.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab900-032",
+      "term": "Multi-Factor Authentication (MFA)",
+      "definition": "A security process requiring multiple forms of verification.",
+      "hint": "Password + something else.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab900-033",
+      "term": "Tenant",
+      "definition": "A dedicated instance of Microsoft 365 services for an organization.",
+      "hint": "Your organization's cloud environment.",
+      "tags": ["Fundamentals"]
+    },
+    {
+      "id": "ab900-034",
+      "term": "Licensing for Copilot",
+      "definition": "Copilot requires specific Microsoft 365 licenses and add-ons for access.",
+      "hint": "You must pay to use Copilot.",
+      "tags": ["Administration"]
+    },
+    {
+      "id": "ab900-035",
+      "term": "Deployment Readiness",
+      "definition": "Ensuring security, compliance, and data governance are in place before enabling Copilot.",
+      "hint": "Prepare before rollout.",
+      "tags": ["Administration"]
+    },
+    {
+      "id": "ab900-036",
+      "term": "Adoption Strategy",
+      "definition": "A plan to ensure users effectively use Copilot through training and change management.",
+      "hint": "Getting users to actually use AI.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab900-037",
+      "term": "Change Management",
+      "definition": "Managing organizational changes when introducing AI tools.",
+      "hint": "Helping people adapt to AI.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab900-038",
+      "term": "Use Case Identification",
+      "definition": "Determining where Copilot can provide the most value in business processes.",
+      "hint": "Where AI helps most.",
+      "tags": ["Adoption"]
+    },
+    {
+      "id": "ab900-039",
+      "term": "Productivity Gains",
+      "definition": "Efficiency improvements achieved through AI automation and assistance.",
+      "hint": "Do more in less time.",
+      "tags": ["Business Value"]
+    },
+    {
+      "id": "ab900-040",
+      "term": "Human-in-the-Loop",
+      "definition": "A model where humans review and validate AI outputs.",
+      "hint": "AI suggests, humans decide.",
+      "tags": ["AI"]
+    },
+    {
+      "id": "ab900-041",
+      "term": "Hallucination",
+      "definition": "When an AI model generates incorrect or fabricated information.",
+      "hint": "AI making things up.",
+      "tags": ["AI"]
+    },
+    {
+      "id": "ab900-042",
+      "term": "Content Filtering",
+      "definition": "Mechanisms that prevent harmful or inappropriate AI outputs.",
+      "hint": "AI safety filter.",
+      "tags": ["Responsible AI"]
+    },
+    {
+      "id": "ab900-043",
+      "term": "Data Residency",
+      "definition": "The geographic location where data is stored and processed.",
+      "hint": "Where your data lives.",
+      "tags": ["Compliance"]
+    },
+    {
+      "id": "ab900-044",
+      "term": "Compliance Manager",
+      "definition": "A Microsoft tool that helps track and manage regulatory compliance.",
+      "hint": "Compliance dashboard.",
+      "tags": ["Compliance"]
+    },
+    {
+      "id": "ab900-045",
+      "term": "Information Protection",
+      "definition": "Policies and technologies that safeguard sensitive data.",
+      "hint": "Protecting important data.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab900-046",
+      "term": "Data Classification",
+      "definition": "Organizing data based on sensitivity and importance.",
+      "hint": "Categorizing your data.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab900-047",
+      "term": "Insider Risk Management",
+      "definition": "Tools to detect and manage risks from internal users.",
+      "hint": "Protect against internal threats.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "ab900-048",
+      "term": "Communication Compliance",
+      "definition": "Monitoring communications to ensure regulatory compliance.",
+      "hint": "Check employee communications.",
+      "tags": ["Compliance"]
+    },
+    {
+      "id": "ab900-049",
+      "term": "Retention Policies",
+      "definition": "Rules that determine how long data is stored and when it is deleted.",
+      "hint": "How long data is kept.",
+      "tags": ["Compliance"]
+    },
+    {
+      "id": "ab900-050",
+      "term": "Copilot Value Measurement",
+      "definition": "Evaluating the impact of Copilot using metrics like productivity, efficiency, and user adoption.",
+      "hint": "Proving AI ROI.",
+      "tags": ["Business Value"]
+    }
+  ]
+}
