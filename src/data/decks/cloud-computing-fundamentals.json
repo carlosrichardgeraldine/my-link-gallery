@@ -1,0 +1,325 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Cloud Computing Fundamentals",
+    "description": "45 essential IT cloud computing terms every professional should know.",
+    "createdAt": "2026-04-10"
+  },
+  "cards": [
+    {
+      "id": "cc-001",
+      "term": "Cloud Computing",
+      "definition": "The delivery of computing services—including servers, storage, databases, networking, software, and analytics—over the internet (\"the cloud\") to offer faster innovation, flexible resources, and economies of scale.",
+      "hint": "Think of renting compute power instead of buying hardware.",
+      "tags": ["Fundamentals"]
+    },
+    {
+      "id": "cc-002",
+      "term": "IaaS — Infrastructure as a Service",
+      "definition": "A cloud service model that provides virtualized computing infrastructure over the internet. Users rent virtual machines, storage, and networking instead of owning physical hardware. Examples: AWS EC2, Azure VMs, Google Compute Engine.",
+      "hint": "You manage OS and up; the provider manages the hardware.",
+      "tags": ["Service Models", "Fundamentals"]
+    },
+    {
+      "id": "cc-003",
+      "term": "PaaS — Platform as a Service",
+      "definition": "A cloud service model that provides a managed platform for developing, running, and managing applications without dealing with the underlying infrastructure. Examples: Heroku, Google App Engine, Azure App Service.",
+      "hint": "You manage your app and data; the provider manages everything below.",
+      "tags": ["Service Models", "Fundamentals"]
+    },
+    {
+      "id": "cc-004",
+      "term": "SaaS — Software as a Service",
+      "definition": "A cloud service model where software is delivered over the internet on a subscription basis. Users access the application via a browser without installing or managing anything. Examples: Gmail, Salesforce, Microsoft 365.",
+      "hint": "You just use the software; the provider manages everything.",
+      "tags": ["Service Models", "Fundamentals"]
+    },
+    {
+      "id": "cc-005",
+      "term": "Virtualization",
+      "definition": "The process of creating a software-based (virtual) version of a physical resource such as a server, storage device, or network. It allows multiple virtual machines to run on a single physical host, improving resource utilization.",
+      "hint": "One physical machine, many logical machines.",
+      "tags": ["Infrastructure", "Fundamentals"]
+    },
+    {
+      "id": "cc-006",
+      "term": "Container",
+      "definition": "A lightweight, standalone, executable package that includes everything needed to run a piece of software: code, runtime, libraries, and settings. Containers share the host OS kernel, making them more efficient than full VMs. Docker is the most popular runtime.",
+      "hint": "Like a VM but sharing the OS kernel — much lighter.",
+      "tags": ["Infrastructure", "DevOps"]
+    },
+    {
+      "id": "cc-007",
+      "term": "Kubernetes (K8s)",
+      "definition": "An open-source container orchestration system that automates the deployment, scaling, and management of containerized applications across clusters of machines. Originally designed by Google, now maintained by the CNCF.",
+      "hint": "The conductor for your Docker container orchestra.",
+      "tags": ["DevOps", "Orchestration"]
+    },
+    {
+      "id": "cc-008",
+      "term": "Serverless Computing",
+      "definition": "A cloud execution model where the cloud provider dynamically manages server allocation and provisioning. Developers deploy code (functions) that run in response to events. Billing is based on actual execution time. Examples: AWS Lambda, Azure Functions, Google Cloud Functions.",
+      "hint": "Servers still exist — you just don't manage them.",
+      "tags": ["Service Models", "DevOps"]
+    },
+    {
+      "id": "cc-009",
+      "term": "Load Balancer",
+      "definition": "A device or software that distributes incoming network traffic across multiple servers to ensure no single server bears too much demand. This improves availability and responsiveness. Can operate at Layer 4 (transport) or Layer 7 (application).",
+      "hint": "The traffic cop that keeps servers from being overwhelmed.",
+      "tags": ["Networking", "Availability"]
+    },
+    {
+      "id": "cc-010",
+      "term": "Auto Scaling",
+      "definition": "A cloud feature that automatically adjusts the number of compute resources (e.g., virtual machines or containers) based on current demand. It scales out (adds resources) during high traffic and scales in (removes resources) during low traffic, optimizing cost and performance.",
+      "hint": "Your infrastructure breathes with your traffic.",
+      "tags": ["Infrastructure", "Cost Optimization"]
+    },
+    {
+      "id": "cc-011",
+      "term": "CDN — Content Delivery Network",
+      "definition": "A geographically distributed network of proxy servers and data centers that delivers web content to users based on their location. By caching content closer to end users, a CDN reduces latency and improves load times. Examples: Cloudflare, AWS CloudFront, Akamai.",
+      "hint": "Copies of your content, spread around the globe.",
+      "tags": ["Networking", "Performance"]
+    },
+    {
+      "id": "cc-012",
+      "term": "VPC — Virtual Private Cloud",
+      "definition": "An isolated, logically defined section of a public cloud where users can launch resources in a virtual network they define. It provides control over IP address ranges, subnets, route tables, and network gateways, combining cloud scalability with private network security.",
+      "hint": "Your own private island inside a public cloud.",
+      "tags": ["Networking", "Security"]
+    },
+    {
+      "id": "cc-013",
+      "term": "Object Storage",
+      "definition": "A storage architecture that manages data as objects (each containing data, metadata, and a unique identifier) rather than files in a hierarchy or blocks on a disk. Highly scalable and ideal for unstructured data. Examples: AWS S3, Azure Blob Storage, Google Cloud Storage.",
+      "hint": "Flat storage with unique IDs, perfect for huge amounts of data.",
+      "tags": ["Storage", "Infrastructure"]
+    },
+    {
+      "id": "cc-014",
+      "term": "Microservices",
+      "definition": "An architectural approach where an application is built as a collection of small, independently deployable services, each responsible for a specific business capability. Services communicate via APIs. This enables independent scaling, deployment, and development of each service.",
+      "hint": "Many small apps working together instead of one big app.",
+      "tags": ["Architecture", "DevOps"]
+    },
+    {
+      "id": "cc-015",
+      "term": "High Availability (HA)",
+      "definition": "A system design approach aimed at ensuring an agreed level of operational performance (uptime) for a higher-than-normal period. Typically achieved through redundancy, failover mechanisms, and eliminating single points of failure. Often expressed as a percentage, e.g., 99.9% (\"three nines\") uptime.",
+      "hint": "If one component fails, another takes over instantly.",
+      "tags": ["Availability", "Architecture"]
+    },
+    {
+      "id": "cc-016",
+      "term": "IAM — Identity and Access Management",
+      "definition": "A framework of policies and technologies that ensures only authorized users and systems can access specific cloud resources. IAM controls authentication (who you are) and authorization (what you can do) through users, groups, roles, and policies. Examples: AWS IAM, Azure Active Directory.",
+      "hint": "The gatekeeper that decides who can do what in your cloud.",
+      "tags": ["Security", "Fundamentals"]
+    },
+    {
+      "id": "cc-017",
+      "term": "Encryption at Rest",
+      "definition": "The process of encoding data stored on disk so it cannot be read without a decryption key. Even if storage media is physically stolen, the data remains protected. Commonly implemented using AES-256. Cloud providers offer managed encryption through services like AWS KMS or Azure Key Vault.",
+      "hint": "Your data is locked even while it's just sitting on disk.",
+      "tags": ["Security", "Storage"]
+    },
+    {
+      "id": "cc-018",
+      "term": "Encryption in Transit",
+      "definition": "The protection of data as it moves between systems over a network by encrypting it before transmission and decrypting it at the destination. Implemented using protocols like TLS (Transport Layer Security). Prevents eavesdropping and man-in-the-middle attacks.",
+      "hint": "Your data is locked while it travels across the wire.",
+      "tags": ["Security", "Networking"]
+    },
+    {
+      "id": "cc-019",
+      "term": "Zero Trust Security",
+      "definition": "A security model based on the principle \"never trust, always verify.\" No user or device is trusted by default, even inside the corporate network. Every access request is authenticated, authorized, and continuously validated regardless of origin.",
+      "hint": "Assume the network is always hostile — verify everything, every time.",
+      "tags": ["Security"]
+    },
+    {
+      "id": "cc-020",
+      "term": "DDoS — Distributed Denial of Service",
+      "definition": "A cyberattack where many compromised systems (a botnet) flood a target server or network with traffic, exhausting its resources and making it unavailable to legitimate users. Cloud providers offer DDoS protection services such as AWS Shield and Azure DDoS Protection.",
+      "hint": "Millions of fake requests sent to overwhelm a real service.",
+      "tags": ["Security", "Networking"]
+    },
+    {
+      "id": "cc-021",
+      "term": "WAF — Web Application Firewall",
+      "definition": "A security layer that monitors, filters, and blocks HTTP/HTTPS traffic to and from a web application. It protects against common web exploits such as SQL injection, cross-site scripting (XSS), and OWASP Top 10 vulnerabilities. Examples: AWS WAF, Cloudflare WAF.",
+      "hint": "A bodyguard specifically for your web application's front door.",
+      "tags": ["Security", "Networking"]
+    },
+    {
+      "id": "cc-022",
+      "term": "CI/CD — Continuous Integration / Continuous Delivery",
+      "definition": "A set of practices and tools that automate the building, testing, and deployment of software. CI merges code changes frequently and runs automated tests. CD automatically delivers tested code to staging or production. Examples: GitHub Actions, GitLab CI, Jenkins, CircleCI.",
+      "hint": "Code goes from a developer's laptop to production automatically and safely.",
+      "tags": ["DevOps"]
+    },
+    {
+      "id": "cc-023",
+      "term": "Infrastructure as Code (IaC)",
+      "definition": "The practice of managing and provisioning cloud infrastructure through machine-readable configuration files rather than manual processes. Changes are version-controlled and repeatable. Examples: Terraform (cloud-agnostic), AWS CloudFormation, Pulumi.",
+      "hint": "Your servers and networks defined in files, just like application code.",
+      "tags": ["DevOps", "Infrastructure"]
+    },
+    {
+      "id": "cc-024",
+      "term": "Managed Database Service",
+      "definition": "A cloud offering where the provider handles all database administration tasks — provisioning, patching, backups, replication, and failover — leaving developers to focus only on their data and queries. Examples: AWS RDS, Azure SQL Database, Google Cloud SQL.",
+      "hint": "A database you use but don't have to babysit.",
+      "tags": ["Databases", "Service Models"]
+    },
+    {
+      "id": "cc-025",
+      "term": "NoSQL Database",
+      "definition": "A class of database that stores data in formats other than traditional relational tables (rows/columns). Common models include key-value, document, column-family, and graph. Designed for flexible schemas, horizontal scaling, and high-throughput workloads. Examples: MongoDB, DynamoDB, Cassandra, Redis.",
+      "hint": "When your data doesn't fit neatly into rows and columns.",
+      "tags": ["Databases"]
+    },
+    {
+      "id": "cc-026",
+      "term": "Data Warehouse",
+      "definition": "A centralized repository that stores large volumes of structured, historical data from multiple sources, optimized for analytical queries (OLAP) rather than transaction processing (OLTP). Data is typically loaded via ETL pipelines. Examples: Amazon Redshift, Google BigQuery, Snowflake.",
+      "hint": "A giant organized archive built for asking big analytical questions.",
+      "tags": ["Databases", "Analytics"]
+    },
+    {
+      "id": "cc-027",
+      "term": "Caching",
+      "definition": "The process of storing copies of frequently accessed data in a fast-access storage layer (the cache) so future requests can be served more quickly. Reduces database load and latency. Common solutions: Redis, Memcached. Can be applied at browser, CDN, application, and database layers.",
+      "hint": "Keep the most-needed answers close at hand to avoid repeating expensive lookups.",
+      "tags": ["Performance", "Architecture"]
+    },
+    {
+      "id": "cc-028",
+      "term": "Message Queue",
+      "definition": "A form of asynchronous service-to-service communication where messages are stored in a queue until they are processed by a consumer. Decouples producers from consumers, enabling resilient and scalable architectures. Examples: AWS SQS, RabbitMQ, Apache Kafka.",
+      "hint": "A waiting room for data between two services that don't need to talk in real time.",
+      "tags": ["Architecture", "DevOps"]
+    },
+    {
+      "id": "cc-029",
+      "term": "API Gateway",
+      "definition": "A managed service that acts as the single entry point for client requests to backend services. It handles routing, authentication, rate limiting, SSL termination, and request/response transformation. Essential in microservices architectures. Examples: AWS API Gateway, Kong, Apigee.",
+      "hint": "The front desk that receives all API calls and routes them to the right department.",
+      "tags": ["Architecture", "Networking"]
+    },
+    {
+      "id": "cc-030",
+      "term": "Service Mesh",
+      "definition": "A dedicated infrastructure layer for handling service-to-service communication within a microservices application. It provides traffic management, mutual TLS encryption, observability, and retries without requiring changes to application code. Examples: Istio, Linkerd, Consul Connect.",
+      "hint": "A network of invisible proxies managing how your microservices talk to each other.",
+      "tags": ["Architecture", "DevOps", "Networking"]
+    },
+    {
+      "id": "cc-031",
+      "term": "Observability",
+      "definition": "The ability to understand the internal state of a system by examining its external outputs. Built on three pillars: Metrics (numerical measurements over time), Logs (timestamped event records), and Traces (end-to-end request journeys across services). Examples: Datadog, Grafana + Prometheus, AWS CloudWatch.",
+      "hint": "If you can measure it, you can understand it — and fix it.",
+      "tags": ["Observability", "DevOps"]
+    },
+    {
+      "id": "cc-032",
+      "term": "SLI / SLO / SLA",
+      "definition": "Three related reliability concepts: SLI (Service Level Indicator) is a specific metric (e.g., request success rate). SLO (Service Level Objective) is the target value for that metric (e.g., 99.9% success). SLA (Service Level Agreement) is a contractual commitment to an SLO with defined penalties for breach.",
+      "hint": "SLI measures reality; SLO sets the goal; SLA is the legal promise.",
+      "tags": ["Observability", "Availability"]
+    },
+    {
+      "id": "cc-033",
+      "term": "Distributed Tracing",
+      "definition": "A method of tracking a request as it travels through multiple services in a distributed system. Each service adds trace context (a trace ID and span ID) so engineers can reconstruct the full request path, identify bottlenecks, and pinpoint errors. Tools: Jaeger, Zipkin, AWS X-Ray.",
+      "hint": "A GPS tracker for a single request as it hops between microservices.",
+      "tags": ["Observability", "Architecture"]
+    },
+    {
+      "id": "cc-034",
+      "term": "Disaster Recovery (DR)",
+      "definition": "A set of policies, tools, and procedures to enable the recovery of IT infrastructure and data after a catastrophic event (e.g., natural disaster, cyberattack, hardware failure). Defined by two key metrics: RTO (Recovery Time Objective) and RPO (Recovery Point Objective).",
+      "hint": "The plan for bringing everything back online after the worst happens.",
+      "tags": ["Availability", "Architecture"]
+    },
+    {
+      "id": "cc-035",
+      "term": "RTO and RPO",
+      "definition": "RTO (Recovery Time Objective): the maximum acceptable time to restore a service after a failure. RPO (Recovery Point Objective): the maximum acceptable amount of data loss measured in time — i.e., how far back in time your recovery point can be. Together they define the disaster recovery strategy.",
+      "hint": "RTO = how fast you recover; RPO = how much data you can afford to lose.",
+      "tags": ["Availability", "Architecture"]
+    },
+    {
+      "id": "cc-036",
+      "term": "Hybrid Cloud",
+      "definition": "An IT environment that combines on-premises (private) infrastructure with one or more public clouds, allowing data and applications to move between them. Organizations use it to keep sensitive workloads on-premises while leveraging public cloud scalability for other workloads.",
+      "hint": "One foot on-prem, one foot in the public cloud.",
+      "tags": ["Fundamentals", "Architecture"]
+    },
+    {
+      "id": "cc-037",
+      "term": "Multi-Cloud",
+      "definition": "A strategy of using cloud services from two or more public cloud providers (e.g., AWS + Azure + GCP) to avoid vendor lock-in, optimize costs, leverage best-of-breed services, and improve resilience. Requires careful management of interoperability and security.",
+      "hint": "Shopping at more than one cloud store instead of committing to just one.",
+      "tags": ["Fundamentals", "Architecture"]
+    },
+    {
+      "id": "cc-038",
+      "term": "Edge Computing",
+      "definition": "A distributed computing paradigm that brings computation and data storage closer to the sources of data (e.g., IoT devices, end users) rather than relying on a centralized data center. Reduces latency and bandwidth usage. Used in autonomous vehicles, smart factories, and real-time applications.",
+      "hint": "Processing data right where it's generated instead of sending it far away.",
+      "tags": ["Infrastructure", "Networking"]
+    },
+    {
+      "id": "cc-039",
+      "term": "CapEx vs OpEx",
+      "definition": "CapEx (Capital Expenditure): upfront investment in physical infrastructure (servers, data centers) that is depreciated over time — the traditional on-premises model. OpEx (Operational Expenditure): ongoing pay-as-you-go expenses — the cloud model. Cloud computing shifts IT spending from CapEx to OpEx.",
+      "hint": "CapEx = buy the restaurant; OpEx = pay for every meal you eat.",
+      "tags": ["Cost Optimization", "Fundamentals"]
+    },
+    {
+      "id": "cc-040",
+      "term": "Reserved Instances",
+      "definition": "A billing model offered by cloud providers where you commit to using a specific instance type in a specific region for 1 or 3 years in exchange for a significant discount (up to 72% vs on-demand pricing). Best for stable, predictable workloads. Available on AWS, Azure (Reserved VMs), and GCP.",
+      "hint": "Prepay for a cloud resource and get a steep discount in return.",
+      "tags": ["Cost Optimization"]
+    },
+    {
+      "id": "cc-041",
+      "term": "Spot / Preemptible Instances",
+      "definition": "Unused cloud capacity sold at a heavily discounted price (up to 90% off). The provider can reclaim these instances with short notice (typically 2 minutes) when capacity is needed. Ideal for fault-tolerant, batch, or stateless workloads. Called Spot Instances (AWS), Spot VMs (Azure), or Preemptible VMs (GCP).",
+      "hint": "Cheap cloud power that can be taken away at any moment.",
+      "tags": ["Cost Optimization", "Infrastructure"]
+    },
+    {
+      "id": "cc-042",
+      "term": "DNS — Domain Name System",
+      "definition": "The internet's distributed phonebook that translates human-readable domain names (e.g., google.com) into IP addresses that computers use to communicate. A DNS query travels through resolvers, root name servers, TLD servers, and authoritative name servers to find the answer.",
+      "hint": "Turns website names into numbers computers can actually use.",
+      "tags": ["Networking", "Fundamentals"]
+    },
+    {
+      "id": "cc-043",
+      "term": "Latency vs. Throughput",
+      "definition": "Latency is the time it takes for a single request to travel from source to destination and back (round-trip time), measured in milliseconds. Throughput is the amount of data transferred successfully in a given time period, measured in bits per second (Mbps, Gbps). Low latency and high throughput are both desirable but often involve trade-offs.",
+      "hint": "Latency = how fast one packet arrives; throughput = how many packets per second.",
+      "tags": ["Networking", "Performance"]
+    },
+    {
+      "id": "cc-044",
+      "term": "Blue-Green Deployment",
+      "definition": "A release strategy that maintains two identical production environments: Blue (current live) and Green (new version). Traffic is switched from Blue to Green all at once after the new version passes testing. If issues arise, you instantly roll back by switching traffic back to Blue.",
+      "hint": "Two identical environments; flip a switch to go live, flip back to roll back.",
+      "tags": ["DevOps", "Architecture"]
+    },
+    {
+      "id": "cc-045",
+      "term": "Canary Deployment",
+      "definition": "A gradual release strategy where a new version of an application is rolled out to a small subset of users (e.g., 5%) before being progressively expanded to 100%. If errors or anomalies appear in the canary group, the rollout is halted and reversed. Named after the \"canary in a coal mine\" early-warning concept.",
+      "hint": "Test the new version on a few users first, then slowly widen the audience.",
+      "tags": ["DevOps", "Architecture"]
+    }
+  ]
+}

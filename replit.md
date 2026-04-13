@@ -44,10 +44,16 @@ The psychometric section in `Resume.tsx` (Big Five, DISC, linguistic scores, etc
 
 ## Flashcard Feature
 
-- Data: `src/data/flashcards-data.json` (15 cloud computing terms seed deck) + `src/data/flashcards.ts` (types, export/import helpers)
-- Page: `src/pages/Flashcard.tsx` — card flip animation (CSS 3D `rotateY`), prev/next navigation, keyboard shortcuts (← → Space), shuffle, tag filters, progress dots
+- Catalog: `src/data/flashcard-sets.json` — editable registry listing all available decks (id, name, description, file, cardCount, tags)
+- Decks: `src/data/decks/` — one JSON file per deck:
+  - `cloud-computing-fundamentals.json` (45 cards)
+  - `aws-saa.json` (10 cards — AWS Solutions Architect Associate)
+  - `az-900.json` (10 cards — Azure Fundamentals)
+- Types + helpers: `src/data/flashcards.ts` — FlashcardDeck/FlashcardSetEntry types, deckRegistry map, export/import helpers
+- Page: `src/pages/Flashcard.tsx` — deck picker grid → study view with card flip (CSS 3D `rotateY`), prev/next navigation, keyboard shortcuts (← → Space), shuffle, tag filters, import/export JSON
 - Export: downloads the current in-memory deck as JSON
-- Import: accepts any compatible JSON deck file and replaces the current deck in memory
+- Import: accepts any compatible JSON deck file and loads it as a custom deck
+- To add a new deck: add a JSON file to `src/data/decks/`, add an entry to `flashcard-sets.json`, and add the import + registry entry to `flashcards.ts`
 
 ## Notes
 

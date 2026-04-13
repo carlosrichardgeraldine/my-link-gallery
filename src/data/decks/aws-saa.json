@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "AWS Solutions Architect Associate",
+    "description": "10 key AWS services and concepts for the SAA-C03 exam.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "aws-001",
+      "term": "Amazon EC2 Instance Types",
+      "definition": "EC2 instances are grouped into families optimised for different workloads: General Purpose (T, M) for balanced CPU/RAM; Compute Optimised (C) for CPU-intensive tasks; Memory Optimised (R, X) for large in-memory datasets; Storage Optimised (I, D) for high I/O; and Accelerated Computing (P, G) for GPUs/ML. Choosing the right family is a core exam topic.",
+      "hint": "Match the first letter of the family to its strength: C = Compute, R = RAM, I = I/O.",
+      "tags": ["Compute", "EC2"]
+    },
+    {
+      "id": "aws-002",
+      "term": "Amazon S3 Storage Classes",
+      "definition": "S3 offers tiered storage to balance cost and retrieval speed: S3 Standard (frequently accessed), S3 Intelligent-Tiering (auto-moves objects), S3 Standard-IA and One Zone-IA (infrequent access), S3 Glacier Instant Retrieval, Glacier Flexible Retrieval (minutes–hours), and Glacier Deep Archive (up to 12 hours). Lifecycle policies automate transitions between classes.",
+      "hint": "Think of a temperature scale: Standard is hot, Glacier Deep Archive is frozen.",
+      "tags": ["Storage", "S3", "Cost Optimization"]
+    },
+    {
+      "id": "aws-003",
+      "term": "Amazon RDS Multi-AZ vs Read Replicas",
+      "definition": "Multi-AZ creates a synchronous standby in a second Availability Zone for high availability and automatic failover — it is not used for reads. Read Replicas are asynchronous copies used to offload read traffic and scale read performance; they can be in the same region, a different region, or promoted to standalone DBs. Multi-AZ = HA; Read Replicas = performance.",
+      "hint": "Multi-AZ: one active, one on standby. Read Replica: many copies, all readable.",
+      "tags": ["Databases", "RDS", "Availability"]
+    },
+    {
+      "id": "aws-004",
+      "term": "AWS VPC Subnets, Route Tables, and NAT Gateway",
+      "definition": "A VPC is divided into public and private subnets. A public subnet has a route to an Internet Gateway (IGW) in its route table, allowing internet access. A private subnet has no IGW route. To let resources in private subnets initiate outbound internet connections without being reachable inbound, you place a NAT Gateway in the public subnet and add a route to it in the private route table.",
+      "hint": "Public subnet → Internet Gateway. Private subnet → NAT Gateway → Internet Gateway.",
+      "tags": ["Networking", "VPC"]
+    },
+    {
+      "id": "aws-005",
+      "term": "Elastic Load Balancing (ELB) Types",
+      "definition": "AWS offers three load balancer types: Application Load Balancer (ALB) — Layer 7, routes by HTTP/HTTPS path, host, and headers; Network Load Balancer (NLB) — Layer 4, ultra-low latency, handles millions of TCP/UDP requests per second; and Gateway Load Balancer (GWLB) — routes traffic through third-party virtual appliances (firewalls, IDS). ALB is most common for web apps.",
+      "hint": "ALB = smart HTTP routing; NLB = blazing fast TCP; GWLB = third-party appliances.",
+      "tags": ["Networking", "Availability", "EC2"]
+    },
+    {
+      "id": "aws-006",
+      "term": "AWS IAM Roles and Policies",
+      "definition": "An IAM Role is an identity with permissions that can be assumed by AWS services, users, or external accounts — it issues temporary credentials. A Policy is a JSON document that defines allowed/denied actions on resources, attached to roles, users, or groups. The principle of least privilege means granting only the minimum permissions needed. EC2 instance profiles attach a role to EC2 instances.",
+      "hint": "Never hardcode access keys in code — attach a Role to the resource instead.",
+      "tags": ["Security", "IAM"]
+    },
+    {
+      "id": "aws-007",
+      "term": "Amazon Route 53 Routing Policies",
+      "definition": "Route 53 is AWS's DNS service with smart routing: Simple (one record), Weighted (split traffic by %), Latency-based (nearest region), Failover (active/passive HA), Geolocation (route by user country/continent), Geoproximity (route by geographic distance with bias), and Multi-Value Answer (return multiple IPs with health checks). Used heavily in multi-region architectures.",
+      "hint": "Weighted = A/B test. Latency = fastest. Failover = DR. Geolocation = compliance.",
+      "tags": ["Networking", "Availability"]
+    },
+    {
+      "id": "aws-008",
+      "term": "AWS Auto Scaling Groups (ASG)",
+      "definition": "An ASG automatically launches and terminates EC2 instances to maintain a desired capacity and respond to demand. Key settings: Minimum, Desired, and Maximum capacity. Scaling policies: Target Tracking (keep a metric at a target), Step Scaling (scale by steps when thresholds breach), and Scheduled Scaling (scale at specific times). Works with ELB for health checks and traffic distribution.",
+      "hint": "Min/Desired/Max — set a floor, a goal, and a ceiling for your fleet size.",
+      "tags": ["Compute", "EC2", "Availability"]
+    },
+    {
+      "id": "aws-009",
+      "term": "Amazon SQS vs Amazon SNS",
+      "definition": "SQS (Simple Queue Service) is a pull-based message queue: producers send messages, consumers poll and process them at their own pace. Messages persist until consumed (up to 14 days). SNS (Simple Notification Service) is a push-based pub/sub service: a publisher sends one message to a Topic, which fans out to all subscribed endpoints (email, SQS, Lambda, HTTP) simultaneously. Fan-out pattern = SNS → multiple SQS queues.",
+      "hint": "SQS = one consumer pulls from a queue. SNS = many subscribers get pushed the message at once.",
+      "tags": ["Architecture", "DevOps"]
+    },
+    {
+      "id": "aws-010",
+      "term": "AWS Shared Responsibility Model",
+      "definition": "AWS and the customer share security responsibilities divided at the hypervisor layer. AWS is responsible for security OF the cloud: physical infrastructure, hardware, global network, and managed services. The customer is responsible for security IN the cloud: operating system patches, network configuration, IAM, data encryption, application security, and firewall rules. The dividing line shifts depending on the service type (IaaS vs PaaS vs SaaS).",
+      "hint": "AWS owns the building; you own everything you put inside it.",
+      "tags": ["Security", "Fundamentals"]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "sets": [
+    {
+      "id": "cloud-computing-fundamentals",
+      "name": "Cloud Computing Fundamentals",
+      "description": "45 essential cloud computing terms every IT professional should know — service models, networking, DevOps, security, and cost.",
+      "file": "cloud-computing-fundamentals.json",
+      "cardCount": 45,
+      "tags": ["Cloud", "Fundamentals", "DevOps"]
+    },
+    {
+      "id": "aws-saa",
+      "name": "AWS Solutions Architect Associate",
+      "description": "10 key AWS services and concepts that appear on the SAA-C03 exam — compute, storage, networking, and architecture.",
+      "file": "aws-saa.json",
+      "cardCount": 10,
+      "tags": ["AWS", "Certification", "Architecture"]
+    },
+    {
+      "id": "az-900",
+      "name": "Azure Fundamentals (AZ-900)",
+      "description": "10 foundational Microsoft Azure concepts covered in the AZ-900 certification — cloud services, identity, networking, and pricing.",
+      "file": "az-900.json",
+      "cardCount": 10,
+      "tags": ["Azure", "Certification", "Fundamentals"]
+    }
+  ]
+}

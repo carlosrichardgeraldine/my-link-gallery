@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Azure Fundamentals (AZ-900)",
+    "description": "10 foundational Microsoft Azure concepts for the AZ-900 certification exam.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "az-001",
+      "term": "Azure Resource Groups",
+      "definition": "A Resource Group is a logical container that holds related Azure resources for an application or environment (e.g., VMs, storage accounts, databases). All resources in a group share the same lifecycle — you can deploy, update, and delete them together. Resource Groups also define the scope for access control (RBAC), policies, and billing cost tracking.",
+      "hint": "Think of a Resource Group as a folder that organises and shares permissions across related Azure resources.",
+      "tags": ["Management", "Fundamentals"]
+    },
+    {
+      "id": "az-002",
+      "term": "Azure Virtual Machines",
+      "definition": "Azure VMs are on-demand, scalable compute resources that run Windows or Linux. You choose a VM size (vCPUs and RAM), an OS image, storage (managed disks), and networking. VMs are an IaaS offering — you manage the OS and software; Azure manages the physical hardware. Common scenarios: migrating on-premises workloads, custom software environments, and dev/test environments.",
+      "hint": "A VM gives you full control of an OS in the cloud — like a PC in a remote data centre.",
+      "tags": ["Compute", "IaaS"]
+    },
+    {
+      "id": "az-003",
+      "term": "Azure Blob Storage",
+      "definition": "Azure Blob Storage is Microsoft's object storage solution for the cloud, optimised for storing massive amounts of unstructured data such as images, videos, backups, and log files. It has three access tiers: Hot (frequently accessed), Cool (infrequently accessed, lower cost), and Archive (rarely accessed, lowest cost but retrieval takes hours). Data is organised into Storage Accounts → Containers → Blobs.",
+      "hint": "Hot = fast and pricey. Cool = cheaper to store. Archive = very cheap but slow to retrieve.",
+      "tags": ["Storage", "Fundamentals"]
+    },
+    {
+      "id": "az-004",
+      "term": "Microsoft Entra ID (Azure Active Directory)",
+      "definition": "Microsoft Entra ID (formerly Azure Active Directory) is Azure's cloud-based identity and access management service. It authenticates users and controls access to Azure resources and Microsoft 365 apps using Single Sign-On (SSO), Multi-Factor Authentication (MFA), and Conditional Access policies. It is different from on-premises Windows Server Active Directory — it is designed for internet-based, cloud services.",
+      "hint": "Entra ID = the cloud identity system that decides who can log in and what they can access.",
+      "tags": ["Security", "Identity"]
+    },
+    {
+      "id": "az-005",
+      "term": "Azure Virtual Network (VNet)",
+      "definition": "An Azure Virtual Network (VNet) is the fundamental building block of your private network in Azure. It enables Azure resources to communicate securely with each other, the internet, and on-premises networks. VNets are divided into Subnets. Features include: Network Security Groups (NSGs) for traffic filtering, VNet Peering for connecting VNets, and VPN Gateway or ExpressRoute for hybrid connectivity.",
+      "hint": "VNet = your private slice of Azure's network. NSG = the firewall ruleset on subnets and NICs.",
+      "tags": ["Networking", "Fundamentals"]
+    },
+    {
+      "id": "az-006",
+      "term": "Azure App Service",
+      "definition": "Azure App Service is a fully managed PaaS for hosting web applications, REST APIs, and mobile back-ends. Supported languages and runtimes include .NET, Node.js, Java, Python, PHP, and Ruby. Azure handles the infrastructure, OS patching, and scaling. Key features: built-in autoscaling, custom domains and SSL, deployment slots (staging/production swap), and CI/CD integration.",
+      "hint": "Just upload your code — App Service handles the servers, runtime, and scaling for you.",
+      "tags": ["Compute", "PaaS"]
+    },
+    {
+      "id": "az-007",
+      "term": "Azure Regions and Availability Zones",
+      "definition": "An Azure Region is a geographical area containing one or more data centres connected by a low-latency network (e.g., East US, UK South). An Availability Zone (AZ) is a physically separate data centre within a region with independent power, cooling, and networking. Deploying across AZs protects against single data-centre failure and provides 99.99% VM uptime SLA. Region Pairs provide disaster recovery across geographies.",
+      "hint": "Region = city. Availability Zone = separate building in that city. Region Pair = backup city.",
+      "tags": ["Availability", "Fundamentals"]
+    },
+    {
+      "id": "az-008",
+      "term": "Azure Pricing Models and Cost Management",
+      "definition": "Azure offers several pricing options: Pay-As-You-Go (PAYG) — billed per second/minute, no upfront commitment; Reserved Instances — 1- or 3-year commitment for up to 72% savings; Azure Hybrid Benefit — bring existing Windows Server / SQL Server licences to save up to 40%; Spot VMs — unused capacity at deep discount. Azure Cost Management + Billing and the Pricing Calculator are tools for estimating and monitoring spend.",
+      "hint": "PAYG = flexible. Reserved = commitment discount. Spot = cheapest but interruptible.",
+      "tags": ["Cost Optimization", "Fundamentals"]
+    },
+    {
+      "id": "az-009",
+      "term": "Azure Shared Responsibility Model",
+      "definition": "Responsibility for security is shared between Microsoft and the customer and shifts depending on the service type. Microsoft always manages physical data centres, network infrastructure, and hypervisors. Customers always manage their data, identities, and devices. For IaaS (VMs), the customer also manages the OS, runtime, and apps. For PaaS (App Service), Microsoft takes on OS and runtime. For SaaS (Microsoft 365), Microsoft manages almost everything.",
+      "hint": "As you move from IaaS → PaaS → SaaS, Microsoft takes on more responsibility.",
+      "tags": ["Security", "Fundamentals"]
+    },
+    {
+      "id": "az-010",
+      "term": "Azure Monitor and Azure Advisor",
+      "definition": "Azure Monitor is the unified observability platform for collecting, analysing, and acting on telemetry from Azure resources: metrics, logs (via Log Analytics / KQL queries), and alerts. Azure Advisor is a personalised cloud consultant that analyses your usage and recommends improvements across five categories: Cost, Security, Reliability, Operational Excellence, and Performance. Both are frequently tested in AZ-900.",
+      "hint": "Monitor = watch what's happening. Advisor = get recommendations on how to improve.",
+      "tags": ["Observability", "Management"]
+    }
+  ]
+}

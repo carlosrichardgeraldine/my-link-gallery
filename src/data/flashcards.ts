@@ -1,4 +1,7 @@
-import builtinData from "@/data/flashcards-data.json";
+import cloudComputingDeck from "@/data/decks/cloud-computing-fundamentals.json";
+import awsSaaDeck from "@/data/decks/aws-saa.json";
+import az900Deck from "@/data/decks/az-900.json";
+import setscatalog from "@/data/flashcard-sets.json";
 
 export interface FlashcardMeta {
   version: string;
@@ -20,7 +23,24 @@ export interface FlashcardDeck {
   cards: Flashcard[];
 }
 
-export const defaultDeck: FlashcardDeck = builtinData as FlashcardDeck;
+export interface FlashcardSetEntry {
+  id: string;
+  name: string;
+  description: string;
+  file: string;
+  cardCount: number;
+  tags: string[];
+}
+
+export const flashcardSetsCatalog: FlashcardSetEntry[] = setscatalog.sets;
+
+export const deckRegistry: Record<string, FlashcardDeck> = {
+  "cloud-computing-fundamentals": cloudComputingDeck as FlashcardDeck,
+  "aws-saa": awsSaaDeck as FlashcardDeck,
+  "az-900": az900Deck as FlashcardDeck,
+};
+
+export const defaultDeck: FlashcardDeck = cloudComputingDeck as FlashcardDeck;
 
 export function exportDeck(deck: FlashcardDeck): void {
   const json = JSON.stringify(deck, null, 2);
