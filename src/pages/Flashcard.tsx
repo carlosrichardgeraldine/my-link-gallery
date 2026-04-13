@@ -57,7 +57,11 @@ function FlipCard({
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onFlip()}
       role="button"
       tabIndex={0}
-      aria-label={flipped ? "Card back — click to flip to front" : "Card front — click to flip to back"}
+      aria-label={
+        flipped
+          ? "Card back — click to flip to front"
+          : "Card front — click to flip to back"
+      }
     >
       <div className={`flashcard${flipped ? " flashcard--flipped" : ""}`}>
         {/* Front */}
@@ -74,7 +78,9 @@ function FlipCard({
                 </span>
               ))}
             </div>
-            <h2 className="text-xl font-semibold text-foreground md:text-3xl">{card.term}</h2>
+            <h2 className="text-xl font-semibold text-foreground md:text-3xl">
+              {card.term}
+            </h2>
             <p className="mt-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
               Click to reveal definition
             </p>
@@ -87,7 +93,9 @@ function FlipCard({
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               Definition
             </p>
-            <p className="text-sm leading-relaxed text-foreground md:text-base">{card.definition}</p>
+            <p className="text-sm leading-relaxed text-foreground md:text-base">
+              {card.definition}
+            </p>
             {card.hint && (
               <p className="mt-2 rounded-xl border border-border bg-muted px-4 py-2 text-xs italic text-muted-foreground">
                 💡 {card.hint}
@@ -122,7 +130,9 @@ function DeckPicker({
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const quickTags = useMemo(() => {
-    const all = Array.from(new Set(flashcardSetsCatalog.flatMap((e) => e.tags)));
+    const all = Array.from(
+      new Set(flashcardSetsCatalog.flatMap((e) => e.tags)),
+    );
     for (let i = all.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [all[i], all[j]] = [all[j], all[i]];
@@ -138,8 +148,7 @@ function DeckPicker({
       e.description.toLowerCase().includes(q) ||
       e.tags.some((t) => t.toLowerCase().includes(q));
     const matchesTags =
-      selectedTags.length === 0 ||
-      selectedTags.some((t) => e.tags.includes(t));
+      selectedTags.length === 0 || selectedTags.some((t) => e.tags.includes(t));
     return matchesSearch && matchesTags;
   });
 
@@ -166,7 +175,7 @@ function DeckPicker({
 
   const toggleTag = (tag: string) =>
     setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
     );
 
   const clearAll = () => {
@@ -180,8 +189,12 @@ function DeckPicker({
   return (
     <div className="container mx-auto px-4 pt-6 pb-28 md:py-8">
       <div className="mb-5 text-center">
-        <h2 className="text-2xl font-semibold text-foreground md:text-3xl">Choose a Deck</h2>
-        <p className="mt-1 text-sm text-muted-foreground">Select a flashcard set to start studying</p>
+        <h2 className="text-2xl font-semibold text-foreground md:text-3xl">
+          Choose a Deck
+        </h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Select a flashcard set to start studying
+        </p>
       </div>
 
       {/* Search bar */}
@@ -233,7 +246,10 @@ function DeckPicker({
                 className="hover-chroma-pill inline-flex shrink-0 items-center gap-1 rounded-full border border-foreground bg-foreground px-3 py-1 text-xs font-medium text-background"
               >
                 {tag}
-                <button onClick={() => toggleTag(tag)} className="ml-0.5 hover:opacity-70">
+                <button
+                  onClick={() => toggleTag(tag)}
+                  className="ml-0.5 hover:opacity-70"
+                >
                   <X className="h-3 w-3" />
                 </button>
               </span>
@@ -256,7 +272,9 @@ function DeckPicker({
       {/* ── Mobile layout (hidden sm+) ─────────────────────────────────── */}
       <div className="sm:hidden">
         {mobileItems.length === 0 ? (
-          <p className="py-10 text-center text-sm text-muted-foreground">No decks match your search.</p>
+          <p className="py-10 text-center text-sm text-muted-foreground">
+            No decks match your search.
+          </p>
         ) : (
           <div className="flex flex-col gap-2">
             {mobileItems.map((entry) => {
@@ -302,13 +320,13 @@ function DeckPicker({
                           </span>
                         ))}
                       </div>
-                      <button
+                      {/* <button
                         type="button"
                         onClick={() => onSelect(entry.id)}
                         className="w-full rounded-xl border border-foreground bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
                       >
                         Start studying →
-                      </button>
+                      </button> */}
                     </div>
                   )}
                 </div>
@@ -322,7 +340,10 @@ function DeckPicker({
           <div className="mt-4 flex items-center justify-center gap-3">
             <button
               type="button"
-              onClick={() => { setMobilePage((p) => p - 1); setExpandedId(null); }}
+              onClick={() => {
+                setMobilePage((p) => p - 1);
+                setExpandedId(null);
+              }}
               disabled={mobilePage === 0}
               className="inline-flex h-8 w-8 items-center justify-center text-foreground transition-opacity hover:opacity-70 disabled:cursor-not-allowed disabled:opacity-30"
             >
@@ -333,7 +354,10 @@ function DeckPicker({
             </span>
             <button
               type="button"
-              onClick={() => { setMobilePage((p) => p + 1); setExpandedId(null); }}
+              onClick={() => {
+                setMobilePage((p) => p + 1);
+                setExpandedId(null);
+              }}
               disabled={mobilePage === mobilePageCount - 1}
               className="inline-flex h-8 w-8 items-center justify-center text-foreground transition-opacity hover:opacity-70 disabled:cursor-not-allowed disabled:opacity-30"
             >
@@ -348,7 +372,9 @@ function DeckPicker({
           onClick={onImport}
           className="mt-3 flex w-full items-center justify-between gap-3 rounded-2xl border border-dashed border-border bg-card/50 px-4 py-3 text-left transition-colors hover:bg-card"
         >
-          <span className="text-sm font-semibold text-foreground">Import Custom Deck</span>
+          <span className="text-sm font-semibold text-foreground">
+            Import Custom Deck
+          </span>
           <Upload className="h-4 w-4 shrink-0 text-muted-foreground" />
         </button>
       </div>
@@ -356,7 +382,9 @@ function DeckPicker({
       {/* ── Desktop layout (hidden below sm) ──────────────────────────── */}
       <div className="hidden sm:block">
         {desktopItems.length === 0 ? (
-          <p className="py-16 text-center text-sm text-muted-foreground">No decks match your search.</p>
+          <p className="py-16 text-center text-sm text-muted-foreground">
+            No decks match your search.
+          </p>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {desktopItems.map((entry) => (
@@ -367,7 +395,9 @@ function DeckPicker({
                 className="group flex flex-col items-start gap-3 rounded-2xl border border-border bg-card p-5 text-left shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/30 hover:shadow-md"
               >
                 <div className="flex w-full items-start justify-between gap-2">
-                  <h3 className="text-base font-semibold text-foreground leading-snug">{entry.name}</h3>
+                  <h3 className="text-base font-semibold text-foreground leading-snug">
+                    {entry.name}
+                  </h3>
                   <span className="shrink-0 rounded-lg border border-border bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
                     {entry.cardCount} cards
                   </span>
@@ -406,7 +436,8 @@ function DeckPicker({
                   <Upload className="h-4 w-4 shrink-0 text-muted-foreground" />
                 </div>
                 <p className="text-xs leading-relaxed text-muted-foreground">
-                  Load your own flashcard deck from a JSON file exported from this app.
+                  Load your own flashcard deck from a JSON file exported from
+                  this app.
                 </p>
                 <div className="mt-auto pt-2 text-xs font-medium text-foreground/60 transition-colors group-hover:text-foreground">
                   Browse file →
@@ -529,7 +560,7 @@ export default function FlashcardPage() {
 
   const handleToggleTag = (tag: string) => {
     setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
     );
   };
 
@@ -564,7 +595,9 @@ export default function FlashcardPage() {
       setIsShuffled(false);
       setIndex(0);
       setFlipped(false);
-      toast.success(`Imported "${parsed.meta.name}" — ${parsed.cards.length} cards`);
+      toast.success(
+        `Imported "${parsed.meta.name}" — ${parsed.cards.length} cards`,
+      );
     };
     reader.readAsText(file);
     e.target.value = "";
@@ -578,7 +611,11 @@ export default function FlashcardPage() {
   useEffect(() => {
     if (!deck) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement
+      )
+        return;
       if (e.key === "ArrowLeft") handlePrev();
       if (e.key === "ArrowRight") handleNext();
       if (e.key === " " || e.key === "Enter") setFlipped((f) => !f);
@@ -612,9 +649,13 @@ export default function FlashcardPage() {
               ) : (
                 <GraduationCap className="h-4 w-4 text-muted-foreground" />
               )}
-              <h1 className="text-base font-semibold text-foreground md:text-xl">Flashcard</h1>
+              <h1 className="text-base font-semibold text-foreground md:text-xl">
+                Flashcard
+              </h1>
               {isStudying && deck && (
-                <span className="hidden text-xs text-muted-foreground md:inline">— {deck.meta.name}</span>
+                <span className="hidden text-xs text-muted-foreground md:inline">
+                  — {deck.meta.name}
+                </span>
               )}
             </div>
             <div className="flex items-center gap-3">
@@ -656,7 +697,10 @@ export default function FlashcardPage() {
 
         {/* Picker or Study view */}
         {!isStudying ? (
-          <DeckPicker onSelect={setSelectedSetId} onImport={handleImportClick} />
+          <DeckPicker
+            onSelect={setSelectedSetId}
+            onImport={handleImportClick}
+          />
         ) : (
           <div className="container mx-auto px-4 pt-4 pb-28 md:py-6">
             {/* Search bar */}
@@ -715,7 +759,10 @@ export default function FlashcardPage() {
                       className="hover-chroma-pill inline-flex shrink-0 items-center gap-1 rounded-full border border-foreground bg-foreground px-3 py-1 text-xs font-medium text-background"
                     >
                       {tag}
-                      <button onClick={() => handleToggleTag(tag)} className="ml-0.5 hover:opacity-70">
+                      <button
+                        onClick={() => handleToggleTag(tag)}
+                        className="ml-0.5 hover:opacity-70"
+                      >
                         <X className="h-3 w-3" />
                       </button>
                     </span>
@@ -735,7 +782,9 @@ export default function FlashcardPage() {
                 <button
                   type="button"
                   onClick={handleShuffle}
-                  title={isShuffled ? "Restore original order" : "Shuffle cards"}
+                  title={
+                    isShuffled ? "Restore original order" : "Shuffle cards"
+                  }
                   className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-medium transition-colors ${
                     isShuffled
                       ? "border-foreground bg-foreground text-background"
@@ -760,7 +809,9 @@ export default function FlashcardPage() {
             {/* Card area */}
             {queue.length === 0 ? (
               <div className="flex flex-col items-center justify-center rounded-2xl border border-border bg-card/60 py-20 text-center backdrop-blur-sm">
-                <p className="text-sm font-medium text-foreground">No cards match your filters</p>
+                <p className="text-sm font-medium text-foreground">
+                  No cards match your filters
+                </p>
                 <button
                   onClick={handleClearAll}
                   className="mt-3 text-xs text-muted-foreground transition-colors hover:text-foreground"
@@ -794,7 +845,9 @@ export default function FlashcardPage() {
                   <div className="flex flex-col items-center gap-1">
                     <span className="text-sm font-semibold text-foreground">
                       {index + 1}{" "}
-                      <span className="font-normal text-muted-foreground">/ {queue.length}</span>
+                      <span className="font-normal text-muted-foreground">
+                        / {queue.length}
+                      </span>
                     </span>
                     <p className="text-[10px] text-muted-foreground">
                       ← → to navigate · Space to flip
