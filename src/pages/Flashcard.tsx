@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import {
   ArrowLeft,
   ChevronDown,
@@ -105,7 +105,7 @@ function FlipCard({
 
 /* ─── Deck Picker ────────────────────────────────────────────────────────── */
 
-const MOBILE_PAGE_SIZE = 5;
+const MOBILE_PAGE_SIZE = 8;
 const DESKTOP_PAGE_SIZE = 9;
 
 function DeckPicker({
@@ -121,9 +121,14 @@ function DeckPicker({
   const [desktopPage, setDesktopPage] = useState(0);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  const allTags = Array.from(
-    new Set(flashcardSetsCatalog.flatMap((e) => e.tags))
-  ).sort();
+  const quickTags = useMemo(() => {
+    const all = Array.from(new Set(flashcardSetsCatalog.flatMap((e) => e.tags)));
+    for (let i = all.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [all[i], all[j]] = [all[j], all[i]];
+    }
+    return all.slice(0, 5);
+  }, []);
 
   const q = search.toLowerCase();
   const filtered = flashcardSetsCatalog.filter((e) => {
@@ -193,9 +198,9 @@ function DeckPicker({
         </div>
       </div>
 
-      {/* Quick tag pills */}
+      {/* Quick tag pills — 5 random tags per session */}
       <div className="mb-4 flex flex-wrap gap-2">
-        {allTags.map((tag) => {
+        {quickTags.map((tag) => {
           const active = selectedTags.includes(tag);
           return (
             <button
