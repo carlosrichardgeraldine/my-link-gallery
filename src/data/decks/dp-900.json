@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Azure Data Fundamentals (DP-900)",
+    "description": "10 foundational Azure data and analytics concepts for the DP-900 certification exam.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "dp900-001",
+      "term": "Relational vs. Non-Relational Data",
+      "definition": "Relational data is structured in tables with rows and columns, enforces a schema, and uses SQL. Relationships are modelled with foreign keys. Non-relational (NoSQL) data stores flexible, schema-less data in formats like documents (JSON), key-value pairs, column families, or graphs — suited for high-volume, varied workloads. Azure SQL Database is relational; Azure Cosmos DB is non-relational.",
+      "hint": "Relational = strict tables and SQL. Non-relational = flexible formats for scale.",
+      "tags": ["Data Concepts", "Fundamentals"]
+    },
+    {
+      "id": "dp900-002",
+      "term": "Azure SQL Database",
+      "definition": "A fully managed PaaS relational database built on Microsoft SQL Server. It handles patching, backups, high availability, and scaling automatically. Supports the T-SQL language, and offers serverless and hyperscale tiers for variable or massive workloads. Best for OLTP (Online Transaction Processing) — frequent reads and writes for operational applications.",
+      "hint": "SQL Server in the cloud, fully managed — you just write queries.",
+      "tags": ["Relational", "Azure Services"]
+    },
+    {
+      "id": "dp900-003",
+      "term": "Azure Cosmos DB",
+      "definition": "Microsoft's globally distributed, multi-model NoSQL database. Guarantees single-digit millisecond latency and 99.999% availability SLA. Supports multiple APIs: Core (SQL), MongoDB, Cassandra, Gremlin (graph), and Table. Data is partitioned and automatically replicated across Azure regions. Ideal for globally distributed apps needing low latency (e.g., gaming leaderboards, IoT telemetry).",
+      "hint": "A NoSQL database that spans the globe with near-instant response times.",
+      "tags": ["Non-Relational", "Azure Services"]
+    },
+    {
+      "id": "dp900-004",
+      "term": "OLTP vs. OLAP",
+      "definition": "OLTP (Online Transaction Processing) handles high volumes of short, real-time read/write operations — e.g., inserting an order, updating a balance. Optimised for write performance and normalised schemas. OLAP (Online Analytical Processing) handles complex queries across large historical datasets for business intelligence — e.g., monthly sales by region. Optimised for read performance with denormalised/star schemas.",
+      "hint": "OLTP = day-to-day operations. OLAP = business analysis and reporting.",
+      "tags": ["Data Concepts", "Analytics"]
+    },
+    {
+      "id": "dp900-005",
+      "term": "Azure Synapse Analytics",
+      "definition": "An integrated analytics service combining data warehousing (dedicated SQL pools), big data processing (Apache Spark pools), and data exploration into a single workspace. Connects to Azure Data Lake Storage for large-scale storage. Used for enterprise data warehousing and running complex analytical queries across petabytes of data. Formerly called Azure SQL Data Warehouse.",
+      "hint": "Azure's all-in-one platform for analytics — from warehouse to big data to ML.",
+      "tags": ["Analytics", "Azure Services"]
+    },
+    {
+      "id": "dp900-006",
+      "term": "Azure Data Factory",
+      "definition": "A cloud-based ETL (Extract, Transform, Load) and data integration service. It orchestrates and automates the movement and transformation of data from 90+ sources (on-premises, cloud, SaaS) into data stores like Azure Data Lake, Synapse, or Cosmos DB. Pipelines are built visually or via code. Think of it as the data plumbing between your sources and destinations.",
+      "hint": "The pipeline orchestrator that moves and transforms data between systems.",
+      "tags": ["ETL", "Azure Services"]
+    },
+    {
+      "id": "dp900-007",
+      "term": "Azure Data Lake Storage Gen2",
+      "definition": "A massively scalable, hierarchical object storage service built on Azure Blob Storage, optimised for big data analytics. Combines the scalability and cost of object storage with a file system hierarchy for performance. Supports fine-grained access control (RBAC + ACLs) and is the recommended raw data store for Synapse Analytics and Azure Databricks workloads.",
+      "hint": "A giant, cheap, hierarchical data store purpose-built for analytics workloads.",
+      "tags": ["Storage", "Analytics"]
+    },
+    {
+      "id": "dp900-008",
+      "term": "Azure Stream Analytics",
+      "definition": "A real-time analytics service that processes high-throughput streaming data from sources like Azure Event Hubs, IoT Hub, or Blob Storage. Uses a SQL-like query language to filter, aggregate, and join streams in real time. Outputs results to dashboards, databases, or alerts. Used for real-time fraud detection, live dashboards, and IoT monitoring.",
+      "hint": "SQL queries running live against a non-stop river of incoming data.",
+      "tags": ["Analytics", "Streaming"]
+    },
+    {
+      "id": "dp900-009",
+      "term": "Microsoft Power BI",
+      "definition": "A business intelligence and data visualisation platform that connects to hundreds of data sources, transforms raw data, and creates interactive reports and dashboards. Reports can be published to the Power BI Service for sharing and collaboration. Consists of Power BI Desktop (authoring), Power BI Service (cloud publishing), and Power BI Mobile. Part of the Microsoft 365 ecosystem.",
+      "hint": "Turn spreadsheets and databases into interactive charts your whole organisation can explore.",
+      "tags": ["Visualisation", "Analytics"]
+    },
+    {
+      "id": "dp900-010",
+      "term": "Batch Processing vs. Stream Processing",
+      "definition": "Batch Processing collects data over a period of time and processes it together in a scheduled job — e.g., end-of-day payroll calculations. High throughput but introduces latency. Stream Processing handles data continuously in real time as it arrives — e.g., credit card fraud detection within milliseconds. Azure services: Azure Data Factory / Synapse (batch), Azure Stream Analytics / Event Hubs (streaming).",
+      "hint": "Batch = process a pile at scheduled intervals. Stream = process each item the instant it arrives.",
+      "tags": ["Data Concepts", "Analytics"]
+    }
+  ]
+}

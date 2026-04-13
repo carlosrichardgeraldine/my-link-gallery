@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Microsoft Security, Compliance & Identity (SC-900)",
+    "description": "10 foundational security, compliance, and identity concepts for the SC-900 certification exam.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "sc900-001",
+      "term": "Authentication vs. Authorisation",
+      "definition": "Authentication (AuthN) is the process of verifying who you are — confirming your identity through credentials such as a password, biometric, or certificate. Authorisation (AuthZ) is the process of determining what you are allowed to do — what resources you can access after your identity is confirmed. Authentication always happens before authorisation.",
+      "hint": "AuthN = proving who you are. AuthZ = deciding what you can do.",
+      "tags": ["Identity", "Fundamentals"]
+    },
+    {
+      "id": "sc900-002",
+      "term": "Multi-Factor Authentication (MFA)",
+      "definition": "A security method requiring users to verify their identity using two or more factors from different categories: Something you know (password/PIN), Something you have (authenticator app, hardware token, phone), Something you are (fingerprint, face recognition). MFA dramatically reduces the risk of account compromise even if a password is stolen. Microsoft Entra ID enforces MFA via Conditional Access or security defaults.",
+      "hint": "Combining a password with a second proof — so stolen passwords alone aren't enough.",
+      "tags": ["Identity", "Security"]
+    },
+    {
+      "id": "sc900-003",
+      "term": "Conditional Access",
+      "definition": "A Microsoft Entra ID feature that applies if-then policy rules to access requests: IF a user matches certain conditions (location, device compliance, risk level, app being accessed) THEN require MFA, block access, or allow. For example: block all access from outside the country OR require MFA for admin accounts. It is the primary Zero Trust enforcement tool in Microsoft 365.",
+      "hint": "Policy rules that evaluate who, what device, and where before granting access.",
+      "tags": ["Identity", "Zero Trust"]
+    },
+    {
+      "id": "sc900-004",
+      "term": "Microsoft Defender XDR",
+      "definition": "Microsoft Defender Extended Detection and Response (XDR) is a unified security platform that correlates threat signals across identities (Defender for Identity), endpoints (Defender for Endpoint), email (Defender for Office 365), and cloud apps (Defender for Cloud Apps). It provides a single incident view with automated investigation and response (AIR) to reduce mean time to detect and respond to attacks.",
+      "hint": "One dashboard that connects threat signals from every corner of your Microsoft environment.",
+      "tags": ["Security", "Threat Protection"]
+    },
+    {
+      "id": "sc900-005",
+      "term": "Microsoft Sentinel",
+      "definition": "A cloud-native Security Information and Event Management (SIEM) and Security Orchestration, Automation and Response (SOAR) service. It collects log data from across your entire organisation (Azure, Microsoft 365, on-premises, multi-cloud), uses AI to detect threats, investigates incidents with built-in dashboards, and automates responses via Logic Apps playbooks.",
+      "hint": "Azure's cloud-native SIEM — collecting logs everywhere, detecting threats with AI, automating responses.",
+      "tags": ["Security", "SIEM"]
+    },
+    {
+      "id": "sc900-006",
+      "term": "Microsoft Purview",
+      "definition": "Microsoft's unified data governance and compliance platform. Covers: Information Protection (sensitivity labels to classify/encrypt data), Data Loss Prevention (prevent leakage of sensitive info), Records Management (legal retention schedules), eDiscovery (legal hold and content search), Audit (activity logs), and Communication Compliance. Formerly branded as Microsoft 365 Compliance.",
+      "hint": "Classify, protect, retain, and audit your organisation's data to meet compliance requirements.",
+      "tags": ["Compliance", "Data Governance"]
+    },
+    {
+      "id": "sc900-007",
+      "term": "Privileged Identity Management (PIM)",
+      "definition": "A Microsoft Entra ID feature that manages, controls, and monitors access to important (privileged) roles. Instead of permanently assigning admin roles, PIM makes roles eligible — admins activate them just-in-time for a limited duration, requiring approval and MFA. Every activation is audited. Reduces the attack surface by ensuring powerful permissions are only active when genuinely needed.",
+      "hint": "Admin rights that are dormant by default and activated just-in-time with an audit trail.",
+      "tags": ["Identity", "Privileged Access"]
+    },
+    {
+      "id": "sc900-008",
+      "term": "Microsoft Entra ID Protection",
+      "definition": "A risk-based identity protection service that uses Microsoft's threat intelligence to detect suspicious sign-in behaviours — such as sign-ins from anonymous IPs, impossible travel (logging in from two distant countries within minutes), or leaked credentials found on the dark web. Assigns a risk score (low/medium/high) and can automatically block or require MFA based on risk level via Conditional Access.",
+      "hint": "AI that watches for suspicious login patterns and blocks risky sign-ins automatically.",
+      "tags": ["Identity", "Security"]
+    },
+    {
+      "id": "sc900-009",
+      "term": "Defence in Depth",
+      "definition": "A layered security strategy where multiple controls protect data, so that if one layer is breached, subsequent layers continue to provide protection. The seven layers from outside in: Physical → Perimeter (DDoS, firewall) → Network (segmentation, NSGs) → Compute (patch OS, antivirus) → Application (secure code, WAF) → Data (encryption, access control). No single control is sufficient.",
+      "hint": "Security like an onion — an attacker must peel through many layers to reach your data.",
+      "tags": ["Security", "Fundamentals"]
+    },
+    {
+      "id": "sc900-010",
+      "term": "Zero Trust Model",
+      "definition": "A modern security model built on three core principles: Verify explicitly (always authenticate and authorise using all available data points — identity, location, device, service, workload), Use least privilege access (limit user access with just-in-time and just-enough-access), and Assume breach (minimise blast radius; segment access; verify end-to-end encryption). Replaces the outdated \"trusted network perimeter\" model.",
+      "hint": "Never trust, always verify — from every user, every device, every time.",
+      "tags": ["Security", "Zero Trust"]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Microsoft 365 Fundamentals (MS-900)",
+    "description": "10 foundational Microsoft 365 cloud service concepts for the MS-900 certification exam.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "ms900-001",
+      "term": "Microsoft 365 vs. Office 365",
+      "definition": "Office 365 is the original subscription suite of productivity apps (Word, Excel, PowerPoint, Outlook, Teams) plus cloud services. Microsoft 365 is a superset that adds Windows 11 Enterprise licenses, advanced security (Microsoft Defender, Intune MDM/MAM), and compliance tools. Microsoft 365 Business and Enterprise plans include everything in Office 365 plus device and identity management.",
+      "hint": "Microsoft 365 = Office 365 + Windows + enterprise security and management.",
+      "tags": ["Fundamentals", "Licensing"]
+    },
+    {
+      "id": "ms900-002",
+      "term": "Microsoft Teams",
+      "definition": "The hub for teamwork in Microsoft 365. Integrates chat, video meetings, file sharing (via SharePoint), and app integrations into one workspace. Teams are backed by Microsoft 365 Groups, which provision a SharePoint site, Exchange mailbox, and OneNote. Channels organise conversations by topic. Used for remote collaboration, meetings, webinars, and phone calls (Teams Phone add-on).",
+      "hint": "Chat + meetings + files + apps — all in one place for your team.",
+      "tags": ["Collaboration", "Apps"]
+    },
+    {
+      "id": "ms900-003",
+      "term": "SharePoint Online",
+      "definition": "Microsoft's cloud-based content management and collaboration platform. Used to create intranet sites, store and share documents, and build team sites and communication sites. Deeply integrated with Teams (each team gets a SharePoint site), OneDrive (personal libraries), and Power Automate. Offers document libraries, lists, and rich web-part-based pages.",
+      "hint": "The intranet and document management backbone of Microsoft 365.",
+      "tags": ["Collaboration", "Apps"]
+    },
+    {
+      "id": "ms900-004",
+      "term": "Microsoft Entra ID (Azure AD) in Microsoft 365",
+      "definition": "Every Microsoft 365 tenant is backed by a Microsoft Entra ID (formerly Azure Active Directory) tenant for identity and access management. It authenticates all users, enforces Multi-Factor Authentication (MFA), Conditional Access policies, and Single Sign-On (SSO) across all Microsoft 365 services and connected third-party SaaS apps. User, group, and licence management all flow through Entra ID.",
+      "hint": "The identity backbone of every Microsoft 365 organisation.",
+      "tags": ["Identity", "Security"]
+    },
+    {
+      "id": "ms900-005",
+      "term": "Microsoft Intune",
+      "definition": "A cloud-based Mobile Device Management (MDM) and Mobile Application Management (MAM) service included in Microsoft 365. Allows IT to enrol and manage Windows, iOS, Android, and macOS devices, enforce compliance policies (PIN, encryption), push apps, and wipe devices remotely. Part of Microsoft Endpoint Manager along with Configuration Manager.",
+      "hint": "The IT control panel for managing every device and app in your organisation from the cloud.",
+      "tags": ["Security", "Device Management"]
+    },
+    {
+      "id": "ms900-006",
+      "term": "Microsoft 365 Compliance Centre",
+      "definition": "A unified portal for managing data governance, risk, and compliance across Microsoft 365. Key features: Sensitivity Labels (classify and protect documents/emails), Retention Policies (keep or delete content per regulatory requirements), eDiscovery (legal hold and search), Data Loss Prevention (DLP) policies, and Communication Compliance. Helps meet GDPR, HIPAA, and other regulatory requirements.",
+      "hint": "The admin hub for classifying, protecting, and governing your organisation's data.",
+      "tags": ["Compliance", "Security"]
+    },
+    {
+      "id": "ms900-007",
+      "term": "Microsoft 365 Licensing Tiers",
+      "definition": "Business plans (up to 300 users): Business Basic (web apps + Teams), Business Standard (desktop apps + Teams), Business Premium (adds Intune, Defender). Enterprise plans (unlimited users): F1/F3 (Firstline Workers), E3 (full desktop + compliance), E5 (adds advanced security, analytics, voice). Add-ons include Microsoft Copilot, Teams Phone, and Microsoft Defender for Endpoint.",
+      "hint": "Business = SMB (≤300 users). Enterprise = large organisations. E5 = the premium everything bundle.",
+      "tags": ["Licensing", "Fundamentals"]
+    },
+    {
+      "id": "ms900-008",
+      "term": "Microsoft Defender for Microsoft 365",
+      "definition": "A suite of cloud-based security services protecting Microsoft 365 workloads. Microsoft Defender for Office 365 protects email and collaboration (anti-phishing, safe links, safe attachments). Microsoft Defender for Endpoint secures Windows/macOS/Linux devices. Microsoft Defender for Identity protects on-premises Active Directory. Microsoft Defender XDR correlates signals across all these for unified incident investigation.",
+      "hint": "The security layer guarding your Microsoft 365 email, devices, and identities from attacks.",
+      "tags": ["Security", "Defender"]
+    },
+    {
+      "id": "ms900-009",
+      "term": "OneDrive for Business",
+      "definition": "Each Microsoft 365 user gets 1 TB (or more) of cloud storage through OneDrive for Business, backed by SharePoint infrastructure. Files sync to Windows/macOS for offline access. Users can share files internally or externally with configurable permissions. Known Folder Move (KFM) automatically backs up Desktop, Documents, and Pictures. Different from personal OneDrive (consumer).",
+      "hint": "Your personal cloud drive in Microsoft 365 — synced, backed up, and shareable.",
+      "tags": ["Storage", "Apps"]
+    },
+    {
+      "id": "ms900-010",
+      "term": "Microsoft 365 Service Health and SLA",
+      "definition": "Microsoft guarantees 99.9% uptime SLA for Microsoft 365 (financially backed). Service health is monitored in the Microsoft 365 Admin Centre → Service Health dashboard, showing active incidents, advisories, and history. The Microsoft Service Trust Portal provides compliance documentation, audit reports, and data protection information for regulatory due diligence.",
+      "hint": "99.9% uptime promise, with a live health dashboard so you always know the service status.",
+      "tags": ["Availability", "Fundamentals"]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Microsoft Dynamics 365 Fundamentals CRM (MB-910)",
+    "description": "10 foundational Dynamics 365 customer engagement and CRM concepts for the MB-910 certification exam.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "mb910-001",
+      "term": "Dynamics 365 Customer Engagement Apps",
+      "definition": "The CRM-focused Dynamics 365 applications that manage customer-facing processes: Sales (opportunity management), Customer Service (case management), Field Service (technician scheduling), Marketing (campaign orchestration), and Customer Insights (data unification). All share a common Dataverse data platform, enabling data to flow seamlessly between apps across the customer journey.",
+      "hint": "The apps that handle everything about managing and serving your customers.",
+      "tags": ["Fundamentals", "CRM"]
+    },
+    {
+      "id": "mb910-002",
+      "term": "Dynamics 365 Sales",
+      "definition": "A CRM application that manages the end-to-end sales process: Leads (unqualified prospects) → Opportunities (qualified deals in progress) → Quotes → Orders → Invoices. Features include a sales pipeline view, activity tracking (calls, emails, meetings), AI-powered sales insights (relationship health, next best action), and integration with Outlook and Teams for seller productivity.",
+      "hint": "Lead → Opportunity → Quote → Order → Invoice — the full sales funnel in one app.",
+      "tags": ["Sales", "CRM"]
+    },
+    {
+      "id": "mb910-003",
+      "term": "Dynamics 365 Customer Service",
+      "definition": "A CRM application for managing post-sale support. Core concepts: Cases (customer issues), Queues (workload routing), Knowledge Base Articles (self-service and agent reference), Entitlements (SLA-based support agreements), and SLAs (response and resolution time targets). Omnichannel for Customer Service adds chat, social, SMS, and Teams channels to the same unified agent workspace.",
+      "hint": "The system that tracks every customer complaint, question, or request from open to resolved.",
+      "tags": ["Customer Service", "CRM"]
+    },
+    {
+      "id": "mb910-004",
+      "term": "Dynamics 365 Field Service",
+      "definition": "An application for managing on-site service and technician dispatch. Key features: Work Orders (service tasks to be performed), Bookable Resources (technicians with defined skills and territories), the Schedule Board (visual drag-and-drop dispatcher), and Resource Scheduling Optimisation (AI auto-scheduling to minimise travel). Used by utilities, telecoms, and HVAC companies for field workforce management.",
+      "hint": "Schedule the right technician with the right skills to the right job at the right time.",
+      "tags": ["Field Service", "CRM"]
+    },
+    {
+      "id": "mb910-005",
+      "term": "Dynamics 365 Marketing / Customer Insights – Journeys",
+      "definition": "A marketing automation application for designing and orchestrating multi-channel customer journeys. Features: Customer Segments (audience groups), Email/SMS/push campaigns, Lead Scoring (ranking prospects by engagement), Marketing Forms and Landing Pages, and real-time trigger-based journeys (e.g., send a welcome email when a form is submitted). Now rebranded as Customer Insights – Journeys.",
+      "hint": "Build automated marketing campaigns that react to customer behaviour across email, SMS, and web.",
+      "tags": ["Marketing", "CRM"]
+    },
+    {
+      "id": "mb910-006",
+      "term": "Microsoft Dataverse in Dynamics 365",
+      "definition": "Dataverse is the shared data platform underlying all Dynamics 365 Customer Engagement apps. Business data (accounts, contacts, leads) is stored in standard or custom tables accessible to all connected apps. Business rules, calculated columns, and plug-ins enforce logic at the data layer. Dataverse security uses Roles, Teams, and Business Units to control row- and column-level access.",
+      "hint": "The shared database that stores all CRM records so every Dynamics app can access the same data.",
+      "tags": ["Dataverse", "Platform"]
+    },
+    {
+      "id": "mb910-007",
+      "term": "Accounts, Contacts, and Leads",
+      "definition": "Core CRM data entities: Account = a company or organisation you do business with. Contact = an individual person, usually associated with an Account. Lead = an unqualified prospect (person or company that has shown interest but is not yet a confirmed customer). When a Lead is qualified, it is converted into an Account, Contact, and Opportunity — beginning the formal sales process.",
+      "hint": "Lead = uncertain prospect. Account = company. Contact = person at that company.",
+      "tags": ["CRM", "Data Model"]
+    },
+    {
+      "id": "mb910-008",
+      "term": "Dynamics 365 Customer Insights – Data",
+      "definition": "A customer data platform (CDP) that unifies customer data from multiple sources (CRM, e-commerce, loyalty, marketing) into a single 360° customer profile. Uses AI to deduplicate records, identify customer segments, and predict churn, lifetime value, and next best action. Enriched profiles and segments flow back into Dynamics 365 apps and Power Platform to personalise engagement.",
+      "hint": "Merge data from every system to build one complete picture of each customer.",
+      "tags": ["CDP", "AI"]
+    },
+    {
+      "id": "mb910-009",
+      "term": "Copilot in Dynamics 365 Customer Engagement",
+      "definition": "Microsoft Copilot is embedded across Dynamics 365 apps to boost seller and agent productivity using generative AI. Examples: Sales Copilot drafts personalised email replies and call summaries from CRM context; Customer Service Copilot drafts case responses using knowledge base articles; Field Service Copilot summarises work order history. Copilot uses Azure OpenAI grounded in your Dataverse data.",
+      "hint": "An AI assistant built into every Dynamics 365 app that drafts, summarises, and recommends.",
+      "tags": ["AI", "Copilot"]
+    },
+    {
+      "id": "mb910-010",
+      "term": "Dynamics 365 and Power Platform Integration",
+      "definition": "Dynamics 365 Customer Engagement apps are built on Power Platform: Model-driven Apps = the UI framework, Dataverse = the data store, Power Automate = workflow automation, Power BI = analytics dashboards embedded in app views, and Copilot Studio = custom chatbots for customer or agent self-service. This integration means no-code extensions to Dynamics 365 are built with the same Power Platform tools.",
+      "hint": "Dynamics 365 is essentially a set of Power Platform apps with pre-built CRM logic.",
+      "tags": ["Platform", "Integration"]
+    }
+  ]
+}

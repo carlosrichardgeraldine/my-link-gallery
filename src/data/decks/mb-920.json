@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Microsoft Dynamics 365 Fundamentals ERP (MB-920)",
+    "description": "10 foundational Dynamics 365 finance and operations ERP concepts for the MB-920 certification exam.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "mb920-001",
+      "term": "Dynamics 365 Finance and Operations Apps",
+      "definition": "The ERP-focused Dynamics 365 applications that manage back-office business processes: Finance (general ledger, financial reporting), Supply Chain Management (procurement, inventory, warehousing, manufacturing), Commerce (retail and e-commerce), Human Resources (workforce management), and Project Operations (project-based billing). All share a common Dataverse infrastructure and Azure cloud platform.",
+      "hint": "The apps that run the financial and operational backbone of a business.",
+      "tags": ["Fundamentals", "ERP"]
+    },
+    {
+      "id": "mb920-002",
+      "term": "Dynamics 365 Finance",
+      "definition": "An ERP application for managing financial operations: General Ledger (chart of accounts, journal entries, financial periods), Accounts Payable (vendor invoices, payment runs), Accounts Receivable (customer invoices, collections), Cash and Bank Management, Budgeting, and Financial Reporting. Supports multiple legal entities, currencies, and fiscal years for multinational organisations.",
+      "hint": "The digital finance department — tracking every penny in, out, owed, and owned.",
+      "tags": ["Finance", "ERP"]
+    },
+    {
+      "id": "mb920-003",
+      "term": "Dynamics 365 Supply Chain Management",
+      "definition": "An ERP application managing the flow of goods from procurement to delivery: Purchase Orders (buying from vendors), Sales Orders (selling to customers), Inventory Management (stock levels, item tracking), Warehouse Management (location, pick/pack/ship), Production Control (manufacturing orders and BOMs), and Master Planning (demand and supply balancing). Provides end-to-end visibility of the supply chain.",
+      "hint": "Everything from ordering raw materials to shipping the finished product to the customer.",
+      "tags": ["Supply Chain", "ERP"]
+    },
+    {
+      "id": "mb920-004",
+      "term": "Dynamics 365 Commerce",
+      "definition": "An omnichannel retail and e-commerce solution. Manages in-store Point of Sale (POS), e-commerce websites, call centres, and back-office retail operations in one platform. Features: product catalogues, pricing and promotions, loyalty programmes, and customer order management. Channels (physical stores, online stores, call centres) share a central product and customer database.",
+      "hint": "Run a unified retail business across physical stores, websites, and call centres from one system.",
+      "tags": ["Commerce", "Retail"]
+    },
+    {
+      "id": "mb920-005",
+      "term": "Dynamics 365 Human Resources",
+      "definition": "An ERP application for managing the employee lifecycle: Recruitment (job requisitions, applicant tracking), Onboarding, Employee records (positions, compensation, benefits), Leave and Absence management, Performance management, and Learning. Integrates with LinkedIn Talent Solutions and Microsoft Viva for talent acquisition and employee experience. Supports Dataverse for data sharing with other Dynamics 365 apps.",
+      "hint": "The system that manages employees from hiring to retiring.",
+      "tags": ["Human Resources", "ERP"]
+    },
+    {
+      "id": "mb920-006",
+      "term": "Dynamics 365 Project Operations",
+      "definition": "An application for managing project-based businesses: estimating and winning deals (opportunity management), planning projects (work breakdown structures, resource assignments), tracking time and expenses, managing subcontracts, and invoicing customers based on milestones or actuals. Bridges the gap between CRM (Dynamics 365 Sales) and ERP (Finance) for professional services firms.",
+      "hint": "Win the project, staff it, track time and costs, then bill the client — all in one app.",
+      "tags": ["Project Operations", "ERP"]
+    },
+    {
+      "id": "mb920-007",
+      "term": "Legal Entities and Organisational Hierarchy",
+      "definition": "In Dynamics 365 Finance and Operations, a Legal Entity (also called Company) is the primary organisational unit — each with its own chart of accounts, fiscal calendar, and regulatory reporting. Operating Units (business units, cost centres, departments) represent internal divisions within a legal entity. Intercompany transactions enable financial postings between legal entities for consolidated reporting.",
+      "hint": "Legal Entity = a company with its own financials. Operating Unit = a division within that company.",
+      "tags": ["Finance", "Data Model"]
+    },
+    {
+      "id": "mb920-008",
+      "term": "Dual-Write and Dataverse Integration",
+      "definition": "Dual-Write is a real-time bidirectional synchronisation mechanism between Dynamics 365 Finance and Operations apps and Dataverse. It enables data (customers, vendors, products) to stay in sync across both platforms, allowing Power Platform apps and Customer Engagement apps to access Finance and Operations data. Without Dual-Write, Finance and Operations runs on its own separate database.",
+      "hint": "The live sync bridge that keeps Finance & Operations data consistent with Dataverse.",
+      "tags": ["Platform", "Integration"]
+    },
+    {
+      "id": "mb920-009",
+      "term": "Copilot in Dynamics 365 Finance and Operations",
+      "definition": "Generative AI Copilot capabilities embedded in Finance and Operations apps to improve productivity: Finance Copilot can summarise and explain journal entries, suggest cash flow improvements, and draft collection emails. Supply Chain Copilot predicts supply disruptions and recommends mitigation. Project Operations Copilot drafts project status reports. Grounded in your live ERP data via Azure OpenAI.",
+      "hint": "An AI assistant that reads your ERP data and helps you understand, summarise, and act faster.",
+      "tags": ["AI", "Copilot"]
+    },
+    {
+      "id": "mb920-010",
+      "term": "Lifecycle Services (LCS) and Deployment",
+      "definition": "Microsoft Dynamics Lifecycle Services (LCS) is the project management and collaboration portal for implementing and managing Dynamics 365 Finance and Operations apps. It hosts: environment provisioning (sandbox and production), code deployment pipelines, issue tracking (BPM), and diagnostic tools. Production environments are hosted on Microsoft-managed Azure infrastructure with defined service levels and maintenance windows.",
+      "hint": "The control panel IT teams use to deploy, manage, and monitor Finance and Operations environments.",
+      "tags": ["Platform", "Administration"]
+    }
+  ]
+}

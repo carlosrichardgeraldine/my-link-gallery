@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "version": "1.0",
+    "name": "Microsoft Power Platform Fundamentals (PL-900)",
+    "description": "10 foundational Microsoft Power Platform concepts for the PL-900 certification exam.",
+    "createdAt": "2026-04-13"
+  },
+  "cards": [
+    {
+      "id": "pl900-001",
+      "term": "Microsoft Power Platform Overview",
+      "definition": "Power Platform is a suite of low-code/no-code tools for building business solutions: Power Apps (custom apps), Power Automate (workflow automation), Power BI (data analytics and visualisation), Power Pages (external-facing websites), and Copilot Studio (AI chatbots). All tools share Microsoft Dataverse as a common data store and integrate natively with Microsoft 365 and Dynamics 365.",
+      "hint": "Apps + Automation + Analytics + Websites + Chatbots — all low-code, all connected.",
+      "tags": ["Fundamentals", "Power Platform"]
+    },
+    {
+      "id": "pl900-002",
+      "term": "Power Apps",
+      "definition": "A low-code environment for building custom business applications without deep programming knowledge. Canvas Apps give full UI control — you design each screen by dragging and dropping. Model-driven Apps are data-first — built on Dataverse tables with auto-generated UI. Power Apps can connect to hundreds of data sources via connectors and run on web, iOS, and Android.",
+      "hint": "Canvas = blank canvas, you design everything. Model-driven = Dataverse tables drive the UI.",
+      "tags": ["Power Apps", "Low-Code"]
+    },
+    {
+      "id": "pl900-003",
+      "term": "Power Automate",
+      "definition": "A workflow automation service that connects apps and services to automate repetitive tasks. Flows are triggered by events (new email, form submission, schedule) and run actions (send notification, create record, approve). Flow types: Cloud flows (automated, instant, scheduled), Desktop flows (robotic process automation — RPA for legacy systems), and Business process flows (guide users through multi-step processes).",
+      "hint": "If this happens → do that. Automate approvals, notifications, and data movement between apps.",
+      "tags": ["Power Automate", "Automation"]
+    },
+    {
+      "id": "pl900-004",
+      "term": "Power BI",
+      "definition": "Microsoft's self-service business intelligence tool for creating interactive reports and dashboards. Data is loaded and transformed using Power Query (M language), modelled with DAX (Data Analysis Expressions) measures, and visualised with charts, maps, and tables. Reports are published to the Power BI Service for sharing. Power BI Desktop = authoring; Power BI Service = cloud sharing; Power BI Mobile = on the go.",
+      "hint": "Connect data → model it → visualise it → share it. All self-service, no SQL needed.",
+      "tags": ["Power BI", "Analytics"]
+    },
+    {
+      "id": "pl900-005",
+      "term": "Microsoft Dataverse",
+      "definition": "A cloud-based, low-code data platform that provides secure, scalable storage for business data used by Power Platform apps. Data is organised into tables (like database tables) with columns, relationships, and built-in business logic (business rules, calculated columns, rollups). Includes out-of-the-box tables for common business data. All Model-driven Apps and Copilot Studio bots are built on Dataverse.",
+      "hint": "The shared, secure database that all Power Platform tools can store and read data from.",
+      "tags": ["Dataverse", "Data"]
+    },
+    {
+      "id": "pl900-006",
+      "term": "Connectors and the Connector Library",
+      "definition": "Connectors are pre-built bridges between Power Platform and external services (Microsoft 365, SharePoint, Dynamics 365, Salesforce, Twitter, SQL Server, etc.). Standard connectors are included in most licences. Premium connectors (e.g., Salesforce, SQL Server, HTTP) require a higher licence tier. Custom connectors can be built for any REST API. Data Gateway enables connectors to reach on-premises data sources.",
+      "hint": "Plug-in adapters that let Power Platform talk to over 1,000 different apps and services.",
+      "tags": ["Connectors", "Integration"]
+    },
+    {
+      "id": "pl900-007",
+      "term": "Power Pages",
+      "definition": "A low-code platform for building secure, data-driven external-facing websites accessible by anonymous or authenticated external users (customers, partners, community members). Built on Dataverse — pages display and collect Dataverse data. Previously called Power Apps Portals. Includes built-in templates, liquid templating language, and role-based access control for external users.",
+      "hint": "Build a public-facing website connected to your Dataverse data, without writing web code.",
+      "tags": ["Power Pages", "Low-Code"]
+    },
+    {
+      "id": "pl900-008",
+      "term": "Copilot Studio (formerly Power Virtual Agents)",
+      "definition": "A low-code platform for building AI-powered chatbots (copilots) without writing code. Bots are built with topics (conversation branches triggered by user intents), actions (Power Automate flows for data operations), and entities (data extraction from user messages). Bots can be published to Teams, websites, and other channels. Generative AI answers powered by Azure OpenAI can be added with minimal configuration.",
+      "hint": "Build a smart chatbot by drawing conversation branches — no coding required.",
+      "tags": ["Copilot Studio", "AI"]
+    },
+    {
+      "id": "pl900-009",
+      "term": "Power Platform Environments",
+      "definition": "An environment is a space to store, manage, and share your Power Platform apps, flows, and Dataverse data. Every organisation has a default environment. Additional environments (Development, Test, Production) are used for application lifecycle management (ALM). Environments can be restricted to specific regions and have their own security roles and data policies (DLP policies).",
+      "hint": "Separate containers for Dev, Test, and Production — each with its own apps and data.",
+      "tags": ["Administration", "Power Platform"]
+    },
+    {
+      "id": "pl900-010",
+      "term": "Data Loss Prevention (DLP) Policies in Power Platform",
+      "definition": "DLP policies in Power Platform control which connectors can be used together in a single flow or app, preventing sensitive business data from being shared with external services unintentionally. Connectors are classified as Business (internal, trusted) or Non-Business (external, consumer). A DLP policy can prevent a Business connector (e.g., SharePoint) from mixing with a Non-Business connector (e.g., Twitter).",
+      "hint": "Rules that stop apps from accidentally sending SharePoint data to a personal Twitter account.",
+      "tags": ["Security", "Administration"]
+    }
+  ]
+}

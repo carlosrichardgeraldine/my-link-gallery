@@ -23,6 +23,62 @@
       "file": "az-900.json",
       "cardCount": 10,
       "tags": ["Azure", "Certification", "Fundamentals"]
+    },
+    {
+      "id": "ai-900",
+      "name": "Azure AI Fundamentals (AI-900)",
+      "description": "10 foundational Azure AI and machine learning concepts for the AI-900 certification — ML types, Cognitive Services, and Responsible AI.",
+      "file": "ai-900.json",
+      "cardCount": 10,
+      "tags": ["Azure", "AI", "Certification"]
+    },
+    {
+      "id": "dp-900",
+      "name": "Azure Data Fundamentals (DP-900)",
+      "description": "10 foundational Azure data and analytics concepts for the DP-900 certification — relational, NoSQL, ETL, streaming, and Power BI.",
+      "file": "dp-900.json",
+      "cardCount": 10,
+      "tags": ["Azure", "Data", "Certification"]
+    },
+    {
+      "id": "ms-900",
+      "name": "Microsoft 365 Fundamentals (MS-900)",
+      "description": "10 foundational Microsoft 365 concepts for the MS-900 certification — Teams, SharePoint, Intune, Defender, and licensing.",
+      "file": "ms-900.json",
+      "cardCount": 10,
+      "tags": ["Microsoft 365", "Certification", "Fundamentals"]
+    },
+    {
+      "id": "sc-900",
+      "name": "Security, Compliance & Identity (SC-900)",
+      "description": "10 foundational Microsoft security, compliance, and identity concepts for the SC-900 certification — Zero Trust, Sentinel, Purview, and MFA.",
+      "file": "sc-900.json",
+      "cardCount": 10,
+      "tags": ["Security", "Certification", "Microsoft"]
+    },
+    {
+      "id": "pl-900",
+      "name": "Power Platform Fundamentals (PL-900)",
+      "description": "10 foundational Microsoft Power Platform concepts for the PL-900 certification — Power Apps, Power Automate, Power BI, and Dataverse.",
+      "file": "pl-900.json",
+      "cardCount": 10,
+      "tags": ["Power Platform", "Certification", "Low-Code"]
+    },
+    {
+      "id": "mb-910",
+      "name": "Dynamics 365 Fundamentals CRM (MB-910)",
+      "description": "10 foundational Dynamics 365 customer engagement and CRM concepts for the MB-910 certification — Sales, Service, Field Service, and Marketing.",
+      "file": "mb-910.json",
+      "cardCount": 10,
+      "tags": ["Dynamics 365", "CRM", "Certification"]
+    },
+    {
+      "id": "mb-920",
+      "name": "Dynamics 365 Fundamentals ERP (MB-920)",
+      "description": "10 foundational Dynamics 365 finance and operations ERP concepts for the MB-920 certification — Finance, Supply Chain, Commerce, and HR.",
+      "file": "mb-920.json",
+      "cardCount": 10,
+      "tags": ["Dynamics 365", "ERP", "Certification"]
     }
   ]
 }
