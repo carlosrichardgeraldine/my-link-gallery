@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0",
     "name": "Business Analysis Fundamentals (BABOK v3-aligned)",
-    "description": "Core business analysis concepts aligned with IIBA BABOK v3 — requirements, elicitation, modeling, strategy, stakeholders, and solution evaluation.",
+    "description": "Core business analysis concepts aligned with IIBA BABOK v3 - requirements, elicitation, modeling, strategy, stakeholders, and solution evaluation.",
     "createdAt": "2026-04-13"
   },
   "cards": [
@@ -107,7 +107,7 @@
     {
       "id": "baf-015",
       "term": "Solution Requirements",
-      "definition": "Capabilities and qualities the solution must have — functional and nonfunctional.",
+      "definition": "Capabilities and qualities the solution must have - functional and nonfunctional.",
       "hint": "What the solution must do.",
       "tags": ["Requirements"]
     },
@@ -1339,7 +1339,7 @@
     {
       "id": "baf-191",
       "term": "Negotiation BATNA",
-      "definition": "Best Alternative To a Negotiated Agreement — fallback option if negotiation fails.",
+      "definition": "Best Alternative To a Negotiated Agreement - fallback option if negotiation fails.",
       "hint": "Your backup plan.",
       "tags": ["Competencies"]
     },

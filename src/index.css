@@ -630,7 +630,7 @@
 /* ── Flashcard flip animation ──────────────────────────────────────────── */
 
 /*
- * The scene is a flex child — let it shrink/grow up to the max-width,
+ * The scene is a flex child - let it shrink/grow up to the max-width,
  * and use clamp() so the height tracks viewport width on mobile and caps
  * out on large screens. The aspect-ratio hint lets the browser do the
  * math; clamp() prevents the card from being too short on narrow phones

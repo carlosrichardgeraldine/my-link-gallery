@@ -54,8 +54,8 @@ function FlipCard({
       tabIndex={0}
       aria-label={
         flipped
-          ? "Card back — click to flip to front"
-          : "Card front — click to flip to back"
+          ? "Card back - click to flip to front"
+          : "Card front - click to flip to back"
       }
     >
       <div className={`flashcard${flipped ? " flashcard--flipped" : ""}`}>
@@ -204,7 +204,7 @@ function DeckPicker({
         </div>
       </div>
 
-      {/* Quick tag pills — 5 random tags per session */}
+      {/* Quick tag pills - 5 random tags per session */}
       <div className="mb-4 flex flex-wrap gap-2">
         {quickTags.map((tag) => {
           const active = selectedTags.includes(tag);
@@ -576,7 +576,7 @@ export default function FlashcardPage() {
               </h1>
               {isStudying && deck && (
                 <span className="hidden text-xs text-muted-foreground md:inline">
-                  — {deck.meta.name}
+                  - {deck.meta.name}
                 </span>
               )}
             </div>

@@ -24,7 +24,7 @@
       "id": "ai900-003",
       "term": "Computer Vision",
       "definition": "An AI capability that enables systems to interpret and understand visual information from images and videos. Azure Computer Vision can describe images, detect objects and faces, read text (OCR), and classify content. Azure Custom Vision lets you train your own image classifiers and object detectors with your own labelled images.",
-      "hint": "Teaching machines to see — identifying what's in an image.",
+      "hint": "Teaching machines to see - identifying what's in an image.",
       "tags": ["Computer Vision", "AI Services"]
     },
     {
@@ -51,35 +51,35 @@
     {
       "id": "ai900-007",
       "term": "Azure Machine Learning Studio",
-      "definition": "A web-based IDE within Azure Machine Learning for building ML workflows. Offers three authoring experiences: Automated ML (AutoML) — automatically tries algorithms and hyperparameters; Designer — drag-and-drop pipeline builder; and Notebooks — full Python/R coding environment. All three produce trained models that can be deployed as real-time or batch inference endpoints.",
+      "definition": "A web-based IDE within Azure Machine Learning for building ML workflows. Offers three authoring experiences: Automated ML (AutoML) - automatically tries algorithms and hyperparameters; Designer - drag-and-drop pipeline builder; and Notebooks - full Python/R coding environment. All three produce trained models that can be deployed as real-time or batch inference endpoints.",
       "hint": "The no-code, low-code, and pro-code workbench for ML in Azure.",
       "tags": ["Machine Learning", "Azure ML"]
     },
     {
       "id": "ai900-008",
       "term": "Anomaly Detection",
-      "definition": "An AI technique that identifies data points or patterns that deviate significantly from the expected norm. Azure Anomaly Detector API analyses time-series data (e.g., website traffic, sensor readings) and flags unexpected spikes, dips, or trend changes — without needing labelled examples of anomalies. Commonly used for fraud detection, predictive maintenance, and monitoring.",
+      "definition": "An AI technique that identifies data points or patterns that deviate significantly from the expected norm. Azure Anomaly Detector API analyses time-series data (e.g., website traffic, sensor readings) and flags unexpected spikes, dips, or trend changes - without needing labelled examples of anomalies. Commonly used for fraud detection, predictive maintenance, and monitoring.",
       "hint": "Teaching the system to spot the odd one out in a stream of data over time.",
       "tags": ["Machine Learning", "AI Services"]
     },
     {
       "id": "ai900-009",
       "term": "Azure OpenAI Service",
-      "definition": "A managed Azure service providing access to OpenAI's powerful language and image models — including GPT-4, GPT-3.5, Codex, and DALL-E — with enterprise-grade security, compliance, and regional data residency. Enables developers to build generative AI applications (copilots, content generation, code assistants) while keeping data within Azure's compliance boundary.",
+      "definition": "A managed Azure service providing access to OpenAI's powerful language and image models - including GPT-4, GPT-3.5, Codex, and DALL-E - with enterprise-grade security, compliance, and regional data residency. Enables developers to build generative AI applications (copilots, content generation, code assistants) while keeping data within Azure's compliance boundary.",
       "hint": "OpenAI's GPT and DALL-E models, but secured and hosted inside Azure.",
       "tags": ["Generative AI", "AI Services"]
     },
     {
       "id": "ai900-010",
       "term": "Regression vs. Classification vs. Clustering",
-      "definition": "Three fundamental ML task types: Regression predicts a continuous numeric value (e.g., house price, temperature). Classification assigns input to a discrete category (e.g., spam/not spam, disease/no disease). Clustering groups unlabelled data into natural segments based on similarity — no predefined labels needed. Regression and Classification are supervised; Clustering is unsupervised.",
+      "definition": "Three fundamental ML task types: Regression predicts a continuous numeric value (e.g., house price, temperature). Classification assigns input to a discrete category (e.g., spam/not spam, disease/no disease). Clustering groups unlabelled data into natural segments based on similarity - no predefined labels needed. Regression and Classification are supervised; Clustering is unsupervised.",
       "hint": "Regression = a number. Classification = a category. Clustering = find groups on your own.",
       "tags": ["Machine Learning", "Fundamentals"]
     },
     {
       "id": "ai900-011",
       "term": "Supervised Learning",
-      "definition": "A machine learning approach where models learn from labelled data — meaning each training example includes both input features and the correct output. Common tasks include classification and regression. Azure Machine Learning supports supervised learning through AutoML, Designer modules, and custom training scripts.",
+      "definition": "A machine learning approach where models learn from labelled data - meaning each training example includes both input features and the correct output. Common tasks include classification and regression. Azure Machine Learning supports supervised learning through AutoML, Designer modules, and custom training scripts.",
       "hint": "Learning with the answer key provided.",
       "tags": ["Machine Learning", "Supervised Learning"]
     },
@@ -157,7 +157,7 @@
       "id": "ai900-022",
       "term": "Azure AI Speech",
       "definition": "A suite of speech capabilities including speech-to-text, text-to-speech, speech translation, and speaker recognition. Supports custom voice models and real-time streaming. Useful for voice assistants and transcription scenarios.",
-      "hint": "Turning spoken words into text — and back again.",
+      "hint": "Turning spoken words into text - and back again.",
       "tags": ["Speech", "Cognitive Services"]
     },
     {

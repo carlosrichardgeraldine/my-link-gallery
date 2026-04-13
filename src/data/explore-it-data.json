@@ -12,7 +12,7 @@
     "id": "backend-developer",
     "title": "Backend Developer",
     "summary": "Powers the server logic, databases, and APIs behind the scenes.",
-    "description": "Backend developers design and maintain the server-side systems that power applications — REST and GraphQL APIs, databases, authentication, and business logic. They ensure reliability, performance, and security at the data layer.",
+    "description": "Backend developers design and maintain the server-side systems that power applications - REST and GraphQL APIs, databases, authentication, and business logic. They ensure reliability, performance, and security at the data layer.",
     "tags": ["APIs", "Node.js", "Python", "Databases", "SQL"],
     "relatedRoles": ["frontend-developer", "full-stack-developer", "database-administrator", "devops-engineer"],
     "roadmapUrl": "https://roadmap.sh/backend"
@@ -21,7 +21,7 @@
     "id": "full-stack-developer",
     "title": "Full Stack Developer",
     "summary": "Handles both client and server sides of an application end-to-end.",
-    "description": "Full stack developers are comfortable across the entire technology stack — from designing database schemas and building APIs to crafting pixel-perfect UIs. They serve as versatile contributors in small teams and startups.",
+    "description": "Full stack developers are comfortable across the entire technology stack - from designing database schemas and building APIs to crafting pixel-perfect UIs. They serve as versatile contributors in small teams and startups.",
     "tags": ["Web", "JavaScript", "APIs", "Databases", "React"],
     "relatedRoles": ["frontend-developer", "backend-developer", "devops-engineer"],
     "roadmapUrl": "https://roadmap.sh/full-stack"
@@ -39,7 +39,7 @@
     "id": "cloud-architect",
     "title": "Cloud Architect",
     "summary": "Designs scalable, resilient infrastructure on cloud platforms.",
-    "description": "Cloud architects plan and oversee an organisation's cloud computing strategy — selecting services, designing network topology, enforcing security policies, and optimising costs across AWS, Azure, or GCP.",
+    "description": "Cloud architects plan and oversee an organisation's cloud computing strategy - selecting services, designing network topology, enforcing security policies, and optimising costs across AWS, Azure, or GCP.",
     "tags": ["AWS", "Azure", "GCP", "Networking", "Security"],
     "relatedRoles": ["devops-engineer", "site-reliability-engineer", "cybersecurity-analyst"],
     "roadmapUrl": "https://roadmap.sh/aws"
@@ -57,7 +57,7 @@
     "id": "machine-learning-engineer",
     "title": "Machine Learning Engineer",
     "summary": "Builds and deploys scalable ML models in production systems.",
-    "description": "ML engineers operationalise machine learning — turning research prototypes into reliable, efficient systems that serve predictions at scale. They bridge data science and software engineering, focusing on model serving, monitoring, and retraining pipelines.",
+    "description": "ML engineers operationalise machine learning - turning research prototypes into reliable, efficient systems that serve predictions at scale. They bridge data science and software engineering, focusing on model serving, monitoring, and retraining pipelines.",
     "tags": ["Python", "TensorFlow", "PyTorch", "MLOps", "APIs"],
     "relatedRoles": ["data-scientist", "ai-engineer", "backend-developer"],
     "roadmapUrl": "https://roadmap.sh/mlops"
@@ -120,7 +120,7 @@
     "id": "site-reliability-engineer",
     "title": "Site Reliability Engineer",
     "summary": "Keeps large-scale production systems available and performant.",
-    "description": "SREs apply software engineering to operations — defining SLOs, building observability stacks, automating toil, and leading incident response. The role originated at Google and blends dev skills with ops discipline.",
+    "description": "SREs apply software engineering to operations - defining SLOs, building observability stacks, automating toil, and leading incident response. The role originated at Google and blends dev skills with ops discipline.",
     "tags": ["Observability", "Kubernetes", "Linux", "On-call", "Automation"],
     "relatedRoles": ["devops-engineer", "cloud-architect", "backend-developer"],
     "roadmapUrl": "https://roadmap.sh/sre"
@@ -183,7 +183,7 @@
     "id": "software-architect",
     "title": "Software Architect",
     "summary": "Defines the high-level structure and technical direction of systems.",
-    "description": "Software architects make high-impact decisions about system design — choosing patterns, frameworks, and integration strategies. They balance trade-offs between scalability, maintainability, security, and delivery speed.",
+    "description": "Software architects make high-impact decisions about system design - choosing patterns, frameworks, and integration strategies. They balance trade-offs between scalability, maintainability, security, and delivery speed.",
     "tags": ["System Design", "Patterns", "Microservices", "APIs", "Leadership"],
     "relatedRoles": ["backend-developer", "cloud-architect", "site-reliability-engineer", "devops-engineer"],
     "roadmapUrl": "https://roadmap.sh/software-architect"

@@ -79,7 +79,7 @@ const AppNav = () => {
                 return (
                   <div
                     key={item.label}
-                    title={`${item.label} — coming soon`}
+                    title={`${item.label} - coming soon`}
                     aria-label={`${item.label}, coming soon`}
                     className="flex cursor-not-allowed flex-col items-center gap-1 rounded-xl p-2 text-center opacity-35 select-none"
                   >

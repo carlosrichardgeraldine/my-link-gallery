@@ -9,27 +9,27 @@
     {
       "id": "cc-001",
       "term": "Cloud Computing",
-      "definition": "The delivery of computing services—including servers, storage, databases, networking, software, and analytics—over the internet (\"the cloud\") to offer faster innovation, flexible resources, and economies of scale.",
+      "definition": "The delivery of computing services-including servers, storage, databases, networking, software, and analytics-over the internet (\"the cloud\") to offer faster innovation, flexible resources, and economies of scale.",
       "hint": "Think of renting compute power instead of buying hardware.",
       "tags": ["Fundamentals"]
     },
     {
       "id": "cc-002",
-      "term": "IaaS — Infrastructure as a Service",
+      "term": "IaaS - Infrastructure as a Service",
       "definition": "A cloud service model that provides virtualized computing infrastructure over the internet. Users rent virtual machines, storage, and networking instead of owning physical hardware. Examples: AWS EC2, Azure VMs, Google Compute Engine.",
       "hint": "You manage OS and up; the provider manages the hardware.",
       "tags": ["Service Models", "Fundamentals"]
     },
     {
       "id": "cc-003",
-      "term": "PaaS — Platform as a Service",
+      "term": "PaaS - Platform as a Service",
       "definition": "A cloud service model that provides a managed platform for developing, running, and managing applications without dealing with the underlying infrastructure. Examples: Heroku, Google App Engine, Azure App Service.",
       "hint": "You manage your app and data; the provider manages everything below.",
       "tags": ["Service Models", "Fundamentals"]
     },
     {
       "id": "cc-004",
-      "term": "SaaS — Software as a Service",
+      "term": "SaaS - Software as a Service",
       "definition": "A cloud service model where software is delivered over the internet on a subscription basis. Users access the application via a browser without installing or managing anything. Examples: Gmail, Salesforce, Microsoft 365.",
       "hint": "You just use the software; the provider manages everything.",
       "tags": ["Service Models", "Fundamentals"]
@@ -45,7 +45,7 @@
       "id": "cc-006",
       "term": "Container",
       "definition": "A lightweight, standalone, executable package that includes everything needed to run a piece of software: code, runtime, libraries, and settings. Containers share the host OS kernel, making them more efficient than full VMs. Docker is the most popular runtime.",
-      "hint": "Like a VM but sharing the OS kernel — much lighter.",
+      "hint": "Like a VM but sharing the OS kernel - much lighter.",
       "tags": ["Infrastructure", "DevOps"]
     },
     {
@@ -59,7 +59,7 @@
       "id": "cc-008",
       "term": "Serverless Computing",
       "definition": "A cloud execution model where the cloud provider dynamically manages server allocation and provisioning. Developers deploy code (functions) that run in response to events. Billing is based on actual execution time. Examples: AWS Lambda, Azure Functions, Google Cloud Functions.",
-      "hint": "Servers still exist — you just don't manage them.",
+      "hint": "Servers still exist - you just don't manage them.",
       "tags": ["Service Models", "DevOps"]
     },
     {
@@ -78,14 +78,14 @@
     },
     {
       "id": "cc-011",
-      "term": "CDN — Content Delivery Network",
+      "term": "CDN - Content Delivery Network",
       "definition": "A geographically distributed network of proxy servers and data centers that delivers web content to users based on their location. By caching content closer to end users, a CDN reduces latency and improves load times. Examples: Cloudflare, AWS CloudFront, Akamai.",
       "hint": "Copies of your content, spread around the globe.",
       "tags": ["Networking", "Performance"]
     },
     {
       "id": "cc-012",
-      "term": "VPC — Virtual Private Cloud",
+      "term": "VPC - Virtual Private Cloud",
       "definition": "An isolated, logically defined section of a public cloud where users can launch resources in a virtual network they define. It provides control over IP address ranges, subnets, route tables, and network gateways, combining cloud scalability with private network security.",
       "hint": "Your own private island inside a public cloud.",
       "tags": ["Networking", "Security"]
@@ -113,7 +113,7 @@
     },
     {
       "id": "cc-016",
-      "term": "IAM — Identity and Access Management",
+      "term": "IAM - Identity and Access Management",
       "definition": "A framework of policies and technologies that ensures only authorized users and systems can access specific cloud resources. IAM controls authentication (who you are) and authorization (what you can do) through users, groups, roles, and policies. Examples: AWS IAM, Azure Active Directory.",
       "hint": "The gatekeeper that decides who can do what in your cloud.",
       "tags": ["Security", "Fundamentals"]
@@ -136,26 +136,26 @@
       "id": "cc-019",
       "term": "Zero Trust Security",
       "definition": "A security model based on the principle \"never trust, always verify.\" No user or device is trusted by default, even inside the corporate network. Every access request is authenticated, authorized, and continuously validated regardless of origin.",
-      "hint": "Assume the network is always hostile — verify everything, every time.",
+      "hint": "Assume the network is always hostile - verify everything, every time.",
       "tags": ["Security"]
     },
     {
       "id": "cc-020",
-      "term": "DDoS — Distributed Denial of Service",
+      "term": "DDoS - Distributed Denial of Service",
       "definition": "A cyberattack where many compromised systems (a botnet) flood a target server or network with traffic, exhausting its resources and making it unavailable to legitimate users. Cloud providers offer DDoS protection services such as AWS Shield and Azure DDoS Protection.",
       "hint": "Millions of fake requests sent to overwhelm a real service.",
       "tags": ["Security", "Networking"]
     },
     {
       "id": "cc-021",
-      "term": "WAF — Web Application Firewall",
+      "term": "WAF - Web Application Firewall",
       "definition": "A security layer that monitors, filters, and blocks HTTP/HTTPS traffic to and from a web application. It protects against common web exploits such as SQL injection, cross-site scripting (XSS), and OWASP Top 10 vulnerabilities. Examples: AWS WAF, Cloudflare WAF.",
       "hint": "A bodyguard specifically for your web application's front door.",
       "tags": ["Security", "Networking"]
     },
     {
       "id": "cc-022",
-      "term": "CI/CD — Continuous Integration / Continuous Delivery",
+      "term": "CI/CD - Continuous Integration / Continuous Delivery",
       "definition": "A set of practices and tools that automate the building, testing, and deployment of software. CI merges code changes frequently and runs automated tests. CD automatically delivers tested code to staging or production. Examples: GitHub Actions, GitLab CI, Jenkins, CircleCI.",
       "hint": "Code goes from a developer's laptop to production automatically and safely.",
       "tags": ["DevOps"]
@@ -170,7 +170,7 @@
     {
       "id": "cc-024",
       "term": "Managed Database Service",
-      "definition": "A cloud offering where the provider handles all database administration tasks — provisioning, patching, backups, replication, and failover — leaving developers to focus only on their data and queries. Examples: AWS RDS, Azure SQL Database, Google Cloud SQL.",
+      "definition": "A cloud offering where the provider handles all database administration tasks - provisioning, patching, backups, replication, and failover - leaving developers to focus only on their data and queries. Examples: AWS RDS, Azure SQL Database, Google Cloud SQL.",
       "hint": "A database you use but don't have to babysit.",
       "tags": ["Databases", "Service Models"]
     },
@@ -220,7 +220,7 @@
       "id": "cc-031",
       "term": "Observability",
       "definition": "The ability to understand the internal state of a system by examining its external outputs. Built on three pillars: Metrics (numerical measurements over time), Logs (timestamped event records), and Traces (end-to-end request journeys across services). Examples: Datadog, Grafana + Prometheus, AWS CloudWatch.",
-      "hint": "If you can measure it, you can understand it — and fix it.",
+      "hint": "If you can measure it, you can understand it - and fix it.",
       "tags": ["Observability", "DevOps"]
     },
     {
@@ -247,7 +247,7 @@
     {
       "id": "cc-035",
       "term": "RTO and RPO",
-      "definition": "RTO (Recovery Time Objective): the maximum acceptable time to restore a service after a failure. RPO (Recovery Point Objective): the maximum acceptable amount of data loss measured in time — i.e., how far back in time your recovery point can be. Together they define the disaster recovery strategy.",
+      "definition": "RTO (Recovery Time Objective): the maximum acceptable time to restore a service after a failure. RPO (Recovery Point Objective): the maximum acceptable amount of data loss measured in time - i.e., how far back in time your recovery point can be. Together they define the disaster recovery strategy.",
       "hint": "RTO = how fast you recover; RPO = how much data you can afford to lose.",
       "tags": ["Availability", "Architecture"]
     },
@@ -275,7 +275,7 @@
     {
       "id": "cc-039",
       "term": "CapEx vs OpEx",
-      "definition": "CapEx (Capital Expenditure): upfront investment in physical infrastructure (servers, data centers) that is depreciated over time — the traditional on-premises model. OpEx (Operational Expenditure): ongoing pay-as-you-go expenses — the cloud model. Cloud computing shifts IT spending from CapEx to OpEx.",
+      "definition": "CapEx (Capital Expenditure): upfront investment in physical infrastructure (servers, data centers) that is depreciated over time - the traditional on-premises model. OpEx (Operational Expenditure): ongoing pay-as-you-go expenses - the cloud model. Cloud computing shifts IT spending from CapEx to OpEx.",
       "hint": "CapEx = buy the restaurant; OpEx = pay for every meal you eat.",
       "tags": ["Cost Optimization", "Fundamentals"]
     },
@@ -295,7 +295,7 @@
     },
     {
       "id": "cc-042",
-      "term": "DNS — Domain Name System",
+      "term": "DNS - Domain Name System",
       "definition": "The internet's distributed phonebook that translates human-readable domain names (e.g., google.com) into IP addresses that computers use to communicate. A DNS query travels through resolvers, root name servers, TLD servers, and authoritative name servers to find the answer.",
       "hint": "Turns website names into numbers computers can actually use.",
       "tags": ["Networking", "Fundamentals"]

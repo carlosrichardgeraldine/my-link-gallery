@@ -17,7 +17,7 @@
       "id": "mb920-002",
       "term": "Dynamics 365 Finance",
       "definition": "An ERP application for managing financial operations: General Ledger (chart of accounts, journal entries, financial periods), Accounts Payable (vendor invoices, payment runs), Accounts Receivable (customer invoices, collections), Cash and Bank Management, Budgeting, and Financial Reporting. Supports multiple legal entities, currencies, and fiscal years for multinational organisations.",
-      "hint": "The digital finance department — tracking every penny in, out, owed, and owned.",
+      "hint": "The digital finance department - tracking every penny in, out, owed, and owned.",
       "tags": ["Finance", "ERP"]
     },
     {
@@ -45,13 +45,13 @@
       "id": "mb920-006",
       "term": "Dynamics 365 Project Operations",
       "definition": "An application for managing project-based businesses: estimating and winning deals (opportunity management), planning projects (work breakdown structures, resource assignments), tracking time and expenses, managing subcontracts, and invoicing customers based on milestones or actuals. Bridges the gap between CRM (Dynamics 365 Sales) and ERP (Finance) for professional services firms.",
-      "hint": "Win the project, staff it, track time and costs, then bill the client — all in one app.",
+      "hint": "Win the project, staff it, track time and costs, then bill the client - all in one app.",
       "tags": ["Project Operations", "ERP"]
     },
     {
       "id": "mb920-007",
       "term": "Legal Entities and Organisational Hierarchy",
-      "definition": "In Dynamics 365 Finance and Operations, a Legal Entity (also called Company) is the primary organisational unit — each with its own chart of accounts, fiscal calendar, and regulatory reporting. Operating Units (business units, cost centres, departments) represent internal divisions within a legal entity. Intercompany transactions enable financial postings between legal entities for consolidated reporting.",
+      "definition": "In Dynamics 365 Finance and Operations, a Legal Entity (also called Company) is the primary organisational unit - each with its own chart of accounts, fiscal calendar, and regulatory reporting. Operating Units (business units, cost centres, departments) represent internal divisions within a legal entity. Intercompany transactions enable financial postings between legal entities for consolidated reporting.",
       "hint": "Legal Entity = a company with its own financials. Operating Unit = a division within that company.",
       "tags": ["Finance", "Data Model"]
     },
@@ -115,7 +115,7 @@
       "id": "mb920-016",
       "term": "Procure-to-Pay (P2P) Process",
       "definition": "The end-to-end procurement cycle: requisition → purchase order → product receipt → vendor invoice → payment. Dynamics 365 SCM automates approvals, vendor collaboration, and invoice matching.",
-      "hint": "Buy goods from vendors and pay them — the full cycle.",
+      "hint": "Buy goods from vendors and pay them - the full cycle.",
       "tags": ["Supply Chain", "Procurement"]
     },
     {

@@ -17,7 +17,7 @@
       "id": "ms900-002",
       "term": "Microsoft Teams",
       "definition": "The hub for teamwork in Microsoft 365. Integrates chat, video meetings, file sharing (via SharePoint), and app integrations into one workspace. Teams are backed by Microsoft 365 Groups, which provision a SharePoint site, Exchange mailbox, and OneNote. Channels organise conversations by topic. Used for remote collaboration, meetings, webinars, and phone calls (Teams Phone add-on).",
-      "hint": "Chat + meetings + files + apps — all in one place for your team.",
+      "hint": "Chat + meetings + files + apps - all in one place for your team.",
       "tags": ["Collaboration", "Apps"]
     },
     {
@@ -66,7 +66,7 @@
       "id": "ms900-009",
       "term": "OneDrive for Business",
       "definition": "Each Microsoft 365 user gets 1 TB (or more) of cloud storage through OneDrive for Business, backed by SharePoint infrastructure. Files sync to Windows/macOS for offline access. Users can share files internally or externally with configurable permissions. Known Folder Move (KFM) automatically backs up Desktop, Documents, and Pictures. Different from personal OneDrive (consumer).",
-      "hint": "Your personal cloud drive in Microsoft 365 — synced, backed up, and shareable.",
+      "hint": "Your personal cloud drive in Microsoft 365 - synced, backed up, and shareable.",
       "tags": ["Storage", "Apps"]
     },
     {
@@ -80,7 +80,7 @@
       "id": "ms900-011",
       "term": "Microsoft 365 Apps (formerly Office Apps)",
       "definition": "The suite of productivity applications included with Microsoft 365: Word, Excel, PowerPoint, Outlook, OneNote, and Access (PC only). Available as web apps, mobile apps, and desktop apps depending on the licence. Desktop apps require Business Standard, Business Premium, E3, or E5.",
-      "hint": "Word, Excel, PowerPoint — in web, mobile, or desktop form depending on your plan.",
+      "hint": "Word, Excel, PowerPoint - in web, mobile, or desktop form depending on your plan.",
       "tags": ["Apps", "Productivity"]
     },
     {
@@ -122,7 +122,7 @@
       "id": "ms900-017",
       "term": "Zero Trust Security Model",
       "definition": "A Microsoft security framework that assumes no implicit trust. Every access request must be authenticated, authorized, and continuously validated. Core principles: verify explicitly, use least privilege, assume breach.",
-      "hint": "Never trust — always verify.",
+      "hint": "Never trust - always verify.",
       "tags": ["Security", "Identity"]
     },
     {
@@ -150,14 +150,14 @@
       "id": "ms900-021",
       "term": "Sensitivity Labels",
       "definition": "Labels that classify and protect documents and emails. Can apply encryption, watermarking, access restrictions, and automatic classification. Managed in the Microsoft Purview Compliance Portal.",
-      "hint": "Confidential, Highly Confidential — with automatic protection.",
+      "hint": "Confidential, Highly Confidential - with automatic protection.",
       "tags": ["Compliance", "Security"]
     },
     {
       "id": "ms900-022",
       "term": "Retention Policies",
       "definition": "Policies that determine how long content is kept or deleted across Microsoft 365. Used for regulatory compliance, legal requirements, and information governance.",
-      "hint": "Keep content for as long as required — delete when appropriate.",
+      "hint": "Keep content for as long as required - delete when appropriate.",
       "tags": ["Compliance", "Governance"]
     },
     {
@@ -213,7 +213,7 @@
       "id": "ms900-030",
       "term": "Microsoft 365 Backup and Restore",
       "definition": "Microsoft provides platform-level redundancy and retention, but customers are responsible for long-term backup needs. Third-party backup solutions are often used for extended retention, point-in-time restore, and compliance.",
-      "hint": "Microsoft protects the service — you protect your long-term data.",
+      "hint": "Microsoft protects the service - you protect your long-term data.",
       "tags": ["Backup", "Governance"]
     },
     {
@@ -304,7 +304,7 @@
       "id": "ms900-043",
       "term": "Microsoft 365 Backup vs. Retention",
       "definition": "Retention policies preserve or delete data based on rules. Backup solutions create point-in-time copies for recovery. Microsoft 365 includes retention but not full backup; third-party backup is often required.",
-      "hint": "Retention ≠ backup — both serve different purposes.",
+      "hint": "Retention ≠ backup - both serve different purposes.",
       "tags": ["Compliance", "Backup"]
     },
     {

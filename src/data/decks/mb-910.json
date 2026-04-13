@@ -17,7 +17,7 @@
       "id": "mb910-002",
       "term": "Dynamics 365 Sales",
       "definition": "A CRM application that manages the end-to-end sales process: Leads (unqualified prospects) → Opportunities (qualified deals in progress) → Quotes → Orders → Invoices. Features include a sales pipeline view, activity tracking (calls, emails, meetings), AI-powered sales insights (relationship health, next best action), and integration with Outlook and Teams for seller productivity.",
-      "hint": "Lead → Opportunity → Quote → Order → Invoice — the full sales funnel in one app.",
+      "hint": "Lead → Opportunity → Quote → Order → Invoice - the full sales funnel in one app.",
       "tags": ["Sales", "CRM"]
     },
     {
@@ -51,7 +51,7 @@
     {
       "id": "mb910-007",
       "term": "Accounts, Contacts, and Leads",
-      "definition": "Core CRM data entities: Account = a company or organisation you do business with. Contact = an individual person, usually associated with an Account. Lead = an unqualified prospect (person or company that has shown interest but is not yet a confirmed customer). When a Lead is qualified, it is converted into an Account, Contact, and Opportunity — beginning the formal sales process.",
+      "definition": "Core CRM data entities: Account = a company or organisation you do business with. Contact = an individual person, usually associated with an Account. Lead = an unqualified prospect (person or company that has shown interest but is not yet a confirmed customer). When a Lead is qualified, it is converted into an Account, Contact, and Opportunity - beginning the formal sales process.",
       "hint": "Lead = uncertain prospect. Account = company. Contact = person at that company.",
       "tags": ["CRM", "Data Model"]
     },
@@ -94,14 +94,14 @@
       "id": "mb910-013",
       "term": "Opportunity Management",
       "definition": "Opportunities represent potential revenue. Sellers track estimated revenue, probability, stakeholders, competitors, and activities. Opportunities move through customizable business process stages (e.g., Qualify → Develop → Propose → Close).",
-      "hint": "The heart of the sales pipeline — track deals from start to finish.",
+      "hint": "The heart of the sales pipeline - track deals from start to finish.",
       "tags": ["Sales", "CRM"]
     },
     {
       "id": "mb910-014",
       "term": "Quotes, Orders, and Invoices",
       "definition": "Quotes provide pricing to customers. When accepted, they convert to Orders. Orders can then be invoiced. Dynamics 365 Sales supports product catalogs, price lists, and discounting rules to automate pricing.",
-      "hint": "Quote → Order → Invoice — the sales closing workflow.",
+      "hint": "Quote → Order → Invoice - the sales closing workflow.",
       "tags": ["Sales", "Commerce"]
     },
     {
@@ -128,7 +128,7 @@
     {
       "id": "mb910-018",
       "term": "Entitlements",
-      "definition": "Entitlements define how much support a customer is entitled to — such as number of cases, hours of support, or specific channels. Cases validate entitlements automatically.",
+      "definition": "Entitlements define how much support a customer is entitled to - such as number of cases, hours of support, or specific channels. Cases validate entitlements automatically.",
       "hint": "Defines how much support a customer has paid for.",
       "tags": ["Customer Service", "Contracts"]
     },
@@ -206,7 +206,7 @@
       "id": "mb910-029",
       "term": "Dynamics 365 Licensing Basics",
       "definition": "Dynamics 365 uses per-app and per-user licensing. Users can license individual apps (Sales, Customer Service, Field Service) or purchase bundles like Customer Engagement Plan. Some features require add-ons (Omnichannel, RSO, Sales Insights).",
-      "hint": "License per app or bundle — some features need add-ons.",
+      "hint": "License per app or bundle - some features need add-ons.",
       "tags": ["Licensing", "Fundamentals"]
     },
     {
@@ -331,7 +331,7 @@
     {
       "id": "mb910-047",
       "term": "Business Rules",
-      "definition": "Logic applied at the Dataverse level to enforce validation, set field values, show/hide fields, or lock fields — without writing code. Applies across all apps using the table.",
+      "definition": "Logic applied at the Dataverse level to enforce validation, set field values, show/hide fields, or lock fields - without writing code. Applies across all apps using the table.",
       "hint": "No-code rules that enforce data logic.",
       "tags": ["Dataverse", "Logic"]
     },

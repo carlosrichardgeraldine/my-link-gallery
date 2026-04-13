@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0",
     "name": "Project Management Fundamentals",
-    "description": "Key project management concepts and terminology — methodologies, tools, roles, and best practices for successful project delivery.",
+    "description": "Key project management concepts and terminology - methodologies, tools, roles, and best practices for successful project delivery.",
     "createdAt": "2026-04-13"
   },
   "cards": [
@@ -373,7 +373,7 @@
     {
       "id": "pm-053",
       "term": "Organizational Structure Types",
-      "definition": "Common structures include functional, matrix (weak/strong), and projectized — each affecting authority and resource availability.",
+      "definition": "Common structures include functional, matrix (weak/strong), and projectized - each affecting authority and resource availability.",
       "hint": "Functional vs matrix vs projectized.",
       "tags": ["Environment"]
     },

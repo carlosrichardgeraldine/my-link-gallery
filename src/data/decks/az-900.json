@@ -9,15 +9,15 @@
     {
       "id": "az900-001",
       "term": "Azure Resource Groups",
-      "definition": "A Resource Group is a logical container that holds related Azure resources for an application or environment (e.g., VMs, storage accounts, databases). All resources in a group share the same lifecycle — you can deploy, update, and delete them together. Resource Groups also define the scope for access control (RBAC), policies, and billing cost tracking.",
+      "definition": "A Resource Group is a logical container that holds related Azure resources for an application or environment (e.g., VMs, storage accounts, databases). All resources in a group share the same lifecycle - you can deploy, update, and delete them together. Resource Groups also define the scope for access control (RBAC), policies, and billing cost tracking.",
       "hint": "Think of a Resource Group as a folder that organises and shares permissions across related Azure resources.",
       "tags": ["Management", "Fundamentals"]
     },
     {
       "id": "az900-002",
       "term": "Azure Virtual Machines",
-      "definition": "Azure VMs are on-demand, scalable compute resources that run Windows or Linux. You choose a VM size (vCPUs and RAM), an OS image, storage (managed disks), and networking. VMs are an IaaS offering — you manage the OS and software; Azure manages the physical hardware. Common scenarios: migrating on-premises workloads, custom software environments, and dev/test environments.",
-      "hint": "A VM gives you full control of an OS in the cloud — like a PC in a remote data centre.",
+      "definition": "Azure VMs are on-demand, scalable compute resources that run Windows or Linux. You choose a VM size (vCPUs and RAM), an OS image, storage (managed disks), and networking. VMs are an IaaS offering - you manage the OS and software; Azure manages the physical hardware. Common scenarios: migrating on-premises workloads, custom software environments, and dev/test environments.",
+      "hint": "A VM gives you full control of an OS in the cloud - like a PC in a remote data centre.",
       "tags": ["Compute", "IaaS"]
     },
     {
@@ -30,7 +30,7 @@
     {
       "id": "az900-004",
       "term": "Microsoft Entra ID (Azure Active Directory)",
-      "definition": "Microsoft Entra ID (formerly Azure Active Directory) is Azure's cloud-based identity and access management service. It authenticates users and controls access to Azure resources and Microsoft 365 apps using Single Sign-On (SSO), Multi-Factor Authentication (MFA), and Conditional Access policies. It is different from on-premises Windows Server Active Directory — it is designed for internet-based, cloud services.",
+      "definition": "Microsoft Entra ID (formerly Azure Active Directory) is Azure's cloud-based identity and access management service. It authenticates users and controls access to Azure resources and Microsoft 365 apps using Single Sign-On (SSO), Multi-Factor Authentication (MFA), and Conditional Access policies. It is different from on-premises Windows Server Active Directory - it is designed for internet-based, cloud services.",
       "hint": "Entra ID = the cloud identity system that decides who can log in and what they can access.",
       "tags": ["Security", "Identity"]
     },
@@ -45,7 +45,7 @@
       "id": "az900-006",
       "term": "Azure App Service",
       "definition": "Azure App Service is a fully managed PaaS for hosting web applications, REST APIs, and mobile back-ends. Supported languages and runtimes include .NET, Node.js, Java, Python, PHP, and Ruby. Azure handles the infrastructure, OS patching, and scaling. Key features: built-in autoscaling, custom domains and SSL, deployment slots (staging/production swap), and CI/CD integration.",
-      "hint": "Just upload your code — App Service handles the servers, runtime, and scaling for you.",
+      "hint": "Just upload your code - App Service handles the servers, runtime, and scaling for you.",
       "tags": ["Compute", "PaaS"]
     },
     {
@@ -58,7 +58,7 @@
     {
       "id": "az900-008",
       "term": "Azure Pricing Models and Cost Management",
-      "definition": "Azure offers several pricing options: Pay-As-You-Go (PAYG) — billed per second/minute, no upfront commitment; Reserved Instances — 1- or 3-year commitment for up to 72% savings; Azure Hybrid Benefit — bring existing Windows Server / SQL Server licences to save up to 40%; Spot VMs — unused capacity at deep discount. Azure Cost Management + Billing and the Pricing Calculator are tools for estimating and monitoring spend.",
+      "definition": "Azure offers several pricing options: Pay-As-You-Go (PAYG) - billed per second/minute, no upfront commitment; Reserved Instances - 1- or 3-year commitment for up to 72% savings; Azure Hybrid Benefit - bring existing Windows Server / SQL Server licences to save up to 40%; Spot VMs - unused capacity at deep discount. Azure Cost Management + Billing and the Pricing Calculator are tools for estimating and monitoring spend.",
       "hint": "PAYG = flexible. Reserved = commitment discount. Spot = cheapest but interruptible.",
       "tags": ["Cost Optimization", "Fundamentals"]
     },
@@ -94,7 +94,7 @@
       "id": "az900-013",
       "term": "Azure SQL Database",
       "definition": "A fully managed relational database service based on SQL Server. Provides automatic backups, patching, high availability, and scaling. Supports serverless compute tier and hyperscale storage. Ideal for transactional workloads.",
-      "hint": "Managed SQL Server in the cloud — no OS or patching required.",
+      "hint": "Managed SQL Server in the cloud - no OS or patching required.",
       "tags": ["Database", "PaaS"]
     },
     {
@@ -136,7 +136,7 @@
       "id": "az900-019",
       "term": "Azure ExpressRoute",
       "definition": "A private, dedicated connection between your on-premises network and Azure, bypassing the public internet. Offers higher reliability, lower latency, and enhanced security. Often used for enterprise-grade workloads.",
-      "hint": "Private fiber connection to Azure — not over the internet.",
+      "hint": "Private fiber connection to Azure - not over the internet.",
       "tags": ["Networking", "Hybrid"]
     },
     {
@@ -171,7 +171,7 @@
       "id": "az900-024",
       "term": "Azure Container Instances (ACI)",
       "definition": "A serverless container runtime for running containers without managing VMs or orchestrators. Ideal for quick tasks, batch jobs, and lightweight microservices.",
-      "hint": "Run containers instantly — no cluster required.",
+      "hint": "Run containers instantly - no cluster required.",
       "tags": ["Compute", "Containers"]
     },
     {

@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0",
     "name": "Software Engineering Fundamentals",
-    "description": "Core concepts in software engineering — SDLC, architecture, design, testing, DevOps, security, and programming fundamentals.",
+    "description": "Core concepts in software engineering - SDLC, architecture, design, testing, DevOps, security, and programming fundamentals.",
     "createdAt": "2026-04-13"
   },
   "cards": [
@@ -30,7 +30,7 @@
     {
       "id": "sef-004",
       "term": "Functional Requirements",
-      "definition": "Describe what the system should do — features, behaviors, and interactions.",
+      "definition": "Describe what the system should do - features, behaviors, and interactions.",
       "hint": "System functionality.",
       "tags": ["Requirements"]
     },
@@ -457,7 +457,7 @@
     {
       "id": "sef-065",
       "term": "ACID Properties",
-      "definition": "Atomicity, Consistency, Isolation, Durability — guarantees for reliable transactions.",
+      "definition": "Atomicity, Consistency, Isolation, Durability - guarantees for reliable transactions.",
       "hint": "Transaction reliability.",
       "tags": ["Database"]
     },
@@ -800,7 +800,7 @@
     {
       "id": "sef-114",
       "term": "Bulkhead Pattern",
-      "definition": "Isolating components so failures don’t spread.",
+      "definition": "Isolating components so failures don't spread.",
       "hint": "Contain failures.",
       "tags": ["Architecture"]
     },
@@ -1045,7 +1045,7 @@
     {
       "id": "sef-149",
       "term": "Software Observability Pillars",
-      "definition": "Logs, metrics, and traces — the three core observability signals.",
+      "definition": "Logs, metrics, and traces - the three core observability signals.",
       "hint": "The three pillars.",
       "tags": ["Operations"]
     },
@@ -1227,7 +1227,7 @@
     {
       "id": "sef-175",
       "term": "Regression Testing",
-      "definition": "Testing to ensure new changes don’t break existing functionality.",
+      "definition": "Testing to ensure new changes don't break existing functionality.",
       "hint": "Check for new bugs.",
       "tags": ["Testing"]
     },

@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0",
     "name": "GitHub Foundations (GH-900)",
-    "description": "Core GitHub concepts for the GH-900 certification — repositories, branches, pull requests, issues, Actions, security, and collaboration.",
+    "description": "Core GitHub concepts for the GH-900 certification - repositories, branches, pull requests, issues, Actions, security, and collaboration.",
     "createdAt": "2026-04-13"
   },
   "cards": [
@@ -353,7 +353,7 @@
       "id": "gh900-050",
       "term": "DevOps",
       "definition": "A set of practices that combine development and operations to deliver software faster and more reliably, supported by GitHub tools.",
-      "hint": "Build, test, deploy — continuously.",
+      "hint": "Build, test, deploy - continuously.",
       "tags": ["DevOps"]
     }
   ]

@@ -9,15 +9,15 @@
     {
       "id": "dp900-001",
       "term": "Relational vs. Non-Relational Data",
-      "definition": "Relational data is structured in tables with rows and columns, enforces a schema, and uses SQL. Relationships are modelled with foreign keys. Non-relational (NoSQL) data stores flexible, schema-less data in formats like documents (JSON), key-value pairs, column families, or graphs — suited for high-volume, varied workloads. Azure SQL Database is relational; Azure Cosmos DB is non-relational.",
+      "definition": "Relational data is structured in tables with rows and columns, enforces a schema, and uses SQL. Relationships are modelled with foreign keys. Non-relational (NoSQL) data stores flexible, schema-less data in formats like documents (JSON), key-value pairs, column families, or graphs - suited for high-volume, varied workloads. Azure SQL Database is relational; Azure Cosmos DB is non-relational.",
       "hint": "Relational = strict tables and SQL. Non-relational = flexible formats for scale.",
       "tags": ["Data Concepts", "Fundamentals"]
     },
     {
       "id": "dp900-002",
       "term": "Azure SQL Database",
-      "definition": "A fully managed PaaS relational database built on Microsoft SQL Server. It handles patching, backups, high availability, and scaling automatically. Supports the T-SQL language, and offers serverless and hyperscale tiers for variable or massive workloads. Best for OLTP (Online Transaction Processing) — frequent reads and writes for operational applications.",
-      "hint": "SQL Server in the cloud, fully managed — you just write queries.",
+      "definition": "A fully managed PaaS relational database built on Microsoft SQL Server. It handles patching, backups, high availability, and scaling automatically. Supports the T-SQL language, and offers serverless and hyperscale tiers for variable or massive workloads. Best for OLTP (Online Transaction Processing) - frequent reads and writes for operational applications.",
+      "hint": "SQL Server in the cloud, fully managed - you just write queries.",
       "tags": ["Relational", "Azure Services"]
     },
     {
@@ -30,7 +30,7 @@
     {
       "id": "dp900-004",
       "term": "OLTP vs. OLAP",
-      "definition": "OLTP (Online Transaction Processing) handles high volumes of short, real-time read/write operations — e.g., inserting an order, updating a balance. Optimised for write performance and normalised schemas. OLAP (Online Analytical Processing) handles complex queries across large historical datasets for business intelligence — e.g., monthly sales by region. Optimised for read performance with denormalised/star schemas.",
+      "definition": "OLTP (Online Transaction Processing) handles high volumes of short, real-time read/write operations - e.g., inserting an order, updating a balance. Optimised for write performance and normalised schemas. OLAP (Online Analytical Processing) handles complex queries across large historical datasets for business intelligence - e.g., monthly sales by region. Optimised for read performance with denormalised/star schemas.",
       "hint": "OLTP = day-to-day operations. OLAP = business analysis and reporting.",
       "tags": ["Data Concepts", "Analytics"]
     },
@@ -38,7 +38,7 @@
       "id": "dp900-005",
       "term": "Azure Synapse Analytics",
       "definition": "An integrated analytics service combining data warehousing (dedicated SQL pools), big data processing (Apache Spark pools), and data exploration into a single workspace. Connects to Azure Data Lake Storage for large-scale storage. Used for enterprise data warehousing and running complex analytical queries across petabytes of data. Formerly called Azure SQL Data Warehouse.",
-      "hint": "Azure's all-in-one platform for analytics — from warehouse to big data to ML.",
+      "hint": "Azure's all-in-one platform for analytics - from warehouse to big data to ML.",
       "tags": ["Analytics", "Azure Services"]
     },
     {
@@ -72,7 +72,7 @@
     {
       "id": "dp900-010",
       "term": "Batch Processing vs. Stream Processing",
-      "definition": "Batch Processing collects data over a period of time and processes it together in a scheduled job — e.g., end-of-day payroll calculations. High throughput but introduces latency. Stream Processing handles data continuously in real time as it arrives — e.g., credit card fraud detection within milliseconds. Azure services: Azure Data Factory / Synapse (batch), Azure Stream Analytics / Event Hubs (streaming).",
+      "definition": "Batch Processing collects data over a period of time and processes it together in a scheduled job - e.g., end-of-day payroll calculations. High throughput but introduces latency. Stream Processing handles data continuously in real time as it arrives - e.g., credit card fraud detection within milliseconds. Azure services: Azure Data Factory / Synapse (batch), Azure Stream Analytics / Event Hubs (streaming).",
       "hint": "Batch = process a pile at scheduled intervals. Stream = process each item the instant it arrives.",
       "tags": ["Data Concepts", "Analytics"]
     },
@@ -101,7 +101,7 @@
       "id": "dp900-014",
       "term": "Denormalization",
       "definition": "The process of combining tables to improve read performance, often used in OLAP and reporting systems. Reduces joins but increases redundancy.",
-      "hint": "Fewer tables, faster reads — at the cost of duplication.",
+      "hint": "Fewer tables, faster reads - at the cost of duplication.",
       "tags": ["Analytics", "Data Modeling"]
     },
     {
@@ -143,7 +143,7 @@
       "id": "dp900-020",
       "term": "Cosmos DB Consistency Levels",
       "definition": "Cosmos DB offers five consistency levels: Strong, Bounded Staleness, Session, Consistent Prefix, and Eventual. They balance latency, availability, and data accuracy. Session is the default.",
-      "hint": "Five levels — from Strong to Eventual.",
+      "hint": "Five levels - from Strong to Eventual.",
       "tags": ["Non-Relational", "Azure Services"]
     },
     {
@@ -171,7 +171,7 @@
       "id": "dp900-024",
       "term": "Data Ingestion",
       "definition": "The process of collecting and importing data from various sources into a storage or analytics system. Can be batch or streaming. Tools include Data Factory, Event Hubs, and IoT Hub.",
-      "hint": "Getting data into your system — batch or real-time.",
+      "hint": "Getting data into your system - batch or real-time.",
       "tags": ["Data Concepts", "ETL"]
     },
     {
@@ -339,7 +339,7 @@
       "id": "dp900-048",
       "term": "Time-Series Data",
       "definition": "Data indexed by time, often used in IoT, telemetry, and monitoring scenarios. Azure services like Cosmos DB and SQL Edge support time-series workloads.",
-      "hint": "Data points tracked over time — like sensor readings.",
+      "hint": "Data points tracked over time - like sensor readings.",
       "tags": ["Data Concepts", "IoT"]
     },
     {
