@@ -7,7 +7,24 @@
         "subtitle": "Bridge, design, and deliver solutions that matter."
       },
       {
-        "id": "work-1",
+        "id": "work-3",
+        "title": "Product Specialist at GITS Consulting",
+        "subtitle": "On-site, May 2025 – present",
+        "summary": "Microsoft 365 engineering work centered on secure productivity, DLP deployment, and operational support for more than 10,000 users.",
+        "body": [
+          "Managing and empowering 100+ SMB tenants while delivering enablement across Surabaya and Jakarta, designing core EDR/MDM/MAM baselines, and serving as a PoC factory for Microsoft 365 and security solutions."
+        ],
+        "highlights": [
+          "Microsoft 365",
+          "Microsoft Security",
+          "Microsoft Azure",
+          "Microsoft Power Platform"
+        ],
+        "accent": "bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500",
+        "borderClass": "border-emerald-400/70"
+      },
+      {
+        "id": "work-2",
         "title": "Microsoft 365 Engineer at SoftwareOne Indonesia",
         "subtitle": "Freelance & On-site, Oct 2025 – Mar 2026 (7 months)",
         "summary": "Microsoft 365 engineering work centered on secure productivity, DLP deployment, and operational support for more than 10,000 users.",
@@ -27,7 +44,7 @@
         "borderClass": "border-emerald-400/70"
       },
       {
-        "id": "work-2",
+        "id": "work-1",
         "title": "Functional Consultant at PT Dinamika Teknologi Informasi",
         "subtitle": "Contract & Remote, Jan 2025 – Sep 2025 (9 months)",
         "summary": "Functional consulting and project delivery for Dynamics 365 CRM, Power Platform, and Microsoft 365 for Education implementation.",
@@ -75,7 +92,7 @@
         "summary": "Strengths: strong language proficiency, analytical depth, and exploratory drive. Weaknesses: uneven consistency and emotional volatility under pressure. Opportunities: roles in strategy, communication, and cross-functional leadership. Threats: burnout risk and overextension in high-change environments.",
         "highlights": [
           "CEFR C1",
-          "INFJ",
+          "ENTP",
           "Type 3",
           "IAE",
           "Explorer",
@@ -111,19 +128,15 @@
     "overviewDetails": [
       {
         "icon": "MapPin",
-        "text": "Kemanggisan, West Jakarta"
+        "text": "Jemur Wonosari, Surabaya"
+      },
+      {
+        "icon": "MapPin",
+        "text": "Tanjung Duren, Jakarta Barat"
       },
       {
         "icon": "MapPinned",
-        "text": "from Malang, East Java"
-      },
-      {
-        "icon": "ArrowRightLeft",
-        "text": "Ready to relocate across the country"
-      },
-      {
-        "icon": "Briefcase",
-        "text": "Full time, contract, paid internship"
+        "text": "from Malang, Jawa Timur"
       }
     ],
     "rollingKeywordRows": [
@@ -249,6 +262,9 @@
       ]
     ],
     "projectItems": [
+      "Intune MDM, MAM & Defender EDR Implementation for an energy and science nonprofit organization in Indonesia",
+      "cPanel to Microsoft 365 Migration for an oil rig repair and maintenance services company in Jakarta",
+      "Google Workspace to Microsoft 365 Migration for a business consulting company in Jakarta",
       "Microsoft Office 365, Purview DLP and Intune Implementation at national multi-finance company in Jakarta.",
       "Extending Dynamics 365 CRM with Power Platform for ISV Success and private school in Jakarta + Google Workspace migration to Microsoft 365 for Education.",
       "Snowflake Hands-On Essentials Data Warehouse, Data App (Streamlit), Data Lake, Data Engineering & Data Science labs.",
@@ -292,24 +308,9 @@
         "institution": "University of the People",
         "degree": "Bachelor of Science - BS, Computer Science",
         "period": "Oct 2023 - Jun 2027",
-        "grade": "Grade: 3.25/4.0",
-        "focus": "Database Management System (DBMS), Operating Systems"
+        "grade": "Grade: 3.30/4.0",
+        "focus": "Project Management, Information Security"
       },
-      {
-        "institution": "",
-        "degree": "",
-        "period": "",
-        "grade": "",
-        "focus": ""
-      },
-      {
-        "institution": "",
-        "degree": "",
-        "period": "",
-        "grade": "",
-        "focus": ""
-      }
-    ],
     "honorsAndAwards": [
       {
         "title": "ASEAN Youth for Digital Action",
@@ -329,7 +330,9 @@
     ],
     "keySkills": {
       "proficient": [
+        "Microsoft Licensing",
         "Business Analysis",
+        "Cybersecurity Analysis",
         "IT Solutions Design",
         "Low-code-no-code AI Platform"
       ],
@@ -337,18 +340,17 @@
         "Project Management",
         "Presales",
         "Cloud Computing",
-        "IT Support",
+        "IT Operations",
         "System Administration",
         "Identity & Access Management",
         "Data Loss Prevention",
-        "IT Service Management"
+        "IT Service Management",
+        "Mobile Device Management"
       ],
       "entryLevel": [
-        "Microsoft Licensing",
         "Data Analysis",
         "Data Engineering",
-        "Database Administration",
-        "Mobile Device Management"
+        "Database Administration"
       ]
     },
     "toolsAndEquipment": {
@@ -357,15 +359,20 @@
         "Power Automate",
         "Power BI",
         "Dataverse",
-        "Purview"
-      ],
-      "fluent": [
-        "Dynamics 365 CRM",
+        "Copilot Studio",
+        "Purview",
+        "Entra",
+        "Intune",
+        "Defender",
         "SharePoint Online",
         "Exchange Online",
         "Microsoft 365",
         "Office 365",
-        "Snowflake",
+        "Microsoft Azure"
+      ],
+      "fluent": [
+        "Dynamics 365 CRM",
+        "Microsoft Sentinel",
         "SQL",
         "Python",
         "Jira",
@@ -380,33 +387,31 @@
         "BRD/PRD"
       ],
       "entryLevel": [
-        "Copilot Studio",
-        "Azure Admin",
-        "Azure DevOps",
-        "Intune",
-        "Anaplan",
+        "Okta",
         "Delinea",
         "ManageEngine",
-        "Google Cloud Security Command Center",
+        "Google Cloud Platform",
+        "Snowflake",
         "ServiceNow",
-        "Microsoft Entra",
-        "Microsoft Defender",
         "CyberArk PAM",
         "Debian",
-        "Ubuntu"
+        "Ubuntu",
+        "HPE Networking (Juniper)",
+        "Fortinet"
       ],
       "introductory": [
         "Microsoft Fabric",
         "Azure AI Services",
         "Microsoft Foundry",
-        "Dynamics 365 ERP",
+        "Dynamics 365 Business Central",
+        "Dynamics 365 Finance & Operations",
         "Oracle Cloud",
         "Oracle Fusion ERP",
         "AWS Cloud Services",
+        "Anaplan",
         "Salesforce",
         "Creatio",
         "Datadog",
-        "Okta",
         "Docker",
         "Elastic"
       ]
